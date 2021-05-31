@@ -245,6 +245,8 @@ export default class Player extends cc.Component
             if(this.anim.clip == "jump" && this.anim.isPlaying){
                 this.anim.play("idle");
             }
+        } else if(otherCollider.node.name == "Spike" && !this.isDead){
+            this.isDead = true;
         }
         
     }
