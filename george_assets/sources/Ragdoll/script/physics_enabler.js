@@ -18,6 +18,20 @@ cc.Class({
             Bits.e_centerOfMassBit |
             Bits.e_jointBit |
             Bits.e_shapeBit;
+
+
+
+            /*
+                george2 test
+
+
+
+
+
+
+                
+
+            */
         }
     },
 
