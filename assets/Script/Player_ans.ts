@@ -247,6 +247,8 @@ export default class Player extends cc.Component
             }
         } else if(otherCollider.node.name == "Spike" && !this.isDead){
             this.isDead = true;
+        } else if(otherCollider.tag == 3){
+            this.isDead = true;
         }
         
     }

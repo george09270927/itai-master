@@ -31,6 +31,15 @@
       false,
       false,
       true,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      true,
       false
     ]
   ],
@@ -58,7 +67,8 @@
     "object",
     "chain",
     "platform",
-    "stick"
+    "stick",
+    "bound"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
