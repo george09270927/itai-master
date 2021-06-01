@@ -1,34 +1,29 @@
-// Learn TypeScript:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/typescript.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Leg_force extends cc.Component {
-    private playerSpeed = 0;
-    zDown = false; // key for player to go left
+export default class R_Leg_force extends cc.Component {
 
-    xDown = false; // key for player to go right
+    playerSpeed: number =0;
 
-    jDown = false; // key for player to shoot
+    zDown: boolean = false; // key for player to go left
 
-    kDown = false; // key for player to jump
+    xDown: boolean =false; // key for player to go right
 
-    isDead = false;
+    jDown: boolean =false; // key for player to shoot
 
-    onGround = false;
-    dDown = false;
+    kDown: boolean =false; // key for player to jump
+
+    sDown: boolean = false;
+    dDown: boolean = false;
+
+    isDead:boolean =false;
+
+    onGround:boolean = false;
 
     onLoad () {
 
-        //window.Test_Body = this.node.getComponent(cc.RigidBody);
 
     }
 
@@ -51,18 +46,27 @@ export default class Leg_force extends cc.Component {
         if(event.keyCode == cc.macro.KEY.d) {
             this.dDown = true;
             this.onGround = false;
-        } 
+        } else if (event.keyCode == cc.macro.KEY.s) {
+            this.sDown = true;
+            this.onGround = false;
+        }
     }
 
     onKeyUp(event) {
         if(event.keyCode == cc.macro.KEY.d)
             this.dDown = false;
+        else if (event.keyCode == cc.macro.KEY.s)
+            this.sDown = false;
     }
     
     playerMovement() {
         this.playerSpeed = 0;
         if(this.dDown){
             cc.log("dDown");
+            this.playerSpeed = -150000;
+            this.node.scaleX = -1;
+        } else if (this.sDown){
+            cc.log("sDown");
             this.playerSpeed = 150000;
             this.node.scaleX = 1;
         }
@@ -70,7 +74,7 @@ export default class Leg_force extends cc.Component {
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
         //this.node.position.x += this.playerSpeed * dt;
         this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-    }
+    }  
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
         if (other.node.name == "Ground") {
