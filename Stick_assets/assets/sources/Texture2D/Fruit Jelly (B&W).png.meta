@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "a11505ee-3861-4d94-a708-29de65ef060c",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Fruit Jelly (B&W)": {
+      "ver": "1.0.4",
+      "uuid": "76b31837-f885-42e6-ba95-75de2363e76b",
+      "rawTextureUuid": "a11505ee-3861-4d94-a708-29de65ef060c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 512,
+      "height": 512,
+      "rawWidth": 512,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
