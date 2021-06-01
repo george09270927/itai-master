@@ -11,30 +11,11 @@ export default class NewClass extends cc.Component {
 
     public points = null;
     onLoad () {
-        //this.draw();
-        cc.log("point display");
-        cc.log(this.getComponent(cc.PhysicsPolygonCollider));
-        cc.log(this.getComponent(cc.PhysicsPolygonCollider).points);
         
         this.collider = this.getComponent(cc.PhysicsPolygonCollider);
-        cc.log("collider: " + this.collider);
-        cc.log("collider's poinrts: " + this.collider.points);
+        cc.log("collider's points: " + this.collider.points);
         cc.log("point lenght: "+this.collider.points.length);
-        cc.log(this.collider.points[0]);
-        cc.log(this.collider.points[0].x);
-        cc.log(this.collider.points[0].y);
-        cc.log(this.collider.points[1]);
-        cc.log(this.collider.points);
-
-        //cc.log("change");
-
-        //this.collider.points[0].x = 0;
-        //this.collider.points[0].y = 0;
-        //this.collider.points[0] = cc.v2(20, 20);
-
-        cc.log(this.collider.points[0]);
-
-
+        
         this.draw();
         
     }
@@ -58,7 +39,7 @@ export default class NewClass extends cc.Component {
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
-        cc.director.getPhysicsManager().debugDrawFlags=1;
+        //cc.director.getPhysicsManager().debugDrawFlags=1;
     }
 
     onKeyDown(event) 
