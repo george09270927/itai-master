@@ -56,7 +56,7 @@ cc.Class({
     onKeyUp(event) {
         if(event.keyCode == cc.macro.KEY.d)
             this.dDown = false;
-        else if (event.keyCode == cc.macro.KEY.d)
+        else if (event.keyCode == cc.macro.KEY.s)
             this.sDown = false;
     },
     
