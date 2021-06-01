@@ -22,6 +22,7 @@ cc.Class({
 
     onLoad () {
 
+        cc.director.getPhysicsManager().enabled = true;
         window.Test_Body = this.node.getComponent(cc.RigidBody);
 
     },
