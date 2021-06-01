@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "e8a6e061-46cb-42d7-913a-664d2ff5e819",
+  "uuid": "5a0f7e66-668a-4c65-a491-201843e9bff6",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Spike1": {
       "ver": "1.0.4",
-      "uuid": "a08d348c-ad2e-4d97-89ff-793cd277a0da",
-      "rawTextureUuid": "e8a6e061-46cb-42d7-913a-664d2ff5e819",
+      "uuid": "61005a53-67a5-45a0-b7fb-1fe579d8a26a",
+      "rawTextureUuid": "5a0f7e66-668a-4c65-a491-201843e9bff6",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

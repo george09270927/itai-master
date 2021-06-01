@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "5ef7602d-1d5a-46a6-922f-306725e7af00",
+  "uuid": "48a66411-73fc-424b-87b1-89d0704ca906",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_MagicStone1": {
       "ver": "1.0.4",
-      "uuid": "9ae44d11-afae-4762-9872-baddb63f0807",
-      "rawTextureUuid": "5ef7602d-1d5a-46a6-922f-306725e7af00",
+      "uuid": "bb418207-a421-4101-8a57-b00594340c80",
+      "rawTextureUuid": "48a66411-73fc-424b-87b1-89d0704ca906",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

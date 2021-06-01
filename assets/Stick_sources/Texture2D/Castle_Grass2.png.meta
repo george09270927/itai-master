@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "de294d7d-70af-41f4-97bd-04a5158604c8",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Castle_Grass2": {
+      "ver": "1.0.4",
+      "uuid": "7e253864-2fef-4bac-b99d-8ea7a49f0be6",
+      "rawTextureUuid": "de294d7d-70af-41f4-97bd-04a5158604c8",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 3,
+      "trimY": 2,
+      "width": 67,
+      "height": 55,
+      "rawWidth": 73,
+      "rawHeight": 59,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

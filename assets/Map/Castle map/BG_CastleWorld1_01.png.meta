@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "85e9fd6d-5a60-4203-8a38-7d68664263a6",
+  "uuid": "d7186649-b693-4813-b685-cf6838332785",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "BG_CastleWorld1_01": {
       "ver": "1.0.4",
-      "uuid": "2e01d04d-bd6b-4e6c-aa47-48a0e0b17569",
-      "rawTextureUuid": "85e9fd6d-5a60-4203-8a38-7d68664263a6",
+      "uuid": "3bd261ac-f815-434b-99ee-8fbb437cb2be",
+      "rawTextureUuid": "d7186649-b693-4813-b685-cf6838332785",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

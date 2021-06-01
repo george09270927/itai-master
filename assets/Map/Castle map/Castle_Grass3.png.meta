@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "7e7f9166-fb37-4c7b-86f0-d73f089b1d09",
+  "uuid": "d74c9190-7388-4a53-a617-e1ad2607cd84",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Grass3": {
       "ver": "1.0.4",
-      "uuid": "a73720c6-e145-4f0c-be82-e882c140517a",
-      "rawTextureUuid": "7e7f9166-fb37-4c7b-86f0-d73f089b1d09",
+      "uuid": "cccfa9ff-d267-4a47-b447-8397c0323aa1",
+      "rawTextureUuid": "d74c9190-7388-4a53-a617-e1ad2607cd84",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

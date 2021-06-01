@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "2dc9ff46-5c83-400f-a60c-dc5647c1bee0",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Halloween_Tree2": {
+      "ver": "1.0.4",
+      "uuid": "fc0e0aef-2b24-452f-bcad-49e47a5ddb45",
+      "rawTextureUuid": "2dc9ff46-5c83-400f-a60c-dc5647c1bee0",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 2,
+      "offsetY": -0.5,
+      "trimX": 8,
+      "trimY": 6,
+      "width": 360,
+      "height": 727,
+      "rawWidth": 372,
+      "rawHeight": 738,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

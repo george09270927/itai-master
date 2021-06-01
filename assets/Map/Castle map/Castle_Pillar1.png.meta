@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "f0d7de73-0da8-4742-8933-6975d1c67c77",
+  "uuid": "f1e132bf-a15b-43e5-a1c9-f54bb64d0737",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Pillar1": {
       "ver": "1.0.4",
-      "uuid": "8b03f538-da9a-43e5-8eae-03cde36e9c7a",
-      "rawTextureUuid": "f0d7de73-0da8-4742-8933-6975d1c67c77",
+      "uuid": "d8502337-b018-4c59-a4e6-18d111704f67",
+      "rawTextureUuid": "f1e132bf-a15b-43e5-a1c9-f54bb64d0737",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "0ccf59f3-8afd-44e5-a471-1e54b76be2e9",
+  "uuid": "6c65b291-5468-4bfc-b307-fae5746e7aba",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Brick1": {
       "ver": "1.0.4",
-      "uuid": "2bf9fc6d-3bdd-4d09-835b-6500a0e8ec3b",
-      "rawTextureUuid": "0ccf59f3-8afd-44e5-a471-1e54b76be2e9",
+      "uuid": "2354a0b9-6035-4a3d-a7df-16563999c622",
+      "rawTextureUuid": "6c65b291-5468-4bfc-b307-fae5746e7aba",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

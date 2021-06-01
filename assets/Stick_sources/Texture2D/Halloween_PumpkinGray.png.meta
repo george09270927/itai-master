@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "e352c5b6-8b6c-4318-9faf-771af9f70857",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Halloween_PumpkinGray": {
+      "ver": "1.0.4",
+      "uuid": "d14ca086-84e3-46f4-bff1-63b2c4f4fd8e",
+      "rawTextureUuid": "e352c5b6-8b6c-4318-9faf-771af9f70857",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 2,
+      "trimY": 1,
+      "width": 220,
+      "height": 183,
+      "rawWidth": 224,
+      "rawHeight": 185,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

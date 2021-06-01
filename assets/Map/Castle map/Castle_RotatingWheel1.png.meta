@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "dc8d988b-3a74-41b3-8b9f-dbca57d93c41",
+  "uuid": "57c437d2-2625-4b5f-b9b8-b3aaf768ab48",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_RotatingWheel1": {
       "ver": "1.0.4",
-      "uuid": "720b621b-d1f3-45cc-aa3c-5b78617dbf94",
-      "rawTextureUuid": "dc8d988b-3a74-41b3-8b9f-dbca57d93c41",
+      "uuid": "b70824c4-c379-426d-bab1-00af65213ee0",
+      "rawTextureUuid": "57c437d2-2625-4b5f-b9b8-b3aaf768ab48",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "85d627ce-0774-4359-ac3d-6b2f240c6a90",
+  "uuid": "610202bd-a695-4edf-a819-f7973ce08251",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Platform4Falling": {
       "ver": "1.0.4",
-      "uuid": "54a24473-812a-4ac6-b350-439bb83a3eaa",
-      "rawTextureUuid": "85d627ce-0774-4359-ac3d-6b2f240c6a90",
+      "uuid": "6c8d1f53-168b-44c3-bdd5-ecf5f3b8b341",
+      "rawTextureUuid": "610202bd-a695-4edf-a819-f7973ce08251",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "5d2aedab-0274-4bce-b712-96efeef86ac2",
+  "uuid": "294e57f1-f4ac-4c3f-8758-821fa197b197",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Wood1": {
       "ver": "1.0.4",
-      "uuid": "205f920f-0011-4a6b-9d09-0d873dd9e9ad",
-      "rawTextureUuid": "5d2aedab-0274-4bce-b712-96efeef86ac2",
+      "uuid": "11c6115d-a9a0-40e5-a624-2c00c8317884",
+      "rawTextureUuid": "294e57f1-f4ac-4c3f-8758-821fa197b197",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

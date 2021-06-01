@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "520b075c-d1d5-467c-b982-53e86c104603",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Castle_Spike1": {
+      "ver": "1.0.4",
+      "uuid": "79b2857c-e6e4-4877-a3df-96bf97cc2d96",
+      "rawTextureUuid": "520b075c-d1d5-467c-b982-53e86c104603",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 2,
+      "trimY": 3,
+      "width": 37,
+      "height": 63,
+      "rawWidth": 41,
+      "rawHeight": 69,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

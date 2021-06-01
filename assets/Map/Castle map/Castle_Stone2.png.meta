@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "5029980d-07df-4a99-bd8d-5fb0289d8f2f",
+  "uuid": "91945ab6-054f-4020-a98f-e680728c18f4",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Stone2": {
       "ver": "1.0.4",
-      "uuid": "0d85047a-4b59-4993-a14a-02a948c0043e",
-      "rawTextureUuid": "5029980d-07df-4a99-bd8d-5fb0289d8f2f",
+      "uuid": "503f9cf1-b935-4ee6-9a8b-d4901a533e81",
+      "rawTextureUuid": "91945ab6-054f-4020-a98f-e680728c18f4",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "ee619adc-7ed8-468a-b5c0-3487c1a23888",
+  "uuid": "68d3cf8c-7b53-4af9-b3ba-13c29d7827da",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_TreeSmall1": {
       "ver": "1.0.4",
-      "uuid": "6ada6169-7cf9-43ef-9847-ad92e64abae9",
-      "rawTextureUuid": "ee619adc-7ed8-468a-b5c0-3487c1a23888",
+      "uuid": "67268048-ea70-4f41-9bbc-118272425028",
+      "rawTextureUuid": "68d3cf8c-7b53-4af9-b3ba-13c29d7827da",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

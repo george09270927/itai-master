@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "07c0022c-4873-402c-ac2f-9ad592b86e30",
+  "uuid": "eaeba03c-9895-4b65-be72-4f1ef6f07c67",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Texture2D #1218": {
       "ver": "1.0.4",
-      "uuid": "493f3fa2-abdb-4303-8ae6-c3825d70f939",
-      "rawTextureUuid": "07c0022c-4873-402c-ac2f-9ad592b86e30",
+      "uuid": "ab5a6cce-7f62-44b5-a547-beb46a991760",
+      "rawTextureUuid": "eaeba03c-9895-4b65-be72-4f1ef6f07c67",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

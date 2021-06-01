@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "6f62e8e0-4f51-43e1-a09d-c7154229f7bb",
+  "uuid": "6f2fedcb-e2f4-4e08-9192-e1134b27c54b",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "rockman": {
       "ver": "1.0.4",
-      "uuid": "a2dd0bb4-1ec7-45e9-8360-78bb5bf2731e",
-      "rawTextureUuid": "6f62e8e0-4f51-43e1-a09d-c7154229f7bb",
+      "uuid": "900e5319-0efb-4780-bc3e-7308fc391b9a",
+      "rawTextureUuid": "6f2fedcb-e2f4-4e08-9192-e1134b27c54b",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "652387ff-338b-4f85-b556-9ee689a990ac",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "LiberationSans SDF Atlas": {
+      "ver": "1.0.4",
+      "uuid": "ede47059-b78a-432e-9620-41ad436b5b26",
+      "rawTextureUuid": "652387ff-338b-4f85-b556-9ee689a990ac",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 1022,
+      "height": 1022,
+      "rawWidth": 1024,
+      "rawHeight": 1024,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

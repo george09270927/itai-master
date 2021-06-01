@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "64e8ab1d-327e-414f-8c40-135fde2b2f80",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "LavaW_Grass4": {
+      "ver": "1.0.4",
+      "uuid": "3ad15da4-d549-4770-8f35-7a9eeaa22ba5",
+      "rawTextureUuid": "64e8ab1d-327e-414f-8c40-135fde2b2f80",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 81,
+      "height": 18,
+      "rawWidth": 83,
+      "rawHeight": 20,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

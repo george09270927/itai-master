@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "833213c1-903d-44ed-8ae6-c30be810e338",
+  "uuid": "a1e9e7ef-523b-44f0-a2c9-a4dea2bc80d8",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Castle_Chain2": {
       "ver": "1.0.4",
-      "uuid": "1c1cbefe-a7c5-4889-bd2c-094940d9e53e",
-      "rawTextureUuid": "833213c1-903d-44ed-8ae6-c30be810e338",
+      "uuid": "9b0fcd92-dfe7-452c-8bbf-f7715d7cccdf",
+      "rawTextureUuid": "a1e9e7ef-523b-44f0-a2c9-a4dea2bc80d8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
