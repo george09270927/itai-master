@@ -68,11 +68,11 @@ cc.Class({
     playerMovement(dt) {
         this.playerSpeed = 0;
         if(this.zDown){
-            this.playerSpeed = -150000;
+            this.playerSpeed = -1500;
             this.node.scaleX = -1;
         }
         else if(this.xDown){
-            this.playerSpeed = 150000;
+            this.playerSpeed = 1500;
             this.node.scaleX = 1;
         }
         

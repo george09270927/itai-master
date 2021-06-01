@@ -74,6 +74,7 @@ export default class R_Leg_force extends cc.Component {
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
         //this.node.position.x += this.playerSpeed * dt;
         this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
+        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
     }  
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;

@@ -65,18 +65,16 @@ export default class debug_body extends cc.Component
     playerMovement() {
         this.playerSpeed = 0;
         if(this.zDown){
-            this.playerSpeed = -150000;
+            this.playerSpeed = -55000;
             this.node.scaleX = -1;
         }
         else if(this.xDown){
-            this.playerSpeed = 150000;
+            this.playerSpeed = 55000;
             this.node.scaleX = 1;
         }
         
         if(this.kDown )
-        {
-            this.hit_right_main = false;
-            this.hit_left_main = false; 
+        { 
             this.jump();
         }
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
