@@ -177,17 +177,17 @@ export default class Player extends cc.Component
                 //this.score.resetScore();
             }
         }
-        else if(!this.anim.getAnimationState('shoot').isPlaying && !this.anim.getAnimationState('jump').isPlaying && this.onGround) // move animation can play only when shoot or jump animation finished
+        else if(!this.anim.getAnimationState('shoot').isPlaying && !this.anim.getAnimationState('jump').isPlaying) // move animation can play only when shoot or jump animation finished
         {
             if(this.jDown)
                 this.animateState = this.anim.play('shoot');
-            else if(this.kDown)
+            else if(this.kDown && this.onGround)
             {
                     this.animateState = this.anim.play('jump');
 
                     this.jump();
             }
-            else if(this.zDown || this.xDown)
+            else if(this.zDown && this.onGround || this.xDown && this.onGround)
             {
                 if(this.animateState == null || this.animateState.name != 'move') // when first call or last animation is not move
                     this.animateState = this.anim.play('move');
@@ -195,7 +195,7 @@ export default class Player extends cc.Component
             else
             {
                 //if no key is pressed and the player is on ground, stop all animations and go back to idle
-                if(this.animateState == null || this.animateState.name != 'idle')
+                if(this.animateState == null && this.onGround || this.animateState.name != 'idle' && this.onGround)
                     this.animateState = this.anim.play('idle');
             }
         }
