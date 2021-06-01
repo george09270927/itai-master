@@ -201,7 +201,7 @@
       "array": [
         -46.443,
         730.347,
-        268.7709893503001,
+        269.44569432680976,
         0,
         0,
         0,
@@ -3320,7 +3320,7 @@
     "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
-    "lowerAngle": -105,
+    "lowerAngle": -90,
     "upperAngle": 0,
     "_id": "a0Ut0yfrlEwac+WvURe+R9"
   },
@@ -4346,7 +4346,7 @@
     "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
-    "lowerAngle": 38,
+    "lowerAngle": 45,
     "upperAngle": 130,
     "_id": "b8BDxhtS1K6JX3LL3QYH76"
   },
