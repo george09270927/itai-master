@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "db84b603-044e-4542-8c3a-165af61ee90b",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "HW_Coffin_Candles1": {
+      "ver": "1.0.4",
+      "uuid": "52875b3b-bb63-4bfe-9751-a85e997c2ce6",
+      "rawTextureUuid": "db84b603-044e-4542-8c3a-165af61ee90b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": -10,
+      "trimX": 13,
+      "trimY": 33,
+      "width": 546,
+      "height": 332,
+      "rawWidth": 574,
+      "rawHeight": 378,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
