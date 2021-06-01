@@ -34,7 +34,7 @@ cc.Class({
 
 
     update() {
-        //cc.log(this.node.position);
+        //cc.log(this.node.position);///
         this.playerMovement();
     },
 
