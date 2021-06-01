@@ -1,6 +1,5 @@
 
 const {ccclass, property} = cc._decorator;
-
 @ccclass
 export default class debug_body extends cc.Component 
 {
@@ -22,6 +21,8 @@ export default class debug_body extends cc.Component
     onLoad () {
 
         cc.director.getPhysicsManager().enabled = true;
+        cc.director.getPhysicsManager().debugDrawFlags=1;
+        cc.log(cc.director.getPhysicsManager().gravity);
     }
 
     
@@ -49,6 +50,9 @@ export default class debug_body extends cc.Component
         } else if(event.keyCode == cc.macro.KEY.k) {
             this.kDown = true;
         } 
+        else if(event.keyCode == cc.macro.KEY.j) {
+            this.jDown = true;
+        }
     }
 
     onKeyUp(event) {
@@ -65,20 +69,38 @@ export default class debug_body extends cc.Component
     playerMovement() {
         this.playerSpeed = 0;
         if(this.zDown){
-            this.playerSpeed = -150000;
+            this.playerSpeed = -50000;
             this.node.scaleX = -1;
         }
         else if(this.xDown){
-            this.playerSpeed = 150000;
+            this.playerSpeed = 50000;
             this.node.scaleX = 1;
         }
         
+        
+       // cc.log(this.node.y);
+        
+        
         if(this.kDown )
         {
-            this.hit_right_main = false;
-            this.hit_left_main = false; 
             this.jump();
         }
+        else if(this.jDown)
+        {
+            this.down();
+        }
+
+        /*
+        if(this.node.y<=1100)
+        {
+            cc.director.getPhysicsManager().gravity = cc.v2(0,0);
+        }
+        else if(this.node.y<-1100)
+        {
+            cc.director.getPhysicsManager().gravity = cc.v2(0,300);
+        }
+        else cc.director.getPhysicsManager().gravity = cc.v2(0,-320);
+        */
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
         //this.node.position.x += this.playerSpeed * dt;
         this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
@@ -87,12 +109,15 @@ export default class debug_body extends cc.Component
 
     jump() {
         this.onGround = false;
-
         // Method I: Apply Force to rigidbody
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 150000), true);
 
         // Method II: Change velocity of rigidbody
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 320);
+        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1000);
+    }
+
+    down() {
+        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0,-500);
     }
 }
 

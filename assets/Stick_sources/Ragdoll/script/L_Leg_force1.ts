@@ -50,6 +50,18 @@ export default class R_Leg_force extends cc.Component {
             this.sDown = true;
             this.onGround = false;
         }
+        if(event.keyCode == cc.macro.KEY.z) {
+            this.zDown = true;
+            this.xDown = false;
+        } else if(event.keyCode == cc.macro.KEY.x) {
+            this.xDown = true;
+            this.zDown = false;
+        } else if(event.keyCode == cc.macro.KEY.k) {
+            this.kDown = true;
+        } 
+        else if(event.keyCode == cc.macro.KEY.j) {
+            this.jDown = true;
+        }
     }
 
     onKeyUp(event) {
@@ -57,6 +69,15 @@ export default class R_Leg_force extends cc.Component {
             this.dDown = false;
         else if (event.keyCode == cc.macro.KEY.s)
             this.sDown = false;
+
+            if(event.keyCode == cc.macro.KEY.z)
+            this.zDown = false;
+        else if(event.keyCode == cc.macro.KEY.x)
+            this.xDown = false;
+        else if(event.keyCode == cc.macro.KEY.j)
+            this.jDown = false;
+        else if(event.keyCode == cc.macro.KEY.k)
+            this.kDown = false;
     }
     
     playerMovement() {
@@ -69,6 +90,11 @@ export default class R_Leg_force extends cc.Component {
             cc.log("sDown");
             this.playerSpeed = 150000;
             this.node.scaleX = 1;
+        }
+
+        if(this.jDown)
+        {
+            this.playerSpeed = -150000;
         }
         
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
