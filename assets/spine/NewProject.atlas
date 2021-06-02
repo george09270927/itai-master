@@ -1,0 +1,90 @@
+
+NewProject.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+R_Leg_02
+  rotate: false
+  xy: 1, 1
+  size: 95, 116
+  orig: 95, 117
+  offset: 0, 0
+  index: -1
+R_Leg_01
+  rotate: false
+  xy: 98, 184
+  size: 95, 52
+  orig: 95, 52
+  offset: 0, 0
+  index: -1
+R_Arm_02
+  rotate: false
+  xy: 167, 86
+  size: 67, 96
+  orig: 68, 97
+  offset: 0, 0
+  index: -1
+R_Arm_01
+  rotate: false
+  xy: 236, 92
+  size: 56, 89
+  orig: 56, 89
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: false
+  xy: 195, 184
+  size: 33, 42
+  orig: 33, 43
+  offset: 0, 0
+  index: -1
+L_Leg_02
+  rotate: false
+  xy: 1, 119
+  size: 95, 116
+  orig: 95, 117
+  offset: 0, 0
+  index: -1
+L_Leg_01
+  rotate: false
+  xy: 236, 183
+  size: 95, 52
+  orig: 95, 52
+  offset: 0, 0
+  index: -1
+L_Arm_02
+  rotate: false
+  xy: 98, 86
+  size: 67, 96
+  orig: 68, 97
+  offset: 0, 0
+  index: -1
+L_Arm_01
+  rotate: false
+  xy: 236, 1
+  size: 56, 89
+  orig: 56, 89
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 98, 1
+  size: 83, 83
+  orig: 84, 83
+  offset: 1, 0
+  index: -1
+Body_02
+  rotate: false
+  xy: 294, 97
+  size: 20, 84
+  orig: 20, 84
+  offset: 0, 0
+  index: -1
+Body_01
+  rotate: false
+  xy: 294, 1
+  size: 20, 94
+  orig: 20, 94
+  offset: 0, 0
+  index: -1

@@ -39,7 +39,7 @@ export default class debug_body extends cc.Component
 
 
     onKeyDown(event) {
-        cc.log("Key Down: " + event.keyCode);
+        //cc.log("Key Down: " + event.keyCode);
         
         if(event.keyCode == cc.macro.KEY.z) {
             this.zDown = true;
@@ -87,6 +87,7 @@ export default class debug_body extends cc.Component
         }
         else if(this.jDown)
         {
+            //cc.log("down")
             this.down();
         }
 
@@ -113,11 +114,15 @@ export default class debug_body extends cc.Component
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 150000), true);
 
         // Method II: Change velocity of rigidbody
+        //cc.log("up");
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 1000);
     }
 
     down() {
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0,-500);
+        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0,-500);
+        //cc.log("down");
+        this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(0, -20000), true);
+        
     }
 }
 

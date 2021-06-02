@@ -42,7 +42,7 @@ cc.Class({
 
 
     onKeyDown(event) {
-        cc.log("Key Down: " + event.keyCode);
+        //cc.log("Key Down: " + event.keyCode);
         
         if(event.keyCode == cc.macro.KEY.d) {
             this.dDown = true;

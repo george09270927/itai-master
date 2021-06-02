@@ -68,11 +68,13 @@ cc.Class({
     playerMovement(dt) {
         this.playerSpeed = 0;
         if(this.zDown){
-            this.playerSpeed = -150000;
+            //this.playerSpeed = -150000;
+            cc.find("sticker/L_Leg_01").getComponent(cc.RigidBody).applyTorque(1000000, true);
             this.node.scaleX = -1;
         }
         else if(this.xDown){
             this.playerSpeed = 150000;
+            
             this.node.scaleX = 1;
         }
         
