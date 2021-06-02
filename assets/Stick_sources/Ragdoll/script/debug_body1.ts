@@ -65,14 +65,14 @@ export default class debug_body extends cc.Component
     playerMovement() {
         this.playerSpeed = 0;
         if(this.zDown){
-            //this.playerSpeed = -500;
-            this.playerSpeed = -2000;
+            this.playerSpeed = -500;
+            //this.playerSpeed = -2000;
             //this.playerSpeed = -55000;
             this.node.scaleX = -1;
         }
         else if(this.xDown){
-            //this.playerSpeed = 500;
-            this.playerSpeed = 2000;
+            this.playerSpeed = 500;
+            //this.playerSpeed = 2000;
             //this.playerSpeed = 55000;
             this.node.scaleX = 1;
         }
@@ -97,7 +97,7 @@ export default class debug_body extends cc.Component
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 150000), true);
 
         // Method II: Change velocity of rigidbody
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 320);
+        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
         cc.log("jump ss############");
     }
 }

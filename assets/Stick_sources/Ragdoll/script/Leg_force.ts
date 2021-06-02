@@ -28,8 +28,8 @@ export default class Leg_force extends cc.Component {
     @property(cc.Node)
     body: cc.Node = null;
 
-    playerSpeed: number = 1000;
-    //playerSpeed: number = 10000;
+    //playerSpeed: number = 1000;
+    playerSpeed: number = 10000;
     //playerSpeed: number = 120000;
     ll_flag: boolean = true;
 
@@ -113,11 +113,11 @@ export default class Leg_force extends cc.Component {
                 this.node.scaleX *= -1;
                 this.ll_flag = true;
             }
-            this.L_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.playerSpeed, 0);
-            this.R_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
+            //this.L_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.playerSpeed, 0);
+            //this.R_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
             
-            //this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed, 0), true);
-            //this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
+            this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed, 0), true);
+            this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
         } 
         
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)

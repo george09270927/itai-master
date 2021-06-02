@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "small_sticker",
+    "_name": "small_sticker - 001",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -87,8 +87,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1207.16,
-        1770.524,
+        593,
+        373.148,
         0,
         0,
         0,
@@ -870,7 +870,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "96G3wnHoJBbaXjzaF/mrez",
+    "fileId": "cfoIBc05xPNoLfE7PIvsOR",
     "sync": false
   },
   {
@@ -881,7 +881,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "c20GVr6HpIGYv1nNe2UYGY",
+    "fileId": "f6V8fetTpECICpxehpLbkT",
     "sync": false
   },
   {
@@ -892,7 +892,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "0eHxiuUDhLda3lwNFqKCZc",
+    "fileId": "44675vODdEu5HOtLKWFSka",
     "sync": false
   },
   {
@@ -1232,7 +1232,7 @@
     "collideConnected": false,
     "_maxMotorTorque": 0,
     "_motorSpeed": 0,
-    "_enableLimit": false,
+    "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
     "lowerAngle": 0,
@@ -1419,11 +1419,11 @@
     "collideConnected": false,
     "_maxMotorTorque": 0,
     "_motorSpeed": 0,
-    "_enableLimit": false,
+    "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
-    "lowerAngle": 0,
-    "upperAngle": 0,
+    "lowerAngle": -45,
+    "upperAngle": 45,
     "_id": ""
   },
   {
@@ -1434,7 +1434,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "24uDsYA7BJwrVShKt2ushi",
+    "fileId": "966t+R/0VBA7MEhM7iRLYe",
     "sync": false
   },
   {
@@ -1445,7 +1445,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "22oYy3s0xLsZ66kZGgExOZ",
+    "fileId": "46CUlhB9JBKp8/hOkqyPHj",
     "sync": false
   },
   {
@@ -1466,7 +1466,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "1bxC0ne6pDcLWfLam+H8fF",
+    "fileId": "99gkOdS+dKe6XOLyVTpOET",
     "sync": false
   },
   {
@@ -1775,7 +1775,7 @@
     "collideConnected": false,
     "_maxMotorTorque": 0,
     "_motorSpeed": 0,
-    "_enableLimit": false,
+    "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
     "lowerAngle": 0,
@@ -1962,11 +1962,11 @@
     "collideConnected": false,
     "_maxMotorTorque": 0,
     "_motorSpeed": 0,
-    "_enableLimit": false,
+    "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
-    "lowerAngle": 0,
-    "upperAngle": 0,
+    "lowerAngle": -45,
+    "upperAngle": 45,
     "_id": ""
   },
   {
@@ -1977,7 +1977,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "69ZXI760ZIi4G0E2PpRIXl",
+    "fileId": "d7QrLVuLBAzqvth4AW8z5u",
     "sync": false
   },
   {
@@ -1988,7 +1988,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "f6xlZszc9KspqdtspHdGaA",
+    "fileId": "cftwHaFCpIpIesGOVYwY9G",
     "sync": false
   },
   {
@@ -2009,7 +2009,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "ff4ttDu8RGH5UTkMBDUmKT",
+    "fileId": "d1QjTlewBERZL3zSgzM9PB",
     "sync": false
   },
   {
@@ -2020,7 +2020,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "3bvo4maJVB2qC9HEQ82iua",
+    "fileId": "92b0v/MMVM4oz9CrrGwhq0",
     "sync": false
   },
   {
@@ -2203,11 +2203,11 @@
     "collideConnected": false,
     "_maxMotorTorque": 0,
     "_motorSpeed": 0,
-    "_enableLimit": false,
+    "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
-    "lowerAngle": 0,
-    "upperAngle": 0,
+    "lowerAngle": -45,
+    "upperAngle": 45,
     "_id": ""
   },
   {
@@ -2218,7 +2218,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "22U3Nbt/ZJ7pI9dRbd4kzE",
+    "fileId": "fdD4jiLcpK5JbtgR1qddj2",
     "sync": false
   },
   {
@@ -2433,7 +2433,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "41Q1ZEvdpK6o0YQM+HRjz/",
+    "fileId": "7bCF1fFjhBfJyiYYlLXevx",
     "sync": false
   },
   {
@@ -2616,11 +2616,11 @@
     "collideConnected": false,
     "_maxMotorTorque": 0,
     "_motorSpeed": 0,
-    "_enableLimit": false,
+    "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
-    "lowerAngle": 0,
-    "upperAngle": 0,
+    "lowerAngle": -45,
+    "upperAngle": 45,
     "_id": ""
   },
   {
@@ -2631,7 +2631,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "f9YIwJlxdCj4LpESmq5hur",
+    "fileId": "f01beuk+9AXpCN4aGh7ihL",
     "sync": false
   },
   {
@@ -2846,7 +2846,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "40cyoaQG9Bu4juwedg3UN7",
+    "fileId": "feEK9TZo1Mlp03zYGl5C9j",
     "sync": false
   },
   {
@@ -2857,7 +2857,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "72eYcyKt9L27ovuxA6c+q7",
+    "fileId": "8feGsN6rBFDpNTTVm+qNi1",
     "sync": false
   }
 ]
