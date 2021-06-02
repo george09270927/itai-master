@@ -29,7 +29,7 @@ export default class Leg_force extends cc.Component {
     body: cc.Node = null;
 
     //playerSpeed: number = 1000;
-    playerSpeed: number = 10000;
+    playerSpeed: number = 4000;
     //playerSpeed: number = 120000;
     ll_flag: boolean = true;
 
@@ -47,6 +47,10 @@ export default class Leg_force extends cc.Component {
     isDead:boolean =false;
 
     onGround:boolean = false;
+
+    cDown:boolean = false;
+
+    walk_angle = 0;
 
     onLoad () {
 
@@ -72,17 +76,33 @@ export default class Leg_force extends cc.Component {
         if(event.keyCode == cc.macro.KEY.x) {
             this.xDown = true;
             this.onGround = false;
+            this.L_leg2.angle -= this.walk_angle;
+            this.R_leg2.angle -= this.walk_angle;
         } else if (event.keyCode == cc.macro.KEY.z) {
             this.zDown = true;
             this.onGround = false;
-        }
+            this.L_leg2.angle += this.walk_angle;
+            this.R_leg2.angle += this.walk_angle;
+        } else if (event.keyCode == cc.macro.KEY.c) {
+            this.cDown = true;
+            this.onGround = false;
+        } 
     }
 
     onKeyUp(event) {
-        if(event.keyCode == cc.macro.KEY.x)
+        if(event.keyCode == cc.macro.KEY.x) {
             this.xDown = false;
-        else if (event.keyCode == cc.macro.KEY.z)
+            this.L_leg2.angle += this.walk_angle;
+            this.R_leg2.angle += this.walk_angle;
+        } else if (event.keyCode == cc.macro.KEY.z) {
             this.zDown = false;
+            this.L_leg2.angle -= this.walk_angle;
+            this.R_leg2.angle -= this.walk_angle;
+        } else if (event.keyCode == cc.macro.KEY.c) {
+            this.cDown = false;
+            this.R_leg2.angle = 0;
+        }
+            
     }
     
     playerMovement() {
@@ -119,7 +139,13 @@ export default class Leg_force extends cc.Component {
             this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed, 0), true);
             this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
         } 
-        
+        if (this.cDown) {
+            cc.log("angle: " +this.R_leg2.angle);
+            if (this.R_leg2.angle < 5)
+                this.R_leg2.angle = -30;
+            //this.L_feet_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed / 4, 0), true);
+            //this.R_feet_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed / 4, 0), true);
+        }
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
         //this.node.position.x += this.playerSpeed * dt;
         

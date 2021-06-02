@@ -20,12 +20,13 @@ export default class debug_body extends cc.Component
     onGround:boolean = false;
 
     onLoad () {
-
         cc.director.getPhysicsManager().enabled = true;
     }
 
     
     start() {
+        //cc.director.getPhysicsManager().debugDrawFlags = 1;
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     }
