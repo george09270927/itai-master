@@ -63,11 +63,15 @@ export default class R_Leg_force extends cc.Component {
         this.playerSpeed = 0;
         if(this.dDown){
             cc.log("dDown");
-            this.playerSpeed = -150000;
+            this.playerSpeed = -3000;
+            //this.playerSpeed = -10000;      // cool broken version
+            //this.playerSpeed = -150000;
             this.node.scaleX = -1;
         } else if (this.sDown){
             cc.log("sDown");
-            this.playerSpeed = 150000;
+            this.playerSpeed = 3000;
+            //this.playerSpeed = 10000;       // cool broken version
+            //this.playerSpeed = 150000;
             this.node.scaleX = 1;
         }
         

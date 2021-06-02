@@ -28,7 +28,9 @@ export default class Leg_force extends cc.Component {
     @property(cc.Node)
     body: cc.Node = null;
 
-    playerSpeed: number = 120000;
+    playerSpeed: number = 1000;
+    //playerSpeed: number = 10000;
+    //playerSpeed: number = 120000;
     ll_flag: boolean = true;
 
     zDown: boolean = false; // key for player to go left
@@ -85,7 +87,7 @@ export default class Leg_force extends cc.Component {
     
     playerMovement() {
         //this.playerSpeed = 0;
-        if (this.zDown) {
+        if (this.zDown || this.xDown) {
             cc.log("zDown");
             //var tempL = this.node.x -  this.L_leg.x;
             //var tempR = this.node.x -  this.R_leg.x;
@@ -97,59 +99,26 @@ export default class Leg_force extends cc.Component {
             cc.log(this.R_leg.x - this.node.x);
             
             //if ((this.node.x - this.L_leg.x > 120 || this.R_leg.x - this.node.x > 160) && this.ll_flag) {
-            if ((this.node.x - this.L_leg.x > 120) && this.ll_flag) {
+            //if ((this.node.x - this.L_leg.x > 6.5 || this.R_leg.x - this.node.x > 8.8) && this.ll_flag) {
+            if ((this.node.x - this.L_leg.x > 12) && this.ll_flag && this.R_leg.x - this.L_leg.x > 20) {
                 cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = false;
-            } else if ((this.node.x - this.R_leg.x > 120) && !this.ll_flag) {
+            } else if ((this.node.x - this.R_leg.x > 12) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 20) {
+            //} else if ((this.node.x - this.R_leg.x > 6.5 || this.L_leg.x - this.node.x > 8.8) && !this.ll_flag) {
             //} else if ((this.node.x - this.R_leg.x > 120 || this.L_leg.x - this.node.x > 160) && !this.ll_flag) {
                 cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = true;
             }
-            //this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 1000000), true);
-            //this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, -1000000), true);
-            this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed, 0), true);
-            this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-            //this.L_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.playerSpeed, 0);
-            //this.R_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
-
-        } else if (this.xDown) {
-            cc.log("xDown");
-            cc.log("H - L:");
-            cc.log(this.node.x - this.L_leg.x);
-            cc.log("R - H:");
-            cc.log(this.R_leg.x - this.node.x);
+            this.L_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.playerSpeed, 0);
+            this.R_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
             
-            if ((this.R_leg.x - this.node.x > 160) && this.ll_flag) {
-                cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
-                this.playerSpeed = -this.playerSpeed;
-                this.node.scaleX *= -1;
-                /*this.L_leg1.scaleX *= -1;
-                this.L_leg2.scaleX *= -1;
-                this.R_leg1.scaleX *= -1;
-                this.R_leg2.scaleX *= -1;*/
-                this.ll_flag = false;
-            } else if ((this.L_leg.x - this.node.x > 160) && !this.ll_flag) {
-                cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
-                this.playerSpeed = -this.playerSpeed;
-                this.node.scaleX *= -1;
-                /*this.L_leg1.scaleX *= -1;
-                this.L_leg2.scaleX *= -1;
-                this.R_leg1.scaleX *= -1;
-                this.R_leg2.scaleX *= -1;*/
-                this.ll_flag = true;
-            }
-            //this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 1000000), true);
-            //this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, -1000000), true);
-            this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed, 0), true);
-            this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-            //this.L_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.playerSpeed, 0);
-            //this.R_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
-
-        }
+            //this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed, 0), true);
+            //this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
+        } 
         
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
         //this.node.position.x += this.playerSpeed * dt;
