@@ -9,6 +9,9 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
+export module Global {
+    export let onGround : boolean = false;
+}
 
 @ccclass
 export default class Leg_force extends cc.Component {
@@ -29,7 +32,7 @@ export default class Leg_force extends cc.Component {
     body: cc.Node = null;
 
     //playerSpeed: number = 1000;
-    playerSpeed: number = 4000;
+    playerSpeed: number = 4000 + 600;
     //playerSpeed: number = 120000;
     ll_flag: boolean = true;
 
@@ -46,7 +49,7 @@ export default class Leg_force extends cc.Component {
 
     isDead:boolean =false;
 
-    onGround:boolean = false;
+    //onGround:boolean = false;
 
     cDown:boolean = false;
 
@@ -67,6 +70,11 @@ export default class Leg_force extends cc.Component {
     update() {
         //cc.log(this.node.position);
         this.playerMovement();
+        //cc.log("diff: ",this.node.y - this.R_leg.y);
+        if (this.node.y - this.R_leg.y < 41.5 && Global.onGround && !(this.xDown || this.zDown)) {
+            //cc.log("modify: ", this.node.y - this.R_leg.y);
+            this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (this.node.y - this.R_leg.y) * 10);
+        }
     }
 
 
@@ -75,17 +83,15 @@ export default class Leg_force extends cc.Component {
         
         if(event.keyCode == cc.macro.KEY.x) {
             this.xDown = true;
-            this.onGround = false;
             this.L_leg2.angle -= this.walk_angle;
             this.R_leg2.angle -= this.walk_angle;
         } else if (event.keyCode == cc.macro.KEY.z) {
             this.zDown = true;
-            this.onGround = false;
             this.L_leg2.angle += this.walk_angle;
             this.R_leg2.angle += this.walk_angle;
         } else if (event.keyCode == cc.macro.KEY.c) {
             this.cDown = true;
-            this.onGround = false;
+            Global.onGround = false;
         } 
     }
 
@@ -100,7 +106,11 @@ export default class Leg_force extends cc.Component {
             this.R_leg2.angle -= this.walk_angle;
         } else if (event.keyCode == cc.macro.KEY.c) {
             this.cDown = false;
-            this.R_leg2.angle = 0;
+            //this.R_leg2.angle = 0;
+            /*this.body.getComponent(cc.RigidBody).fixedRotation = false;
+            cc.log("up: " + this.body.getComponent(cc.RigidBody).fixedRotation);
+            this.body.getComponent(cc.RigidBody).angularVelocity = 500;
+            cc.log(this.body.getComponent(cc.RigidBody).angularVelocity);*/
         }
             
     }
@@ -140,9 +150,15 @@ export default class Leg_force extends cc.Component {
             this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
         } 
         if (this.cDown) {
-            cc.log("angle: " +this.R_leg2.angle);
-            if (this.R_leg2.angle < 5)
-                this.R_leg2.angle = -30;
+            cc.log("head: "+this.node.y);
+            /*cc.log("angle: " +this.body.getComponent(cc.RigidBody).angularVelocity);
+            //this.body.getComponent(cc.RigidBody).fixedRotation = true;
+            this.body.getComponent(cc.RigidBody).angularVelocity = 0;
+            cc.log("after: " + this.body.getComponent(cc.RigidBody).angularVelocity);
+            this.body.getComponent(cc.RevoluteJoint).collideConnected = true;
+            cc.log(this.body.angle);*/
+            //if (this.R_leg2.angle < 5)
+            //    this.R_leg2.angle = -30;
             //this.L_feet_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed / 4, 0), true);
             //this.R_feet_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed / 4, 0), true);
         }
@@ -153,9 +169,10 @@ export default class Leg_force extends cc.Component {
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
         if (other.node.name == "Ground") {
-            this.onGround = true;
             cc.log("onGround");
         }
+        //cc.log("contact other:"+ other.node.name);
+        //cc.log("diff: ",self.node.y - other.node.y);
         
     }
 }
