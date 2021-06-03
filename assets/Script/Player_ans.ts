@@ -4,6 +4,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Player extends cc.Component 
 {
+    private scene = null;
 
     private anim = null; //this will use to get animation component
 
@@ -150,6 +151,7 @@ export default class Player extends cc.Component
     private playerAnimation()
     {
         this.node.scaleX = (this.zDown) ? -1 : (this.xDown) ? 1 : this.node.scaleX;
+        this.scene = cc.director.getScene();
 
         if(this.isDead)
         {
@@ -164,7 +166,10 @@ export default class Player extends cc.Component
                 // 3. register a callback function when reborn animation finish, and set the value of this.isDead to false in the callback function
                 // ================================================
                 
-                this.node.position = cc.v2(480, 500);
+                if(this.scene.name == "CastleMap")
+                    this.node.position = cc.v2(480, 500);
+                else if(this.scene.name == "IceMap")
+                    this.node.position = cc.v2(200, 500);
                 cc.log(this.anim);
                 cc.log(this.anim.play('reborn'));
                 this.animateState = this.anim.play('reborn');
@@ -176,6 +181,10 @@ export default class Player extends cc.Component
                 //reset score value
                 //this.score.resetScore();
             }
+        }
+        else if(this.anim.getAnimationState('jump').isPlaying) {
+            if(this.jDown)
+                this.animateState = this.anim.play('shoot');
         }
         else if(!this.anim.getAnimationState('shoot').isPlaying && !this.anim.getAnimationState('jump').isPlaying && this.onGround) // move animation can play only when shoot or jump animation finished
         {
@@ -249,6 +258,12 @@ export default class Player extends cc.Component
             this.isDead = true;
         } else if(otherCollider.tag == 3){
             this.isDead = true;
+        } else if(otherCollider.node.name == "IcePlatform") {
+            this.onGround = true;
+            cc.log("hit IcePlatform");
+            if(this.anim.clip == "jump" && this.anim.isPlaying){
+                this.anim.play("idle");
+            }
         }
         
     }
