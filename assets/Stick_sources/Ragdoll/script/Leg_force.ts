@@ -32,7 +32,7 @@ export default class Leg_force extends cc.Component {
     body: cc.Node = null;
 
     //playerSpeed: number = 1000;
-    playerSpeed: number = 4000 + 600;
+    playerSpeed: number = 4000 + 600 - 2500 -500 - 500 - 500;
     //playerSpeed: number = 120000;
     ll_flag: boolean = true;
 
@@ -75,6 +75,21 @@ export default class Leg_force extends cc.Component {
             //cc.log("modify: ", this.node.y - this.R_leg.y);
             this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (this.node.y - this.R_leg.y) * 10);
         }
+
+        // this is leg round demo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (this.body.angle < -60) 
+            this.body.getComponent(cc.RigidBody).angularVelocity = -500;
+        else if (this.body.angle > 60)
+            this.body.getComponent(cc.RigidBody).angularVelocity = 500;
+        
+        /*if (this.cDown) {
+            this.R_leg1.getComponent(cc.RigidBody).angularVelocity = 150000;
+        } */
+        /*if (this.R_leg1.angle < -30) 
+            this.R_leg1.getComponent(cc.RigidBody).angularVelocity = -50000;
+        else if (this.R_leg1.angle > 30)
+            this.R_leg1.getComponent(cc.RigidBody).angularVelocity = 50000;
+        */
     }
 
 
@@ -107,6 +122,9 @@ export default class Leg_force extends cc.Component {
         } else if (event.keyCode == cc.macro.KEY.c) {
             this.cDown = false;
             //this.R_leg2.angle = 0;
+            this.R_leg1.getComponent(cc.RigidBody).applyTorque(-3000, true);
+            this.L_leg1.getComponent(cc.RigidBody).applyTorque(3000, true);
+
             /*this.body.getComponent(cc.RigidBody).fixedRotation = false;
             cc.log("up: " + this.body.getComponent(cc.RigidBody).fixedRotation);
             this.body.getComponent(cc.RigidBody).angularVelocity = 500;
@@ -127,17 +145,17 @@ export default class Leg_force extends cc.Component {
             cc.log(this.node.x - this.L_leg.x);
             cc.log("R - H:");
             cc.log(this.R_leg.x - this.node.x);
+            //cc.log("H - L: ",this.node.angle - this.L_leg1.angle);
+            //cc.log("H - R: ",this.node.angle - this.R_leg1.angle);
             
-            //if ((this.node.x - this.L_leg.x > 120 || this.R_leg.x - this.node.x > 160) && this.ll_flag) {
-            //if ((this.node.x - this.L_leg.x > 6.5 || this.R_leg.x - this.node.x > 8.8) && this.ll_flag) {
+            //if ((this.node.angle - this.L_leg1.angle > 30) && this.ll_flag && this.R_leg1.angle - this.L_leg1.angle > 50) {
             if ((this.node.x - this.L_leg.x > 12) && this.ll_flag && this.R_leg.x - this.L_leg.x > 20) {
                 cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = false;
+            //} else if ((this.node.angle - this.R_leg1.angle > 30) && !this.ll_flag && this.L_leg1.angle - this.R_leg1.angle > 50) {
             } else if ((this.node.x - this.R_leg.x > 12) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 20) {
-            //} else if ((this.node.x - this.R_leg.x > 6.5 || this.L_leg.x - this.node.x > 8.8) && !this.ll_flag) {
-            //} else if ((this.node.x - this.R_leg.x > 120 || this.L_leg.x - this.node.x > 160) && !this.ll_flag) {
                 cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
@@ -146,17 +164,27 @@ export default class Leg_force extends cc.Component {
             //this.L_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.playerSpeed, 0);
             //this.R_leg.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
             
-            this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed, 0), true);
-            this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
+
+            this.R_leg1.getComponent(cc.RigidBody).applyTorque(this.playerSpeed, true);
+            this.L_leg1.getComponent(cc.RigidBody).applyTorque(-this.playerSpeed, true);
+            // ori
+            this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed * 5, 0), true);
+            this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed * 5, 0), true);
         } 
         if (this.cDown) {
-            cc.log("head: "+this.node.y);
-            /*cc.log("angle: " +this.body.getComponent(cc.RigidBody).angularVelocity);
+            //cc.log("angle: " +this.body.getComponent(cc.RigidBody).angularVelocity);
             //this.body.getComponent(cc.RigidBody).fixedRotation = true;
-            this.body.getComponent(cc.RigidBody).angularVelocity = 0;
-            cc.log("after: " + this.body.getComponent(cc.RigidBody).angularVelocity);
-            this.body.getComponent(cc.RevoluteJoint).collideConnected = true;
-            cc.log(this.body.angle);*/
+            //this.R_leg1.getComponent(cc.RigidBody).angularVelocity = 150000;
+            //this.body.angle = -30;
+            cc.log("this.R_leg1.angle: ", this.R_leg1.angle);
+            this.R_leg1.getComponent(cc.RigidBody).applyTorque(3000, true);
+            this.L_leg1.getComponent(cc.RigidBody).applyTorque(-3000, true);
+            /*if (this.R_leg1.angle < -30) 
+                this.R_leg1.getComponent(cc.RigidBody).angularVelocity = -15000;
+            else if (this.R_leg1.angle > 30)
+                this.R_leg1.getComponent(cc.RigidBody).angularVelocity = 15000;*/
+            //cc.log("after: " + this.body.getComponent(cc.RigidBody).angularVelocity);
+            //cc.log(this.body.angle);
             //if (this.R_leg2.angle < 5)
             //    this.R_leg2.angle = -30;
             //this.L_feet_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed / 4, 0), true);
