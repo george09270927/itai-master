@@ -5,19 +5,30 @@ const {ccclass, property} = cc._decorator;
 export default class debug_body extends cc.Component 
 {
 
+    @property(cc.Node)
+    private camera: cc.Node = null;
+
     playerSpeed: number =0;
 
-    zDown: boolean = false; // key for player to go left
+    aDown: boolean = false; // key for player to go left
 
-    xDown: boolean =false; // key for player to go right
+    dDown: boolean =false; // key for player to go right
+
+    sDown: boolean = false //key for player to go down
 
     jDown: boolean =false; // key for player to shoot
 
-    kDown: boolean =false; // key for player to jump
+    wDown: boolean =false; // key for player to jump
 
     isDead:boolean =false;
 
     onGround:boolean = false;
+
+    playerside: boolean = true;//true:right false:left
+
+    private hitflag : boolean = false;
+
+    hithand: number = 1;//true:right false:left
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
@@ -29,62 +40,154 @@ export default class debug_body extends cc.Component
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
     }
 
 
     update() {
         //cc.log(this.node.position);///
         this.playerMovement();
+        cc.log(this.node.scaleX)
     }
 
 
     onKeyDown(event) {
         cc.log("Key Down: " + event.keyCode);
         
-        if(event.keyCode == cc.macro.KEY.z) {
-            this.zDown = true;
-            this.xDown = false;
-        } else if(event.keyCode == cc.macro.KEY.x) {
-            this.xDown = true;
-            this.zDown = false;
-        } else if(event.keyCode == cc.macro.KEY.k) {
-            this.kDown = true;
+        if(event.keyCode == cc.macro.KEY.a) {
+            this.aDown = true;
+            this.dDown = false;
+        } else if(event.keyCode == cc.macro.KEY.d) {
+            this.dDown = true;
+            this.aDown = false;
+        } else if(event.keyCode == cc.macro.KEY.s) {
+            this.sDown = true;
+        }
+        if(event.keyCode == cc.macro.KEY.j) {
+            this.jDown = true;
+        } 
+        
+        if(event.keyCode == cc.macro.KEY.w) {
+            this.wDown = true;
         } 
     }
 
     onKeyUp(event) {
-        if(event.keyCode == cc.macro.KEY.z)
-            this.zDown = false;
-        else if(event.keyCode == cc.macro.KEY.x)
-            this.xDown = false;
-        else if(event.keyCode == cc.macro.KEY.j)
+        if(event.keyCode == cc.macro.KEY.a)
+            this.aDown = false;
+        if(event.keyCode == cc.macro.KEY.d)
+            this.dDown = false;
+        if(event.keyCode == cc.macro.KEY.s)
+            this.sDown = false;
+        if(event.keyCode == cc.macro.KEY.j)
+        {
             this.jDown = false;
-        else if(event.keyCode == cc.macro.KEY.k)
-            this.kDown = false;
+            this.hitflag=false;
+            this.hithand*=-1;
+        }
+            
+            
+        if(event.keyCode == cc.macro.KEY.w)
+            this.wDown = false;
     }
     
     playerMovement() {
         this.playerSpeed = 0;
-        if(this.zDown){
-            this.playerSpeed = -500;
+        if(this.aDown){
+            this.playerSpeed = -300;
             //this.playerSpeed = -2000;
             //this.playerSpeed = -55000;
             this.node.scaleX = -1;
+            this.playerside = false;
         }
-        else if(this.xDown){
-            this.playerSpeed = 500;
+        else if(this.dDown){
+            this.playerSpeed = 300;
             //this.playerSpeed = 2000;
             //this.playerSpeed = 55000;
             this.node.scaleX = 1;
+            this.playerside  = true;
         }
+
+
+        //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = true;
+        cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+        cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
         
+        
+
+        if(this.jDown&&this.hitflag==false){
+            this.shakeEffect(0.1);
+            this.hitflag=true;
+            cc.log("wow")
+
+            if(this.playerside==true)
+            {
+                //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-2000, 0), true);
+
+                if(this.hithand==1) cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                else cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                //this.playerSpeed = 2000;
+
+
+                //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+            }
+            else if(this.playerside==false)
+            {
+
+
+               // cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(2000, 0), true);
+                if(this.hithand==1)cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                else cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                //this.playerSpeed = -2000;
+
+
+                //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+            }
+        } 
+
+
+        /*if(cc.find('small_sticker - 002_knee/0_Neck').angle<0)
+        {
+            cc.find('small_sticker - 002_knee/0_Neck').angle++;
+        }
+        else if(cc.find('small_sticker - 002_knee/0_Neck').angle>0)
+        {
+            cc.find('small_sticker - 002_knee/0_Neck').angle--;
+        }*/
+        if(cc.find('small_sticker - 002_knee/0_Body_01').angle<0)
+        {
+            cc.find('small_sticker - 002_knee/0_Body_01').angle++;
+        }
+        else if(cc.find('small_sticker - 002_knee/0_Body_01').angle>0)
+        {
+            cc.find('small_sticker - 002_knee/0_Body_01').angle--;
+        }
+        if(cc.find('small_sticker - 002_knee/0_Body_02').angle<0)
+        {
+            cc.find('small_sticker - 002_knee/0_Body_02').angle++;
+        }
+        else if(cc.find('small_sticker - 002_knee/0_Body_02').angle>0)
+        {
+            cc.find('small_sticker - 002_knee/0_Body_02').angle--;
+        }
+
+
+
         
         //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
         //this.node.position.x += this.playerSpeed * dt;
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
         
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-        if(this.kDown )
+        if(this.wDown )
         { 
             this.jump();
         }
@@ -100,6 +203,36 @@ export default class debug_body extends cc.Component
         // Method II: Change velocity of rigidbody
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
         cc.log("jump ss############");
+    }
+
+
+
+
+
+    shakeEffect(du) {
+        this.camera.runAction(
+            cc.repeatForever(
+                cc.sequence(
+                    cc.moveTo(0.02, cc.v2(5, 7)),
+                    cc.moveTo(0.02, cc.v2(-6, 7)),
+                    cc.moveTo(0.02, cc.v2(-13, 3)),
+                    cc.moveTo(0.02, cc.v2(3, -6)),
+                    cc.moveTo(0.02, cc.v2(-5, 5))
+                    /*,
+                    /*
+                    cc.moveTo(0.02, cc.v2(2, -8)),
+                    cc.moveTo(0.02, cc.v2(-8, -10)),
+                    cc.moveTo(0.02, cc.v2(3, 10)),
+                    cc.moveTo(0.02, cc.v2(0, 0))
+                    */
+                )
+            )
+        );
+
+        this.scheduleOnce(() => {
+            this.camera.stopAllActions();
+            this.camera.setPosition(0,0);
+        }, du);
     }
 }
 
