@@ -1,5 +1,6 @@
 
 const {ccclass, property} = cc._decorator;
+import { Global } from "./Leg_force";
 
 @ccclass
 export default class debug_body extends cc.Component 
@@ -105,7 +106,7 @@ export default class debug_body extends cc.Component
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
         
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-        if(this.kDown )
+        if(this.kDown && Global.onGround)
         { 
             this.jump();
         }
@@ -113,13 +114,13 @@ export default class debug_body extends cc.Component
 
 
     jump() {
-        this.onGround = false;
+        Global.onGround = false;
 
         // Method I: Apply Force to rigidbody
-        //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 150000), true);
+        //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 30000), true);
 
         // Method II: Change velocity of rigidbody
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
+        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 20000);
         cc.log("jump ss############");
     }
 }
