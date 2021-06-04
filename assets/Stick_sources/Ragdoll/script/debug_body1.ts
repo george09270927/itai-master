@@ -18,6 +18,9 @@ export default class debug_body extends cc.Component
     isDead:boolean =false;
 
     onGround:boolean = false;
+    xFlag: boolean = false; // key for player to go right
+    zFlag: boolean = false; // key for player to go left
+    
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
@@ -43,21 +46,39 @@ export default class debug_body extends cc.Component
         
         if(event.keyCode == cc.macro.KEY.z) {
             this.zDown = true;
-            this.xDown = false;
+            if (this.xDown) {
+                this.xDown = false;
+                this.xFlag = true;
+            }
+            
         } else if(event.keyCode == cc.macro.KEY.x) {
             this.xDown = true;
-            this.zDown = false;
+            if (this.zDown) {
+                this.zDown = false;
+                this.zFlag = true;
+            }
+            
         } else if(event.keyCode == cc.macro.KEY.k) {
             this.kDown = true;
         } 
     }
 
     onKeyUp(event) {
-        if(event.keyCode == cc.macro.KEY.z)
+        if(event.keyCode == cc.macro.KEY.z) {
             this.zDown = false;
-        else if(event.keyCode == cc.macro.KEY.x)
+            this.zFlag = false;
+            if (this.xFlag) {
+                this.xDown = true;
+                this.xFlag = false;
+            }
+        } else if(event.keyCode == cc.macro.KEY.x) {
             this.xDown = false;
-        else if(event.keyCode == cc.macro.KEY.j)
+            this.xFlag = false;
+            if (this.zFlag) {
+                this.zDown = true;
+                this.zFlag = false;
+            }
+        } else if(event.keyCode == cc.macro.KEY.j)
             this.jDown = false;
         else if(event.keyCode == cc.macro.KEY.k)
             this.kDown = false;
