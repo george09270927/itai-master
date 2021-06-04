@@ -79,7 +79,7 @@ export default class Leg_force extends cc.Component {
 
 
     onKeyDown(event) {
-        cc.log("Key Down: " + event.keyCode);
+        //cc.log("Key Down: " + event.keyCode);
         
         if(event.keyCode == cc.macro.KEY.x) {
             this.xDown = true;
@@ -128,16 +128,14 @@ export default class Leg_force extends cc.Component {
             cc.log("R - H:");
             cc.log(this.R_leg.x - this.node.x);
             
-            //if ((this.node.x - this.L_leg.x > 120 || this.R_leg.x - this.node.x > 160) && this.ll_flag) {
-            //if ((this.node.x - this.L_leg.x > 6.5 || this.R_leg.x - this.node.x > 8.8) && this.ll_flag) {
-            if ((this.node.x - this.L_leg.x > 12) && this.ll_flag && this.R_leg.x - this.L_leg.x > 20) {
+            if ((this.node.x - this.L_leg.x > 0.5) && this.ll_flag && this.R_leg.x - this.L_leg.x > 15) {
+            //if ((this.node.x - this.L_leg.x > 12) && this.ll_flag && this.R_leg.x - this.L_leg.x > 20) {
                 cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = false;
-            } else if ((this.node.x - this.R_leg.x > 12) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 20) {
-            //} else if ((this.node.x - this.R_leg.x > 6.5 || this.L_leg.x - this.node.x > 8.8) && !this.ll_flag) {
-            //} else if ((this.node.x - this.R_leg.x > 120 || this.L_leg.x - this.node.x > 160) && !this.ll_flag) {
+            } else if ((this.node.x - this.R_leg.x > 0.5) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 15) {
+            //} else if ((this.node.x - this.R_leg.x > 12) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 20) {
                 cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
