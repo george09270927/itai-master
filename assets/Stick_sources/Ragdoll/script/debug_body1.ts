@@ -189,6 +189,23 @@ export default class debug_body extends cc.Component
         } 
 
 
+
+
+        else if(this.jDown&&this.hitflag==false&&Global.player1_getgun==true){
+            this.hitflag=true;
+            this.shakeEffect(0.1);
+            this.gun_pointer.getComponent('weapon_instantiate').createBullet();
+            if(this.playerside==true)
+            {
+                this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000,(Math.floor(Math.random()*1)+-1)*10000), true);
+            }
+            else if(this.playerside==false)
+            {
+                this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, (Math.floor(Math.random()*1)+-1)*10000), true);
+            }
+        } 
+
+
         /*if(cc.find('small_sticker - 002_knee/0_Neck').angle<0)
         {
             cc.find('small_sticker - 002_knee/0_Neck').angle++;

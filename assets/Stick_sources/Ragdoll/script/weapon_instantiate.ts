@@ -3,6 +3,16 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class weapon_instantiate extends cc.Component {
 
+
+    @property(cc.Prefab)
+    private bulletPrefab: cc.Prefab = null;
+
+    private canCreateBullet: boolean = true;
+
+    private bulletInterval: number = 2; 
+
+
+
     onLoad() {
 
     }
@@ -28,5 +38,21 @@ export default class weapon_instantiate extends cc.Component {
         this.node.group = "hand";
 
         this.node.position = this.node.position.addSelf(node.position);
+    }
+
+
+
+
+
+
+    private createBullet()
+    {
+        this.canCreateBullet = false;
+        this.scheduleOnce(function(){
+            this.canCreateBullet = true;
+        }, this.bulletInterval);
+
+        let bullet = cc.instantiate(this.bulletPrefab);
+        bullet.getComponent('gun_bullet').init(this.node);
     }
 }
