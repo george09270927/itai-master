@@ -18,18 +18,20 @@ export default class Feet extends cc.Component {
         var direction = contact.getWorldManifold().normal;
         //cc.log("YYYYYYYYY: "+direction.y);
         if (other.node.name == "platform" && direction.y < 0) {
-            cc.log("hit onGround: ",Global.onGround);
+            //cc.log("hit onGround: ",Global.onGround);
             Global.onGround = true;
+            Global.onWall = 0;
             //cc.log("platform");
         }
-        //cc.log("contact other:"+ other.node.name);
-        //cc.log("diff: ",self.node.y - other.node.y);
-        
+        /*if (other.node.name == "platform" && direction.x != 0) {     // wall
+            Global.onWall = true;
+        }*/
     }
     onEndContact(contact, self, other) {
         if (other.node.name == "platform") {
-            cc.log("leave onGround: ",Global.onGround);
+            //cc.log("leave onGround: ",Global.onGround);
             Global.onGround = false;
+            //Global.onWall = false;
             //cc.log("platform");
         }
     }

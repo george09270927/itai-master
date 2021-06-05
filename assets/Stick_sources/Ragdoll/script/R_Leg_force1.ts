@@ -40,7 +40,7 @@ export default class R_Leg_force extends cc.Component {
 
 
     onKeyDown(event) {
-        cc.log("Key Down: " + event.keyCode);
+        //cc.log("Key Down: " + event.keyCode);
         
         if(event.keyCode == cc.macro.KEY.d) {
             this.dDown = true;
@@ -61,13 +61,13 @@ export default class R_Leg_force extends cc.Component {
     playerMovement() {
         this.playerSpeed = 0;
         if(this.dDown){
-            cc.log("dDown");
+            //cc.log("dDown");
             this.playerSpeed = 3000;
             //this.playerSpeed = 10000;       // cool broken version
             //this.playerSpeed = 150000;
             this.node.scaleX = 1;
         } else if (this.sDown){
-            cc.log("sDown");
+            //cc.log("sDown");
             this.playerSpeed = -3000;
             //this.playerSpeed = -10000;      // cool broken version
             //this.playerSpeed = -150000;

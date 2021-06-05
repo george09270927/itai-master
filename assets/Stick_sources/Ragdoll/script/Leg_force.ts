@@ -11,6 +11,7 @@
 const {ccclass, property} = cc._decorator;
 export module Global {
     export let onGround : boolean = false;
+    export let onWall : number = 0;
 }
 
 @ccclass
@@ -89,6 +90,23 @@ export default class Leg_force extends cc.Component {
             //cc.log("modify: ", this.node.y - this.R_leg.y);
             this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (this.node.y - this.R_leg.y) * 10);
         }
+        if (Global.onWall == 0) {
+            this.R_leg1.getComponent(cc.RigidBody).fixedRotation = false;
+            this.L_leg1.getComponent(cc.RigidBody).fixedRotation = false;
+        } else if (Global.onWall == 1) {
+            cc.log("LEFT!!!");
+            this.R_leg1.angle = 60;
+            this.L_leg1.angle = 0;
+
+            this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+            this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+        } else if (Global.onWall == 2) {
+            this.R_leg1.angle = 0;
+            this.L_leg1.angle = -60;
+
+            this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+            this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+        }
     }
 
 
@@ -149,26 +167,26 @@ export default class Leg_force extends cc.Component {
     
     playerMovement() {
         //this.playerSpeed = 0;
-        if (this.zDown || this.xDown) {
-            cc.log("zDown");
+        if ((this.zDown || this.xDown) && !Global.onWall) {
+            //cc.log("zDown");
             //var tempL = this.node.x -  this.L_leg.x;
             //var tempR = this.node.x -  this.R_leg.x;
             //cc.log ("L: head x:" + tempL);
             //cc.log ("R: head x:" + tempR);
-            cc.log("H - L:");
+            /*cc.log("H - L:");
             cc.log(this.node.x - this.L_leg.x);
             cc.log("R - H:");
-            cc.log(this.R_leg.x - this.node.x);
+            cc.log(this.R_leg.x - this.node.x);*/
             
             if ((this.node.x - this.L_leg.x > 0.5) && this.ll_flag && this.R_leg.x - this.L_leg.x > 15) {
             //if ((this.node.x - this.L_leg.x > 12) && this.ll_flag && this.R_leg.x - this.L_leg.x > 20) {
-                cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
+                //cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = false;
             } else if ((this.node.x - this.R_leg.x > 0.5) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 15) {
             //} else if ((this.node.x - this.R_leg.x > 12) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 20) {
-                cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
+                //cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = true;
