@@ -24,7 +24,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 9
+      "__id__": 8
     },
     "_opacity": 255,
     "_color": {
@@ -48,8 +48,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        773,
+        348.908,
         0,
         0,
         0,
@@ -69,13 +69,13 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": ""
   },
   {
     "__type__": "cc.Node",
-    "_name": "block",
+    "_name": "platform",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -94,20 +94,17 @@
       },
       {
         "__id__": 6
-      },
-      {
-        "__id__": 7
       }
     ],
     "_prefab": {
-      "__id__": 8
+      "__id__": 7
     },
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 106,
-      "g": 255,
-      "b": 255,
+      "r": 0,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
@@ -124,16 +121,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        102.261,
-        109.275,
+        0,
+        0,
         0,
         0,
         0,
         0,
         1,
-        1.992,
-        2.843,
-        1.992
+        2,
+        0.5,
+        1
       ]
     },
     "_eulerAngles": {
@@ -145,8 +142,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 3,
+    "groupIndex": 3,
     "_id": ""
   },
   {
@@ -157,11 +154,11 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_type": 2,
+    "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 4,
-    "_linearDamping": 0,
-    "_angularDamping": 0,
+    "_gravityScale": 7,
+    "_linearDamping": 3,
+    "_angularDamping": 3,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -175,32 +172,6 @@
     "_id": ""
   },
   {
-    "__type__": "cc.PhysicsBoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": false,
-    "tag": 0,
-    "_density": 1,
-    "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "body": null,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 100,
-      "height": 100
-    },
-    "_id": ""
-  },
-  {
     "__type__": "cc.PhysicsPolygonCollider",
     "_name": "",
     "_objFlags": 0,
@@ -211,7 +182,7 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.2,
+    "_friction": 0.1,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -259,19 +230,19 @@
     "_lineWidth": 1,
     "_strokeColor": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 246,
+      "g": 37,
+      "b": 37,
       "a": 255
     },
     "_lineJoin": 2,
     "_lineCap": 0,
     "_fillColor": {
       "__type__": "cc.Color",
-      "r": 128,
-      "g": 232,
-      "b": 242,
-      "a": 188
+      "r": 53,
+      "g": 140,
+      "b": 132,
+      "a": 245
     },
     "_miterLimit": 10,
     "_id": ""
@@ -292,7 +263,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a695d83f-9fb3-4c7c-8733-6c290ac68f3e"
     },
     "fileId": "98RTqPOZhFEazDjWvh9B4w",
     "sync": false
@@ -303,7 +274,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a695d83f-9fb3-4c7c-8733-6c290ac68f3e"
     },
     "fileId": "24hsBPwo5MNYJzuKVH29X5",
     "sync": false

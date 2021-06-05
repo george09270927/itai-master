@@ -28,6 +28,10 @@ export default class Player extends cc.Component
 
     private isDead: boolean = true;
 
+    private canCreateBullet: boolean = true;
+
+    private bulletInterval: number = 0.2; 
+
     onLoad()
     {
         // ===================== TODO =====================
@@ -216,13 +220,13 @@ export default class Player extends cc.Component
     // call this when player shoots the bullet.
     private createBullet()
     {
-        let bullet = null;
+        this.canCreateBullet = false;
+        this.scheduleOnce(function(){
+            this.canCreateBullet = true;
+        }, this.bulletInterval);
 
-        if (this.bulletPool.size() > 0) 
-            bullet = this.bulletPool.get(this.bulletPool);
-
-        if(bullet != null)
-            bullet.getComponent('Bullet').init(this.node);
+        let bullet = cc.instantiate(this.bulletPrefab);
+        bullet.getComponent('Bullet').init(this.node);
     }
 
     //check if the collision is valid or not

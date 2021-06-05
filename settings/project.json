@@ -10,6 +10,7 @@
     [
       false,
       true,
+      true,
       true
     ],
     [
@@ -18,28 +19,42 @@
       false,
       null,
       false,
-      true
-    ],
-    [
-      true,
-      false,
-      false,
       true,
       true
     ],
     [
-      false,
-      false,
-      false,
+      true,
       true,
       false,
+      true,
+      true,
+      null,
       true
     ],
     [
       false,
       false,
+      false,
       true,
       false,
+      true,
+      true
+    ],
+    [
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
+      true,
+      true,
+      true,
       true,
       false
     ]
@@ -69,7 +84,8 @@
     "chain",
     "platform",
     "stick",
-    "bound"
+    "bound",
+    "bullet"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
@@ -78,6 +94,5 @@
     "width": 960
   },
   "use-customize-simulator": true,
-  "use-project-simulator-setting": false,
-  "start-scene": "current"
+  "use-project-simulator-setting": false
 }

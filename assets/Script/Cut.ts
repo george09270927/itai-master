@@ -5,6 +5,8 @@ const {ccclass, property} = cc._decorator;
 export default class NewClass extends cc.Component {
 
     public collider = null;
+
+    public rigidbody = null;
     
     private originCubePoints = null;
 
@@ -12,28 +14,33 @@ export default class NewClass extends cc.Component {
 
     public points = null;
 
-    public splitTime: number = 3;
+    public splitTime: number = 4;
 
     private parentNode: cc.Node = null;
 
-    private splitEnable: boolean = false;
+    private bulletsplitEnable: boolean = true;
 
 
     onLoad () {
         
         //cc.log("fuckyou");
 
-
+        
         this.collider = this.getComponent(cc.PhysicsPolygonCollider);
 
+        this.rigidbody = this.getComponent(cc.RigidBody);
+        
         this.originCubePoints = this.getComponent(cc.PhysicsPolygonCollider).points;
 
-        //cc.log("new collider's points: " + this.collider.points);
+        cc.log("new collider's points: " + this.collider.points);
         //cc.log("point lenght: "+this.collider.points.length);
-
+        cc.log(this.rigidbody.type);
         //this.splitTime = 3;
+        //this.collider.type = 1;
+        //this.rigidbody.type = 0;
         
-        
+        //cc.log(this.rigidbody);
+        //this.rigidbody.type = 1;
         this.draw();
 
         
@@ -54,9 +61,9 @@ export default class NewClass extends cc.Component {
     }
     start () {
 
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
         //cc.director.getPhysicsManager().debugDrawFlags=1;
 
@@ -72,11 +79,11 @@ export default class NewClass extends cc.Component {
         }
         */
 
-        cc.log("split time: " +this.splitTime);
+        //cc.log("split time: " +this.splitTime);
 
      
     }
-
+    /*
     onKeyDown(event) 
     {
         switch(event.keyCode) 
@@ -96,6 +103,7 @@ export default class NewClass extends cc.Component {
                 break;
         }
     }
+    
     onKeyUp(event) 
     {
         switch(event.keyCode) 
@@ -106,12 +114,17 @@ export default class NewClass extends cc.Component {
                 break;
         }
     }
-
+*/
     copy(){
         cc.log("in copy")
         // 设置第一个碰撞体
+        //this.scheduleOnce(()=>{this.getComponent(cc.RigidBody).type = 2});
+
         const cloneNode = cc.instantiate(this.node);
         cloneNode.getComponent("Cut").splitTime = this.splitTime - 1;
+        cloneNode.getComponent("Cut").bulletsplitEnable = false;
+        this.scheduleOnce(()=>{ cloneNode.getComponent(cc.RigidBody).type = 2});
+        //cloneNode.getComponent(cc.RigidBody).type = 2;
         //cc.log("---setting---");
         //cc.log("now point length: " + this.collider.points.length)
         let edge = this.collider.points.length;
@@ -124,17 +137,21 @@ export default class NewClass extends cc.Component {
         } while(random_edge_2 === random_edge_1);
         */
         var random_edge_2 = (random_edge_1 + 2) % 4;
-       
-        cc.log("get random edge: " + random_edge_1);
         
+        cc.log("get random edge: " + random_edge_1);
+        //random_edge_1 = 0;
         //cc.log("---generate random points---");
         //var edgeVar = Math.abs(random_edge_1 - random_edge_2);
         //cc.log("edge variation: " + edgeVar);
         
-
-    
+        //if(this.splitTime != 3){
+            //this.rigidbody.type = 3;
+        //cc.log("now rigid bodytype = " + this.rigidbody.type);
+        //}
+        
 
         if(random_edge_1 == 0 || random_edge_1 == 2){ // edge: 0 2
+
             let x1 = Math.random()*(this.collider.points[1].x-this.collider.points[0].x)+this.collider.points[0].x;
             let y1 = this.collider.points[0].y + (this.collider.points[1].y-this.collider.points[0].y) * ((x1-this.collider.points[0].x)/(this.collider.points[1].x-this.collider.points[0].x))
             let x2 = Math.random()*(this.collider.points[2].x-this.collider.points[3].x)+this.collider.points[3].x;
@@ -201,7 +218,32 @@ export default class NewClass extends cc.Component {
         cc.log("cutting");
     }
 
-    update (dt) {
-        //cc.log(String(this.originCubePoints));
+    //update (dt) {}
+
+    onBeginContact(contact, self, other){
+        if(other.node.name == "bullet" && this.splitTime){
+            if(this.flag == true){
+                
+                //cc.log(self.getComponent(cc.RigidBody).type);
+                
+                //cc.log(this.splitTime);
+                if(this.bulletsplitEnable){
+                    this.bulletsplitEnable = false;
+                    for (let i = 0; i < this.splitTime; i++) {
+                        cc.log('split0' + i);
+                        this.copy(); 
+                    }
+                } else {
+                    this.scheduleOnce(()=>{ this.getComponent(cc.RigidBody).type = 2});
+                }
+                
+             
+                this.flag = false;
+
+                this.scheduleOnce(()=>{
+                    this.flag = true;
+                }, 1) 
+            }
+        } 
     }
 }
