@@ -5,7 +5,8 @@ import { Global } from "./Leg_force";
 @ccclass
 export default class debug_body extends cc.Component 
 {
-
+    @property(cc.Node)
+    Jump_force: cc.Node = null;
     playerSpeed: number =0;
 
     zDown: boolean = false; // key for player to go left
@@ -117,10 +118,12 @@ export default class debug_body extends cc.Component
         Global.onGround = false;
 
         // Method I: Apply Force to rigidbody
-        //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 30000), true);
+        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 120000), true);
 
         // Method II: Change velocity of rigidbody
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 20000);
+        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 20000);
+        //this.Jump_force.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 1000);
         cc.log("jump ss############");
     }
 }
