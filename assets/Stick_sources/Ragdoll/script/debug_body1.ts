@@ -10,6 +10,10 @@ export default class debug_body extends cc.Component
     @property(cc.Node)
     private camera: cc.Node = null;
 
+
+    @property(cc.Prefab)
+    private desert_hawk_prefab: cc.Prefab = null;
+
     playerSpeed: number =0;
 
     aDown: boolean = false; // key for player to go left
@@ -33,13 +37,17 @@ export default class debug_body extends cc.Component
     hithand: number = 1;//true:right false:left
 
 
+    gun_pointer;
+    gun_instantiate_finish = false;
+
+
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
     }
 
     
     start() {
-        cc.director.getPhysicsManager().debugDrawFlags = 1;
+        //cc.director.getPhysicsManager().debugDrawFlags = 1;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -118,9 +126,10 @@ export default class debug_body extends cc.Component
         cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
 
 
-        if(Global.player1_getgun==true)
+        if(Global.player1_getgun==true&&this.gun_instantiate_finish==true)
         {
-
+            if(this.playerside==true) this.gun_pointer.scaleX = 1;
+            else if(this.playerside ==false) this.gun_pointer.scaleX = -1;
         }
         
         
@@ -140,10 +149,14 @@ export default class debug_body extends cc.Component
                 if(this.hithand==1) 
                 {
                     cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
-                    //cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                    cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(4000, 1500), true);
                 }
-                else cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
-                //this.playerSpeed = 2000;
+                else 
+                {
+                    cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 1500), true);
+
+                }
+                    //this.playerSpeed = 2000;
 
 
                 //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
@@ -160,10 +173,14 @@ export default class debug_body extends cc.Component
                 if(this.hithand==1)
                 {
                     cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
-                    //cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                    cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-4000, 1500), true);
                 }
-                else cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
-                //this.playerSpeed = -2000;
+                else 
+                {
+                    cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                
+                }
+                    //this.playerSpeed = -2000;
 
 
                 //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
@@ -253,7 +270,18 @@ export default class debug_body extends cc.Component
         }, du);
     }
 
-    
+
+
+    instantiate_gun(name)
+    {
+        if(name == 'desert_hawk'&&this.gun_instantiate_finish==false)
+        {
+            this.gun_pointer = cc.instantiate(this.desert_hawk_prefab); 
+            this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_knee/0_R_hand'));
+            cc.log("instantiate!!");
+        }    
+        this.gun_instantiate_finish=true;
+    }
 }
 
 
