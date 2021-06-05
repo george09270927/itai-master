@@ -69,7 +69,7 @@ export default class Leg_force extends cc.Component {
 
 
     onKeyDown(event) {
-        cc.log("Key Down: " + event.keyCode);
+        //cc.log("Key Down: " + event.keyCode);
         
         if(event.keyCode == cc.macro.KEY.d) {
             this.dDown = true;
@@ -100,7 +100,7 @@ export default class Leg_force extends cc.Component {
     playerMovement() {
         //this.playerSpeed = 0;
         if (this.aDown || this.dDown) {
-            cc.log("aDown");
+            //cc.log("aDown");
             //var tempL = this.node.x -  this.L_leg.x;
             //var tempR = this.node.x -  this.R_leg.x;
             //cc.log ("L: head x:" + tempL);
@@ -113,14 +113,14 @@ export default class Leg_force extends cc.Component {
             //if ((this.node.x - this.L_leg.x > 120 || this.R_leg.x - this.node.x > 160) && this.ll_flag) {
             //if ((this.node.x - this.L_leg.x > 6.5 || this.R_leg.x - this.node.x > 8.8) && this.ll_flag) {
             if ((this.node.x - this.L_leg.x > 12) && this.ll_flag && this.R_leg.x - this.L_leg.x > 20) {
-                cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
+                //cc.log("ll hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = false;
             } else if ((this.node.x - this.R_leg.x > 12) && !this.ll_flag && this.L_leg.x - this.R_leg.x > 20) {
             //} else if ((this.node.x - this.R_leg.x > 6.5 || this.L_leg.x - this.node.x > 8.8) && !this.ll_flag) {
             //} else if ((this.node.x - this.R_leg.x > 120 || this.L_leg.x - this.node.x > 160) && !this.ll_flag) {
-                cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
+                //cc.log("rr hit !!!!!!!!!!!!!!!!!!!");
                 this.playerSpeed = -this.playerSpeed;
                 this.node.scaleX *= -1;
                 this.ll_flag = true;
@@ -138,7 +138,7 @@ export default class Leg_force extends cc.Component {
         var direction = contact.getWorldManifold().normal;
         if (other.node.name == "Ground") {
             this.onGround = true;
-            cc.log("onGround");
+            //cc.log("onGround");
         }
         
     }

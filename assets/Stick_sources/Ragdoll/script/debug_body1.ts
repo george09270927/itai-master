@@ -1,6 +1,8 @@
 
 const {ccclass, property} = cc._decorator;
-
+export module Global {
+    export let player1_getgun : boolean = false;
+}
 @ccclass
 export default class debug_body extends cc.Component 
 {
@@ -30,13 +32,14 @@ export default class debug_body extends cc.Component
 
     hithand: number = 1;//true:right false:left
 
+
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
     }
 
     
     start() {
-        //cc.director.getPhysicsManager().debugDrawFlags = 1;
+        cc.director.getPhysicsManager().debugDrawFlags = 1;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -47,12 +50,13 @@ export default class debug_body extends cc.Component
     update() {
         //cc.log(this.node.position);///
         this.playerMovement();
-        cc.log(this.node.scaleX)
+        //cc.log(this.node.scaleX);
+        cc.log(Global.player1_getgun);
     }
 
 
     onKeyDown(event) {
-        cc.log("Key Down: " + event.keyCode);
+        //cc.log("Key Down: " + event.keyCode);
         
         if(event.keyCode == cc.macro.KEY.a) {
             this.aDown = true;
@@ -97,14 +101,14 @@ export default class debug_body extends cc.Component
             this.playerSpeed = -300;
             //this.playerSpeed = -2000;
             //this.playerSpeed = -55000;
-            this.node.scaleX = -1;
+            //this.node.scaleX = -1;
             this.playerside = false;
         }
         else if(this.dDown){
             this.playerSpeed = 300;
             //this.playerSpeed = 2000;
             //this.playerSpeed = 55000;
-            this.node.scaleX = 1;
+            //this.node.scaleX = 1;
             this.playerside  = true;
         }
 
@@ -112,13 +116,19 @@ export default class debug_body extends cc.Component
         //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = true;
         cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
         cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+
+
+        if(Global.player1_getgun==true)
+        {
+
+        }
         
         
 
-        if(this.jDown&&this.hitflag==false){
+        if(this.jDown&&this.hitflag==false&&Global.player1_getgun==false){
             this.shakeEffect(0.1);
             this.hitflag=true;
-            cc.log("wow")
+            //cc.log("wow")
 
             if(this.playerside==true)
             {
@@ -127,7 +137,11 @@ export default class debug_body extends cc.Component
                 cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
                 //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-2000, 0), true);
 
-                if(this.hithand==1) cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                if(this.hithand==1) 
+                {
+                    cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                    //cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                }
                 else cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
                 //this.playerSpeed = 2000;
 
@@ -143,7 +157,11 @@ export default class debug_body extends cc.Component
                 cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
                 cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
                 //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(2000, 0), true);
-                if(this.hithand==1)cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                if(this.hithand==1)
+                {
+                    cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                    //cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                }
                 else cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
                 //this.playerSpeed = -2000;
 
@@ -202,7 +220,7 @@ export default class debug_body extends cc.Component
 
         // Method II: Change velocity of rigidbody
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
-        cc.log("jump ss############");
+        //cc.log("jump ss############");
     }
 
 
@@ -234,6 +252,8 @@ export default class debug_body extends cc.Component
             this.camera.setPosition(0,0);
         }, du);
     }
+
+    
 }
 
 
