@@ -5,6 +5,9 @@
       true,
       false,
       true,
+      true,
+      null,
+      null,
       true
     ],
     [
@@ -56,7 +59,17 @@
       true,
       true,
       true,
-      false
+      false,
+      true
+    ],
+    [
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true
     ]
   ],
   "design-resolution-height": 640,
@@ -85,7 +98,8 @@
     "platform",
     "stick",
     "bound",
-    "bullet"
+    "bullet",
+    "IcePlatform"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
