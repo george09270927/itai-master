@@ -69,7 +69,7 @@ export default class debug_body extends cc.Component
         //cc.log(this.node.position);///
         this.playerMovement();
         //cc.log(this.node.scaleX);
-        cc.log(Global.player1_getgun);
+        //cc.log(Global.player1_getgun);
     }
 
 
@@ -281,8 +281,9 @@ export default class debug_body extends cc.Component
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
         
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-        if (this.wDown && Global.onGround && Global.onWall == 0)
+        if (this.wDown /*&& Global.onGround && Global.onWall == 0*/)
         {
+            cc.log("ready to jump");
             this.jump();
         } 
         /*else if (this.kDown && Global.onWall) {
@@ -295,7 +296,7 @@ export default class debug_body extends cc.Component
         Global.onGround = false;
 
         // Method I: Apply Force to rigidbody
-        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 120000), true);
+        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 12000), true);
 
         // Method II: Change velocity of rigidbody
         //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
