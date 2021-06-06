@@ -76,8 +76,9 @@ export default class L_Arm_force extends cc.Component {
             this.aDown = false;
         if(event.keyCode == cc.macro.KEY.d)
             this.dDown = false;
-        if(event.keyCode == cc.macro.KEY.s)
+        if(event.keyCode == cc.macro.KEY.s) {
             this.sDown = false;
+        }
         if(event.keyCode == cc.macro.KEY.j)
         {
             this.jDown = false;
@@ -185,8 +186,8 @@ export default class L_Arm_force extends cc.Component {
             }
             
 
-            cc.find('small_sticker - 002_knee/0_L_Arm_01').angle = this.playerangel1;
-            this.node.angle = this.playerangel2;  
+            if (!this.sDown) cc.find('small_sticker - 002_knee/0_L_Arm_01').angle = this.playerangel1;
+            if (!this.sDown) this.node.angle = this.playerangel2;  
         
             //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
             //this.node.position.x += this.playerSpeed * dt;
@@ -206,8 +207,8 @@ export default class L_Arm_force extends cc.Component {
                 this.playerangel1 = 0;
                 this.playerangel2 = 0;           
             }
-            cc.find('small_sticker - 002_knee/0_L_Arm_01').angle = this.playerangel1;
-            this.node.angle = this.playerangel2;
+            if (!this.sDown)cc.find('small_sticker - 002_knee/0_L_Arm_01').angle = this.playerangel1;
+            if (!this.sDown)this.node.angle = this.playerangel2;
         }
 
 

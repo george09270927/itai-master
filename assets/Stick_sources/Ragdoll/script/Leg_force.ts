@@ -151,6 +151,8 @@ export default class Leg_force extends cc.Component {
             this.neck.getComponent(cc.RigidBody).fixedRotation = true;
             this.L_arm1.getComponent(cc.RevoluteJoint).enableLimit = true;
             this.R_arm1.getComponent(cc.RevoluteJoint).enableLimit = true;
+            this.L_arm2.getComponent(cc.RevoluteJoint).enableLimit = true;
+            this.R_arm2.getComponent(cc.RevoluteJoint).enableLimit = true;
             this.head.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, this.playerSpeed * 15), true);
             this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed * 2, 0), true);
             this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed * 2, 0), true);
@@ -206,8 +208,12 @@ export default class Leg_force extends cc.Component {
             //this.R_arm1.angle = -60;
             this.L_arm1.getComponent(cc.RevoluteJoint).enableLimit = false;
             this.R_arm1.getComponent(cc.RevoluteJoint).enableLimit = false;
+            this.L_arm2.getComponent(cc.RevoluteJoint).enableLimit = false;
+            this.R_arm2.getComponent(cc.RevoluteJoint).enableLimit = false;
             this.L_arm1.angle = 90;
             this.R_arm1.angle = -90;
+            //this.L_arm2.angle = 90;
+            //this.R_arm2.angle = -90;
             this.body1.getComponent(cc.RigidBody).fixedRotation = false;
             this.body2.getComponent(cc.RigidBody).fixedRotation = false;
             //this.head.getComponent(cc.RigidBody).fixedRotation = false;

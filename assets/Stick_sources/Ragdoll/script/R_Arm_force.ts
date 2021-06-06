@@ -63,6 +63,7 @@ export default class R_Arm_force extends cc.Component {
             this.aDown = false;
         } else if(event.keyCode == cc.macro.KEY.s) {
             this.sDown = true;
+            //this.getComponent(cc.RigidBody).angularDamping = 0;
         }
         if(event.keyCode == cc.macro.KEY.j) {
             this.jDown = true;
@@ -79,8 +80,10 @@ export default class R_Arm_force extends cc.Component {
             this.aDown = false;
         if(event.keyCode == cc.macro.KEY.d)
             this.dDown = false;
-        if(event.keyCode == cc.macro.KEY.s)
+        if(event.keyCode == cc.macro.KEY.s) {
             this.sDown = false;
+            //this.getComponent(cc.RigidBody).angularDamping = 100000;
+        }
         if(event.keyCode == cc.macro.KEY.j)
         {
             this.jDown = false;
@@ -218,8 +221,8 @@ export default class R_Arm_force extends cc.Component {
             }
             */
             
-            cc.find('small_sticker - 002_knee/0_R_Arm_01').angle = this.playerangel1;
-            this.node.angle = this.playerangel2;
+            if (!this.sDown) cc.find('small_sticker - 002_knee/0_R_Arm_01').angle = this.playerangel1;
+            if (!this.sDown) this.node.angle = this.playerangel2;
 
             //cc.find('small_sticker - 002_knee/0_R_hand').angle = this.playerangel3;
         }

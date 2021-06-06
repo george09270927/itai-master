@@ -96,11 +96,11 @@ export default class debug_body extends cc.Component
                 if (Global.onWall == 1) {
                     cc.log("onwall: " + Global.onWall);
                     this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 100000), true);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 160000), true);
                 } else if (Global.onWall == 2) {
                     cc.log("onwall: " + Global.onWall);
                     this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 100000), true);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 160000), true);
                 }
             }
             this.wDown = true;
@@ -164,9 +164,11 @@ export default class debug_body extends cc.Component
 
 
         //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = true;
-        cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
-        cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
-
+        if (!this.sDown) {
+            cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+        }
+        
 
         if(Global.player1_getgun==true&&this.gun_instantiate_finish==true)
         {
@@ -281,11 +283,11 @@ export default class debug_body extends cc.Component
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
         
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-        if (this.wDown /*&& Global.onGround && Global.onWall == 0*/)
+        if (this.wDown && Global.onGround && Global.onWall == 0)
         {
             cc.log("ready to jump");
             this.jump();
-        } 
+        }
         /*else if (this.kDown && Global.onWall) {
             this.wall_jump();
         }*/
@@ -296,11 +298,11 @@ export default class debug_body extends cc.Component
         Global.onGround = false;
 
         // Method I: Apply Force to rigidbody
-        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 12000), true);
+        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 120000), true);
 
         // Method II: Change velocity of rigidbody
         //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
-        //cc.log("jump ss############");
+        cc.log("jump ss############");
     }
 
 
@@ -354,10 +356,10 @@ export default class debug_body extends cc.Component
         //this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 10000), true);
         if (Global.onWall == 1) {
             cc.log("onwall: " + Global.onWall);
-            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(15000, 80000), true);
+            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(15000, 460000), true);
         } else if (Global.onWall == 2) {
             cc.log("onwall: " + Global.onWall);
-            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-15000, 80000), true);
+            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-15000, 460000), true);
         }
     }
 
