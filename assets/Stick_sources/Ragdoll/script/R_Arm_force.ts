@@ -1,4 +1,4 @@
-import { Global } from "./debug_body1";
+import { Global } from "./Leg_force";
 
 
 const {ccclass, property} = cc._decorator;

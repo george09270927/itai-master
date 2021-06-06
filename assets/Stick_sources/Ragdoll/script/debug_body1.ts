@@ -1,19 +1,24 @@
 
 const {ccclass, property} = cc._decorator;
-export module Global {
-    export let player1_getgun : boolean = false;
-}
+
+import { Global } from "./Leg_force";
+
 @ccclass
 export default class debug_body extends cc.Component 
 {
 
-    @property(cc.Node)
+@property(cc.Node)
     private camera: cc.Node = null;
 
 
     @property(cc.Prefab)
     private desert_hawk_prefab: cc.Prefab = null;
 
+
+
+    
+    @property(cc.Node)
+    Jump_force: cc.Node = null;
     playerSpeed: number =0;
 
     aDown: boolean = false; // key for player to go left
@@ -29,6 +34,9 @@ export default class debug_body extends cc.Component
     isDead:boolean =false;
 
     onGround:boolean = false;
+    dFlag: boolean = false; // key for player to go right
+    aFlag: boolean = false; // key for player to go left
+    
 
     playerside: boolean = true;//true:right false:left
 
@@ -39,6 +47,8 @@ export default class debug_body extends cc.Component
 
     gun_pointer;
     gun_instantiate_finish = false;
+
+    
 
 
     onLoad () {
@@ -68,27 +78,59 @@ export default class debug_body extends cc.Component
         
         if(event.keyCode == cc.macro.KEY.a) {
             this.aDown = true;
-            this.dDown = false;
+            if (this.dDown) {
+                this.dDown = false;
+                this.dFlag = true;
+            }
         } else if(event.keyCode == cc.macro.KEY.d) {
             this.dDown = true;
-            this.aDown = false;
+            if (this.aDown) {
+                this.aDown = false;
+                this.aFlag = true;
+            }
         } else if(event.keyCode == cc.macro.KEY.s) {
             this.sDown = true;
         }
-        if(event.keyCode == cc.macro.KEY.j) {
-            this.jDown = true;
-        } 
-        
-        if(event.keyCode == cc.macro.KEY.w) {
+        else if(event.keyCode == cc.macro.KEY.w) {
+            if (!this.wDown) {
+                if (Global.onWall == 1) {
+                    cc.log("onwall: " + Global.onWall);
+                    this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 100000), true);
+                } else if (Global.onWall == 2) {
+                    cc.log("onwall: " + Global.onWall);
+                    this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 100000), true);
+                }
+            }
             this.wDown = true;
+        }
+        else if(event.keyCode == cc.macro.KEY.j) {
+            this.jDown = true;
         } 
     }
 
     onKeyUp(event) {
         if(event.keyCode == cc.macro.KEY.a)
+        {
             this.aDown = false;
+            this.aFlag = false;
+            if (this.dFlag) {
+                this.dDown = true;
+                this.dFlag = false;
+            }
+        }
+            
         if(event.keyCode == cc.macro.KEY.d)
+        {
             this.dDown = false;
+            this.dFlag = false;
+            if (this.aFlag) {
+                this.aDown = true;
+                this.aFlag = false;
+            }
+        }
+            
         if(event.keyCode == cc.macro.KEY.s)
             this.sDown = false;
         if(event.keyCode == cc.macro.KEY.j)
@@ -239,21 +281,24 @@ export default class debug_body extends cc.Component
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
         
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-        if(this.wDown )
-        { 
+        if (this.wDown && Global.onGround && Global.onWall == 0)
+        {
             this.jump();
-        }
+        } 
+        /*else if (this.kDown && Global.onWall) {
+            this.wall_jump();
+        }*/
     }  
 
 
     jump() {
-        this.onGround = false;
+        Global.onGround = false;
 
         // Method I: Apply Force to rigidbody
-        //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 150000), true);
+        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 120000), true);
 
         // Method II: Change velocity of rigidbody
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
+        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
         //cc.log("jump ss############");
     }
 
@@ -298,6 +343,41 @@ export default class debug_body extends cc.Component
             cc.log("instantiate!!");
         }    
         this.gun_instantiate_finish=true;
+        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 20000);
+        //this.Jump_force.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 1000);
+        //cc.log("jump ss############");
+    }
+    wall_jump() {
+        cc.log("wall jump");
+        //this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 10000), true);
+        if (Global.onWall == 1) {
+            cc.log("onwall: " + Global.onWall);
+            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(15000, 80000), true);
+        } else if (Global.onWall == 2) {
+            cc.log("onwall: " + Global.onWall);
+            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-15000, 80000), true);
+        }
+    }
+
+    onBeginContact(contact, self, other) {
+        var direction = contact.getWorldManifold().normal;
+        //cc.log("YYYYYYYYY: "+direction.y);
+        if (other.node.name == "platform" && direction.x < 0) {
+            cc.log("onWall left");
+            Global.onWall = 1;
+            //cc.log("platform");
+        } else if (other.node.name == "platform" && direction.x > 0) {
+            cc.log("onWall right");
+            Global.onWall = 2;
+            //cc.log("platform");
+        }
+    }
+    onEndContact(contact, self, other) {
+        if (other.node.name == "platform") {
+            cc.log("onwall false");
+            if (Global.onWall == 1 || Global.onWall == 2) Global.onWall = 3;
+        }
     }
 }
 
