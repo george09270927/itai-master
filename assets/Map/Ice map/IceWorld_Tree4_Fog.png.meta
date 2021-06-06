@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "022dd019-be11-402a-afac-6df7535deebc",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "IceWorld_Tree4_Fog": {
+      "ver": "1.0.4",
+      "uuid": "f64a9e8f-4d40-4c2b-944c-4271b6d09fae",
+      "rawTextureUuid": "022dd019-be11-402a-afac-6df7535deebc",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 2,
+      "trimY": 3,
+      "width": 280,
+      "height": 451,
+      "rawWidth": 284,
+      "rawHeight": 457,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
