@@ -45,15 +45,15 @@ export default class Player extends cc.Component
         cc.director.getPhysicsManager().enabled = true;
 
         this.bulletPool = new cc.NodePool('Bullet');
-
+        /*
         let maxBulletNum = 5;
-
         for(let i: number = 0; i < maxBulletNum; i++)
         {
             let bullet = cc.instantiate(this.bulletPrefab);
 
             this.bulletPool.put(bullet);
         }
+        */
     }
 
     start() 
