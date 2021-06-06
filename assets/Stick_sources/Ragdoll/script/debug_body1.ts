@@ -64,10 +64,12 @@ export default class debug_body extends cc.Component
             if (!this.kDown) {
                 if (Global.onWall == 1) {
                     cc.log("onwall: " + Global.onWall);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(20000, 20000), true);
+                    this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 100000), true);
                 } else if (Global.onWall == 2) {
                     cc.log("onwall: " + Global.onWall);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-20000, 20000), true);
+                    this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 100000), true);
                 }
             }
             this.kDown = true;
