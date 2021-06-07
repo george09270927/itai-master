@@ -82,25 +82,29 @@ export default class debug_body extends cc.Component
                 this.dDown = false;
                 this.dFlag = true;
             }
+            if (Global.onWall == 4) Global.onWall = 0;
         } else if(event.keyCode == cc.macro.KEY.d) {
             this.dDown = true;
             if (this.aDown) {
                 this.aDown = false;
                 this.aFlag = true;
             }
+            if (Global.onWall == 3) Global.onWall = 0;
         } else if(event.keyCode == cc.macro.KEY.s) {
             this.sDown = true;
         }
         else if(event.keyCode == cc.macro.KEY.w) {
             if (!this.wDown) {
                 if (Global.onWall == 1) {
-                    cc.log("onwall: " + Global.onWall);
+                    cc.log("onwall jump: " + Global.onWall);
+                    Global.onWall = 3;
                     this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 160000), true);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 140000), true);
                 } else if (Global.onWall == 2) {
-                    cc.log("onwall: " + Global.onWall);
+                    cc.log("onwall jump: " + Global.onWall);
+                    Global.onWall = 4;
                     this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 160000), true);
+                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 140000), true);
                 }
             }
             this.wDown = true;
@@ -283,7 +287,7 @@ export default class debug_body extends cc.Component
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
         
         //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-        if (this.wDown && Global.onGround && Global.onWall == 0)
+        if (this.wDown && Global.onGround /*&& Global.onWall == 0*/)
         {
             cc.log("ready to jump");
             this.jump();
@@ -298,7 +302,7 @@ export default class debug_body extends cc.Component
         Global.onGround = false;
 
         // Method I: Apply Force to rigidbody
-        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 120000), true);
+        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 140000), true);
 
         // Method II: Change velocity of rigidbody
         //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
@@ -351,7 +355,7 @@ export default class debug_body extends cc.Component
         //this.Jump_force.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 1000);
         //cc.log("jump ss############");
     }
-    wall_jump() {
+    /*wall_jump() {
         cc.log("wall jump");
         //this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 10000), true);
         if (Global.onWall == 1) {
@@ -361,7 +365,7 @@ export default class debug_body extends cc.Component
             cc.log("onwall: " + Global.onWall);
             this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-15000, 460000), true);
         }
-    }
+    }*/
 
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
@@ -369,17 +373,21 @@ export default class debug_body extends cc.Component
         if (other.node.name == "platform" && direction.x < 0) {
             cc.log("onWall left");
             Global.onWall = 1;
+            Global.head_contact = true;
             //cc.log("platform");
         } else if (other.node.name == "platform" && direction.x > 0) {
             cc.log("onWall right");
             Global.onWall = 2;
+            Global.head_contact = true;
             //cc.log("platform");
         }
     }
     onEndContact(contact, self, other) {
         if (other.node.name == "platform") {
             cc.log("onwall false");
-            if (Global.onWall == 1 || Global.onWall == 2) Global.onWall = 3;
+            if (Global.onWall == 1) Global.onWall = 3;
+            else if (Global.onWall == 2)  Global.onWall = 4;
+            //Global.head_contact = false;
         }
     }
 }

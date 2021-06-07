@@ -12,6 +12,7 @@ const {ccclass, property} = cc._decorator;
 export module Global {
     export let onGround : boolean = false;
     export let onWall : number = 0;
+    export let head_contact : boolean = false;
     export let player1_getgun : boolean = false;
 }
 
