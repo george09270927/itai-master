@@ -90,7 +90,7 @@ export default class Leg_force extends cc.Component {
             //cc.log("modify: ", this.node.y - this.R_leg.y);
             this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (this.node.y - this.R_leg.y) * 10);
         }
-        if (Global.onWall == 0) {
+        if (Global.onWall == 0 || Global.onGround) {
             this.R_leg1.getComponent(cc.RigidBody).fixedRotation = false;
             this.L_leg1.getComponent(cc.RigidBody).fixedRotation = false;
         } else if (Global.onWall == 1) {
