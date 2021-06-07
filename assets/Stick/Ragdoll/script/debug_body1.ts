@@ -162,11 +162,11 @@ export default class debug_body extends cc.Component
                     }
                     this.wDown = true;
                 }
-                else if(event.keyCode == cc.macro.KEY.j) {
-                    this.jDown = true;
-                } 
+                
 
-            }
+            } else if(event.keyCode == cc.macro.KEY.j) {
+                    this.jDown = true;
+            } 
         }
     }
 
