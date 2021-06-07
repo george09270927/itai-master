@@ -45,7 +45,7 @@ export default class L_Arm_force extends cc.Component {
 
     update() {
         //cc.log(this.node.position);
-        this.playerMovement();
+        if(Global.player1_dead==false)this.playerMovement();
     }
 
 

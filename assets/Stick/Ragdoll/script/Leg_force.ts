@@ -14,6 +14,7 @@ export module Global {
     export let onWall : number = 0;
     export let head_contact : boolean = false;
     export let player1_getgun : boolean = false;
+    export let player1_dead: boolean = false;
 }
 
 @ccclass
@@ -83,86 +84,98 @@ export default class Leg_force extends cc.Component {
 
 
     update() {
-        //cc.log(this.node.position);
-        this.playerMovement();
-        //cc.log("diff: ",this.node.y - this.R_leg.y);
-        if (this.node.y - this.R_leg.y < 41.5 && Global.onGround && !(this.dDown || this.aDown)) {
-            //cc.log("modify: ", this.node.y - this.R_leg.y);
-            this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (this.node.y - this.R_leg.y) * 10);
-        }
-        if (Global.onWall == 0) {
-            this.R_leg1.getComponent(cc.RigidBody).fixedRotation = false;
-            this.L_leg1.getComponent(cc.RigidBody).fixedRotation = false;
-        } else if (Global.onWall == 1) {
-            cc.log("LEFT!!!");
-            this.R_leg1.angle = 60;
-            this.L_leg1.angle = 0;
+        if(Global.player1_dead==false)
+        {
+            //cc.log(this.node.position);
+            this.playerMovement();
+            //cc.log("diff: ",this.node.y - this.R_leg.y);
+            if (this.node.y - this.R_leg.y < 41.5 && Global.onGround && !(this.dDown || this.aDown)) {
+                //cc.log("modify: ", this.node.y - this.R_leg.y);
+                this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (this.node.y - this.R_leg.y) * 10);
+            }
+            if (Global.onWall == 0) {
+                this.R_leg1.getComponent(cc.RigidBody).fixedRotation = false;
+                this.L_leg1.getComponent(cc.RigidBody).fixedRotation = false;
+            } else if (Global.onWall == 1) {
+                cc.log("LEFT!!!");
+                this.R_leg1.angle = 60;
+                this.L_leg1.angle = 0;
 
-            this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
-            this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
-        } else if (Global.onWall == 2) {
-            this.R_leg1.angle = 0;
-            this.L_leg1.angle = -60;
+                this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+                this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+            } else if (Global.onWall == 2) {
+                this.R_leg1.angle = 0;
+                this.L_leg1.angle = -60;
 
-            this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
-            this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+                this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+                this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+            }
         }
     }
 
 
     onKeyDown(event) {
         //cc.log("Key Down: " + event.keyCode);
+        if(Global.player1_dead==false)
+        {
         
-        if(event.keyCode == cc.macro.KEY.d) {
-            this.dDown = true;
-            this.L_leg2.angle -= this.walk_angle;
-            this.R_leg2.angle -= this.walk_angle;
-        } else if (event.keyCode == cc.macro.KEY.a) {
-            this.aDown = true;
-            this.L_leg2.angle += this.walk_angle;
-            this.R_leg2.angle += this.walk_angle;
-        } else if (event.keyCode == cc.macro.KEY.s) {
-            this.sDown = true;
-            Global.onGround = false;
-        } 
+            if(event.keyCode == cc.macro.KEY.d) {
+                this.dDown = true;
+                this.L_leg2.angle -= this.walk_angle;
+                this.R_leg2.angle -= this.walk_angle;
+            } else if (event.keyCode == cc.macro.KEY.a) {
+                this.aDown = true;
+                this.L_leg2.angle += this.walk_angle;
+                this.R_leg2.angle += this.walk_angle;
+            } else if (event.keyCode == cc.macro.KEY.s) {
+                this.sDown = true;
+                Global.onGround = false;
+            } 
+
+        }
     }
 
     onKeyUp(event) {
-        if(event.keyCode == cc.macro.KEY.d) {
-            this.dDown = false;
-            this.L_leg2.angle += this.walk_angle;
-            this.R_leg2.angle += this.walk_angle;
-        } else if (event.keyCode == cc.macro.KEY.a) {
-            this.aDown = false;
-            this.L_leg2.angle -= this.walk_angle;
-            this.R_leg2.angle -= this.walk_angle;
-        } else if (event.keyCode == cc.macro.KEY.s) {
-            this.sDown = false;
-            this.body1.angle = 0;
-            this.body2.angle = 0;
-            this.head.angle = 0;
-            this.neck.angle = 0;
-            this.L_arm1.angle = 0;
-            this.R_arm1.angle = 0;
-            this.L_leg1.angle = 0;
-            this.R_leg1.angle = 0;
-            this.body1.getComponent(cc.RigidBody).fixedRotation = true;
-            this.body2.getComponent(cc.RigidBody).fixedRotation = true;
-            this.head.getComponent(cc.RigidBody).fixedRotation = true;
-            this.neck.getComponent(cc.RigidBody).fixedRotation = true;
-            this.L_arm1.getComponent(cc.RevoluteJoint).enableLimit = true;
-            this.R_arm1.getComponent(cc.RevoluteJoint).enableLimit = true;
-            this.L_arm2.getComponent(cc.RevoluteJoint).enableLimit = true;
-            this.R_arm2.getComponent(cc.RevoluteJoint).enableLimit = true;
-            this.head.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, this.playerSpeed * 15), true);
-            this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed * 2, 0), true);
-            this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed * 2, 0), true);
-            
-            //this.R_leg2.angle = 0;
-            /*this.body.getComponent(cc.RigidBody).fixedRotation = false;
-            cc.log("up: " + this.body.getComponent(cc.RigidBody).fixedRotation);
-            this.body.getComponent(cc.RigidBody).angularVelocity = 500;
-            cc.log(this.body.getComponent(cc.RigidBody).angularVelocity);*/
+        if(Global.player1_dead==false)
+        {
+
+        
+            if(event.keyCode == cc.macro.KEY.d) {
+                this.dDown = false;
+                this.L_leg2.angle += this.walk_angle;
+                this.R_leg2.angle += this.walk_angle;
+            } else if (event.keyCode == cc.macro.KEY.a) {
+                this.aDown = false;
+                this.L_leg2.angle -= this.walk_angle;
+                this.R_leg2.angle -= this.walk_angle;
+            } else if (event.keyCode == cc.macro.KEY.s) {
+                this.sDown = false;
+                this.body1.angle = 0;
+                this.body2.angle = 0;
+                this.head.angle = 0;
+                this.neck.angle = 0;
+                this.L_arm1.angle = 0;
+                this.R_arm1.angle = 0;
+                this.L_leg1.angle = 0;
+                this.R_leg1.angle = 0;
+                this.body1.getComponent(cc.RigidBody).fixedRotation = true;
+                this.body2.getComponent(cc.RigidBody).fixedRotation = true;
+                this.head.getComponent(cc.RigidBody).fixedRotation = true;
+                this.neck.getComponent(cc.RigidBody).fixedRotation = true;
+                this.L_arm1.getComponent(cc.RevoluteJoint).enableLimit = true;
+                this.R_arm1.getComponent(cc.RevoluteJoint).enableLimit = true;
+                this.L_arm2.getComponent(cc.RevoluteJoint).enableLimit = true;
+                this.R_arm2.getComponent(cc.RevoluteJoint).enableLimit = true;
+                this.head.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, this.playerSpeed * 15), true);
+                this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-this.playerSpeed * 2, 0), true);
+                this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed * 2, 0), true);
+                
+                //this.R_leg2.angle = 0;
+                /*this.body.getComponent(cc.RigidBody).fixedRotation = false;
+                cc.log("up: " + this.body.getComponent(cc.RigidBody).fixedRotation);
+                this.body.getComponent(cc.RigidBody).angularVelocity = 500;
+                cc.log(this.body.getComponent(cc.RigidBody).angularVelocity);*/
+            }
         }
             
     }
