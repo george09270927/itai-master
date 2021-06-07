@@ -140,7 +140,11 @@ export default class debug_body extends cc.Component
             } else if(event.keyCode == cc.macro.KEY.s) {
                 this.sDown = true;
             }
-            else if(event.keyCode == cc.macro.KEY.w) {
+            if (Global.onWall == 3) Global.onWall = 0;
+            else if(event.keyCode == cc.macro.KEY.s) {
+                    this.sDown = true;
+            } else if(event.keyCode == cc.macro.KEY.w) {
+                cc.log("w down!!!!!!!!!!!!!");
                 if (!this.wDown) {
                     if (Global.onWall == 1) {
                         cc.log("onwall jump: " + Global.onWall);
@@ -152,14 +156,17 @@ export default class debug_body extends cc.Component
                         Global.onWall = 4;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 140000), true);
+                    } else if (Global.onGround) {
+                        Global.onGround = false;
+                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 140000), true);
                     }
+                    this.wDown = true;
                 }
-                this.wDown = true;
-            }
-            else if(event.keyCode == cc.macro.KEY.j) {
-                this.jDown = true;
-            } 
+                else if(event.keyCode == cc.macro.KEY.j) {
+                    this.jDown = true;
+                } 
 
+            }
         }
     }
 
@@ -335,39 +342,9 @@ export default class debug_body extends cc.Component
             cc.find('small_sticker - 002_knee/0_Body_02').angle--;
         }
 
-
-
-        
-        //window.Test_Body.linearVelocity = cc.v2(this.playerSpeed * dt,window.Test_Body.linearVelocity.y)
-        //this.node.position.x += this.playerSpeed * dt;
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
-        
-        //this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
-        if (this.wDown && Global.onGround /*&& Global.onWall == 0*/)
-        {
-            cc.log("ready to jump");
-            this.jump();
-        }
-        /*else if (this.kDown && Global.onWall) {
-            this.wall_jump();
-        }*/
+       
     }  
-
-
-    jump() {
-        Global.onGround = false;
-
-        // Method I: Apply Force to rigidbody
-        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 140000), true);
-
-        // Method II: Change velocity of rigidbody
-        //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 600);
-        cc.log("jump ss############");
-    }
-
-
-
-
 
     shakeEffect(du) {
         this.camera.runAction(
@@ -411,17 +388,7 @@ export default class debug_body extends cc.Component
         //this.Jump_force.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 1000);
         //cc.log("jump ss############");
     }
-    /*wall_jump() {
-        cc.log("wall jump");
-        //this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 10000), true);
-        if (Global.onWall == 1) {
-            cc.log("onwall: " + Global.onWall);
-            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(15000, 460000), true);
-        } else if (Global.onWall == 2) {
-            cc.log("onwall: " + Global.onWall);
-            this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-15000, 460000), true);
-        }
-    }*/
+    
 
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
@@ -441,8 +408,8 @@ export default class debug_body extends cc.Component
     onEndContact(contact, self, other) {
         if (other.node.name == "platform") {
             cc.log("onwall false");
-            if (Global.onWall == 1) Global.onWall = 3;
-            else if (Global.onWall == 2)  Global.onWall = 4;
+            if (Global.onWall == 1 && Global.onGround) Global.onWall = 3;
+            else if (Global.onWall == 2 && Global.onGround)  Global.onWall = 4;
             //Global.head_contact = false;
         }
     }

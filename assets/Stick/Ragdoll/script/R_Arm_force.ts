@@ -248,9 +248,13 @@ export default class R_Arm_force extends cc.Component {
     }  
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
-        if (other.node.name == "Ground") {
-            this.onGround = true;
-            //cc.log("onGround");
+        if (other.node.name == "platform") {
+            cc.log("right hand y: ", direction.y);
+            cc.log("right hand x: ",direction.x);
+            if (direction.y < -0.8) {
+                cc.log("fix case");
+                Global.onGround = true;
+            }
         }
         
     }
