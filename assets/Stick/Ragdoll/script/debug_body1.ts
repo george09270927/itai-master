@@ -31,7 +31,8 @@ export default class debug_body extends cc.Component
 
     wDown: boolean =false; // key for player to jump
 
-    isDead:boolean =false;
+    //isDead:boolean =false;
+    dead_finish: boolean = true;
 
     onGround:boolean = false;
     dFlag: boolean = false; // key for player to go right
@@ -67,86 +68,141 @@ export default class debug_body extends cc.Component
 
     update() {
         //cc.log(this.node.position);///
-        this.playerMovement();
+        if(Global.player1_dead==false)
+        {
+            cc.find('small_sticker - 002_knee/0_Head').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_knee/0_L_Leg_01').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_knee/0_L_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_knee/0_R_Leg_01').getComponent(cc.RevoluteJoint).enableLimit= true;
+            cc.find('small_sticker - 002_knee/0_R_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = true;    
+            cc.find('small_sticker - 002_knee/0_L_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_knee/0_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
+            this.playerMovement();
+        }
         //cc.log(this.node.scaleX);
         //cc.log(Global.player1_getgun);
+
+        else if(Global.player1_dead==true&&this.dead_finish==true)
+        {
+            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
+
+            cc.find('small_sticker - 002_knee/0_Head').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_knee/0_L_Leg_01').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_knee/0_L_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_knee/0_R_Leg_01').getComponent(cc.RevoluteJoint).enableLimit= false;
+            cc.find('small_sticker - 002_knee/0_R_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = false;    
+            cc.find('small_sticker - 002_knee/0_L_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_knee/0_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.log("fixrotate disable");
+            this.onGround=false;
+            /*
+            this.scheduleOnce(()=>{
+                //this.node.position = cc.v2(480, 500);
+                //Global.player1_dead=false;
+                //this.dead_finish=true;
+                cc.log("dead");
+            },2);
+            */
+            this.dead_finish=false;
+        }
     }
 
 
     onKeyDown(event) {
         //cc.log("Key Down: " + event.keyCode);
+        if(Global.player1_dead==false)
+        {
         
-        if(event.keyCode == cc.macro.KEY.a) {
-            this.aDown = true;
-            if (this.dDown) {
-                this.dDown = false;
-                this.dFlag = true;
-            }
-            if (Global.onWall == 4) Global.onWall = 0;
-        } else if(event.keyCode == cc.macro.KEY.d) {
-            this.dDown = true;
-            if (this.aDown) {
-                this.aDown = false;
-                this.aFlag = true;
-            }
-            if (Global.onWall == 3) Global.onWall = 0;
-        } else if(event.keyCode == cc.macro.KEY.s) {
-            this.sDown = true;
-        }
-        else if(event.keyCode == cc.macro.KEY.w) {
-            if (!this.wDown) {
-                if (Global.onWall == 1) {
-                    cc.log("onwall jump: " + Global.onWall);
-                    Global.onWall = 3;
-                    this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 140000), true);
-                } else if (Global.onWall == 2) {
-                    cc.log("onwall jump: " + Global.onWall);
-                    Global.onWall = 4;
-                    this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                    this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 140000), true);
+            if(event.keyCode == cc.macro.KEY.a) {
+                this.aDown = true;
+                if (this.dDown) {
+                    this.dDown = false;
+                    this.dFlag = true;
                 }
+                if (Global.onWall == 4) Global.onWall = 0;
+            } else if(event.keyCode == cc.macro.KEY.d) {
+                this.dDown = true;
+                if (this.aDown) {
+                    this.aDown = false;
+                    this.aFlag = true;
+                }
+                if (Global.onWall == 3) Global.onWall = 0;
+            } else if(event.keyCode == cc.macro.KEY.s) {
+                this.sDown = true;
             }
-            this.wDown = true;
+            else if(event.keyCode == cc.macro.KEY.w) {
+                if (!this.wDown) {
+                    if (Global.onWall == 1) {
+                        cc.log("onwall jump: " + Global.onWall);
+                        Global.onWall = 3;
+                        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 140000), true);
+                    } else if (Global.onWall == 2) {
+                        cc.log("onwall jump: " + Global.onWall);
+                        Global.onWall = 4;
+                        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
+                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 140000), true);
+                    }
+                }
+                this.wDown = true;
+            }
+            else if(event.keyCode == cc.macro.KEY.j) {
+                this.jDown = true;
+            } 
+
         }
-        else if(event.keyCode == cc.macro.KEY.j) {
-            this.jDown = true;
-        } 
     }
 
     onKeyUp(event) {
-        if(event.keyCode == cc.macro.KEY.a)
+        if(Global.player1_dead==false)
         {
-            this.aDown = false;
-            this.aFlag = false;
-            if (this.dFlag) {
-                this.dDown = true;
-                this.dFlag = false;
-            }
-        }
-            
-        if(event.keyCode == cc.macro.KEY.d)
-        {
-            this.dDown = false;
-            this.dFlag = false;
-            if (this.aFlag) {
-                this.aDown = true;
+
+        
+            if(event.keyCode == cc.macro.KEY.a)
+            {
+                this.aDown = false;
                 this.aFlag = false;
+                if (this.dFlag) {
+                    this.dDown = true;
+                    this.dFlag = false;
+                }
             }
+                
+            if(event.keyCode == cc.macro.KEY.d)
+            {
+                this.dDown = false;
+                this.dFlag = false;
+                if (this.aFlag) {
+                    this.aDown = true;
+                    this.aFlag = false;
+                }
+            }
+                
+            if(event.keyCode == cc.macro.KEY.s)
+                this.sDown = false;
+            if(event.keyCode == cc.macro.KEY.j)
+            {
+                this.jDown = false;
+                this.hitflag=false;
+                this.hithand*=-1;
+            }
+                
+                
+            if(event.keyCode == cc.macro.KEY.w)
+                this.wDown = false;
+
+
         }
-            
-        if(event.keyCode == cc.macro.KEY.s)
-            this.sDown = false;
-        if(event.keyCode == cc.macro.KEY.j)
-        {
-            this.jDown = false;
-            this.hitflag=false;
-            this.hithand*=-1;
-        }
-            
-            
-        if(event.keyCode == cc.macro.KEY.w)
-            this.wDown = false;
     }
     
     playerMovement() {
