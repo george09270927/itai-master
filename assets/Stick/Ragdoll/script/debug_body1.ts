@@ -14,7 +14,8 @@ export default class debug_body extends cc.Component
     @property(cc.Prefab)
     private desert_hawk_prefab: cc.Prefab = null;
 
-
+    @property(cc.Prefab)
+    private desert_hawk_for_pick_prefab: cc.Prefab = null;
 
     
     @property(cc.Node)
@@ -23,13 +24,15 @@ export default class debug_body extends cc.Component
 
     aDown: boolean = false; // key for player to go left
 
-    dDown: boolean =false; // key for player to go right
+    dDown: boolean = false; // key for player to go right
 
     sDown: boolean = false //key for player to go down
 
-    jDown: boolean =false; // key for player to shoot
+    jDown: boolean = false; // key for player to shoot
 
-    wDown: boolean =false; // key for player to jump
+    wDown: boolean = false; // key for player to jump
+
+    fDown: boolean = false;
 
     //isDead:boolean =false;
     dead_finish: boolean = true;
@@ -48,7 +51,7 @@ export default class debug_body extends cc.Component
 
     gun_pointer;
     gun_instantiate_finish = false;
-
+    throw_gun_pointer;
     
 
 
@@ -58,7 +61,7 @@ export default class debug_body extends cc.Component
 
     
     start() {
-        cc.director.getPhysicsManager().debugDrawFlags = 1;
+        //cc.director.getPhysicsManager().debugDrawFlags = 1;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -139,9 +142,7 @@ export default class debug_body extends cc.Component
                 if (Global.onWall == 3) Global.onWall = 0;
             } else if(event.keyCode == cc.macro.KEY.s) {
                 this.sDown = true;
-            }
-            if (Global.onWall == 3) Global.onWall = 0;
-            else if(event.keyCode == cc.macro.KEY.s) {
+            } else if(event.keyCode == cc.macro.KEY.s) {
                     this.sDown = true;
             } else if(event.keyCode == cc.macro.KEY.w) {
                 cc.log("w down!!!!!!!!!!!!!");
@@ -162,10 +163,10 @@ export default class debug_body extends cc.Component
                     }
                     this.wDown = true;
                 }
-                
-
             } else if(event.keyCode == cc.macro.KEY.j) {
-                    this.jDown = true;
+                this.jDown = true;
+            } else if(event.keyCode == cc.macro.KEY.f) {
+                this.fDown = true;
             } 
         }
     }
@@ -206,7 +207,15 @@ export default class debug_body extends cc.Component
                 
                 
             if(event.keyCode == cc.macro.KEY.w)
+            {
                 this.wDown = false;
+            }
+
+
+            if(event.keyCode == cc.macro.KEY.f)
+            {
+                this.fDown = false;
+            }
 
 
         }
@@ -236,12 +245,14 @@ export default class debug_body extends cc.Component
             cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
         }
         
-
+        
+        
         if(Global.player1_getgun==true&&this.gun_instantiate_finish==true)
         {
             if(this.playerside==true) this.gun_pointer.scaleX = 1;
             else if(this.playerside ==false) this.gun_pointer.scaleX = -1;
         }
+        
         
         
 
@@ -315,6 +326,26 @@ export default class debug_body extends cc.Component
                 this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, (Math.floor(Math.random()*1)+-1)*10000), true);
             }
         } 
+
+
+
+
+        if(this.fDown&&Global.player1_getgun==true){
+            Global.player1_getgun = false;
+            this.gun_pointer.destroy();
+            this.throw_gun_pointer = cc.instantiate(this.desert_hawk_for_pick_prefab);
+            if(this.playerside == true)
+            {
+                this.throw_gun_pointer.getComponent('weapon_disappear').initR(cc.find('small_sticker - 002_knee/0_R_hand'));
+                this.throw_gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(3000, 500), true);
+            } 
+            else if(this.playerside == false)
+            {
+                this.throw_gun_pointer.getComponent('weapon_disappear').initL(cc.find('small_sticker - 002_knee/0_R_hand'));
+                this.throw_gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-3000, 500), true);
+            }
+            this.gun_instantiate_finish=false;
+        }
 
 
         /*if(cc.find('small_sticker - 002_knee/0_Neck').angle<0)

@@ -71,12 +71,12 @@ export default class gun_bullet extends cc.Component
     onBeginContact(contact, selfCollider, otherCollider)
     {
         cc.log("bullet hit :" + otherCollider.name );
-        //this.scheduleOnce(() => {
+        this.scheduleOnce(() => {
             this.node.stopAllActions();
             //this.bulletManager.put(this.node);
 
             cc.log("///recycle bullet///");
         selfCollider.node.destroy();
-        //}); // for better animation effect, I delay 0.1s when bullet hits the enemy
+        },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
     }
 }

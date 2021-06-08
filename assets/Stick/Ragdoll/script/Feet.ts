@@ -16,7 +16,7 @@ export default class Feet extends cc.Component {
 
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
-        cc.log("YYYYYYYYY: "+direction.y);
+        //cc.log("YYYYYYYYY: "+direction.y);
         if (other.node.name == "platform" && direction.y < -0.1) {  // actually stand on Ground
             Global.onGround = true;
             Global.onWall = 0;
