@@ -174,6 +174,8 @@ export default class Player extends cc.Component
                     this.node.position = cc.v2(480, 500);
                 else if(this.scene.name == "IceMap")
                     this.node.position = cc.v2(200, 500);
+                else if(this.scene.name == "LaserMap")
+                    this.node.position = cc.v2(170, 330);
                 cc.log(this.anim);
                 cc.log(this.anim.play('reborn'));
                 this.animateState = this.anim.play('reborn');
