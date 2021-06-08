@@ -74,6 +74,5 @@ export default class bound_detect extends cc.Component {
             Global.player1_dead= true;
             cc.log("bound");
         }
-        
     }
 }

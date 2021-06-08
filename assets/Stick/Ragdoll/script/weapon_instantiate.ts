@@ -31,11 +31,18 @@ export default class weapon_instantiate extends cc.Component {
 
         //cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.DistanceJoint).frequency = 0;
 
-        this.node.getComponent(cc.RevoluteJoint).connectedBody = cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody);
+        if(node.name == '0_R_hand') 
+        {
+            this.node.getComponent(cc.RevoluteJoint).connectedBody = cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody);
+            this.node.group = "stick";
+        }
+            else if(node.name == '1_R_hand') 
+        {
+            this.node.getComponent(cc.RevoluteJoint).connectedBody = cc.find('small_sticker - 002_yellow/1_R_hand').getComponent(cc.RigidBody);
+            this.node.group = "stick2";
+        }
 
         
-
-        this.node.group = "stick";
 
         this.node.position = this.node.position.addSelf(node.position);
     }

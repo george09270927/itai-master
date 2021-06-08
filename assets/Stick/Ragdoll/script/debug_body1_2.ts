@@ -1,10 +1,10 @@
 
 const {ccclass, property} = cc._decorator;
 
-import { Global } from "./Leg_force";
+import { Global } from "./Leg_force_2";
 
 @ccclass
-export default class debug_body1 extends cc.Component 
+export default class debug_body1_2 extends cc.Component 
 {
 
 @property(cc.Node)
@@ -71,47 +71,47 @@ export default class debug_body1 extends cc.Component
 
     update() {
         //cc.log(this.node.position);///
-        if(Global.player1_dead==false)
+        if(Global.player2_dead==false)
         {
-            cc.find('small_sticker - 002_knee/0_Head').getComponent(cc.RigidBody).fixedRotation = true;
-            cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = true;
-            cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
-            cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
-            cc.find('small_sticker - 002_knee/0_L_Leg_01').getComponent(cc.RevoluteJoint).enableLimit = true;
-            cc.find('small_sticker - 002_knee/0_L_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = true;
-            cc.find('small_sticker - 002_knee/0_R_Leg_01').getComponent(cc.RevoluteJoint).enableLimit= true;
-            cc.find('small_sticker - 002_knee/0_R_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = true;    
-            cc.find('small_sticker - 002_knee/0_L_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
-            cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
-            cc.find('small_sticker - 002_knee/0_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
-            cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_yellow/1_Head').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_yellow/1_Neck').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_yellow/1_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_yellow/1_L_Leg_01').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_yellow/1_L_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_yellow/1_R_Leg_01').getComponent(cc.RevoluteJoint).enableLimit= true;
+            cc.find('small_sticker - 002_yellow/1_R_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = true;    
+            cc.find('small_sticker - 002_yellow/1_L_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_yellow/1_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_yellow/1_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
+            cc.find('small_sticker - 002_yellow/1_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
             this.playerMovement();
         }
         //cc.log(this.node.scaleX);
-        //cc.log(Global.player1_getgun);
+        //cc.log(Global.player2_getgun);
 
-        else if(Global.player1_dead==true&&this.dead_finish==true)
+        else if(Global.player2_dead==true&&this.dead_finish==true)
         {
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
 
-            cc.find('small_sticker - 002_knee/0_Head').getComponent(cc.RigidBody).fixedRotation = false;
-            cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
-            cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
-            cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
-            cc.find('small_sticker - 002_knee/0_L_Leg_01').getComponent(cc.RevoluteJoint).enableLimit = false;
-            cc.find('small_sticker - 002_knee/0_L_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = false;
-            cc.find('small_sticker - 002_knee/0_R_Leg_01').getComponent(cc.RevoluteJoint).enableLimit= false;
-            cc.find('small_sticker - 002_knee/0_R_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = false;    
-            cc.find('small_sticker - 002_knee/0_L_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = false;
-            cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = false;
-            cc.find('small_sticker - 002_knee/0_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = false;
-            cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_yellow/1_Head').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_yellow/1_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_yellow/1_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+            cc.find('small_sticker - 002_yellow/1_L_Leg_01').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_yellow/1_L_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_yellow/1_R_Leg_01').getComponent(cc.RevoluteJoint).enableLimit= false;
+            cc.find('small_sticker - 002_yellow/1_R_Leg_02').getComponent(cc.RevoluteJoint).enableLimit = false;    
+            cc.find('small_sticker - 002_yellow/1_L_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_yellow/1_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_yellow/1_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = false;
+            cc.find('small_sticker - 002_yellow/1_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = false;
             cc.log("fixrotate disable");
             this.onGround=false;
             /*
             this.scheduleOnce(()=>{
                 //this.node.position = cc.v2(480, 500);
-                //Global.player1_dead=false;
+                //Global.player2_dead=false;
                 //this.dead_finish=true;
                 cc.log("dead");
             },2);
@@ -123,26 +123,26 @@ export default class debug_body1 extends cc.Component
 
     onKeyDown(event) {
         //cc.log("Key Down: " + event.keyCode);
-        if(Global.player1_dead==false)
+        if(Global.player2_dead==false)
         {
         
-            if(event.keyCode == cc.macro.KEY.a) {
+            if(event.keyCode == cc.macro.KEY.left) {
                 this.aDown = true;
                 if (this.dDown) {
                     this.dDown = false;
                     this.dFlag = true;
                 }
                 if (Global.onWall == 4) Global.onWall = 0;
-            } else if(event.keyCode == cc.macro.KEY.d) {
+            } else if(event.keyCode == cc.macro.KEY.right) {
                 this.dDown = true;
                 if (this.aDown) {
                     this.aDown = false;
                     this.aFlag = true;
                 }
                 if (Global.onWall == 3) Global.onWall = 0;
-            } else if(event.keyCode == cc.macro.KEY.s) {
+            } else if(event.keyCode == cc.macro.KEY.down) {
                 this.sDown = true;
-            } else if(event.keyCode == cc.macro.KEY.w) {
+            } else if(event.keyCode == cc.macro.KEY.up) {
                 cc.log("w down!!!!!!!!!!!!!");
                 if (!this.wDown) {
                     if (Global.onWall == 1) {
@@ -161,20 +161,20 @@ export default class debug_body1 extends cc.Component
                     }
                     this.wDown = true;
                 }
-            } else if(event.keyCode == cc.macro.KEY.j) {
+            } else if(event.keyCode == cc.macro.KEY.p) {
                 this.jDown = true;
-            } else if(event.keyCode == cc.macro.KEY.f) {
+            } else if(event.keyCode == cc.macro.KEY.o) {
                 this.fDown = true;
             } 
         }
     }
 
     onKeyUp(event) {
-        if(Global.player1_dead==false)
+        if(Global.player2_dead==false)
         {
 
         
-            if(event.keyCode == cc.macro.KEY.a)
+            if(event.keyCode == cc.macro.KEY.left)
             {
                 this.aDown = false;
                 this.aFlag = false;
@@ -184,7 +184,7 @@ export default class debug_body1 extends cc.Component
                 }
             }
                 
-            if(event.keyCode == cc.macro.KEY.d)
+            if(event.keyCode == cc.macro.KEY.right)
             {
                 this.dDown = false;
                 this.dFlag = false;
@@ -194,9 +194,9 @@ export default class debug_body1 extends cc.Component
                 }
             }
                 
-            if(event.keyCode == cc.macro.KEY.s)
+            if(event.keyCode == cc.macro.KEY.down)
                 this.sDown = false;
-            if(event.keyCode == cc.macro.KEY.j)
+            if(event.keyCode == cc.macro.KEY.p)
             {
                 this.jDown = false;
                 this.hitflag=false;
@@ -204,13 +204,13 @@ export default class debug_body1 extends cc.Component
             }
                 
                 
-            if(event.keyCode == cc.macro.KEY.w)
+            if(event.keyCode == cc.macro.KEY.up)
             {
                 this.wDown = false;
             }
 
 
-            if(event.keyCode == cc.macro.KEY.f)
+            if(event.keyCode == cc.macro.KEY.o)
             {
                 this.fDown = false;
             }
@@ -237,15 +237,15 @@ export default class debug_body1 extends cc.Component
         }
 
 
-        //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = true;
+        //cc.find('small_sticker - 002_yellow/1_Neck').getComponent(cc.RigidBody).fixedRotation = true;
         if (!this.sDown) {
-            cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
-            cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_yellow/1_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+            cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
         }
         
         
         
-        if(Global.player1_getgun==true&&this.gun_instantiate_finish==true)
+        if(Global.player2_getgun==true&&this.gun_instantiate_finish==true)
         {
             if(this.playerside==true) this.gun_pointer.scaleX = 1;
             else if(this.playerside ==false) this.gun_pointer.scaleX = -1;
@@ -254,64 +254,64 @@ export default class debug_body1 extends cc.Component
         
         
 
-        if(this.jDown&&this.hitflag==false&&Global.player1_getgun==false){
+        if(this.jDown&&this.hitflag==false&&Global.player2_getgun==false){
             this.shakeEffect(0.1);
             this.hitflag=true;
             //cc.log("wow")
 
             if(this.playerside==true)
             {
-                //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-2000, 0), true);
+                //cc.find('small_sticker - 002_yellow/1_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_yellow/1_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+                //cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-2000, 0), true);
 
                 if(this.hithand==1) 
                 {
-                    cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
-                    cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(4000, 1500), true);
+                    cc.find('small_sticker - 002_yellow/1_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                    cc.find('small_sticker - 002_yellow/1_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(4000, 1500), true);
                 }
                 else 
                 {
-                    cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 1500), true);
+                    cc.find('small_sticker - 002_yellow/1_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 1500), true);
 
                 }
                     //this.playerSpeed = 2000;
 
 
-                //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+                //cc.find('small_sticker - 002_yellow/1_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+                //cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
             }
             else if(this.playerside==false)
             {
 
 
-               // cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(2000, 0), true);
+               // cc.find('small_sticker - 002_yellow/1_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_yellow/1_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+                cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+                //cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(2000, 0), true);
                 if(this.hithand==1)
                 {
-                    cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
-                    cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-4000, 1500), true);
+                    cc.find('small_sticker - 002_yellow/1_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                    cc.find('small_sticker - 002_yellow/1_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-4000, 1500), true);
                 }
                 else 
                 {
-                    cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                    cc.find('small_sticker - 002_yellow/1_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
                 
                 }
                     //this.playerSpeed = -2000;
 
 
-                //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
+                //cc.find('small_sticker - 002_yellow/1_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+                //cc.find('small_sticker - 002_yellow/1_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
             }
         } 
 
 
 
 
-        else if(this.jDown&&this.hitflag==false&&Global.player1_getgun==true){
+        else if(this.jDown&&this.hitflag==false&&Global.player2_getgun==true){
             this.hitflag=true;
             this.shakeEffect(0.1);
             this.gun_pointer.getComponent('weapon_instantiate').createBullet();
@@ -328,47 +328,47 @@ export default class debug_body1 extends cc.Component
 
 
 
-        if(this.fDown&&Global.player1_getgun==true){
-            Global.player1_getgun = false;
+        if(this.fDown&&Global.player2_getgun==true){
+            Global.player2_getgun = false;
             this.gun_pointer.destroy();
             this.throw_gun_pointer = cc.instantiate(this.desert_hawk_for_pick_prefab);
             if(this.playerside == true)
             {
-                this.throw_gun_pointer.getComponent('weapon_disappear').initR(cc.find('small_sticker - 002_knee/0_R_hand'));
+                this.throw_gun_pointer.getComponent('weapon_disappear').initR(cc.find('small_sticker - 002_yellow/1_R_hand'));
                 this.throw_gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(3000, 500), true);
             } 
             else if(this.playerside == false)
             {
-                this.throw_gun_pointer.getComponent('weapon_disappear').initL(cc.find('small_sticker - 002_knee/0_R_hand'));
+                this.throw_gun_pointer.getComponent('weapon_disappear').initL(cc.find('small_sticker - 002_yellow/1_R_hand'));
                 this.throw_gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-3000, 500), true);
             }
             this.gun_instantiate_finish=false;
         }
 
 
-        /*if(cc.find('small_sticker - 002_knee/0_Neck').angle<0)
+        /*if(cc.find('small_sticker - 002_yellow/1_Neck').angle<0)
         {
-            cc.find('small_sticker - 002_knee/0_Neck').angle++;
+            cc.find('small_sticker - 002_yellow/1_Neck').angle++;
         }
-        else if(cc.find('small_sticker - 002_knee/0_Neck').angle>0)
+        else if(cc.find('small_sticker - 002_yellow/1_Neck').angle>0)
         {
-            cc.find('small_sticker - 002_knee/0_Neck').angle--;
+            cc.find('small_sticker - 002_yellow/1_Neck').angle--;
         }*/
-        if(cc.find('small_sticker - 002_knee/0_Body_01').angle<0)
+        if(cc.find('small_sticker - 002_yellow/1_Body_01').angle<0)
         {
-            cc.find('small_sticker - 002_knee/0_Body_01').angle++;
+            cc.find('small_sticker - 002_yellow/1_Body_01').angle++;
         }
-        else if(cc.find('small_sticker - 002_knee/0_Body_01').angle>0)
+        else if(cc.find('small_sticker - 002_yellow/1_Body_01').angle>0)
         {
-            cc.find('small_sticker - 002_knee/0_Body_01').angle--;
+            cc.find('small_sticker - 002_yellow/1_Body_01').angle--;
         }
-        if(cc.find('small_sticker - 002_knee/0_Body_02').angle<0)
+        if(cc.find('small_sticker - 002_yellow/1_Body_02').angle<0)
         {
-            cc.find('small_sticker - 002_knee/0_Body_02').angle++;
+            cc.find('small_sticker - 002_yellow/1_Body_02').angle++;
         }
-        else if(cc.find('small_sticker - 002_knee/0_Body_02').angle>0)
+        else if(cc.find('small_sticker - 002_yellow/1_Body_02').angle>0)
         {
-            cc.find('small_sticker - 002_knee/0_Body_02').angle--;
+            cc.find('small_sticker - 002_yellow/1_Body_02').angle--;
         }
 
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
@@ -408,7 +408,7 @@ export default class debug_body1 extends cc.Component
         if(name == 'desert_hawk_for_pick'&&this.gun_instantiate_finish==false)
         {
             this.gun_pointer = cc.instantiate(this.desert_hawk_prefab); 
-            this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_knee/0_R_hand'));
+            this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
             cc.log("instantiate!!");
         }    
         this.gun_instantiate_finish=true;

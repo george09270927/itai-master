@@ -47,6 +47,7 @@
       true,
       null,
       true,
+      true,
       true
     ],
     [
@@ -59,6 +60,7 @@
       true,
       null,
       null,
+      true,
       true
     ],
     [
@@ -71,6 +73,7 @@
       true,
       null,
       true,
+      true,
       true
     ],
     [
@@ -81,6 +84,9 @@
       true,
       true,
       false,
+      true,
+      null,
+      null,
       true
     ],
     [
@@ -117,19 +123,20 @@
       false,
       true,
       true,
-      false
+      false,
+      true
     ],
     [
       false,
       false,
       false,
+      true,
+      true,
+      true,
+      true,
       false,
       false,
-      false,
-      false,
-      false,
-      false,
-      false,
+      true,
       false
     ]
   ],
@@ -163,7 +170,7 @@
     "IcePlatform",
     "leg",
     "weapon",
-    "not yet"
+    "stick2"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
@@ -172,6 +179,5 @@
     "width": 960
   },
   "use-customize-simulator": true,
-  "use-project-simulator-setting": false,
-  "start-scene": "current"
+  "use-project-simulator-setting": false
 }
