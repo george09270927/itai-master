@@ -94,6 +94,9 @@ export default class NewClass extends cc.Component {
                 cc.log("hit platform");
             } else if(collider.node.name == "floor"){
                 //cc.log("hit floor");
+            } else if(collider.node.name == "player"){
+                cc.log("hit plaeyr");
+                collider.node.getComponent("Player_ans").isDead = true;
             }
             //射线穿过的碰撞体的世界坐标
             var point = result.point;
