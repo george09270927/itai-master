@@ -142,8 +142,6 @@ export default class debug_body extends cc.Component
                 if (Global.onWall == 3) Global.onWall = 0;
             } else if(event.keyCode == cc.macro.KEY.s) {
                 this.sDown = true;
-            } else if(event.keyCode == cc.macro.KEY.s) {
-                    this.sDown = true;
             } else if(event.keyCode == cc.macro.KEY.w) {
                 cc.log("w down!!!!!!!!!!!!!");
                 if (!this.wDown) {
@@ -373,7 +371,7 @@ export default class debug_body extends cc.Component
             cc.find('small_sticker - 002_knee/0_Body_02').angle--;
         }
 
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed,0);
+        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
        
     }  
 
