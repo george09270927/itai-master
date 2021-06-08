@@ -19,6 +19,39 @@ export default class weapon extends cc.Component {
     update()
     {
     }
+    //make the bullet move from current position
+  
+
+    public initR(node: cc.Node) 
+    {
+        this.setInitPosR(node);
+    }
+
+    private setInitPosR(node: cc.Node)
+    {
+        this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
+
+        this.node.position = cc.v2(50,0);
+
+        this.node.position = this.node.position.addSelf(node.position);
+    }
+
+
+    public initL(node: cc.Node) 
+    {
+        this.setInitPosL(node);
+    }
+
+    private setInitPosL(node: cc.Node)
+    {
+        this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
+
+        this.node.position = cc.v2(-50,0);
+
+        this.node.position = this.node.position.addSelf(node.position);
+    }
+
+
     onBeginContact(contact, self, other) {
         if(other.node.name == "0_Head") {
             Global.player1_getgun = true;

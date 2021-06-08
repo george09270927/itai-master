@@ -222,7 +222,7 @@
       "array": [
         0,
         0,
-        334.38664573777794,
+        351.697175968572,
         0,
         0,
         0,
@@ -9376,6 +9376,9 @@
     },
     "desert_hawk_prefab": {
       "__uuid__": "654b3b9f-23f2-4bea-ad7e-68ece7181465"
+    },
+    "desert_hawk_for_pick_prefab": {
+      "__uuid__": "1c4c419a-11f3-45a3-8d57-fe72e031da28"
     },
     "Jump_force": {
       "__id__": 253
