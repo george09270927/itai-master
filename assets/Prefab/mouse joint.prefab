@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "player",
+    "_name": "mouse joint",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -27,16 +27,10 @@
       },
       {
         "__id__": 4
-      },
-      {
-        "__id__": 5
-      },
-      {
-        "__id__": 6
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 5
     },
     "_opacity": 255,
     "_color": {
@@ -48,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 70
+      "width": 0,
+      "height": 0
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -60,8 +54,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        310.992,
-        149.133,
+        -428.311,
+        268.13,
         0,
         0,
         0,
@@ -81,73 +75,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 4,
-    "groupIndex": 4,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "8d1e8d2b-4ed4-46a1-843f-baecd949c652"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "34e782c4-dde3-40ae-a6d5-7db11a398e80"
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "5c9f0f0b-ebd0-4c83-b116-e62e93608846"
-    },
-    "_clips": [
-      {
-        "__uuid__": "b60cc531-5b49-40c9-9a50-dddb3a02cb1b"
-      },
-      {
-        "__uuid__": "1ef41305-1149-408a-9fdf-a28faea587bd"
-      },
-      {
-        "__uuid__": "5c9f0f0b-ebd0-4c83-b116-e62e93608846"
-      },
-      {
-        "__uuid__": "d9a613a2-ac94-4591-aa49-a9ee85d663ef"
-      },
-      {
-        "__uuid__": "899fbb14-f30d-48c9-b731-3671fd858378"
-      }
-    ],
-    "playOnLoad": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
     "_id": ""
   },
   {
@@ -158,9 +87,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 2,
-    "_allowSleep": false,
-    "_gravityScale": 7,
+    "_type": 0,
+    "_allowSleep": true,
+    "_gravityScale": 1,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -169,8 +98,8 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": true,
-    "enabledContactListener": true,
+    "_fixedRotation": false,
+    "enabledContactListener": false,
     "bullet": false,
     "awakeOnLoad": true,
     "_id": ""
@@ -196,22 +125,36 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 70
+      "width": 100,
+      "height": 100
     },
     "_id": ""
   },
   {
-    "__type__": "3ff18M11OlOoJg1w1R5/tEa",
+    "__type__": "cc.MouseJoint",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "bulletPrefab": {
-      "__uuid__": "d9062661-1a21-4b0c-8c0f-496698ebcc38"
+    "anchor": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
     },
+    "connectedAnchor": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "connectedBody": null,
+    "collideConnected": true,
+    "_target": 1,
+    "_frequency": 2,
+    "_dampingRatio": 0.7,
+    "_maxForce": 0,
+    "mouseRegion": null,
     "_id": ""
   },
   {
@@ -220,9 +163,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "133c38d0-93fe-4c2d-91c5-f17bd89e1d34"
+      "__id__": 0
     },
-    "fileId": "40oRbPt2xAtoVfZVB7iUH+",
+    "fileId": "c9OVz7PNJKBrG6HQVZQijE",
     "sync": false
   }
 ]
