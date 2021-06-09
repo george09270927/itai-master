@@ -70,7 +70,57 @@ export default class Leg_force_2 extends cc.Component {
     sDown:boolean = false;
 
     walk_angle = 0;
+    private laseroffset: number = 100;
 
+    localConvertWorldPointAR(node) {
+        if (node) {
+            return node.convertToWorldSpaceAR(cc.v2(0, 0));
+        }
+        return null;
+    }
+    
+
+    StartDetect () {
+        //cc.log("---touchStart---");
+        //获得触摸点本地坐标位置
+        let p1 = this.localConvertWorldPointAR(this.node);
+        //cc.log("p1: " + p1);
+        let angle = this.node.angle;
+        //cc.log("angle: "+angle);
+        let height = p1.y + this.laseroffset;
+        //cc.log("h: " + height);
+        //cc.log("tan: "+ Math.tan(angle* Math.PI /180));
+        let bottom_offset = height * Math.tan(angle *Math.PI /180);
+        //cc.log("bottom length: "+ bottom_offset);
+        
+        
+        //射线测试结束点位置 預設結束的位置要超過floor
+        let p2 = cc.v2(p1.x+bottom_offset, 0-this.laseroffset) 
+        //cc.log("p2: " + p2);
+        this.rayTest(p1, p2)
+    }
+    rayTest (p1, p2) {
+
+        //cc.log("in ratTest");
+        var results = cc.director.getPhysicsManager().rayCast(p1, p2, cc.RayCastType.AllClosest);
+        var temp_min = 1000;
+        for (var i = 0; i < results.length; i++) {
+            //两点之间检测出来的点的数组
+            var result = results[i];
+            //射线穿过的是哪一个碰撞体。
+            var collider = result.collider;
+            //cc.log(collider);
+            
+            if(collider.node.name == "platform") {
+                var diff = p1.y - result.point.y;
+                if (diff < temp_min) temp_min = diff;
+            } 
+        }
+        if (temp_min < 60) {
+            //cc.log("modify", (temp_min));
+            this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (temp_min) * 15);
+        }
+    }
     onLoad () {
 
 
@@ -84,15 +134,12 @@ export default class Leg_force_2 extends cc.Component {
 
 
     update() {
+        this.StartDetect();
         if(Global.player2_dead==false)
         {
             //cc.log(this.node.position);
             this.playerMovement();
-            //cc.log("diff: ",this.node.y - this.R_leg.y);
-            if (this.node.y - this.R_leg.y < 41.5 && Global.onGround && !(this.dDown || this.aDown)) {
-                //cc.log("modify: ", this.node.y - this.R_leg.y);
-                this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (this.node.y - this.R_leg.y) * 10);
-            }
+            
             if (Global.onWall == 0) {
                 this.R_leg1.getComponent(cc.RigidBody).fixedRotation = false;
                 this.L_leg1.getComponent(cc.RigidBody).fixedRotation = false;
@@ -149,6 +196,7 @@ export default class Leg_force_2 extends cc.Component {
                 this.L_leg2.angle -= this.walk_angle;
                 this.R_leg2.angle -= this.walk_angle;
             } else if (event.keyCode == cc.macro.KEY.down) {
+                Global.onGround = true;
                 this.sDown = false;
                 this.body1.angle = 0;
                 this.body2.angle = 0;

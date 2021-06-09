@@ -16,7 +16,7 @@ export default class Feet extends cc.Component {
 
     @property(cc.Prefab)
     walk_particle: cc.Prefab = null;
-
+    
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
         //cc.log("YYYYYYYYY: "+direction.y);
@@ -57,7 +57,7 @@ export default class Feet extends cc.Component {
             //Global.onGround = false;    // when jump, onGround will be false 
             if (Global.onWall == 1 && !Global.head_contact) Global.onWall = 3;
             else if (Global.onWall == 2 && !Global.head_contact)  Global.onWall = 4;
-            cc.log("endcontact:", Global.onWall);
+            //cc.log("endcontact:", Global.onWall);
             //Global.onWall = false;
             //cc.log("platform");
         }

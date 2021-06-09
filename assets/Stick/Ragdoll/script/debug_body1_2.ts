@@ -146,18 +146,20 @@ export default class debug_body1_2 extends cc.Component
                 cc.log("w down!!!!!!!!!!!!!");
                 if (!this.wDown) {
                     if (Global.onWall == 1) {
+                        Global.onGround = false;
                         cc.log("onwall jump: " + Global.onWall);
                         Global.onWall = 3;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 140000), true);
+                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(30000, 180000), true);
                     } else if (Global.onWall == 2) {
+                        Global.onGround = false;
                         cc.log("onwall jump: " + Global.onWall);
                         Global.onWall = 4;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
-                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 140000), true);
+                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-30000, 180000), true);
                     } else if (Global.onGround) {
                         Global.onGround = false;
-                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 140000), true);
+                        this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 180000), true);
                     }
                     this.wDown = true;
                 }
