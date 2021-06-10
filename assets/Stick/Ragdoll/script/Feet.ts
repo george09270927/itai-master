@@ -16,19 +16,19 @@ export default class Feet extends cc.Component {
 
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
-        cc.log("YYYYYYYYY: "+direction.y);
+        //cc.log("YYYYYYYYY: "+direction.y);
         if (other.node.name == "platform" && direction.y < -0.1) {  // actually stand on Ground
             Global.onGround = true;
             Global.onWall = 0;
             Global.head_contact = false;
             //cc.log("platform");
         } else if (other.node.name == "platform" && direction.x < 0) {
-            cc.log("feet onWall left: ", this.node.name);
+            //cc.log("feet onWall left: ", this.node.name);
             if (!Global.head_contact) Global.onWall = 1;
             //if ((self.node.name == "0_Body_01" || self.node.name == "0_Body_02"))
             //cc.log("platform");
         } else if (other.node.name == "platform" && direction.x > 0) {
-            cc.log("feet onWall right: ", this.node.name);
+            //cc.log("feet onWall right: ", this.node.name);
             if (!Global.head_contact) Global.onWall = 2;
             //cc.log("platform");
         }
