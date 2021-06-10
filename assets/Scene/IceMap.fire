@@ -381,7 +381,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Particle",
+    "_name": "snow particle",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
