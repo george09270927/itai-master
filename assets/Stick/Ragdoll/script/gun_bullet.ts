@@ -36,6 +36,7 @@ export default class gun_bullet extends cc.Component
     {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
+
         if(node.scaleX > 0)
         {
             this.node.position = cc.v2(62, 8);
@@ -50,6 +51,7 @@ export default class gun_bullet extends cc.Component
         }
 
         this.node.position = this.node.position.addSelf(node.position);
+        cc.log(this.node.group);
     }
 
     //make the bullet move from current position
@@ -57,7 +59,7 @@ export default class gun_bullet extends cc.Component
     { 
     
         let speed = 0;
-        if(this.node.name == "excalibur_beam")
+        if(this.node.name == "excalibur_beam_1"||this.node.name == "excalibur_beam_2")
         {
             if(this.node.scaleX > 0)
                 speed = 100;
@@ -83,7 +85,7 @@ export default class gun_bullet extends cc.Component
     onBeginContact(contact, selfCollider, otherCollider)
     {
         cc.log("bullet hit :" + otherCollider.name );
-        if(this.node.name == "excalibur_beam")
+        if(this.node.name == "excalibur_beam_1"||this.node.name == "excalibur_beam_2")
         {
             this.scheduleOnce(() => {
                 this.node.stopAllActions();

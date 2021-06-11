@@ -948,6 +948,27 @@
     "desert_hawk_for_pick_prefab": {
       "__uuid__": "1c4c419a-11f3-45a3-8d57-fe72e031da28"
     },
+    "excalibur_prefab": {
+      "__uuid__": "a305e0c3-8502-4f87-bb97-8d64a49ce753"
+    },
+    "excalibur_for_pick_prefab": {
+      "__uuid__": "08d4821d-980d-4fc6-98e0-629d52e4bbd4"
+    },
+    "earthquake_sound": {
+      "__uuid__": "1c977a89-0ff5-4f9c-aac1-81c06a61df6a"
+    },
+    "excalibur_ex_sound": {
+      "__uuid__": "89dcca8a-3602-4cf3-ad1a-885edbb2b07a"
+    },
+    "excalibur_ready_sound": {
+      "__uuid__": "10efd7d3-31c9-40a8-bffe-4d636bbc92a2"
+    },
+    "excalibur_shoot_sound": {
+      "__uuid__": "f9c7fce2-d2b7-4493-9422-dc4fef8ee46c"
+    },
+    "excalibur_break_sound": {
+      "__uuid__": "867d01bd-7114-4881-a300-38119e5f9f31"
+    },
     "Jump_force": {
       "__id__": 28
     },

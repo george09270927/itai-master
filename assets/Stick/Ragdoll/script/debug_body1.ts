@@ -193,7 +193,7 @@ export default class debug_body1 extends cc.Component
             if(this.gun_pointer.angle<0) this.gun_pointer.angle++;
             else if(this.gun_pointer.angle>0) this.gun_pointer.angle--;
         }
-        cc.log(this.excalibur_cooldown);
+        //cc.log(this.excalibur_cooldown);
     }
 
 

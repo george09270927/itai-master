@@ -25,7 +25,7 @@ export default class Feet extends cc.Component {
             Global.onWall = 0;
             Global.head_contact = false;
             //cc.log("platform");
-            if (self.node.name == "0_R_Leg_02" || self.node.name == "1_R_Leg_02" || self.node.name == "0_L_Leg_02" || self.node.name == "1_L_Leg_02") {
+            if (self.node.name == "0_R_Leg_02" || self.node.name == "0_L_Leg_02") {
                 var particle_prefab = cc.instantiate(this.walk_particle);
                 this.node.parent.addChild(particle_prefab);
                 particle_prefab.setPosition(cc.v2(this.node.position.x, this.node.position.y - 13));

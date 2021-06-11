@@ -61,7 +61,7 @@ export default class weapon_instantiate extends cc.Component {
             this.node.getComponent(cc.RevoluteJoint).connectedBody = cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody);
             this.node.group = "stick";
         }
-            else if(node.name == '1_R_hand') 
+        else if(node.name == '1_R_hand') 
         {
             this.node.getComponent(cc.RevoluteJoint).connectedBody = cc.find('small_sticker - 002_yellow/1_R_hand').getComponent(cc.RigidBody);
             this.node.group = "stick2";
@@ -70,6 +70,8 @@ export default class weapon_instantiate extends cc.Component {
         
 
         this.node.position = this.node.position.addSelf(node.position);
+
+        cc.log(this.node.group);
     }
 
 
