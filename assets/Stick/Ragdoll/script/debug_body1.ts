@@ -157,6 +157,7 @@ export default class debug_body1 extends cc.Component
         {
         
             if(event.keyCode == cc.macro.KEY.a) {
+                if (!this.aDown) this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-20000, 0), true);
                 this.aDown = true;
                 if (this.dDown) {
                     this.dDown = false;
@@ -188,6 +189,7 @@ export default class debug_body1 extends cc.Component
                 }
 
             } else if(event.keyCode == cc.macro.KEY.d) {
+                if (!this.dDown) this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(20000, 0), true);
                 this.dDown = true;
                 if (this.aDown) {
                     this.aDown = false;
@@ -333,6 +335,7 @@ export default class debug_body1 extends cc.Component
         
             if(event.keyCode == cc.macro.KEY.a)
             {
+                this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(25000, 0), true);
                 this.aDown = false;
                 this.aFlag = false;
                 if (this.dFlag) {
@@ -343,6 +346,7 @@ export default class debug_body1 extends cc.Component
                 
             if(event.keyCode == cc.macro.KEY.d)
             {
+                this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-25000, 0), true);
                 this.dDown = false;
                 this.dFlag = false;
                 if (this.aFlag) {
@@ -411,14 +415,14 @@ export default class debug_body1 extends cc.Component
     playerMovement() {
         this.playerSpeed = 0;
         if(this.aDown){
-            this.playerSpeed = -300;
+            this.playerSpeed = -350;
             //this.playerSpeed = -2000;
             //this.playerSpeed = -55000;
             //this.node.scaleX = -1;
             this.playerside = false;
         }
         else if(this.dDown){
-            this.playerSpeed = 300;
+            this.playerSpeed = 350;
             //this.playerSpeed = 2000;
             //this.playerSpeed = 55000;
             //this.node.scaleX = 1;
