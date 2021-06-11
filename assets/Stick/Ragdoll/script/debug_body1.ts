@@ -24,6 +24,22 @@ export default class debug_body1 extends cc.Component
     @property(cc.Prefab)
     private excalibur_for_pick_prefab: cc.Prefab = null;
 
+    @property({type:cc.AudioClip})
+    private earthquake_sound: cc.AudioClip=null;
+
+    @property({type:cc.AudioClip})
+    private excalibur_ex_sound: cc.AudioClip=null;
+
+    @property({type:cc.AudioClip})
+    private excalibur_ready_sound: cc.AudioClip=null;
+
+    @property({type:cc.AudioClip})
+    private excalibur_shoot_sound: cc.AudioClip=null;
+
+    @property({type:cc.AudioClip})
+    private excalibur_break_sound: cc.AudioClip=null;
+
+
     
     @property(cc.Node)
     Jump_force: cc.Node = null;
@@ -67,6 +83,10 @@ export default class debug_body1 extends cc.Component
 
     littleshake_flag = false;
     
+
+    excalibur_flag = false;
+
+    get_energy = false;
 
 
     onLoad () {
@@ -136,6 +156,32 @@ export default class debug_body1 extends cc.Component
         }
         //this.excalibur_count+=2;
         //cc.log(this.excalibur_count);
+        if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true)
+        {
+            if(this.excalibur_cooldown==0)
+            {
+                if(this.excalibur_count==30) cc.audioEngine.playEffect(this.earthquake_sound,false);
+                if(this.excalibur_count== 360) cc.audioEngine.playEffect(this.excalibur_ex_sound,false);
+                if(this.excalibur_count== 30) cc.audioEngine.playEffect(this.excalibur_ready_sound,true);
+                if(this.excalibur_count==30) this.littleshakeEffect();
+                this.excalibur_count+=0.5;
+                if(this.excalibur_count==330&&this.playerside==true) this.gun_pointer.runAction(cc.rotateBy(1,-60));
+                else if(this.excalibur_count==330&&this.playerside==false) this.gun_pointer.runAction(cc.rotateBy(1,60));
+                if(this.excalibur_count>= 300) this.gun_pointer.getComponent('weapon_instantiate').slowdownParticle();
+                if(this.excalibur_count>= 330) this.gun_pointer.getComponent('weapon_instantiate').resetLevel10();
+                else if(this.excalibur_count>= 300) this.gun_pointer.getComponent('weapon_instantiate').resetLevel9();
+                else if(this.excalibur_count>= 270) this.gun_pointer.getComponent('weapon_instantiate').resetLevel8();
+                else if(this.excalibur_count>= 240) this.gun_pointer.getComponent('weapon_instantiate').resetLevel7();
+                else if(this.excalibur_count>= 210) this.gun_pointer.getComponent('weapon_instantiate').resetLevel6();
+                else if(this.excalibur_count>= 180) this.gun_pointer.getComponent('weapon_instantiate').resetLevel5();
+                else if(this.excalibur_count>= 150) this.gun_pointer.getComponent('weapon_instantiate').resetLevel4();
+                else if(this.excalibur_count>= 120) this.gun_pointer.getComponent('weapon_instantiate').resetLevel3();
+                else if(this.excalibur_count>= 90) this.gun_pointer.getComponent('weapon_instantiate').resetLevel2();
+                else if(this.excalibur_count>= 60) this.gun_pointer.getComponent('weapon_instantiate').resetLevel1();
+                else if(this.excalibur_count>= 30) this.gun_pointer.getComponent('weapon_instantiate').resetLevel0();
+            }
+        }
+
 
         
         if(this.excalibur_cooldown>0&&this.gunname=="excalibur_for_pick")
@@ -186,6 +232,8 @@ export default class debug_body1 extends cc.Component
                         this.camera.setPosition(0,0);
                     }
                     this.excalibur_count=0;
+                    this.get_energy = false;
+                    if(this.excalibur_cooldown==0) cc.audioEngine.stopAllEffects();
                 }
 
             } else if(event.keyCode == cc.macro.KEY.d) {
@@ -218,6 +266,8 @@ export default class debug_body1 extends cc.Component
                         this.camera.setPosition(0,0);
                     }
                     this.excalibur_count=0;
+                    this.get_energy = false;
+                    if(this.excalibur_cooldown==0) cc.audioEngine.stopAllEffects();
                 }
 
             } else if(event.keyCode == cc.macro.KEY.s) {
@@ -244,6 +294,8 @@ export default class debug_body1 extends cc.Component
                         this.camera.setPosition(0,0);
                     }
                     this.excalibur_count=0;
+                    this.get_energy = false;
+                    if(this.excalibur_cooldown==0) cc.audioEngine.stopAllEffects();
                 }
  
             } else if(event.keyCode == cc.macro.KEY.w) {
@@ -289,20 +341,23 @@ export default class debug_body1 extends cc.Component
                         this.camera.setPosition(0,0);
                     }
                     this.excalibur_count=0;
+                    this.get_energy = false;
+                    if(this.excalibur_cooldown==0) cc.audioEngine.stopAllEffects();
                 }
 
             } else if(event.keyCode == cc.macro.KEY.j) {
                 if(this.gunname == "excalibur_for_pick")
                 {
-                    if(this.jDown==false)
+                    if(this.jDown==false&&this.excalibur_cooldown==0)
                     {
                         this.gun_pointer.getComponent('weapon_instantiate').resetParticle();
-                        
+                        this.get_energy = true;
                     }
                     if(this.excalibur_cooldown==0)
                     {
-                        if(this.excalibur_count==30) this.littleshakeEffect();
+                        //if(this.excalibur_count==30) this.littleshakeEffect();
                         this.jDown = true;
+                        /*
                         this.excalibur_count+=2;
                         if(this.excalibur_count==330&&this.playerside==true) this.gun_pointer.runAction(cc.rotateBy(1,-60));
                         else if(this.excalibur_count==330&&this.playerside==false) this.gun_pointer.runAction(cc.rotateBy(1,60));
@@ -318,6 +373,7 @@ export default class debug_body1 extends cc.Component
                         else if(this.excalibur_count>= 90) this.gun_pointer.getComponent('weapon_instantiate').resetLevel2();
                         else if(this.excalibur_count>= 60) this.gun_pointer.getComponent('weapon_instantiate').resetLevel1();
                         else if(this.excalibur_count>= 30) this.gun_pointer.getComponent('weapon_instantiate').resetLevel0();
+                        */
                     }
                 }
                 else this.jDown = true;
@@ -361,7 +417,7 @@ export default class debug_body1 extends cc.Component
             {
                 if(this.gunname == "excalibur_for_pick")
                 {
-                    if(this.jDown==false)
+                    if(this.jDown==true)
                     {
                         this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
                         this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
@@ -383,10 +439,11 @@ export default class debug_body1 extends cc.Component
                         if(this.excalibur_count<330)
                         {
                             this.excalibur_count=0;
-                            //this.gun_pointer.runAction(cc.rotateTo(1,0));
                         }
+                        if(this.excalibur_cooldown==0) cc.audioEngine.stopAllEffects();
                     }
                     this.jDown = false;
+                    this.get_energy = false;
                 }
                 else 
                 {
@@ -523,33 +580,23 @@ export default class debug_body1 extends cc.Component
         }
         else if(this.gunname == "excalibur_for_pick")
         {
-            if(this.jDown==false&&this.excalibur_count>=330)
+            if(this.jDown==false&&this.excalibur_count>=330&&this.excalibur_flag==false)
             {
+                this.excalibur_flag=true;
                 if(this.playerside==true) this.gun_pointer.runAction(cc.rotateBy(0.2,150));
                 else if(this.playerside==false) this.gun_pointer.runAction(cc.rotateBy(0.2,-150));
-                this.excalibur_count=0;
                 this.scheduleOnce(()=>{
+                    cc.audioEngine.stopAllEffects();
+                    cc.audioEngine.playEffect(this.earthquake_sound,false);
+                    this.excalibur_count=0;
+                    cc.audioEngine.playEffect(this.excalibur_shoot_sound,false);
                     this.littleshake_flag=false;
                     this.gun_pointer.getComponent('weapon_instantiate').createBullet();
                     this.excalibur_cooldown=2000;
                     this.shakeEffect(10);
+                    this.excalibur_flag = false;
+                    this.scheduleOnce(()=>{cc.audioEngine.playEffect(this.excalibur_break_sound,false);},4);
                 },0.1);
-            }
-            else if(this.jDown==false&&this.excalibur_count<330)
-            {
-                this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel9();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel8();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel7();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel6();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel5();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel4();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel3();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel2();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel1();
-                this.gun_pointer.getComponent('weapon_instantiate').stopLevel0();
-                this.excalibur_count=0;
             }
         }
 

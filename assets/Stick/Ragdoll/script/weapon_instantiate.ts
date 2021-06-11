@@ -86,6 +86,9 @@ export default class weapon_instantiate extends cc.Component {
 
         let bullet = cc.instantiate(this.bulletPrefab);
         bullet.getComponent('gun_bullet').init(this.node);
+
+        if(this.node.name  == "excalibur_prefab")
+        {
         this.stopParticle();
         this.stopLevel0();
         this.stopLevel1();
@@ -98,6 +101,7 @@ export default class weapon_instantiate extends cc.Component {
         this.stopLevel8();
         this.stopLevel9();
         this.stopLevel10();
+        }
     }
 
 
