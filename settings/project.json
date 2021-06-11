@@ -23,6 +23,8 @@
       null,
       null,
       true,
+      true,
+      null,
       true
     ],
     [
@@ -35,6 +37,8 @@
       true,
       null,
       null,
+      true,
+      null,
       true
     ],
     [
@@ -48,6 +52,7 @@
       null,
       true,
       true,
+      true,
       true
     ],
     [
@@ -74,6 +79,7 @@
       null,
       true,
       true,
+      true,
       true
     ],
     [
@@ -87,6 +93,7 @@
       true,
       null,
       null,
+      true,
       true
     ],
     [
@@ -99,6 +106,8 @@
       true,
       null,
       null,
+      true,
+      null,
       true
     ],
     [
@@ -111,7 +120,9 @@
       false,
       false,
       false,
-      true
+      true,
+      null,
+      false
     ],
     [
       true,
@@ -124,6 +135,7 @@
       true,
       true,
       false,
+      true,
       true
     ],
     [
@@ -136,6 +148,21 @@
       true,
       false,
       false,
+      true,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      false,
+      true,
       true,
       false
     ]
@@ -170,7 +197,8 @@
     "IcePlatform",
     "leg",
     "weapon",
-    "stick2"
+    "stick2",
+    "bullet1"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,

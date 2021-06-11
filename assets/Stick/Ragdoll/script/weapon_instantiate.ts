@@ -11,11 +11,36 @@ export default class weapon_instantiate extends cc.Component {
 
     private bulletInterval: number = 2; 
 
+    private jDown: boolean = false;
 
 
-    onLoad() {
+    @property(cc.ParticleSystem)
+    private chargingParticle: cc.ParticleSystem = null;
 
-    }
+
+    @property(cc.ParticleSystem)
+    private level0: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level1: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level2: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level3: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level4: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level5: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level6: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level7: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level8: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level9: cc.ParticleSystem = null;
+    @property(cc.ParticleSystem)
+    private level10: cc.ParticleSystem = null;
+
 
     public init(node: cc.Node) 
     {
@@ -61,5 +86,139 @@ export default class weapon_instantiate extends cc.Component {
 
         let bullet = cc.instantiate(this.bulletPrefab);
         bullet.getComponent('gun_bullet').init(this.node);
+        this.stopParticle();
+        this.stopLevel0();
+        this.stopLevel1();
+        this.stopLevel2();
+        this.stopLevel3();
+        this.stopLevel4();
+        this.stopLevel5();
+        this.stopLevel6();
+        this.stopLevel7();
+        this.stopLevel8();
+        this.stopLevel9();
+        this.stopLevel10();
+    }
+
+
+
+    private resetParticle()
+    {
+        // kill all particles and restart particle system
+        this.chargingParticle.resetSystem();
+    }
+
+
+    private stopParticle()
+    {
+        this.chargingParticle.resetSystem();
+        this.chargingParticle.stopSystem();
+    }
+
+
+    private slowdownParticle()
+    {
+        this.chargingParticle.stopSystem();
+    }
+
+
+    private resetLevel0()
+    {
+        this.level0.resetSystem();
+    }
+    private stopLevel0()
+    {
+        this.level0.resetSystem();
+        this.level0.stopSystem();
+    }
+    private resetLevel1()
+    {
+        this.level1.resetSystem();
+    }
+    private stopLevel1()
+    {
+        this.level1.resetSystem();
+        this.level1.stopSystem();
+    }
+    private resetLevel2()
+    {
+        this.level2.resetSystem();
+    }
+    private stopLevel2()
+    {
+        this.level2.resetSystem();
+        this.level2.stopSystem();
+    }
+    private resetLevel3()
+    {
+        this.level3.resetSystem();
+    }
+    private stopLevel3()
+    {
+        this.level3.resetSystem();
+        this.level3.stopSystem();
+    }
+    private resetLevel4()
+    {
+        this.level4.resetSystem();
+    }
+    private stopLevel4()
+    {
+        this.level4.resetSystem();
+        this.level4.stopSystem();
+    }
+    private resetLevel5()
+    {
+        this.level5.resetSystem();
+    }
+    private stopLevel5()
+    {
+        this.level5.resetSystem();
+        this.level5.stopSystem();
+    }
+    private resetLevel6()
+    {
+        this.level6.resetSystem();
+    }
+    private stopLevel6()
+    {
+        this.level6.resetSystem();
+        this.level6.stopSystem();
+    }
+    private resetLevel7()
+    {
+        this.level7.resetSystem();
+    }
+    private stopLevel7()
+    {
+        this.level7.resetSystem();
+        this.level7.stopSystem();
+    }
+    private resetLevel8()
+    {
+        this.level8.resetSystem();
+    }
+    private stopLevel8()
+    {
+        this.level8.resetSystem();
+        this.level8.stopSystem();
+    }
+    private resetLevel9()
+    {
+        this.level9.resetSystem();
+    }
+    private stopLevel9()
+    {
+        this.level9.resetSystem();
+        this.level9.stopSystem();
+    }
+    private resetLevel10()
+    {
+        this.level10.resetSystem();
+    }
+    private stopLevel10()
+    {
+        this.level10.resetSystem();
+        this.level10.stopSystem();
     }
 }

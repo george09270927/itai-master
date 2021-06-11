@@ -57,11 +57,23 @@ export default class gun_bullet extends cc.Component
     { 
     
         let speed = 0;
+        if(this.node.name == "excalibur_beam")
+        {
+            if(this.node.scaleX > 0)
+                speed = 100;
+            else
+                speed = -100;
+        }
+        else 
+        {
 
-        if(this.node.scaleX > 0)
-            speed = 600;
-        else
-            speed = -600;
+            if(this.node.scaleX > 0)
+                speed = 600;
+            else
+                speed = -600;
+        }
+
+        
 
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(speed, 0);
     
@@ -71,12 +83,30 @@ export default class gun_bullet extends cc.Component
     onBeginContact(contact, selfCollider, otherCollider)
     {
         cc.log("bullet hit :" + otherCollider.name );
-        this.scheduleOnce(() => {
-            this.node.stopAllActions();
-            //this.bulletManager.put(this.node);
+        if(this.node.name == "excalibur_beam")
+        {
+            this.scheduleOnce(() => {
+                this.node.stopAllActions();
+                cc.log("///recycle bullet///");
+            this.node.runAction(cc.fadeOut(5));
+            //selfCollider.node.destroy();
+            },0.5); 
+            this.scheduleOnce(() => {
+                this.node.stopAllActions();
+                cc.log("///recycle bullet///");
+            //this.node.runAction(cc.fadeOut(3));
+            selfCollider.node.destroy();
+            },10); 
+        }
+        else 
+        {
+            this.scheduleOnce(() => {
+                this.node.stopAllActions();
+                //this.bulletManager.put(this.node);
 
-            cc.log("///recycle bullet///");
-        selfCollider.node.destroy();
-        },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
+                cc.log("///recycle bullet///");
+            selfCollider.node.destroy();
+            },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
+        }
     }
 }

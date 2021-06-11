@@ -31,7 +31,7 @@ export default class weapon extends cc.Component {
     {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
-        this.node.position = cc.v2(50,0);
+        this.node.position = cc.v2(100,0);
 
         this.node.position = this.node.position.addSelf(node.position);
     }
@@ -46,7 +46,7 @@ export default class weapon extends cc.Component {
     {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
-        this.node.position = cc.v2(-50,0);
+        this.node.position = cc.v2(-100,0);
 
         this.node.position = this.node.position.addSelf(node.position);
     }

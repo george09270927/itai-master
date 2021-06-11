@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "e9682cd1-a19c-4fcb-ad8c-cf1783b805e6"
+  },
+  "_defines": {
+    "USE_TEXTURE": true,
+    "USE_ALPHA_TEST": false,
+    "ENABLE_LIGHT": true
+  },
+  "_props": {
+    "lightColor": {
+      "__type__": "cc.Color",
+      "r": 244,
+      "g": 255,
+      "b": 0,
+      "a": 255
+    },
+    "lightAngle": 0,
+    "lightWidth": 100,
+    "enableGradient": 1,
+    "cropAlpha": 1
+  }
+}

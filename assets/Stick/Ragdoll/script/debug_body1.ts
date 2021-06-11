@@ -17,6 +17,13 @@ export default class debug_body1 extends cc.Component
     @property(cc.Prefab)
     private desert_hawk_for_pick_prefab: cc.Prefab = null;
 
+
+    @property(cc.Prefab)
+    private excalibur_prefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private excalibur_for_pick_prefab: cc.Prefab = null;
+
     
     @property(cc.Node)
     Jump_force: cc.Node = null;
@@ -52,6 +59,13 @@ export default class debug_body1 extends cc.Component
     gun_pointer;
     gun_instantiate_finish = false;
     throw_gun_pointer;
+
+    gunname;
+
+    excalibur_count = 0;
+    excalibur_cooldown = 0;
+
+    littleshake_flag = false;
     
 
 
@@ -120,11 +134,17 @@ export default class debug_body1 extends cc.Component
             */
             this.dead_finish=false;
         }
+        //this.excalibur_count+=2;
+        //cc.log(this.excalibur_count);
+
+        
+        if(this.excalibur_cooldown>0)this.excalibur_cooldown--;
+        cc.log(this.excalibur_cooldown);
     }
 
 
     onKeyDown(event) {
-        //cc.log("Key Down: " + event.keyCode);
+        cc.log("Key Down: " + event.keyCode);
         if(Global.player1_dead==false)
         {
         
@@ -135,6 +155,29 @@ export default class debug_body1 extends cc.Component
                     this.dFlag = true;
                 }
                 if (Global.onWall == 4) Global.onWall = 0;
+
+                if(this.gunname == "excalibur_for_pick")
+                {
+                    this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel9();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel8();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel7();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel6();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel5();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel4();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel3();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel2();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel1();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel0();
+                    if(this.littleshake_flag == true)
+                    {
+                        this.camera.stopAllActions();
+                        this.camera.setPosition(0,0);
+                    }
+                    this.excalibur_count=0;
+                }
+
             } else if(event.keyCode == cc.macro.KEY.d) {
                 this.dDown = true;
                 if (this.aDown) {
@@ -142,8 +185,54 @@ export default class debug_body1 extends cc.Component
                     this.aFlag = true;
                 }
                 if (Global.onWall == 3) Global.onWall = 0;
+
+                if(this.gunname == "excalibur_for_pick")
+                {
+                    this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel9();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel8();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel7();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel6();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel5();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel4();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel3();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel2();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel1();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel0();
+                    if(this.littleshake_flag == true)
+                    {
+                        this.camera.stopAllActions();
+                        this.camera.setPosition(0,0);
+                    }
+                    this.excalibur_count=0;
+                }
+
             } else if(event.keyCode == cc.macro.KEY.s) {
                 this.sDown = true;
+
+                if(this.gunname == "excalibur_for_pick")
+                {
+                    this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel9();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel8();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel7();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel6();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel5();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel4();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel3();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel2();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel1();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel0();
+                    if(this.littleshake_flag == true)
+                    {
+                        this.camera.stopAllActions();
+                        this.camera.setPosition(0,0);
+                    }
+                    this.excalibur_count=0;
+                }
+
             } else if(event.keyCode == cc.macro.KEY.w) {
                 cc.log("w down!!!!!!!!!!!!!");
                 if (!this.wDown) {
@@ -165,8 +254,58 @@ export default class debug_body1 extends cc.Component
                     }
                     this.wDown = true;
                 }
+
+                if(this.gunname == "excalibur_for_pick")
+                {
+                    this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel9();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel8();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel7();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel6();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel5();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel4();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel3();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel2();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel1();
+                    this.gun_pointer.getComponent('weapon_instantiate').stopLevel0();
+                    if(this.littleshake_flag == true)
+                    {
+                        this.camera.stopAllActions();
+                        this.camera.setPosition(0,0);
+                    }
+                    this.excalibur_count=0;
+                }
+
             } else if(event.keyCode == cc.macro.KEY.j) {
-                this.jDown = true;
+                if(this.gunname == "excalibur_for_pick")
+                {
+                    if(this.jDown==false)
+                    {
+                        this.gun_pointer.getComponent('weapon_instantiate').resetParticle();
+                        
+                    }
+                    if(this.excalibur_cooldown==0)
+                    {
+                        if(this.excalibur_count==30) this.littleshakeEffect();
+                        this.jDown = true;
+                        this.excalibur_count+=2;
+                        if(this.excalibur_count>= 300) this.gun_pointer.getComponent('weapon_instantiate').slowdownParticle();
+                        if(this.excalibur_count>= 330) this.gun_pointer.getComponent('weapon_instantiate').resetLevel10();
+                        else if(this.excalibur_count>= 300) this.gun_pointer.getComponent('weapon_instantiate').resetLevel9();
+                        else if(this.excalibur_count>= 270) this.gun_pointer.getComponent('weapon_instantiate').resetLevel8();
+                        else if(this.excalibur_count>= 240) this.gun_pointer.getComponent('weapon_instantiate').resetLevel7();
+                        else if(this.excalibur_count>= 210) this.gun_pointer.getComponent('weapon_instantiate').resetLevel6();
+                        else if(this.excalibur_count>= 180) this.gun_pointer.getComponent('weapon_instantiate').resetLevel5();
+                        else if(this.excalibur_count>= 150) this.gun_pointer.getComponent('weapon_instantiate').resetLevel4();
+                        else if(this.excalibur_count>= 120) this.gun_pointer.getComponent('weapon_instantiate').resetLevel3();
+                        else if(this.excalibur_count>= 90) this.gun_pointer.getComponent('weapon_instantiate').resetLevel2();
+                        else if(this.excalibur_count>= 60) this.gun_pointer.getComponent('weapon_instantiate').resetLevel1();
+                        else if(this.excalibur_count>= 30) this.gun_pointer.getComponent('weapon_instantiate').resetLevel0();
+                    }
+                }
+                else this.jDown = true;
+                
             } else if(event.keyCode == cc.macro.KEY.f) {
                 this.fDown = true;
             } 
@@ -202,9 +341,37 @@ export default class debug_body1 extends cc.Component
                 this.sDown = false;
             if(event.keyCode == cc.macro.KEY.j)
             {
-                this.jDown = false;
-                this.hitflag=false;
-                this.hithand*=-1;
+                if(this.gunname == "excalibur_for_pick")
+                {
+                    if(this.jDown==false)
+                    {
+                        this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel9();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel8();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel7();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel6();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel5();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel4();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel3();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel2();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel1();
+                        this.gun_pointer.getComponent('weapon_instantiate').stopLevel0();
+                        if(this.littleshake_flag == true)
+                        {
+                            this.camera.stopAllActions();
+                            this.camera.setPosition(0,0);
+                        }
+                        if(this.excalibur_count<330) this.excalibur_count=0;
+                    }
+                    this.jDown = false;
+                }
+                else 
+                {
+                    this.jDown = false;
+                    this.hitflag=false;
+                    this.hithand*=-1;
+                }
             }
                 
                 
@@ -251,91 +418,134 @@ export default class debug_body1 extends cc.Component
         
         if(Global.player1_getgun==true&&this.gun_instantiate_finish==true)
         {
-            if(this.playerside==true) this.gun_pointer.scaleX = 1;
-            else if(this.playerside ==false) this.gun_pointer.scaleX = -1;
+            //if(this.gunname!="excalibur_for_pick")
+            {
+                if(this.playerside==true) this.gun_pointer.scaleX = 1;
+                else if(this.playerside ==false) this.gun_pointer.scaleX = -1;
+            }
+            
         }
         
         
-        
+        if(this.gunname!="excalibur_for_pick")
+        {        
 
-        if(this.jDown&&this.hitflag==false&&Global.player1_getgun==false){
-            this.shakeEffect(0.1);
-            this.hitflag=true;
-            //cc.log("wow")
+            if(this.jDown&&this.hitflag==false&&Global.player1_getgun==false){
+                this.shakeEffect(0.1);
+                this.hitflag=true;
+                //cc.log("wow")
 
-            if(this.playerside==true)
-            {
-                //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-2000, 0), true);
-
-                if(this.hithand==1) 
+                if(this.playerside==true)
                 {
-                    cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
-                    cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(4000, 1500), true);
+                    //cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+                    cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+                    cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+                    //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-2000, 0), true);
+
+                    if(this.hithand==1) 
+                    {
+                        cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 15000), true);
+                        cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(4000, 1500), true);
+                    }
+                    else 
+                    {
+                        cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 1500), true);
+
+                    }
+                        //this.playerSpeed = 2000;
+
+
+                    //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+                    //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
                 }
-                else 
+                else if(this.playerside==false)
                 {
-                    cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, 1500), true);
 
+
+                // cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
+                    cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
+                    cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
+                    //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(2000, 0), true);
+                    if(this.hithand==1)
+                    {
+                        cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                        cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-4000, 1500), true);
+                    }
+                    else 
+                    {
+                        cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
+                    
+                    }
+                        //this.playerSpeed = -2000;
+
+
+                    //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
+                    //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
                 }
-                    //this.playerSpeed = 2000;
-
-
-                //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
             }
-            else if(this.playerside==false)
-            {
-
-
-               // cc.find('small_sticker - 002_knee/0_Neck').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = false;
-                cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = false;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(2000, 0), true);
-                if(this.hithand==1)
+            
+            else if(this.jDown&&this.hitflag==false&&Global.player1_getgun==true){
+                this.hitflag=true;
+                this.shakeEffect(0.1);
+                this.gun_pointer.getComponent('weapon_instantiate').createBullet();
+                if(this.playerside==true)
                 {
-                    cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
-                    cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-4000, 1500), true);
+                    this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000,(Math.floor(Math.random()*1)+-1)*10000), true);
                 }
-                else 
+                else if(this.playerside==false)
                 {
-                    cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000, 15000), true);
-                
+                    this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, (Math.floor(Math.random()*1)+-1)*10000), true);
                 }
-                    //this.playerSpeed = -2000;
+            } 
 
-
-                //cc.find('small_sticker - 002_knee/0_Body_01').getComponent(cc.RigidBody).fixedRotation = true;
-                //cc.find('small_sticker - 002_knee/0_Body_02').getComponent(cc.RigidBody).fixedRotation = true;
-            }
-        } 
-
-
-
-
-        else if(this.jDown&&this.hitflag==false&&Global.player1_getgun==true){
-            this.hitflag=true;
-            this.shakeEffect(0.1);
-            this.gun_pointer.getComponent('weapon_instantiate').createBullet();
-            if(this.playerside==true)
+        }
+        else if(this.gunname == "excalibur_for_pick")
+        {
+            if(this.jDown==false&&this.excalibur_count>=330)
             {
-                this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000,(Math.floor(Math.random()*1)+-1)*10000), true);
+                this.littleshake_flag=false;
+                this.shakeEffect(10);
+                this.gun_pointer.getComponent('weapon_instantiate').createBullet();
+                this.excalibur_count=0;
+                this.excalibur_cooldown=2000;
             }
-            else if(this.playerside==false)
+            else if(this.jDown==false&&this.excalibur_count<330)
             {
-                this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, (Math.floor(Math.random()*1)+-1)*10000), true);
+                this.gun_pointer.getComponent('weapon_instantiate').stopParticle();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel10();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel9();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel8();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel7();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel6();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel5();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel4();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel3();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel2();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel1();
+                this.gun_pointer.getComponent('weapon_instantiate').stopLevel0();
+                this.excalibur_count=0;
             }
-        } 
+        }
 
 
 
 
         if(this.fDown&&Global.player1_getgun==true){
             Global.player1_getgun = false;
+            
             this.gun_pointer.destroy();
-            this.throw_gun_pointer = cc.instantiate(this.desert_hawk_for_pick_prefab);
+            if(this.gunname == "desert_hawk_for_pick")
+            {
+                this.throw_gun_pointer = cc.instantiate(this.desert_hawk_for_pick_prefab);
+            }
+            else if(this.gunname == "excalibur_for_pick")
+            {
+                this.throw_gun_pointer = cc.instantiate(this.excalibur_for_pick_prefab);
+            }
+            
+            this.gunname = "nogun";
+            
+            
             if(this.playerside == true)
             {
                 this.throw_gun_pointer.getComponent('weapon_disappear').initR(cc.find('small_sticker - 002_knee/0_R_hand'));
@@ -346,6 +556,8 @@ export default class debug_body1 extends cc.Component
                 this.throw_gun_pointer.getComponent('weapon_disappear').initL(cc.find('small_sticker - 002_knee/0_R_hand'));
                 this.throw_gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-3000, 500), true);
             }
+            
+            
             this.gun_instantiate_finish=false;
         }
 
@@ -376,7 +588,7 @@ export default class debug_body1 extends cc.Component
         }
 
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
-       
+
     }  
 
     shakeEffect(du) {
@@ -405,16 +617,39 @@ export default class debug_body1 extends cc.Component
         }, du);
     }
 
+    littleshakeEffect() {
+        this.camera.runAction(
+            cc.repeatForever(
+                cc.sequence(
+                    cc.moveTo(0.02, cc.v2(1.25, 1.75)),
+                    cc.moveTo(0.02, cc.v2(-1.5, 1.75)),
+                    cc.moveTo(0.02, cc.v2(-3.25, 0.75)),
+                    cc.moveTo(0.02, cc.v2(0.75, -1.5)),
+                    cc.moveTo(0.02, cc.v2(-1.25, 1.25))
+                )
+            )
+        );
+        this.littleshake_flag = true;
+    }
+
 
 
     instantiate_gun(name)
     {
         if(name == 'desert_hawk_for_pick'&&this.gun_instantiate_finish==false)
         {
+            this.gunname = name;
             this.gun_pointer = cc.instantiate(this.desert_hawk_prefab); 
             this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_knee/0_R_hand'));
             cc.log("instantiate!!");
         }    
+        else if(name == 'excalibur_for_pick'&&this.gun_instantiate_finish==false)
+        {
+            this.gunname = name;
+            this.gun_pointer = cc.instantiate(this.excalibur_prefab); 
+            this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_knee/0_R_hand'));
+            cc.log("instantiate!!");
+        }
         this.gun_instantiate_finish=true;
         //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
         //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 20000);
