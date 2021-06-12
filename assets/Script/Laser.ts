@@ -23,9 +23,13 @@ export default class NewClass extends cc.Component {
         //cc.log(p1 + ", " + p2);
         ctx.clear();
         //const len = points.length;
-        ctx.moveTo(p1.x, p1.y);
+        ctx.moveTo(p1.x-3, p1.y);
+        ctx.lineTo(p1.x+3, p1.y);
+        ctx.lineTo(p2.x+3, p2.y);
+        ctx.lineTo(p2.x-3, p2.y);
+        ctx.lineTo(p1.x-3, p1.y);
         
-        ctx.lineTo(p2.x, p2.y);
+        //ctx.lineTo(p2.x, p2.y);
 
         ctx.close();
 
@@ -91,11 +95,11 @@ export default class NewClass extends cc.Component {
             var collider = result.collider;
             //cc.log(collider);
             if(collider.node.name == "platform"){
-                cc.log("hit platform");
+                //cc.log("hit platform");
             } else if(collider.node.name == "floor"){
                 //cc.log("hit floor");
             } else if(collider.node.name == "player"){
-                cc.log("hit plaeyr");
+                //cc.log("hit plaeyr");
                 collider.node.getComponent("Player_ans").isDead = true;
             }
             //射线穿过的碰撞体的世界坐标
