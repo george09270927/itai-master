@@ -1,4 +1,5 @@
 const {ccclass, property} = cc._decorator;
+import { Global } from "./Leg_force";
 
 @ccclass
 export default class gun_bullet extends cc.Component 
@@ -7,6 +8,7 @@ export default class gun_bullet extends cc.Component
     private anim = null;
 
     //private bulletManager = null;
+    private hit_coff = 3;
 
     public isTriggered = false; // I add this to make the bullet kill one enemy at a time.
 
@@ -99,9 +101,18 @@ export default class gun_bullet extends cc.Component
             //this.node.runAction(cc.fadeOut(3));
             selfCollider.node.destroy();
             },10); 
+            
+            if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
+                cc.log("stick1 been hit");
+                Global.player1_percent += this.hit_coff;
+            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
+                cc.log("stick2 been hit");
+                //Global.player2_percent += this.hit_coff;
+            }
         }
         else 
         {
+            
             this.scheduleOnce(() => {
                 this.node.stopAllActions();
                 //this.bulletManager.put(this.node);
@@ -109,6 +120,14 @@ export default class gun_bullet extends cc.Component
                 cc.log("///recycle bullet///");
             selfCollider.node.destroy();
             },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
+        
+            if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
+                cc.log("stick1 been hit");
+                Global.player1_percent += this.hit_coff;
+            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
+                cc.log("stick2 been hit");
+                //Global.player2_percent += this.hit_coff;
+            }
         }
     }
 }

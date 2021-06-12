@@ -15,6 +15,7 @@ export module Global {
     export let head_contact : boolean = false;
     export let player2_getgun : boolean = false;
     export let player2_dead: boolean = false;
+    export let player2_percent: number = 0;
 }
 
 @ccclass
