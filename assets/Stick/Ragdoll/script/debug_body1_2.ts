@@ -687,6 +687,7 @@ export default class debug_body1_2 extends cc.Component
     {
         if(name == 'desert_hawk_for_pick'&&this.gun_instantiate_finish==false)
         {
+            this.gunname = name;
             this.gun_pointer = cc.instantiate(this.desert_hawk_prefab); 
             this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
             cc.log("instantiate!!");
