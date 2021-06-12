@@ -195,7 +195,8 @@ export default class debug_body1_2 extends cc.Component
             else if(this.gun_pointer.angle>0) this.gun_pointer.angle--;
         }
 
-        var color = new cc.Color(255, 255 - Global.player2_percent * 2, 255 - Global.player2_percent * 2);
+        //var color = new cc.Color(255, 255 - Global.player2_percent * 2, 255 - Global.player2_percent * 2);
+        var color = new cc.Color(Global.player2_percent * 2, 0, 0);
         if (Global.player2_percent < 128) this.percent_label.color = color;
         this.percent_label.getComponent(cc.Label).string = Global.player2_percent + "%";
         //this.percent_label.runAction(cc.scaleBy(0.05, 2, 2));
