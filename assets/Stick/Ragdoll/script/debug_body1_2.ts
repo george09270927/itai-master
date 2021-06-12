@@ -39,6 +39,8 @@ export default class debug_body1_2 extends cc.Component
     @property({type:cc.AudioClip})
     private excalibur_break_sound: cc.AudioClip=null;
 
+    @property(cc.Node)
+    percent_label: cc.Node = null;
     
 
     @property(cc.Node)
@@ -88,6 +90,7 @@ export default class debug_body1_2 extends cc.Component
 
     get_energy = false;
 
+    local_percent = 0;
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
@@ -190,6 +193,18 @@ export default class debug_body1_2 extends cc.Component
         {
             if(this.gun_pointer.angle<0) this.gun_pointer.angle++;
             else if(this.gun_pointer.angle>0) this.gun_pointer.angle--;
+        }
+        
+        var color = new cc.Color(255, 255 - Global.player2_percent * 2, 255 - Global.player2_percent * 2);
+        if (Global.player2_percent < 128) this.percent_label.color = color;
+        this.percent_label.getComponent(cc.Label).string = Global.player2_percent + "%";
+        //this.percent_label.runAction(cc.scaleBy(0.05, 2, 2));
+        if (this.local_percent != Global.player2_percent) {
+            this.local_percent = Global.player2_percent;
+            let action = cc.sequence(cc.scaleTo(0.05, 2, 2), cc.scaleTo(0.05, 1, 1));
+            this.scheduleOnce(()=>{
+                this.percent_label.runAction(action);
+            },0.01);
         }
     }
 
