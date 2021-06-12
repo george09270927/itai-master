@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "desert_hawk_prefab",
+    "_name": "desert_hawk_prefab_2",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -236,6 +236,18 @@
     "bulletPrefab": {
       "__uuid__": "7bc71dda-096b-452d-92d2-3d3e8d97b369"
     },
+    "chargingParticle": null,
+    "level0": null,
+    "level1": null,
+    "level2": null,
+    "level3": null,
+    "level4": null,
+    "level5": null,
+    "level6": null,
+    "level7": null,
+    "level8": null,
+    "level9": null,
+    "level10": null,
     "_id": ""
   },
   {
