@@ -176,11 +176,14 @@ export default class Player extends cc.Component
                     this.node.position = cc.v2(200, 500);
                 else if(this.scene.name == "LaserMap")
                     this.node.position = cc.v2(170, 330);
-                cc.log(this.anim);
+                //cc.log(this.anim);
+                else if(this.scene.name == "XmasMap")
+                    this.node.position = cc.v2(480, 380);
+                
                 cc.log(this.anim.play('reborn'));
                 this.animateState = this.anim.play('reborn');
 
-                cc.log(this.animateState);
+                //cc.log(this.animateState);
                 this.animateState.on('finished', ()=>{ this.isDead = false; }, this);
 
 
@@ -256,7 +259,7 @@ export default class Player extends cc.Component
         
         else if(otherCollider.node.name == "platform"){
             this.onGround = true;
-            cc.log("hit platform");
+            //cc.log("hit platform");
             if(this.anim.clip == "jump" && this.anim.isPlaying){
                 this.anim.play("idle");
             }
@@ -264,9 +267,10 @@ export default class Player extends cc.Component
             this.isDead = true;
         } else if(otherCollider.tag == 3){
             this.isDead = true;
+            cc.log("fall , die");
         } else if(otherCollider.node.name == "IcePlatform") {
             this.onGround = true;
-            cc.log("hit IcePlatform");
+            //cc.log("hit IcePlatform");
             if(this.anim.clip == "jump" && this.anim.isPlaying){
                 this.anim.play("idle");
             }

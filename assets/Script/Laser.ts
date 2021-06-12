@@ -30,6 +30,7 @@ export default class NewClass extends cc.Component {
         ctx.lineTo(p1.x-3, p1.y);
         
         //ctx.lineTo(p2.x, p2.y);
+        
 
         ctx.close();
 
