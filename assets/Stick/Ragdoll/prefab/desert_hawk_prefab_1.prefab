@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "desert_hawk_prefab_2",
+    "_name": "desert_hawk_prefab_1",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -63,8 +63,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        358,
-        172,
+        449,
+        161,
         0,
         0,
         0,
@@ -256,9 +256,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4d66f05f-d67a-4875-bad7-a0001133589c"
+      "__uuid__": "9b640286-e3d0-4d19-9daf-f1960122d34d"
     },
-    "fileId": "39+B9LRuBAEar1UeV53O5p",
+    "fileId": "ceJDTS5BVJ7KDUwxbK6yMm",
     "sync": false
   }
 ]

@@ -22,7 +22,7 @@ export default class NewClass extends cc.Component {
 
     onBeginContact(contact, self, other){
         cc.log("hit");
-        if(other.node.name == "bullet" || other.node.name == "red_beam"){
+        if(other.node.name == "bullet" || other.node.name == "red_beam_1"|| other.node.name == "red_beam_2"||other.node.name=="excalibur_beam_1"||other.node.name=="excalibur_beam_2"){
             cc.log("chain is hitted by bullet");
             self.node.getComponent(cc.RevoluteJoint).enabled = false;
         } else if(other.tag == 3){
