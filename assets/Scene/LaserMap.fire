@@ -1510,7 +1510,7 @@
         "__uuid__": "6f801092-0c37-4f30-89ef-c8d960825b36"
       }
     ],
-    "_lineWidth": 5,
+    "_lineWidth": 8,
     "_strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
