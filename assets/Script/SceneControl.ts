@@ -11,15 +11,43 @@ export default class NewClass extends cc.Component {
     
     private changeflag: boolean = true;
 
-    private number_of_Map: number = 4;
+    private number_of_Map: number = 5;
 
     private current_Map: number  = null;
+
+    
+
+    
+
+    @property()
+    noRandomMode: boolean = false;
+
+    @property(cc.Prefab)
+    dialogPrefab: cc.Prefab = null;
+
+    @property(cc.Node)
+    private Camera: cc.Node = null;
+
+    private dialogMessage = cc.Enum({
+        GG: 0,
+        Easy: 1,
+        LOL: 2,
+        FuckU: 3,
+        Dogge: 4,
+    });
+
+    private dialog_number: number = 5;
+
     onLoad () {
         //cc.game.removePersistRootNode(cc.find("small_sticker - 002_knee"));
         //c.log("position: ");
        // cc.log(cc.find("small_sticker - 002_knee").position);
+
+        //this.node.active = false;
+        //this.mask.opacity = this.maskOpacity;
+
         let MapName = cc.director.getScene().name;
-        cc.log("now scene name: " + MapName);
+        //cc.log("now scene name: " + MapName);
         if(MapName == "CastleMap"){
             this.current_Map = 0;
         } else if (MapName == "IceMap"){
@@ -28,12 +56,13 @@ export default class NewClass extends cc.Component {
             this.current_Map = 2;
         } else if (MapName == "MovingMap"){
             this.current_Map = 3;
-        }
+        } else if (MapName == "XmasMap"){
+            this.current_Map = 4;
+        } 
 
     }
 
-    @property(cc.Node)
-    private Camera: cc.Node = null;
+    
 
     start () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -46,29 +75,61 @@ export default class NewClass extends cc.Component {
             cc.log("--change scene--");
             if(this.changeflag){
                 this.changeflag = false;
-                this.changeScene();
+                let showDialog_before_changeScene = cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(1), cc.callFunc(()=>{this.changeScene();}))
+                this.node.runAction(showDialog_before_changeScene);
             }
-            
         }
     }
 
+    showDialog(){
+        //cc.log("show dialog");
+
+        //this.node.active = true;
+
+        let DialogNode = cc.instantiate(this.dialogPrefab);
+        DialogNode.parent = this.Camera;
+        //cc.log(DialogNode);
+        let messageNumber = Math.floor(Math.random()*this.dialog_number);
+        var message = "default";
+        if(messageNumber == 0) message =  "GG!";
+        else if (messageNumber == 1) message =  "Easy!";
+        else if (messageNumber == 2) message =  "LOL!";
+        else if (messageNumber == 3) message =  "TK ♥ WeiN";
+        else if (messageNumber == 4) message =  "GG george!";
+    
+        DialogNode.getChildByName("content").getComponent(cc.Label).string = String(message);
+
+        // mask淡入`
+        //cc.log("mask fade in");
+        DialogNode.getChildByName("mask").opacity = 0;
+
+        let fIn : cc.Action = cc.fadeTo(0.1, 100);
+
+        DialogNode.getChildByName("mask").runAction(fIn);
+    }
+
     loadSceneAnimation(){
-        cc.log("---loadsceneAnimation---");
+        //cc.log("---loadsceneAnimation---");
         this.Camera.x = -1100;
         let action = cc.moveTo(1.3, 0, 0).easing(cc.easeInOut(3));
         this.Camera.runAction(action);
-        cc.log("finish action: " + this.Camera.position);
+        //cc.log("finish action: " + this.Camera.position);
     }
 
     changeScene(){
         
-        var randomMap = Math.floor(Math.random()*this.number_of_Map);
-        
-        while(randomMap == this.current_Map){
-            randomMap = Math.floor(Math.random()*this.number_of_Map);
-            cc.log("rm = " + randomMap);
-            cc.log("cm = " + this.current_Map);
+        if(this.noRandomMode){
+
+            var randomMap = (this.current_Map + 1) % this.number_of_Map;
+        }else{
+            var randomMap = Math.floor(Math.random()*this.number_of_Map);
+            while(randomMap == this.current_Map){
+                randomMap = Math.floor(Math.random()*this.number_of_Map);
+                //cc.log("rm = " + randomMap);
+                //cc.log("cm = " + this.current_Map);
+            }
         }
+        
         cc.log("new random map = " + randomMap);
         let action = cc.moveTo(1.3, 1100, 0).easing(cc.easeInOut(3));
         this.Camera.runAction(action);
@@ -86,6 +147,9 @@ export default class NewClass extends cc.Component {
             } else if (randomMap == 3){
                 cc.log("change to MovingMap");
                 cc.director.loadScene("MovingMap");
+            } else if (randomMap == 4){
+                cc.log("change to XmasMap");
+                cc.director.loadScene("XmasMap");
             }
         },1.3); 
     }

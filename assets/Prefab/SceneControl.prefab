@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "scene control",
+    "_name": "SceneControl",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -81,6 +81,10 @@
       "__id__": 1
     },
     "_enabled": true,
+    "noRandomMode": true,
+    "dialogPrefab": {
+      "__uuid__": "140ce958-1740-48f5-8514-b356af9b2aca"
+    },
     "Camera": null,
     "_id": ""
   },
@@ -92,7 +96,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "d1+7XD5UFE64Jfq1F9FlKZ",
+    "fileId": "6bhhnHU3JPW51fXz6kFIXk",
     "sync": false
   }
 ]
