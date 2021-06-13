@@ -16,7 +16,7 @@ export default class NewClass extends cc.Component {
     private current_Map: number  = null;
 
     
-
+    private ready_enabled: boolean = true;
     
 
     @property()
@@ -24,6 +24,9 @@ export default class NewClass extends cc.Component {
 
     @property(cc.Prefab)
     dialogPrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    readyPrefab: cc.Prefab = null;
 
     @property(cc.Node)
     private Camera: cc.Node = null;
@@ -59,6 +62,8 @@ export default class NewClass extends cc.Component {
         } else if (MapName == "XmasMap"){
             this.current_Map = 4;
         } 
+        if(!this.ready_enabled)
+            this.showReady();
 
     }
 
@@ -67,6 +72,7 @@ export default class NewClass extends cc.Component {
     start () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        
         this.loadSceneAnimation();
     }
 
@@ -106,6 +112,41 @@ export default class NewClass extends cc.Component {
         let fIn : cc.Action = cc.fadeTo(0.1, 100);
 
         DialogNode.getChildByName("mask").runAction(fIn);
+    }
+    showReady(){
+        //cc.log("show dialog");
+
+        //this.node.active = true;
+
+        let ReadyNode = cc.instantiate(this.readyPrefab);
+        ReadyNode.parent = this.Camera;
+        ReadyNode.active = true;
+        
+        //let messageNumber = Math.floor(Math.random()*this.dialog_number);
+        //var message = "default";
+        var timer = -2;
+        this.schedule(()=>{
+            timer++;
+            if(timer < 1){
+                ReadyNode.getChildByName("content").getComponent(cc.Label).string = "Ready?";
+                cc.director.getPhysicsManager().enabled = false;
+            } else if(timer == 4) {
+                ReadyNode.active = false;
+                cc.director.getPhysicsManager().enabled = true;
+            } else {
+                ReadyNode.getChildByName("content").getComponent(cc.Label).string = String(4-timer);
+            }
+        }, 1);
+        
+
+
+        // mask淡入`
+        //cc.log("mask fade in");
+        ReadyNode.getChildByName("mask").opacity = 0;
+
+        let fIn : cc.Action = cc.fadeTo(0.1, 150);
+
+        ReadyNode.getChildByName("mask").runAction(fIn);
     }
 
     loadSceneAnimation(){
