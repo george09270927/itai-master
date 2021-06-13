@@ -2,20 +2,20 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Player extends cc.Component 
+export default class Controller extends cc.Component 
 {
-    private text1 = null;
+    private pole = null;
 
     private time = null;
 
-    private state: number = 3;
+    private state: number = 5;
 
     onLoad() {
             
     }
 
     start() {
-        this.text1 = cc.find("player1/text1", this.node);
+        this.pole = cc.find("menu pole/pole", this.node);
         this.time = this.node.getChildByName("countdown");
         this.time.active = false;
         if(this.state >= 0) {
@@ -26,7 +26,8 @@ export default class Player extends cc.Component
     }
     
     update(dt) {
-        if(this.text1.active) {           
+
+        if(this.pole.angle <= -40) {           
             this.time.active = true;
             if(this.state < 0) {
                 cc.director.loadScene("CastleMap");
@@ -34,15 +35,24 @@ export default class Player extends cc.Component
         }
         else {
             this.time.active = false;
-            this.state = 3;
+            this.state = 5;
         }
+        
     }
 
     private countdown() {
-        if(this.state >= 0) {
-            //console.log(this.state);
+        if(this.state >= 4) {
+            this.time.getComponent(cc.RichText).fontSize = 100;
+            this.time.getComponent(cc.RichText).string = "Starting in";
+            this.state -= 1;
+        }
+        else if(this.state >= 1) {
+            this.time.getComponent(cc.RichText).fontSize = 180;
             this.time.getComponent(cc.RichText).string = this.state + "";
-            this.state -= 1;             
+            this.state -= 1; 
+        }
+        else {
+            this.state -= 1; 
         }
     }   
 }
