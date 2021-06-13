@@ -28,10 +28,10 @@ export default class NewClass extends cc.Component {
 
     onBeginContact(contact, self, other)
     {
-        if((other.tag == 3 || other.node.name == "player") && !this.isTouched)
+        if((other.node.group == "leg" || other.node.name == "player" ) && !this.isTouched)
         {
             this.isTouched = true;
-            //cc.log("fall.");
+            cc.log("fall.");
             this.fall();
         }
     }
