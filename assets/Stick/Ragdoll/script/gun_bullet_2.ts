@@ -5,6 +5,9 @@ import { Global } from "./Leg_force_2";
 export default class gun_bullet_2 extends cc.Component 
 {
 
+    @property(cc.Prefab)
+    private explosionPrefab: cc.Prefab = null;
+
     private anim = null;
 
     //private bulletManager = null;
@@ -18,8 +21,14 @@ export default class gun_bullet_2 extends cc.Component
 
 
         this.setInitPos(node);
-
-        this.bulletMove();
+        if(this.node.name == "grenade_1"||this.node.name=="grenade_2")
+        {
+            if(this.node.scaleX > 0)
+            this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(1000, 1500),true);
+            else
+                this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(-1000, 1500),true);
+        }
+        else this.bulletMove();
 
     }
 
@@ -108,6 +117,23 @@ export default class gun_bullet_2 extends cc.Component
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");
                 Global.player2_percent += this.hit_coff;
+            }
+        }
+        else if(this.node.name == "grenade_1"||this.node.name == "grenade_2")
+        {
+            
+            this.scheduleOnce(() => {
+                this.node.stopAllActions();
+            cc.instantiate(this.explosionPrefab).getComponent("explosion_2").init(this.node);
+            cc.find("small_sticker - 002_yellow/1_Head").getComponent("debug_body1_2").shakeEffect(1);
+            selfCollider.node.destroy();
+            },1);
+        
+            if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
+                cc.log("stick1 been hit");
+                Global.player2_percent += this.hit_coff;
+            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
+                cc.log("stick2 been hit");
             }
         }
         else 

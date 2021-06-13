@@ -17,6 +17,7 @@ export default class Feet extends cc.Component {
     @property(cc.Prefab)
     walk_particle: cc.Prefab = null;
     
+    
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
         //cc.log("YYYYYYYYY: "+direction.y);

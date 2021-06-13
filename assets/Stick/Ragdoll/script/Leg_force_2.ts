@@ -135,9 +135,10 @@ export default class Leg_force_2 extends cc.Component {
 
 
     update() {
-        this.StartDetect();
+        
         if(Global.player2_dead==false)
         {
+            this.StartDetect();
             //cc.log(this.node.position);
             this.playerMovement();
             
