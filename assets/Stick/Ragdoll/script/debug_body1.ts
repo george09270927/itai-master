@@ -204,8 +204,12 @@ export default class debug_body1 extends cc.Component
             this.local_percent = Global.player1_percent;
             let action = cc.sequence(cc.scaleTo(0.05, 2, 2), cc.scaleTo(0.05, 1, 1));
             this.scheduleOnce(()=>{
+                this.percent_label.parent.opacity = 255;
                 this.percent_label.runAction(action);
             },0.01);
+            this.scheduleOnce(()=>{
+                this.percent_label.parent.opacity = 60;
+            },0.11);
         }
     }
 

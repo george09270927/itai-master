@@ -196,7 +196,8 @@ export default class debug_body1_2 extends cc.Component
         }
 
         //var color = new cc.Color(255, 255 - Global.player2_percent * 2, 255 - Global.player2_percent * 2);
-        var color = new cc.Color(Global.player2_percent * 2, 0, 0);
+        var color = new cc.Color(Global.player2_percent * 2, Global.player2_percent * 2, Global.player2_percent * 2); // white to black
+        //var color = new cc.Color(Global.player2_percent * 2, 0, 0);
         if (Global.player2_percent < 128) this.percent_label.color = color;
         this.percent_label.getComponent(cc.Label).string = Global.player2_percent + "%";
         //this.percent_label.runAction(cc.scaleBy(0.05, 2, 2));
@@ -204,8 +205,12 @@ export default class debug_body1_2 extends cc.Component
             this.local_percent = Global.player2_percent;
             let action = cc.sequence(cc.scaleTo(0.05, 2, 2), cc.scaleTo(0.05, 1, 1));
             this.scheduleOnce(()=>{
+                this.percent_label.parent.opacity = 255;
                 this.percent_label.runAction(action);
             },0.01);
+            this.scheduleOnce(()=>{
+                this.percent_label.parent.opacity = 60;
+            },0.11);
         }
     }
 
