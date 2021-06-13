@@ -11,7 +11,7 @@ export default class NewClass extends cc.Component {
     
     private changeflag: boolean = true;
 
-    private numbe_of_Map: number = 3;
+    private number_of_Map: number = 4;
 
     private current_Map: number  = null;
     onLoad () {
@@ -26,6 +26,8 @@ export default class NewClass extends cc.Component {
             this.current_Map = 1;
         } else if (MapName == "LaserMap"){
             this.current_Map = 2;
+        } else if (MapName == "MovingMap"){
+            this.current_Map = 3;
         }
 
     }
@@ -60,10 +62,10 @@ export default class NewClass extends cc.Component {
 
     changeScene(){
         
-        var randomMap = Math.floor(Math.random()*3);
+        var randomMap = Math.floor(Math.random()*this.number_of_Map);
         
         while(randomMap == this.current_Map){
-            randomMap = Math.floor(Math.random()*3);
+            randomMap = Math.floor(Math.random()*this.number_of_Map);
             cc.log("rm = " + randomMap);
             cc.log("cm = " + this.current_Map);
         }
@@ -81,6 +83,9 @@ export default class NewClass extends cc.Component {
             } else if (randomMap == 2){
                 cc.log("change to LaserMap");
                 cc.director.loadScene("LaserMap");
+            } else if (randomMap == 3){
+                cc.log("change to MovingMap");
+                cc.director.loadScene("MovingMap");
             }
         },1.3); 
     }
