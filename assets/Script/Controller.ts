@@ -27,13 +27,15 @@ export default class Controller extends cc.Component
     
     update(dt) {
 
-        if(this.pole.angle <= -40) {           
+        if(this.pole.angle <= -40) {  
+            cc.find("Canvas/menu bg/bg_text").active = false;         
             this.time.active = true;
             if(this.state < 0) {
                 cc.director.loadScene("CastleMap");
             } 
         }
         else {
+            cc.find("Canvas/menu bg/bg_text").active = true;  
             this.time.active = false;
             this.state = 5;
         }
@@ -43,7 +45,7 @@ export default class Controller extends cc.Component
     private countdown() {
         if(this.state >= 4) {
             this.time.getComponent(cc.RichText).fontSize = 100;
-            this.time.getComponent(cc.RichText).string = "Starting in";
+            this.time.getComponent(cc.RichText).string = "Taiwan NO.1 !";
             this.state -= 1;
         }
         else if(this.state >= 1) {
