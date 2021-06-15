@@ -105,11 +105,17 @@ export default class debug_body1 extends cc.Component
 
     
     start() {
-        //cc.director.getPhysicsManager().debugDrawFlags = 1;
+        cc.director.getPhysicsManager().debugDrawFlags = 1;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
+        Global.onGround = false;
+        Global.onWall = 0;
+        Global.head_contact = false;
+        Global.player1_getgun = false;
+        Global.player1_dead = false;
+        Global.player1_percent = 0;
     }
 
 
@@ -211,8 +217,12 @@ export default class debug_body1 extends cc.Component
             this.local_percent = Global.player1_percent;
             let action = cc.sequence(cc.scaleTo(0.05, 2, 2), cc.scaleTo(0.05, 1, 1));
             this.scheduleOnce(()=>{
+                this.percent_label.parent.opacity = 255;
                 this.percent_label.runAction(action);
-            },0.01);
+            },0.0);
+            this.scheduleOnce(()=>{
+                this.percent_label.parent.opacity = 60;
+            },0.15);
         }
     }
 
