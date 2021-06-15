@@ -18,7 +18,7 @@ export default class NewClass extends cc.Component {
 
     private parentNode: cc.Node = null;
 
-    private bulletsplitEnable: number = 4;
+    private bulletsplitEnable: number = 3;
 
     private switchflag: boolean = false;
 
@@ -115,12 +115,14 @@ export default class NewClass extends cc.Component {
             var ratio1 = 0.75;
         }
         var tmpR2 = Math.random();
-        if(tmpR2<0.33){
-            var ratio2= 0.25;
-        } else if(tmpR2>= 0.33 && tmpR2 <0.66){
-            var ratio2 = 0.5;
-        } else if(tmpR2>=0.66){
-            var ratio2 = 0.75;
+        if(tmpR2<0.25){
+            var ratio2= 0.2;
+        } else if(tmpR2>= 0.25 && tmpR2 <0.55){
+            var ratio2 = 0.4;
+        } else if(tmpR2>= 0.50 && tmpR2 <0.75){
+            var ratio2 = 0.6;
+        } else if(tmpR2>=0.75){
+            var ratio2 = 0.8;
         }
         
         // ver.2
@@ -135,6 +137,8 @@ export default class NewClass extends cc.Component {
             this.collider.points[1] = cc.v2(x1,y1);
             this.collider.points[2] = cc.v2(x2,y2);
             //cc.log("change0: " + this.collider.points[1] + ", " + this.collider.points[2]);
+            if(this.node.parent.getChildByName("IceWorld_Snow3") != null && this.firstblock)
+                this.node.parent.getChildByName("IceWorld_Snow3").getComponent(cc.Sprite).fillRange = ratio2;
             //var cutcube
         } else if (random_edge_1 == 1 || random_edge_1 == 3){
             
@@ -146,9 +150,20 @@ export default class NewClass extends cc.Component {
             //this.collider.points[3] = cc.v2(Math.floor(x3), Math.floor(y3));
             this.collider.points[2] = cc.v2(x2,y2);
             this.collider.points[3] = cc.v2(x3,y3);
+
+            if(this.firstblock){
+                this.node.parent.getChildByName("IceWorld_Snow3").destroy();
+            let snowfade = cc.sequence(cc.fadeOut(0.6), cc.callFunc(()=>{this.node.parent.getChildByName("IceWorld_Snow3").destroy()}));
+
+            this.node.parent.getChildByName("IceWorld_Snow3").runAction(snowfade);
+            }
             
         } 
 
+        // advanced snoww disappear
+        //let snowfade = cc.sequence(cc.fadeOut(0.3), cc.callFunc(()=>{this.node.getChildByName("IceWorld_Snow3").destroy()}));
+        //let snowfade = cc.sequence(cc.fadeOut(0.3), cc.callFunc(()=>{this.node.getChildByName("IceWorld_Snow3").destroy()}));
+        
         
         //cc.log("collider after change: " + this.collider.points);
         
@@ -208,10 +223,18 @@ export default class NewClass extends cc.Component {
                 if(this.pos_scaleX == null){
                     if(normal.x < 0){
                         this.node.scaleX = -1; 
+                        this.node.parent.getChildByName("IceWorld_Snow3").scaleX = -1;
                         this.pos_scaleX = false;
                     } else if(normal.x > 0){
                         this.pos_scaleX = true;
                     }
+
+                    // snow must be cancel
+                    /*
+                    let snowfade = cc.sequence(cc.fadeOut(0.3), cc.callFunc(()=>{this.node.getChildByName("IceWorld_Snow3").destroy()}));
+
+                    this.node.getChildByName("IceWorld_Snow3").runAction(snowfade);
+                    */
 
                 } else {
                     cc.log("do nothing")
