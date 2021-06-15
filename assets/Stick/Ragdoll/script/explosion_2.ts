@@ -29,22 +29,22 @@ export default class explosion_2 extends cc.Component
     //detect collision with enemies
     onBeginContact(contact, selfCollider, otherCollider)
     {
-        cc.log("bullet hit :" + otherCollider.name );
+        //cc.log("bullet hit :" + otherCollider.name );
         if(this.node.name == "explosion")
         {
 
             this.scheduleOnce(() => {
                 this.node.stopAllActions();
-                cc.log("///recycle bullet///");
+                //cc.log("///recycle bullet///");
             //this.node.runAction(cc.fadeOut(3));
             selfCollider.node.destroy();
             },1); 
             
             if (otherCollider.node.group == "stick") {
-                cc.log("stick1 been hit");
+                //cc.log("stick1 been hit");
                 //Global.player1_percent += this.hit_coff;
             } else if (otherCollider.node.group == "stick2") {
-                cc.log("stick2 been hit");
+                //cc.log("stick2 been hit");
                 Global.player2_percent += this.hit_coff;
                 Global.player2_dead=true;
             }

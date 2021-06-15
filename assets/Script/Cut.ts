@@ -38,9 +38,9 @@ export default class NewClass extends cc.Component {
         
         this.originCubePoints = this.getComponent(cc.PhysicsPolygonCollider).points;
 
-        cc.log("new collider's points: " + this.collider.points);
+        //cc.log("new collider's points: " + this.collider.points);
         //cc.log("point lenght: "+this.collider.points.length);
-        cc.log(this.rigidbody.type);
+        //cc.log(this.rigidbody.type);
         //this.splitTime = 3;
         //this.collider.type = 1;
         //this.rigidbody.type = 0;
@@ -69,7 +69,7 @@ export default class NewClass extends cc.Component {
         //cc.director.getPhysicsManager().debugDrawFlags=1;  
         if(!this.firstblock){
             for (let i = 0; i < this.splitTime; i++) {
-            cc.log('split0' + i);
+            //cc.log('split0' + i);
             this.copy(); 
         }
         }
@@ -78,7 +78,7 @@ export default class NewClass extends cc.Component {
     }
 
     copy(){
-        cc.log("in copy")
+        //cc.log("in copy")
         // 设置第一个碰撞体
         //this.scheduleOnce(()=>{this.getComponent(cc.RigidBody).type = 2});
 
@@ -171,8 +171,8 @@ export default class NewClass extends cc.Component {
         
         this.draw();
         this.collider.apply(); 
-        cc.log("after apply")
-        cc.log(this.collider.points);
+        //cc.log("after apply")
+        //cc.log(this.collider.points);
        
         // 克隆一个本体作为第二个
         
@@ -216,16 +216,22 @@ export default class NewClass extends cc.Component {
         if((other.node.name == "bullet" || other.node.name == "red_beam_1"|| other.node.name == "red_beam_2"||other.node.name=="excalibur_beam_1"||other.node.name=="excalibur_beam_2"||other.node.name=="explosion") && this.splitTime){
             if(this.flag == true){
 
-
+                
                 var manifold = contact.getWorldManifold()
                 var normal = manifold.normal;
-                //var point = manifold.points[0];
-                if(this.pos_scaleX == null){
+                var point = manifold.points[0];
+                //cc.log("normal: " + normal);
+                //cc.log(other.node.name);
+                if(this.pos_scaleX == null && this.firstblock){
                     if(normal.x < 0){
+                        //cc.log("change  scale");
                         this.node.scaleX = -1; 
                         this.node.parent.getChildByName("IceWorld_Snow3").scaleX = -1;
                         this.pos_scaleX = false;
                     } else if(normal.x > 0){
+                        this.pos_scaleX = true;
+                    } else if(normal.x == 0){
+                        // do nothing
                         this.pos_scaleX = true;
                     }
 
@@ -237,7 +243,7 @@ export default class NewClass extends cc.Component {
                     */
 
                 } else {
-                    cc.log("do nothing")
+                    //cc.log("do nothing")
                 }
                 /*
                 if(normal.x < 0 && this.pos_scaleX){
