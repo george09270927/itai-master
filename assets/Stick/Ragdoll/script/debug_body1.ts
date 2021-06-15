@@ -168,6 +168,8 @@ export default class debug_body1 extends cc.Component
             },2);
             */
             this.dead_finish=false;
+            cc.find('SceneControl').getComponent("SceneControl").nextScene();
+            //cc.find('SceneControl').getComponent("SceneControl").onKeyDown(cc.macro.KEY.e);
         }
         //this.excalibur_count+=2;
         //cc.log(this.excalibur_count);
