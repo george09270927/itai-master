@@ -105,7 +105,7 @@ export default class debug_body1 extends cc.Component
 
     
     start() {
-        //cc.director.getPhysicsManager().debugDrawFlags = 1;
+        cc.director.getPhysicsManager().debugDrawFlags = 1;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);

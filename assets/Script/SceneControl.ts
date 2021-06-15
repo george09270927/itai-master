@@ -87,6 +87,8 @@ export default class NewClass extends cc.Component {
         }
     }
 
+    
+
     showDialog(){
         //cc.log("show dialog");
 
