@@ -948,6 +948,12 @@
     "desert_hawk_for_pick_prefab": {
       "__uuid__": "1c4c419a-11f3-45a3-8d57-fe72e031da28"
     },
+    "Grenade_launcher_prefab": {
+      "__uuid__": "48c886a5-5e5e-481b-b704-067e827616bf"
+    },
+    "Grenade_launcher_for_pick_prefab": {
+      "__uuid__": "9afe4ed8-1696-44c9-ac54-58985ebc83ed"
+    },
     "excalibur_prefab": {
       "__uuid__": "a305e0c3-8502-4f87-bb97-8d64a49ce753"
     },
@@ -969,6 +975,7 @@
     "excalibur_break_sound": {
       "__uuid__": "867d01bd-7114-4881-a300-38119e5f9f31"
     },
+    "percent_label": null,
     "Jump_force": {
       "__id__": 28
     },
