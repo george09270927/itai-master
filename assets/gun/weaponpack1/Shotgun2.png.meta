@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "65c21b85-68e1-4f30-ab5f-f41bcabd8941",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Shotgun2": {
+      "ver": "1.0.4",
+      "uuid": "98b52917-4a9a-4f8a-b539-e8ccc818bba1",
+      "rawTextureUuid": "65c21b85-68e1-4f30-ab5f-f41bcabd8941",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -7,
+      "offsetY": -1.5,
+      "trimX": 1,
+      "trimY": 4,
+      "width": 48,
+      "height": 11,
+      "rawWidth": 64,
+      "rawHeight": 16,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

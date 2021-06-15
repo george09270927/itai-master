@@ -221,7 +221,7 @@ export default class NewClass extends cc.Component {
     //update (dt) {}
 
     onBeginContact(contact, self, other){
-        if((other.node.name == "bullet" || other.node.name == "red_beam_1"|| other.node.name == "red_beam_2"||other.node.name=="excalibur_beam_1"||other.node.name=="excalibur_beam_2") && this.splitTime){
+        if((other.node.name == "bullet" || other.node.name == "red_beam_1"|| other.node.name == "red_beam_2"||other.node.name=="excalibur_beam_1"||other.node.name=="excalibur_beam_2"||other.node.name=="explosion") && this.splitTime){
             if(this.flag == true){
                 
                 //cc.log(self.getComponent(cc.RigidBody).type);

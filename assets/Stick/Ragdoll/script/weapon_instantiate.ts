@@ -9,7 +9,7 @@ export default class weapon_instantiate extends cc.Component {
 
     private canCreateBullet: boolean = true;
 
-    private bulletInterval: number = 2; 
+    private bulletInterval: number = 0.5; 
 
     private jDown: boolean = false;
 
@@ -44,6 +44,8 @@ export default class weapon_instantiate extends cc.Component {
 
     public init(node: cc.Node) 
     {
+        if(this.node.name=="Grenade_launcher_prefab_1"||this.node.name=="Grenade_launcher_prefab_2") this.bulletInterval=1;
+
         this.setInitPos(node);
     }
 
@@ -81,28 +83,33 @@ export default class weapon_instantiate extends cc.Component {
 
     private createBullet()
     {
-        this.canCreateBullet = false;
-        this.scheduleOnce(function(){
-            this.canCreateBullet = true;
-        }, this.bulletInterval);
-
-        let bullet = cc.instantiate(this.bulletPrefab);
-        bullet.getComponent('gun_bullet').init(this.node);
-
-        if(this.node.name  == "excalibur_prefab")
+        if(this.canCreateBullet==true)
         {
-        this.stopParticle();
-        this.stopLevel0();
-        this.stopLevel1();
-        this.stopLevel2();
-        this.stopLevel3();
-        this.stopLevel4();
-        this.stopLevel5();
-        this.stopLevel6();
-        this.stopLevel7();
-        this.stopLevel8();
-        this.stopLevel9();
-        this.stopLevel10();
+            this.canCreateBullet = false;
+            this.scheduleOnce(function(){
+                this.canCreateBullet = true;
+            }, this.bulletInterval);
+            let bullet = cc.instantiate(this.bulletPrefab);
+            bullet.getComponent('gun_bullet').init(this.node);
+
+            if(this.node.name  == "excalibur_prefab")
+            {
+            cc.log("nonowowow");
+            this.stopParticle();
+            this.stopLevel0();
+            this.stopLevel1();
+            this.stopLevel2();
+            this.stopLevel3();
+            this.stopLevel4();
+            this.stopLevel5();
+            this.stopLevel6();
+            this.stopLevel7();
+            this.stopLevel8();
+            this.stopLevel9();
+            this.stopLevel10();
+            }
+
+
         }
     }
 

@@ -17,6 +17,12 @@ export default class debug_body1_2 extends cc.Component
     @property(cc.Prefab)
     private desert_hawk_for_pick_prefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    private Grenade_launcher_prefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private Grenade_launcher_for_pick_prefab: cc.Prefab = null;
+
 
     @property(cc.Prefab)
     private excalibur_prefab: cc.Prefab = null;
@@ -130,6 +136,7 @@ export default class debug_body1_2 extends cc.Component
 
         else if(Global.player2_dead==true&&this.dead_finish==true)
         {
+            this.scheduleOnce(()=>{this.playerMovement()});
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
 
             cc.find('small_sticker - 002_yellow/1_Head').getComponent(cc.RigidBody).fixedRotation = false;
@@ -196,8 +203,7 @@ export default class debug_body1_2 extends cc.Component
         }
 
         //var color = new cc.Color(255, 255 - Global.player2_percent * 2, 255 - Global.player2_percent * 2);
-        var color = new cc.Color(Global.player2_percent * 2, Global.player2_percent * 2, Global.player2_percent * 2); // white to black
-        //var color = new cc.Color(Global.player2_percent * 2, 0, 0);
+        var color = new cc.Color(Global.player2_percent * 2, 0, 0);
         if (Global.player2_percent < 128) this.percent_label.color = color;
         this.percent_label.getComponent(cc.Label).string = Global.player2_percent + "%";
         //this.percent_label.runAction(cc.scaleBy(0.05, 2, 2));
@@ -205,12 +211,8 @@ export default class debug_body1_2 extends cc.Component
             this.local_percent = Global.player2_percent;
             let action = cc.sequence(cc.scaleTo(0.05, 2, 2), cc.scaleTo(0.05, 1, 1));
             this.scheduleOnce(()=>{
-                this.percent_label.parent.opacity = 255;
                 this.percent_label.runAction(action);
             },0.01);
-            this.scheduleOnce(()=>{
-                this.percent_label.parent.opacity = 60;
-            },0.11);
         }
     }
 
@@ -561,7 +563,7 @@ export default class debug_body1_2 extends cc.Component
 
 
 
-            else if(this.jDown&&this.hitflag==false&&Global.player2_getgun==true){
+            else if(this.jDown&&this.hitflag==false&&Global.player2_getgun==true&&this.gun_pointer.getComponent('weapon_instantiate').canCreateBullet==true){
                 this.hitflag=true;
                 this.shakeEffect(0.1);
                 this.gun_pointer.getComponent('weapon_instantiate').createBullet();
@@ -600,7 +602,7 @@ export default class debug_body1_2 extends cc.Component
 
 
 
-        if(this.fDown&&Global.player2_getgun==true){
+        if((this.fDown&&Global.player2_getgun==true)||(Global.player2_dead==true&&Global.player2_getgun==true)){
             Global.player2_getgun = false;
 
             this.gun_pointer.destroy();
@@ -611,6 +613,10 @@ export default class debug_body1_2 extends cc.Component
             else if(this.gunname == "excalibur_for_pick")
             {
                 this.throw_gun_pointer = cc.instantiate(this.excalibur_for_pick_prefab);
+            }
+            else if(this.gunname == "Grenade_launcher_for_pick")
+            {
+                this.throw_gun_pointer = cc.instantiate(this.Grenade_launcher_for_pick_prefab);
             }
             
             this.gunname = "nogun";
@@ -706,21 +712,31 @@ export default class debug_body1_2 extends cc.Component
 
     instantiate_gun(name)
     {
-        if(name == 'desert_hawk_for_pick'&&this.gun_instantiate_finish==false)
+        if(Global.player2_dead==false)
         {
-            this.gunname = name;
-            this.gun_pointer = cc.instantiate(this.desert_hawk_prefab); 
-            this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
-            cc.log("instantiate!!");
-        }    
-        else if(name == 'excalibur_for_pick'&&this.gun_instantiate_finish==false)
-        {
-            this.gunname = name;
-            this.gun_pointer = cc.instantiate(this.excalibur_prefab); 
-            this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
-            cc.log("instantiate!!");
+            if(name == 'desert_hawk_for_pick'&&this.gun_instantiate_finish==false)
+            {
+                this.gunname = name;
+                this.gun_pointer = cc.instantiate(this.desert_hawk_prefab); 
+                this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
+                cc.log("instantiate!!");
+            }    
+            else if(name == 'excalibur_for_pick'&&this.gun_instantiate_finish==false)
+            {
+                this.gunname = name;
+                this.gun_pointer = cc.instantiate(this.excalibur_prefab); 
+                this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
+                cc.log("instantiate!!");
+            }
+            else if(name == 'Grenade_launcher_for_pick'&&this.gun_instantiate_finish==false)
+            {
+                this.gunname = name;
+                this.gun_pointer = cc.instantiate(this.Grenade_launcher_prefab); 
+                this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
+                cc.log("instantiate!!");
+            }
+            this.gun_instantiate_finish=true;
         }
-        this.gun_instantiate_finish=true;
     }
     
 
