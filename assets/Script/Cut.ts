@@ -14,11 +14,17 @@ export default class NewClass extends cc.Component {
 
     public points = null;
 
-    public splitTime: number = 4;
+    public splitTime: number = 3;
 
     private parentNode: cc.Node = null;
 
-    private bulletsplitEnable: boolean = true;
+    private bulletsplitEnable: number = 4;
+
+    private switchflag: boolean = false;
+
+    public firstblock: boolean = true;
+
+    private pos_scaleX: boolean = null;
 
 
     onLoad () {
@@ -60,61 +66,17 @@ export default class NewClass extends cc.Component {
 
     }
     start () {
-
-        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-
-        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-
-        //cc.director.getPhysicsManager().debugDrawFlags=1;
-
-        //this.parentNode = this.node.parent;
-        //cc.log(this.parentNode);
-        /*
-        if(this.parentNode != null){
-            if(this.parentNode.getComponent("Cut").splitEnable == true && this.parentNode.getComponent("Cut").splitTime > 0){
-                this.splitEnable = true;
-                this.splitTime = this.parentNode.getComponent("Cut").splitTime - 1;
-            }
-
+        //cc.director.getPhysicsManager().debugDrawFlags=1;  
+        if(!this.firstblock){
+            for (let i = 0; i < this.splitTime; i++) {
+            cc.log('split0' + i);
+            this.copy(); 
         }
-        */
-
-        //cc.log("split time: " +this.splitTime);
-
-     
-    }
-    /*
-    onKeyDown(event) 
-    {
-        switch(event.keyCode) 
-        {
-            case cc.macro.KEY.z:
-
-                cc.log("---copy---");
-                if(this.flag == true){
-                    this.splitEnable = true;
-                    for (let i = 0; i < this.splitTime; i++) {
-                        cc.log('split0' + i);
-                        this.copy(); 
-                    }
-                    this.flag = false; 
-                }
-                
-                break;
         }
+        
+                    
     }
-    
-    onKeyUp(event) 
-    {
-        switch(event.keyCode) 
-        {
-            case cc.macro.KEY.z:
-                this.flag = true;
 
-                break;
-        }
-    }
-*/
     copy(){
         cc.log("in copy")
         // 设置第一个碰撞体
@@ -123,38 +85,50 @@ export default class NewClass extends cc.Component {
         const cloneNode = cc.instantiate(this.node);
         cloneNode.getComponent("Cut").splitTime = this.splitTime - 1;
         cloneNode.getComponent("Cut").bulletsplitEnable = false;
+        cloneNode.getComponent("Cut").firstblock = false;
         this.scheduleOnce(()=>{ cloneNode.getComponent(cc.RigidBody).type = 2});
         //cloneNode.getComponent(cc.RigidBody).type = 2;
         //cc.log("---setting---");
         //cc.log("now point length: " + this.collider.points.length)
         let edge = this.collider.points.length;
-        var random_edge_1 = Math.floor(Math.random()*edge);
+        //var random_edge_1 = Math.floor(Math.random()*edge);
 
-        //random_edge_1 = 0;
-        /*
-        do {
-            var random_edge_2 = Math.floor(Math.random() * edge);
-        } while(random_edge_2 === random_edge_1);
-        */
+        if(this.switchflag == false){
+            this.switchflag = true;
+            var random_edge_1 = 0;
+        } else {
+            this.switchflag = false;
+            var random_edge_1 = 1;
+        }
+        
         var random_edge_2 = (random_edge_1 + 2) % 4;
         
         cc.log("get random edge: " + random_edge_1);
-        //random_edge_1 = 0;
-        //cc.log("---generate random points---");
-        //var edgeVar = Math.abs(random_edge_1 - random_edge_2);
-        //cc.log("edge variation: " + edgeVar);
-        
-        //if(this.splitTime != 3){
-            //this.rigidbody.type = 3;
-        //cc.log("now rigid bodytype = " + this.rigidbody.type);
-        //}
         
 
+        var tmpR1 = Math.random();
+        if(tmpR1<0.33){
+            var ratio1 = 0.25;
+        } else if(tmpR1>= 0.33 && tmpR1 <0.66){
+            var ratio1 = 0.5;
+        } else if(tmpR1>=0.66){
+            var ratio1 = 0.75;
+        }
+        var tmpR2 = Math.random();
+        if(tmpR2<0.33){
+            var ratio2= 0.25;
+        } else if(tmpR2>= 0.33 && tmpR2 <0.66){
+            var ratio2 = 0.5;
+        } else if(tmpR2>=0.66){
+            var ratio2 = 0.75;
+        }
+        
+        // ver.2
         if(random_edge_1 == 0 || random_edge_1 == 2){ // edge: 0 2
 
-            let x1 = Math.random()*(this.collider.points[1].x-this.collider.points[0].x)+this.collider.points[0].x;
+            let x1 = ratio1*(this.collider.points[1].x-this.collider.points[0].x)+this.collider.points[0].x;
             let y1 = this.collider.points[0].y + (this.collider.points[1].y-this.collider.points[0].y) * ((x1-this.collider.points[0].x)/(this.collider.points[1].x-this.collider.points[0].x))
-            let x2 = Math.random()*(this.collider.points[2].x-this.collider.points[3].x)+this.collider.points[3].x;
+            let x2 = ratio2*(this.collider.points[2].x-this.collider.points[3].x)+this.collider.points[3].x;
             let y2 = this.collider.points[3].y + (this.collider.points[2].y-this.collider.points[3].y) * ((x2-this.collider.points[3].x)/(this.collider.points[2].x-this.collider.points[3].x));
             //this.collider.points[1] = cc.v2(Math.floor(x1), Math.floor(y1));
             //this.collider.points[2] = cc.v2(Math.floor(x2), Math.floor(y2));
@@ -164,9 +138,9 @@ export default class NewClass extends cc.Component {
             //var cutcube
         } else if (random_edge_1 == 1 || random_edge_1 == 3){
             
-            let y2 = Math.random()*(this.collider.points[2].y-this.collider.points[1].y)+this.collider.points[1].y;
+            let y2 = ratio1*(this.collider.points[2].y-this.collider.points[1].y)+this.collider.points[1].y;
             let x2 = this.collider.points[1].x + (this.collider.points[2].x-this.collider.points[1].x) * ((y2-this.collider.points[1].y)/(this.collider.points[2].y-this.collider.points[1].y));
-            let y3 = Math.random()*(this.collider.points[3].y-this.collider.points[0].y)+this.collider.points[0].y;
+            let y3 = ratio2*(this.collider.points[3].y-this.collider.points[0].y)+this.collider.points[0].y;
             let x3 = this.collider.points[0].x + (this.collider.points[3].x-this.collider.points[0].x) * ((y3-this.collider.points[0].y)/(this.collider.points[3].y-this.collider.points[0].y));
             //this.collider.points[2] = cc.v2(Math.floor(x2), Math.floor(y2));
             //this.collider.points[3] = cc.v2(Math.floor(x3), Math.floor(y3));
@@ -178,9 +152,12 @@ export default class NewClass extends cc.Component {
         
         //cc.log("collider after change: " + this.collider.points);
         
-        this.collider.apply();   
+        //this.collider.apply();   
         
         this.draw();
+        this.collider.apply(); 
+        cc.log("after apply")
+        cc.log(this.collider.points);
        
         // 克隆一个本体作为第二个
         
@@ -223,16 +200,45 @@ export default class NewClass extends cc.Component {
     onBeginContact(contact, self, other){
         if((other.node.name == "bullet" || other.node.name == "red_beam_1"|| other.node.name == "red_beam_2"||other.node.name=="excalibur_beam_1"||other.node.name=="excalibur_beam_2") && this.splitTime){
             if(this.flag == true){
-                
-                //cc.log(self.getComponent(cc.RigidBody).type);
-                
-                //cc.log(this.splitTime);
+
+
+                var manifold = contact.getWorldManifold()
+                var normal = manifold.normal;
+                //var point = manifold.points[0];
+                if(this.pos_scaleX == null){
+                    if(normal.x < 0){
+                        this.node.scaleX = -1; 
+                        this.pos_scaleX = false;
+                    } else if(normal.x > 0){
+                        this.pos_scaleX = true;
+                    }
+
+                } else {
+                    cc.log("do nothing")
+                }
+                /*
+                if(normal.x < 0 && this.pos_scaleX){
+                    //if(this.node.scaleX > 0)
+                    cc.log("sscaleX -")
+                        this.node.scaleX = -1; 
+                        this.pos_scaleX = false;
+                }
+                */
+                /*
+                if(normal.x > 0 && !this.pos_scaleX){
+                    this.node.scaleX = 1;
+                    this.pos_scaleX = true;
+                }
+                */
                 if(this.bulletsplitEnable){
-                    this.bulletsplitEnable = false;
+                    this.bulletsplitEnable--;
+                    /*
                     for (let i = 0; i < this.splitTime; i++) {
                         cc.log('split0' + i);
                         this.copy(); 
                     }
+                    */
+                   this.copy();
                 } else {
                     this.scheduleOnce(()=>{ this.getComponent(cc.RigidBody).type = 2});
                 }
@@ -242,7 +248,7 @@ export default class NewClass extends cc.Component {
 
                 this.scheduleOnce(()=>{
                     this.flag = true;
-                }, 1) 
+                }, 0.5) 
             }
         } 
     }
