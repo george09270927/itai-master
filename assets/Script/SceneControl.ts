@@ -90,6 +90,8 @@ export default class NewClass extends cc.Component {
         this.node.runAction(showDialog_before_changeScene);
     }
 
+    
+
     showDialog(){
         //cc.log("show dialog");
 
