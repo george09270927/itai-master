@@ -80,11 +80,14 @@ export default class NewClass extends cc.Component {
         if(event.keyCode == cc.macro.KEY.e){
             cc.log("--change scene--");
             if(this.changeflag){
-                this.changeflag = false;
-                let showDialog_before_changeScene = cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(1), cc.callFunc(()=>{this.changeScene();}))
-                this.node.runAction(showDialog_before_changeScene);
+                this.nextScene();
             }
         }
+    }
+    nextScene() {
+        this.changeflag = false;
+        let showDialog_before_changeScene = cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(1), cc.callFunc(()=>{this.changeScene();}))
+        this.node.runAction(showDialog_before_changeScene);
     }
 
     showDialog(){

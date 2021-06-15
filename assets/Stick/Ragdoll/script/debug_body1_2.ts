@@ -169,6 +169,7 @@ export default class debug_body1_2 extends cc.Component
             },2);
             */
             this.dead_finish=false;
+            cc.find('SceneControl').getComponent("SceneControl").nextScene();
         }
     
         if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true)
