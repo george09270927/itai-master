@@ -149,7 +149,6 @@ export default class Leg_force extends cc.Component {
                 this.R_leg1.getComponent(cc.RigidBody).fixedRotation = false;
                 this.L_leg1.getComponent(cc.RigidBody).fixedRotation = false;
             } else if (Global.onWall == 1) {
-                cc.log("LEFT!!!");
                 this.R_leg1.angle = 60;
                 this.L_leg1.angle = 0;
 
@@ -266,7 +265,6 @@ export default class Leg_force extends cc.Component {
             this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(this.playerSpeed, 0), true);
         } 
         if (this.sDown) {
-            cc.log("head: "+this.node.y);
             this.L_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-5000, 0), true);
             this.R_leg.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(5000, 0), true);
             this.head.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, -5000), true);
@@ -306,7 +304,7 @@ export default class Leg_force extends cc.Component {
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
         if (other.node.name == "Ground") {
-            cc.log("onGround");
+            //cc.log("onGround");
         }
         //cc.log("contact other:"+ other.node.name);
         //cc.log("diff: ",self.node.y - other.node.y);

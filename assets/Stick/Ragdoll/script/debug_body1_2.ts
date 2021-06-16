@@ -170,10 +170,9 @@ export default class debug_body1_2 extends cc.Component
             */
             this.dead_finish=false;
             var stick_1_change_flag = cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").change_scene_flag;
-            cc.log("flag!!!!!!!!!!!!!!!!",stick_1_change_flag);
 
             if (!this.change_scene_flag && !stick_1_change_flag) {
-                cc.log("By normal~~~~~~~~~~");
+                //cc.log("By normal~~~~~~~~~~");
                 this.scheduleOnce(()=>{
                     this.change_scene_flag = true;
                     cc.find('SceneControl').getComponent("SceneControl").nextScene();
@@ -346,13 +345,11 @@ export default class debug_body1_2 extends cc.Component
                 if (!this.wDown) {
                     if (Global.onWall == 1) {
                         Global.onGround = false;
-                        cc.log("onwall jump: " + Global.onWall);
                         Global.onWall = 3;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(30000, 180000), true);
                     } else if (Global.onWall == 2) {
                         Global.onGround = false;
-                        cc.log("onwall jump: " + Global.onWall);
                         Global.onWall = 4;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-30000, 180000), true);
@@ -619,7 +616,6 @@ export default class debug_body1_2 extends cc.Component
                     this.shakeEffect(10);
                     if (!this.change_scene_flag) {
                         this.change_scene_flag = true;
-                        cc.log("by EXcalibur!!!!!!!!!!!!!!!!!!!!");
                         this.scheduleOnce(()=>{
                             cc.find('SceneControl').getComponent("SceneControl").nextScene();
                         }, 9);
@@ -774,12 +770,10 @@ export default class debug_body1_2 extends cc.Component
         var direction = contact.getWorldManifold().normal;
         //cc.log("YYYYYYYYY: "+direction.y);
         if (other.node.name == "platform" && direction.x < 0) {
-            cc.log("onWall left");
             Global.onWall = 1;
             Global.head_contact = true;
             //cc.log("platform");
         } else if (other.node.name == "platform" && direction.x > 0) {
-            cc.log("onWall right");
             Global.onWall = 2;
             Global.head_contact = true;
             //cc.log("platform");
@@ -787,7 +781,6 @@ export default class debug_body1_2 extends cc.Component
     }
     onEndContact(contact, self, other) {
         if (other.node.name == "platform") {
-            cc.log("onwall false");
             if (Global.onWall == 1 && Global.onGround) Global.onWall = 3;
             else if (Global.onWall == 2 && Global.onGround)  Global.onWall = 4;
             //Global.head_contact = false;

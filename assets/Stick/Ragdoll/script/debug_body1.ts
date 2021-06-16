@@ -110,7 +110,6 @@ export default class debug_body1 extends cc.Component
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
-        cc.log("gravity",cc.director.getPhysicsManager().gravity);
     }
 
     
@@ -178,9 +177,7 @@ export default class debug_body1 extends cc.Component
             */
             this.dead_finish=false;
             var stick_2_change_flag = cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").change_scene_flag;
-            cc.log("flag!!!!!!!!!!!!!!!!",stick_2_change_flag);
             if (!this.change_scene_flag && !stick_2_change_flag) {
-                cc.log("By normal~~~~~~~~~~");
                 this.scheduleOnce(()=>{
                     this.change_scene_flag = true;
                     cc.find('SceneControl').getComponent("SceneControl").nextScene();
@@ -248,7 +245,6 @@ export default class debug_body1 extends cc.Component
 
 
     onKeyDown(event) {
-        cc.log("Key Down: " + event.keyCode);
         if(Global.player1_dead==false)
         {
         
@@ -349,17 +345,14 @@ export default class debug_body1 extends cc.Component
                 }
  
             } else if(event.keyCode == cc.macro.KEY.w) {
-                cc.log("w down!!!!!!!!!!!!!");
                 if (!this.wDown) {
                     if (Global.onWall == 1) {
-                        cc.log("onwall jump: " + Global.onWall);
                         Global.onGround = false;
                         Global.onWall = 3;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(30000, 180000), true);
                     } else if (Global.onWall == 2) {
                         Global.onGround = false;
-                        cc.log("onwall jump: " + Global.onWall);
                         Global.onWall = 4;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-30000, 180000), true);
@@ -561,7 +554,6 @@ export default class debug_body1 extends cc.Component
             if(this.jDown&&this.hitflag==false&&Global.player1_getgun==false){
                 this.shakeEffect(0.1);
                 this.hitflag=true;
-                //cc.log("wow")
 
                 if(this.playerside==true)
                 {
@@ -644,7 +636,6 @@ export default class debug_body1 extends cc.Component
                     this.excalibur_cooldown=2000;
                     this.shakeEffect(10);
                     if (!this.change_scene_flag) {
-                        //cc.log("by EXcalibur!!!!!!!!!!!!!!!!!!!!");
                         this.change_scene_flag = true;
                         this.scheduleOnce(()=>{
                             cc.find('SceneControl').getComponent("SceneControl").nextScene();
@@ -814,12 +805,10 @@ export default class debug_body1 extends cc.Component
         var direction = contact.getWorldManifold().normal;
         //cc.log("YYYYYYYYY: "+direction.y);
         if (other.node.name == "platform" && direction.x < 0) {
-            cc.log("onWall left");
             Global.onWall = 1;
             Global.head_contact = true;
             //cc.log("platform");
         } else if (other.node.name == "platform" && direction.x > 0) {
-            cc.log("onWall right");
             Global.onWall = 2;
             Global.head_contact = true;
             //cc.log("platform");
@@ -827,7 +816,6 @@ export default class debug_body1 extends cc.Component
     }
     onEndContact(contact, self, other) {
         if (other.node.name == "platform") {
-            cc.log("onwall false");
             if (Global.onWall == 1 && Global.onGround) Global.onWall = 3;
             else if (Global.onWall == 2 && Global.onGround)  Global.onWall = 4;
             //Global.head_contact = false;
