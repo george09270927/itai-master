@@ -61,17 +61,19 @@ export default class gun_bullet extends cc.Component
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
         if(this.node.name == "lasershoot_red_1"){
-             
+            //cc.log(cc.find("small_sticker - 002_knee/0_R_hand"));
             if(node.scaleX > 0)
             {
-                this.node.position = cc.v2(50 + 500, 0);
 
+                this.node.position = cc.v2(550 * Math.cos(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180), 550 *Math.sin(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180));
+                cc.log(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle);
+                this.node.angle = cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle;
                 this.node.scaleX = 1;
             }
             else
             {
-                this.node.position = cc.v2(-50 - 500, 0);
-
+                this.node.position = cc.v2(-550*Math.cos(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180), -550*Math.sin(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180));
+                this.node.angle = cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle;
                 this.node.scaleX = -1;
             }
         } else {

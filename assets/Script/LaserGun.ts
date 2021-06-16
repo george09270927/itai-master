@@ -88,9 +88,10 @@ export default class LaserGun extends cc.Component {
         }
 
         let p1 = this.localConvertWorldPointAR(this.node);
-        p1.x = (this.laserSide == true)? p1.x + this.laserGunOffset: p1.x - this.laserGunOffset;
+        //p1.x = (this.laserSide == true)? p1.x + this.laserGunOffset: p1.x - this.laserGunOffset;
         //cc.log("p1: " + p1);
-        let angle = this.node.angle;
+        if(this.laserSide) var angle = this.node.angle;
+        else var angle = this.node.angle * -1;
         //cc.log("angle: "+angle);
 
         // ray 1000
@@ -152,6 +153,7 @@ export default class LaserGun extends cc.Component {
     // will be called every time collider contact is resolved
  
     update (dt) {
+        //if(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").rotation != null) cc.log(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").rotation);
         this.StartDetect();
     }
 }
