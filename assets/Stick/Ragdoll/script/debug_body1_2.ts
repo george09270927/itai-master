@@ -99,6 +99,8 @@ export default class debug_body1_2 extends cc.Component
     local_percent = 0;
     change_scene_flag = false;
 
+    hit_coff = 1;
+
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
@@ -777,6 +779,17 @@ export default class debug_body1_2 extends cc.Component
             Global.onWall = 2;
             Global.head_contact = true;
             //cc.log("platform");
+        }
+
+        // hit by stick1's hand
+        if ((other.node.name == "0_R_Arm_02" || other.node.name == "0_L_Arm_02") && cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").playerside) {
+            cc.log("left hit");
+            this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(10000 + Global.player2_percent * 1000, Global.player2_percent * 1000), true);
+            Global.player2_percent += this.hit_coff;
+        } else if ((other.node.name == "0_R_Arm_02" || other.node.name == "0_L_Arm_02") && !cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").playerside) {
+            cc.log("right hit");
+            this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-10000 + Global.player2_percent * -1000, Global.player2_percent * 1000), true);
+            Global.player2_percent += this.hit_coff;
         }
     }
     onEndContact(contact, self, other) {
