@@ -112,11 +112,14 @@ export default class gun_bullet_2 extends cc.Component
             },10); 
             
             if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                cc.log("stick1 been hit");
+                //cc.log("stick1 been hit");
                 //Global.player1_percent += this.hit_coff;
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");
-                Global.player2_percent += this.hit_coff;
+                this.schedule(() => {
+                    Global.player2_percent += this.hit_coff;
+                },0.03);
+                //Global.player2_percent += this.hit_coff;
             }
         }
         else if(this.node.name == "grenade_1"||this.node.name == "grenade_2")
@@ -129,14 +132,13 @@ export default class gun_bullet_2 extends cc.Component
             selfCollider.node.destroy();
             },1);
         
-            if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                cc.log("stick1 been hit");
+            /*if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
                 Global.player2_percent += this.hit_coff;
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");
-            }
+            }*/
         }
-        else 
+        else    // desert hawk red beam
         {
             
             this.scheduleOnce(() => {
@@ -151,7 +153,7 @@ export default class gun_bullet_2 extends cc.Component
                 cc.log("stick1 been hit");
                 //Global.player1_percent += this.hit_coff;
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
-                cc.log("stick2 been hit");
+                //cc.log("stick2 been hit");
                 Global.player2_percent += this.hit_coff;
             }
         }
