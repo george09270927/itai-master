@@ -30,8 +30,11 @@ export default class gun_bullet extends cc.Component
                 this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(-1000, 1500),true);
 
         } else if(this.node.name == "lasershoot_red_1"){
-
-            let lasereffect = cc.sequence(cc.scaleBy(0.5, 1, 2), cc.delayTime(1), cc.scaleBy(0.5, 1, 0), cc.callFunc(()=>{this.node.destroy()}));
+            cc.find("LaserGunRay_1").active = false;
+            let lasereffect = cc.sequence(cc.scaleBy(0.2, 1, 2), cc.delayTime(1), cc.scaleBy(0.3, 1, 0), cc.callFunc(()=>{
+                this.node.destroy();
+                cc.find("LaserGunRay_1").active = true;
+            }));
             this.node.runAction(lasereffect);
 
         }
@@ -159,7 +162,7 @@ export default class gun_bullet extends cc.Component
                 cc.log("stick2 been hit");
             }
         } else if (this.node.name == "lasershoot_red_1"){
-            cc.log("gogogogogogo");
+            //cc.log("gogogogogogo");
         }
         else 
         {
