@@ -7097,7 +7097,7 @@
       "__id__": 200
     },
     "_enabled": true,
-    "Debug_Draw": true,
+    "Debug_Draw": false,
     "_id": "eeGH6eDLRBRp9NKdPwPUxH"
   },
   {

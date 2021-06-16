@@ -32,7 +32,7 @@ export default class gun_bullet extends cc.Component
         } else if(this.node.name == "lasershoot_red_1"){
             
             cc.find("LaserGunRay_1").active = false;
-            let lasereffect = cc.sequence(cc.scaleBy(0.2, 1, 2), cc.delayTime(1), cc.scaleBy(0.3, 1, 0), cc.callFunc(()=>{
+            let lasereffect = cc.sequence(cc.scaleBy(0.5, 1, 10), cc.delayTime(1), cc.scaleBy(0.3, 1, 0), cc.callFunc(()=>{
                 this.node.destroy();
                 //cc.log(this.node.parent.name);
                 //cc.log(node.parent.name);
@@ -64,13 +64,13 @@ export default class gun_bullet extends cc.Component
              
             if(node.scaleX > 0)
             {
-                this.node.position = cc.v2(50, 0);
+                this.node.position = cc.v2(50 + 500, 0);
 
                 this.node.scaleX = 1;
             }
             else
             {
-                this.node.position = cc.v2(-50, 0);
+                this.node.position = cc.v2(-50 - 500, 0);
 
                 this.node.scaleX = -1;
             }
