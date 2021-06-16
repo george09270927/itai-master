@@ -34,7 +34,10 @@ export default class gun_bullet extends cc.Component
             cc.find("LaserGunRay_1").active = false;
             let lasereffect = cc.sequence(cc.scaleBy(0.2, 1, 2), cc.delayTime(1), cc.scaleBy(0.3, 1, 0), cc.callFunc(()=>{
                 this.node.destroy();
-                cc.find("LaserGunRay_1").active = true;
+                //cc.log(this.node.parent.name);
+                //cc.log(node.parent.name);
+                if(this.node.parent.name == "small_sticker - 002_knee") 
+                    cc.find("LaserGunRay_1").active = true;
             }));
             this.node.runAction(lasereffect);
 
@@ -57,7 +60,7 @@ export default class gun_bullet extends cc.Component
     {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
-        if(this.node.name = "lasershoot_red_1"){
+        if(this.node.name == "lasershoot_red_1"){
              
             if(node.scaleX > 0)
             {

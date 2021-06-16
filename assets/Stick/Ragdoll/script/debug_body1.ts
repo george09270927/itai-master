@@ -655,7 +655,9 @@ export default class debug_body1 extends cc.Component
             else if(this.gunname == "Grenade_launcher_for_pick")
             {
                 this.throw_gun_pointer = cc.instantiate(this.Grenade_launcher_for_pick_prefab);
-            } else if(this.gunname == "LaserGun_for_pick"){
+            } 
+            else if(this.gunname == "LaserGun_for_pick"){
+                cc.find("LaserGunRay_1").active = false;
                 this.throw_gun_pointer = cc.instantiate(this.LaserGun_for_pick_prefab);
             }
             
@@ -781,6 +783,7 @@ export default class debug_body1 extends cc.Component
                 this.gun_pointer = cc.instantiate(this.LaserGun_prefab); 
                 this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_knee/0_R_hand'));
                 cc.log("instantiate!!");
+                cc.find("LaserGunRay_1").active = true;
             }  
 
             this.gun_instantiate_finish=true;
