@@ -8976,6 +8976,8 @@
     "Grenade_launcher_for_pick_prefab": {
       "__uuid__": "9afe4ed8-1696-44c9-ac54-58985ebc83ed"
     },
+    "LaserGun_prefab": null,
+    "LaserGun_for_pick_prefab": null,
     "excalibur_prefab": {
       "__uuid__": "a305e0c3-8502-4f87-bb97-8d64a49ce753"
     },
@@ -11621,8 +11623,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 9,
+    "groupIndex": 9,
     "_id": "920uziN/xLE64LgtWBioku"
   },
   {
@@ -15524,8 +15526,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 9,
+    "groupIndex": 9,
     "_id": "38ohTbfTlMpJDmM6t/SWXk"
   },
   {

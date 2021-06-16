@@ -216,7 +216,7 @@
       "array": [
         0,
         0,
-        350.38511391329456,
+        554.2562584220408,
         0,
         0,
         0,
@@ -7097,7 +7097,7 @@
       "__id__": 200
     },
     "_enabled": true,
-    "Debug_Draw": true,
+    "Debug_Draw": false,
     "_id": "eeGH6eDLRBRp9NKdPwPUxH"
   },
   {
@@ -11750,8 +11750,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 9,
+    "groupIndex": 9,
     "_id": "d51OlYDyJAeb8EhH5Jsu7f"
   },
   {
