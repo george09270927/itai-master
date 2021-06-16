@@ -118,8 +118,11 @@ export default class Leg_force extends cc.Component {
             } 
         }
         if (temp_min < 60) {
+            //cc.log("onGround");
+            //Global.onGround = true;
             this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (temp_min) * 15);
-        }
+            //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (60 - temp_min) * 40);
+        } //else Global.onGround = false;
     }
 
     onLoad () {

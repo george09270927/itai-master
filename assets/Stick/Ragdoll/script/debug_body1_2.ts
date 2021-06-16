@@ -97,6 +97,7 @@ export default class debug_body1_2 extends cc.Component
 
 
     local_percent = 0;
+    change_scene_flag = false;
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
@@ -159,7 +160,6 @@ export default class debug_body1_2 extends cc.Component
             cc.find('small_sticker - 002_yellow/1_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = false;
             cc.find('small_sticker - 002_yellow/1_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = false;
             cc.log("fixrotate disable");
-            this.onGround=false;
             /*
             this.scheduleOnce(()=>{
                 //this.node.position = cc.v2(480, 500);
@@ -169,7 +169,17 @@ export default class debug_body1_2 extends cc.Component
             },2);
             */
             this.dead_finish=false;
-            cc.find('SceneControl').getComponent("SceneControl").nextScene();
+            var stick_1_change_flag = cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").change_scene_flag;
+            cc.log("flag!!!!!!!!!!!!!!!!",stick_1_change_flag);
+
+            if (!this.change_scene_flag && !stick_1_change_flag) {
+                cc.log("By normal~~~~~~~~~~");
+                this.scheduleOnce(()=>{
+                    this.change_scene_flag = true;
+                    cc.find('SceneControl').getComponent("SceneControl").nextScene();
+                },0.5);
+            }
+            //cc.find('SceneControl').getComponent("SceneControl").nextScene();
         }
     
         if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true)
@@ -607,6 +617,13 @@ export default class debug_body1_2 extends cc.Component
                     this.gun_pointer.getComponent('weapon_instantiate').createBullet();
                     this.excalibur_cooldown=2000;
                     this.shakeEffect(10);
+                    if (!this.change_scene_flag) {
+                        this.change_scene_flag = true;
+                        cc.log("by EXcalibur!!!!!!!!!!!!!!!!!!!!");
+                        this.scheduleOnce(()=>{
+                            cc.find('SceneControl').getComponent("SceneControl").nextScene();
+                        }, 9);
+                    }
                     this.excalibur_flag = false;
                     this.scheduleOnce(()=>{cc.audioEngine.playEffect(this.excalibur_break_sound,false);},4);
                 },0.1);
@@ -615,7 +632,7 @@ export default class debug_body1_2 extends cc.Component
 
 
 
-        if((this.fDown&&Global.player2_getgun==true)||(Global.player2_dead==true&&Global.player2_getgun==true)){
+        if((this.fDown&&Global.player2_getgun==true)/*||(Global.player2_dead==true&&Global.player2_getgun==true)*/){
             Global.player2_getgun = false;
 
             this.gun_pointer.destroy();

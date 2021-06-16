@@ -130,22 +130,26 @@ export default class gun_bullet extends cc.Component
         {
             this.scheduleOnce(() => {
                 this.node.stopAllActions();
-                cc.log("///recycle bullet///");
+                //cc.log("///recycle bullet///");
             this.node.runAction(cc.fadeOut(5));
             //selfCollider.node.destroy();
             },0.5); 
             this.scheduleOnce(() => {
                 this.node.stopAllActions();
-                cc.log("///recycle bullet///");
+                //cc.log("///recycle bullet///");
             //this.node.runAction(cc.fadeOut(3));
             selfCollider.node.destroy();
             },10); 
             
             if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
                 cc.log("stick1 been hit");
-                Global.player1_percent += this.hit_coff;
+                this.schedule(() => {
+                    Global.player1_percent += this.hit_coff;
+                },0.03);
+                //Global.player1_percent += this.hit_coff;
+
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
-                cc.log("stick2 been hit");
+                //cc.log("stick2 been hit");
                 //Global.player2_percent += this.hit_coff;
             }
         }
@@ -159,16 +163,16 @@ export default class gun_bullet extends cc.Component
             selfCollider.node.destroy();
             },1);
         
-            if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
+            /*if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
                 cc.log("stick1 been hit");
                 Global.player1_percent += this.hit_coff;
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");
-            }
+            }*/
         } else if (this.node.name == "lasershoot_red_1"){
             //cc.log("gogogogogogo");
         }
-        else 
+        else // desert hawk red beam
         {
             
             this.scheduleOnce(() => {
@@ -180,7 +184,7 @@ export default class gun_bullet extends cc.Component
             },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
         
             if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                cc.log("stick1 been hit");
+                //cc.log("stick1 been hit");
                 Global.player1_percent += this.hit_coff;
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");

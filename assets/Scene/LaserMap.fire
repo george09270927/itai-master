@@ -6969,6 +6969,8 @@
     },
     "Grenade_launcher_prefab": null,
     "Grenade_launcher_for_pick_prefab": null,
+    "LaserGun_prefab": null,
+    "LaserGun_for_pick_prefab": null,
     "excalibur_prefab": {
       "__uuid__": "a305e0c3-8502-4f87-bb97-8d64a49ce753"
     },
