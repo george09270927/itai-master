@@ -55,7 +55,8 @@ export default class weapon_instantiate extends cc.Component {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
         this.node.position = cc.v2(0,0);
-
+        
+        cc.log(this.node.parent);
         //cc.find('small_sticker - 002_knee/0_R_hand').getComponent(cc.DistanceJoint).frequency = 0;
 
         if(node.name == '0_R_hand') 

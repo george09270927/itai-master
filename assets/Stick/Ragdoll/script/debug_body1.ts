@@ -84,6 +84,10 @@ export default class debug_body1 extends cc.Component
 
     hithand: number = 1;//true:right false:left
 
+    private laserAimEnable: boolean = true;
+    private laserAimFinish: boolean = false;
+
+
 
     gun_pointer;
     gun_instantiate_finish = false;
@@ -420,6 +424,15 @@ export default class debug_body1 extends cc.Component
                         else if(this.excalibur_count>= 30) this.gun_pointer.getComponent('weapon_instantiate').resetLevel0();
                         */
                     }
+                    
+                } else if (this.gunname == "LaserGun_for_pick"){
+                    this.jDown = true;
+                    if(this.laserAimEnable){
+                        this.laserAimEnable = false;
+                        if(this.gun_pointer.scaleX)
+                            this.gun_pointer.runAction(cc.sequence(cc.rotateTo(0.5, 30), cc.rotateTo(0.5, -30)).repeatForever());
+
+                    }
                 }
                 else this.jDown = true;
                 
@@ -489,6 +502,14 @@ export default class debug_body1 extends cc.Component
                     }
                     this.jDown = false;
                     this.get_energy = false;
+                } else if (this.gunname == "LaserGun_for_pick"){
+                    if(this.jDown==true){
+                        this.jDown = false;
+                        this.laserAimEnable = true;
+                        //this.gun_pointer.runAction(cc.s)
+                        this.gun_pointer.runAction(cc.sequence(cc.rotateTo(0.1, 0), cc.callFunc(()=>{this.gun_pointer.stopAllActions();})));
+                        this.laserAimFinish = true;
+                    }
                 }
                 else 
                 {
@@ -550,7 +571,7 @@ export default class debug_body1 extends cc.Component
         }
         
         
-        if(this.gunname!="excalibur_for_pick")
+        if(this.gunname!="excalibur_for_pick" && this.gunname != "LaserGun_for_pick")
         {        
 
             if(this.jDown&&this.hitflag==false&&Global.player1_getgun==false){
@@ -647,6 +668,22 @@ export default class debug_body1 extends cc.Component
                     this.scheduleOnce(()=>{cc.audioEngine.playEffect(this.excalibur_break_sound,false);},4);
                 },0.1);
             }
+        } else if (this.gunname == "LaserGun_for_pick"){
+            if(this.jDown==false && this.laserAimFinish){
+                this.laserAimFinish = false;
+                this.shakeEffect(0.1);
+                this.gun_pointer.getComponent('weapon_instantiate').createBullet();
+                if(this.playerside==true)
+                {
+                    this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000,(Math.floor(Math.random()*1)+-1)*10000), true);
+                }
+                else if(this.playerside==false)
+                {
+                    this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, (Math.floor(Math.random()*1)+-1)*10000), true);
+                }
+                cc.log("is laser gun, shoot!!!");
+            }
+
         }
 
 
