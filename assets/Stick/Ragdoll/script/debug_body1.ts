@@ -540,7 +540,6 @@ export default class debug_body1 extends cc.Component
                 if(this.playerside==true) this.gun_pointer.scaleX = 1;
                 else if(this.playerside ==false) this.gun_pointer.scaleX = -1;
             }
-            
         }
         
         

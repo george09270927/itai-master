@@ -1,3 +1,4 @@
+import { Global } from "../Stick/Ragdoll/script/Leg_force";
 
 const {ccclass, property} = cc._decorator;
 
@@ -9,6 +10,8 @@ export default class LaserGun extends cc.Component {
 
     private laserSide: boolean = true; // postive
 
+    private detectOnground: boolean = null;
+
     private laserGunOffset: number = 45;
 
     private p1: cc.Vec2 = null;
@@ -18,7 +21,8 @@ export default class LaserGun extends cc.Component {
 
     start () {
         this.laserGunRay = cc.find("LaserGunRay_1");
-        
+        if(this.node.name == "LaserGun_prefab_1") this.detectOnground = cc.find("small_sticker - 002_knee/0_Head").getComponent("debug_body1").onGround;
+        else if(this.node.name == "LaserGun_prefab_2") this.detectOnground = cc.find("small_sticker - 002_yellow/1_Head").getComponent("debug_body1_2").onGround;
         
     }
     //世界座標轉換
@@ -66,7 +70,7 @@ export default class LaserGun extends cc.Component {
     }
 
     laserShoot(){
-        
+
     }
 
     StartDetect () {
@@ -135,6 +139,18 @@ export default class LaserGun extends cc.Component {
         this.draw(p1, p2);
     }
 
+    onBeginContact(contact, self, other) {
+        if(!Global.onGround){
+            cc.log("disable //////");
+            //contact.disabled = true;
+            //contact.disabledOnce = true;
+        } else {
+            cc.log("enable");
+            //contact.enabled = true;
+        }
+    } 
+    // will be called every time collider contact is resolved
+ 
     update (dt) {
         this.StartDetect();
     }
