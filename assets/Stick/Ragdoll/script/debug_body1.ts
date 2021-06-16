@@ -111,7 +111,7 @@ export default class debug_body1 extends cc.Component
 
     change_scene_flag = false;
 
-    hit_coff = 1;
+    hit_coff = 5;
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
