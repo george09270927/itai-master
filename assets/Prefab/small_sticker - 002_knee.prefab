@@ -69,7 +69,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 99
+      "__id__": 106
     },
     "_opacity": 255,
     "_color": {
@@ -93,8 +93,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        399,
-        379,
+        150,
+        501,
         0,
         0,
         0,
@@ -893,7 +893,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "b18HQfLpxHrpBdHfE5JGUx",
     "sync": false
@@ -917,7 +917,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "c3V9DxqRZJerWdLxlcZYEn",
     "sync": false
@@ -928,7 +928,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "ca2dlYXXxN8KJ87L9xzvPE",
     "sync": false
@@ -947,6 +947,18 @@
     },
     "desert_hawk_for_pick_prefab": {
       "__uuid__": "1c4c419a-11f3-45a3-8d57-fe72e031da28"
+    },
+    "Grenade_launcher_prefab": {
+      "__uuid__": "48c886a5-5e5e-481b-b704-067e827616bf"
+    },
+    "Grenade_launcher_for_pick_prefab": {
+      "__uuid__": "9afe4ed8-1696-44c9-ac54-58985ebc83ed"
+    },
+    "LaserGun_prefab": {
+      "__uuid__": "2d88eb23-f3f5-4d50-ad87-c595859bbc37"
+    },
+    "LaserGun_for_pick_prefab": {
+      "__uuid__": "74cb56f8-5a92-420e-b32c-50080e09f520"
     },
     "excalibur_prefab": {
       "__uuid__": "a305e0c3-8502-4f87-bb97-8d64a49ce753"
@@ -969,6 +981,7 @@
     "excalibur_break_sound": {
       "__uuid__": "867d01bd-7114-4881-a300-38119e5f9f31"
     },
+    "percent_label": null,
     "Jump_force": {
       "__id__": 28
     },
@@ -1103,7 +1116,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "3aAqrmlNVP67EZktGY8J/r",
     "sync": false
@@ -1666,7 +1679,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "40ngenozJH9aLLTXoGpsRE",
     "sync": false
@@ -1690,7 +1703,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "6fz5m21YNMkKse+myV8ivU",
     "sync": false
@@ -1701,7 +1714,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "b4JEc6139CMJbyLH+sCjrQ",
     "sync": false
@@ -2212,7 +2225,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "197omKKx1EursHT1HQR7Yn",
     "sync": false
@@ -2236,7 +2249,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "8bCASpczZAmKf73OXkPH7t",
     "sync": false
@@ -2247,7 +2260,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "6d9ofXA+JLMYtHM8rRIwfk",
     "sync": false
@@ -2445,7 +2458,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "67Xp7aKptCdqJh12q4XcCU",
     "sync": false
@@ -2673,7 +2686,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "806HQD1MlEQJq0Ut/UVddb",
     "sync": false
@@ -2871,7 +2884,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "02ItzTHvdOvpaJ3QpgtVer",
     "sync": false
@@ -3099,7 +3112,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "9a/7Grr3FCaI5nWAZ4ggnO",
     "sync": false
@@ -3110,7 +3123,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "6dwVhYyclNfo8oRuipne/U",
     "sync": false
@@ -3122,21 +3135,25 @@
     "_parent": {
       "__id__": 1
     },
-    "_children": [],
+    "_children": [
+      {
+        "__id__": 95
+      }
+    ],
     "_active": true,
     "_components": [
       {
-        "__id__": 95
+        "__id__": 100
       },
       {
-        "__id__": 96
+        "__id__": 103
       },
       {
-        "__id__": 97
+        "__id__": 104
       }
     ],
     "_prefab": {
-      "__id__": 98
+      "__id__": 105
     },
     "_opacity": 255,
     "_color": {
@@ -3186,6 +3203,196 @@
     "_id": ""
   },
   {
+    "__type__": "cc.Node",
+    "_name": "LaserGun_prefab_1",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 94
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 96
+      },
+      {
+        "__id__": 97
+      },
+      {
+        "__id__": 98
+      },
+      {
+        "__id__": 99
+      },
+      {
+        "__id__": 101
+      }
+    ],
+    "_prefab": {
+      "__id__": 102
+    },
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 100,
+      "height": 33
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.3,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        23.796,
+        101.617,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 9,
+    "groupIndex": 9,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 95
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "edba6b40-5718-44f1-8022-f7cc7575d6f9"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.RigidBody",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 95
+    },
+    "_enabled": true,
+    "_type": 2,
+    "_allowSleep": false,
+    "_gravityScale": 0,
+    "_linearDamping": 0,
+    "_angularDamping": 0,
+    "_linearVelocity": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_angularVelocity": 0,
+    "_fixedRotation": true,
+    "enabledContactListener": true,
+    "bullet": false,
+    "awakeOnLoad": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 95
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_density": 0.1,
+    "_sensor": false,
+    "_friction": 0,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 19.4,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 99.8,
+      "height": 33.4
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.RevoluteJoint",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 95
+    },
+    "_enabled": true,
+    "anchor": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "connectedAnchor": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "connectedBody": {
+      "__id__": 100
+    },
+    "collideConnected": false,
+    "_maxMotorTorque": 0,
+    "_motorSpeed": 0,
+    "_enableLimit": false,
+    "_enableMotor": false,
+    "referenceAngle": 0,
+    "lowerAngle": 0,
+    "upperAngle": 0,
+    "_id": ""
+  },
+  {
     "__type__": "cc.RigidBody",
     "_name": "",
     "_objFlags": 0,
@@ -3209,6 +3416,42 @@
     "bullet": false,
     "awakeOnLoad": true,
     "_id": ""
+  },
+  {
+    "__type__": "bd114VDbj9FBqXxLrGsFy56",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 95
+    },
+    "_enabled": true,
+    "bulletPrefab": {
+      "__uuid__": "f40c8d30-0b05-4b4a-929c-609635a653cc"
+    },
+    "chargingParticle": null,
+    "level0": null,
+    "level1": null,
+    "level2": null,
+    "level3": null,
+    "level4": null,
+    "level5": null,
+    "level6": null,
+    "level7": null,
+    "level8": null,
+    "level9": null,
+    "level10": null,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
+    },
+    "fileId": "b4q3rKlj5L85CLph26mdd6",
+    "sync": false
   },
   {
     "__type__": "cc.Sprite",
@@ -3277,7 +3520,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "2fzFF2L0lHG4BPwS6Kw1ec",
     "sync": false
@@ -3288,7 +3531,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "4caa9ea1-dc5b-4d07-b3c6-38ce3fcc749c"
     },
     "fileId": "1dzQ2Lj5RDB5jzFcDhiO1v",
     "sync": false

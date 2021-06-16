@@ -33,10 +33,13 @@
       },
       {
         "__id__": 6
+      },
+      {
+        "__id__": 7
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 8
     },
     "_opacity": 255,
     "_color": {
@@ -48,20 +51,20 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 34.2,
-      "height": 14.7
+      "width": 100,
+      "height": 33
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.2,
-      "y": 0.5
+      "x": 0.5,
+      "y": 0.65
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        423.194,
-        451.974,
+        479.96,
+        527.593,
         0,
         0,
         0,
@@ -101,7 +104,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9887524f-2bbe-462f-a471-bd98b540a5f9"
+      "__uuid__": "edba6b40-5718-44f1-8022-f7cc7575d6f9"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -127,8 +130,8 @@
     "_enabled": true,
     "_type": 2,
     "_allowSleep": false,
-    "_gravityScale": 0.01,
-    "_linearDamping": 0,
+    "_gravityScale": 1.2,
+    "_linearDamping": 1,
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
@@ -143,32 +146,6 @@
     "_id": ""
   },
   {
-    "__type__": "cc.PhysicsBoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "tag": 0,
-    "_density": 1,
-    "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "body": null,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 10.3,
-      "y": 0.07
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 34.2,
-      "height": 14.7
-    },
-    "_id": ""
-  },
-  {
     "__type__": "cc.RevoluteJoint",
     "_name": "",
     "_objFlags": 0,
@@ -178,8 +155,8 @@
     "_enabled": true,
     "anchor": {
       "__type__": "cc.Vec2",
-      "x": 0.07,
-      "y": 0.28
+      "x": -15,
+      "y": -5
     },
     "connectedAnchor": {
       "__type__": "cc.Vec2",
@@ -190,7 +167,7 @@
     "collideConnected": false,
     "_maxMotorTorque": 0,
     "_motorSpeed": 0,
-    "_enableLimit": false,
+    "_enableLimit": true,
     "_enableMotor": false,
     "referenceAngle": 0,
     "lowerAngle": 0,
@@ -223,14 +200,50 @@
     "_id": ""
   },
   {
+    "__type__": "aa13ahGHLFHNYMtdvmLIpRb",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_density": 0,
+    "_sensor": false,
+    "_friction": 0,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": -4.4
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 100,
+      "height": 33
+    },
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "48c886a5-5e5e-481b-b704-067e827616bf"
+      "__uuid__": "2d88eb23-f3f5-4d50-ad87-c595859bbc37"
     },
-    "fileId": "c3NAKLvSNAnp2no2U8Ju5i",
+    "fileId": "6cecT/Sf1Em4W5ZwcF01Fj",
     "sync": false
   }
 ]

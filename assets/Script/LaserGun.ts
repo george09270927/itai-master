@@ -1,34 +1,49 @@
 
-
 const {ccclass, property} = cc._decorator;
-//const { ray } = geometry;
-//import { geometry, Vec3 } from "cc";
 
 @ccclass
-export default class NewClass extends cc.Component {
-    
-    @property(cc.Node)
-    public laserBeam:cc.Node = null;
+export default class LaserGun extends cc.Component {
 
-    @property(cc.Node)
-    public hit_particleEffect:cc.Node = null;
+    public laserGunRay:cc.Node = null;
+    // LIFE-CYCLE CALLBACKS:
 
-    private laseroffset: number = 100;
-    
+    private laserSide: boolean = true; // postive
+
+    private laserGunOffset: number = 45;
+
+    // onLoad () {}
+
+    start () {
+        this.laserGunRay = cc.find("LaserGunRay_1");
+        
+        
+    }
+    //世界座標轉換
+    localConvertWorldPointAR(node) {
+        if (node) {
+            return node.convertToWorldSpaceAR(cc.v2(0, 0));
+        }
+        return null;
+    }
+
     draw (p1, p2) {
         //cc.log("draw!");
         //const points = this.collider.points;
-        const ctx = this.laserBeam.getComponent(cc.Graphics);
+        const ctx = this.laserGunRay.getComponent(cc.Graphics);
         //cc.log(cc.find("LaserPlatform/base/platform/laser/power"))
         //cc.log(ctx);
         //cc.log(p1 + ", " + p2);
         ctx.clear();
         //const len = points.length;
+        /*
         ctx.moveTo(p1.x-3, p1.y);
         ctx.lineTo(p1.x+3, p1.y);
         ctx.lineTo(p2.x+3, p2.y);
         ctx.lineTo(p2.x-3, p2.y);
         ctx.lineTo(p1.x-3, p1.y);
+        */
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
         
         //ctx.lineTo(p2.x, p2.y);
         
@@ -39,51 +54,37 @@ export default class NewClass extends cc.Component {
         //ctx.fill();
         ctx.fill();
         //ctx.stroke();
+        //cc.log(draw)
 
     }
-    // LIFE-CYCLE CALLBACKS:
-
-    onLoad () {
-        //this.node.on('mousedown', this.TouchStart, this);
-        /*
-        this.node.on(cc.Node.EventType.MOUSE_DOWN, function (event) {
-            console.log('Mouse down');
-            this.TouchStart();
-          }, this);
-        */
-       
-    }
-
-    start () {
-        //const outRay = new ray(0, -1, 0, 0, 1, 0);
-    }
-    //世界座標轉換
-    localConvertWorldPointAR(node) {
-        if (node) {
-            return node.convertToWorldSpaceAR(cc.v2(0, 0));
-        }
-        return null;
-    }
-    
-
     StartDetect () {
         //cc.log("---touchStart---");
         //获得触摸点本地坐标位置
+        if(this.node.scaleX == -1){
+            this.node.getComponent(cc.RevoluteJoint).anchor.x = 15;
+            this.node.getComponent(cc.RevoluteJoint).apply();
+            this.laserSide = false;
+        }   
+        else {
+            this.laserSide = true;
+            this.node.getComponent(cc.RevoluteJoint).anchor.x = -15;
+            this.node.getComponent(cc.RevoluteJoint).apply();
+        }
+
         let p1 = this.localConvertWorldPointAR(this.node);
+        p1.x = (this.laserSide == true)? p1.x + this.laserGunOffset: p1.x - this.laserGunOffset;
         //cc.log("p1: " + p1);
         let angle = this.node.angle;
         //cc.log("angle: "+angle);
-        let height = p1.y + this.laseroffset;
-        //cc.log("h: " + height);
-        //cc.log("tan: "+ Math.tan(angle* Math.PI /180));
-        let bottom_offset = height * Math.tan(angle *Math.PI /180);
-        //cc.log("bottom length: "+ bottom_offset);
+
+        // ray 1000
+        let ray_length = 1000;
+        if(this.laserSide) var p2 = cc.v2(p1.x + ray_length * Math.cos(angle *Math.PI /180), p1.y + ray_length *  Math.sin(angle *Math.PI /180));
+        else var p2 = cc.v2(p1.x - ray_length * Math.cos(angle *Math.PI /180), p1.y + ray_length *  Math.sin(angle *Math.PI /180));
+        //cc.log("p1: " + p1);
         
-        
-        //射线测试结束点位置 預設結束的位置要超過floor
-        let p2 = cc.v2(p1.x+bottom_offset, 0-this.laseroffset) 
         //cc.log("p2: " + p2);
-        this.rayTest(p1, p2)
+        this.rayTest(p1, p2);
     }
     rayTest (p1, p2) {
 
@@ -97,12 +98,12 @@ export default class NewClass extends cc.Component {
             var collider = result.collider;
             //cc.log(collider);
             if(collider.node.name == "platform"){
-                //cc.log("hit platform");
+                cc.log("hit platform");
             } else if(collider.node.name == "floor"){
-                //cc.log("hit floor");
+                cc.log("hit floor");
             } else if(collider.node.name == "player"){
                 //cc.log("hit plaeyr");
-                collider.node.getComponent("Player_ans").isDead = true;
+                //collider.node.getComponent("Player_ans").isDead = true;
             }
             //射线穿过的碰撞体的世界坐标
             var point = result.point;
@@ -113,17 +114,16 @@ export default class NewClass extends cc.Component {
             //打印出碰撞点的坐标
             //cc.log('point:', point)
 
-            p2 = point; // update end of the laser beam when hit platform 
-            this.hit_particleEffect.active = true;
-            this.hit_particleEffect.position = point;
+            //p2 = point; // update end of the laser beam when hit platform 
+            //this.hit_particleEffect.active = true;
+            //this.hit_particleEffect.position = point;
             
         }
 
         this.draw(p1, p2);
     }
+
     update (dt) {
-        
         this.StartDetect();
-        
     }
 }

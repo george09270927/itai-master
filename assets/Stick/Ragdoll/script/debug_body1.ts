@@ -23,6 +23,12 @@ export default class debug_body1 extends cc.Component
     @property(cc.Prefab)
     private Grenade_launcher_for_pick_prefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    private LaserGun_prefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private LaserGun_for_pick_prefab: cc.Prefab = null;
+
 
     @property(cc.Prefab)
     private excalibur_prefab: cc.Prefab = null;
@@ -767,7 +773,14 @@ export default class debug_body1 extends cc.Component
                 this.gun_pointer = cc.instantiate(this.Grenade_launcher_prefab); 
                 this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_knee/0_R_hand'));
                 cc.log("instantiate!!");
-            } 
+
+            } else if(name == 'LaserGun_for_pick' && this.gun_instantiate_finish == false)
+            {
+                this.gunname = name;
+                this.gun_pointer = cc.instantiate(this.LaserGun_prefab); 
+                this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_knee/0_R_hand'));
+                cc.log("instantiate!!");
+            }  
 
             this.gun_instantiate_finish=true;
         }
