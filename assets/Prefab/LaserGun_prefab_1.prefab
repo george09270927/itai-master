@@ -63,8 +63,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        479.96,
-        527.593,
+        837.206,
+        312.393,
         0,
         0,
         0,
@@ -183,7 +183,7 @@
     },
     "_enabled": true,
     "bulletPrefab": {
-      "__uuid__": "f40c8d30-0b05-4b4a-929c-609635a653cc"
+      "__uuid__": "4e46c159-efcc-4044-920c-5a79b422bad7"
     },
     "chargingParticle": null,
     "level0": null,
@@ -197,16 +197,6 @@
     "level8": null,
     "level9": null,
     "level10": null,
-    "_id": ""
-  },
-  {
-    "__type__": "aa13ahGHLFHNYMtdvmLIpRb",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
     "_id": ""
   },
   {
@@ -233,6 +223,16 @@
       "width": 100,
       "height": 33
     },
+    "_id": ""
+  },
+  {
+    "__type__": "aa13ahGHLFHNYMtdvmLIpRb",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
     "_id": ""
   },
   {

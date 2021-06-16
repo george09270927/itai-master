@@ -45,7 +45,7 @@ export default class weapon_instantiate extends cc.Component {
     public init(node: cc.Node) 
     {
         if(this.node.name=="Grenade_launcher_prefab_1"||this.node.name=="Grenade_launcher_prefab_2") this.bulletInterval=1;
-
+        
         this.setInitPos(node);
     }
 
@@ -107,6 +107,8 @@ export default class weapon_instantiate extends cc.Component {
             this.stopLevel8();
             this.stopLevel9();
             this.stopLevel10();
+            } else if(this.node.name == "LaserGun_prefab"){
+                cc.log("piupiu");
             }
 
 

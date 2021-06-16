@@ -11,6 +11,9 @@ export default class LaserGun extends cc.Component {
 
     private laserGunOffset: number = 45;
 
+    private p1: cc.Vec2 = null;
+    private p2: cc.Vec2 = null;
+
     // onLoad () {}
 
     start () {
@@ -56,7 +59,16 @@ export default class LaserGun extends cc.Component {
         //ctx.stroke();
         //cc.log(draw)
 
+        // for shoot
+        this.p1 = p1;
+        this.p2 = p2;
+
     }
+
+    laserShoot(){
+        
+    }
+
     StartDetect () {
         //cc.log("---touchStart---");
         //获得触摸点本地坐标位置

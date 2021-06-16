@@ -656,6 +656,8 @@ export default class debug_body1 extends cc.Component
             else if(this.gunname == "Grenade_launcher_for_pick")
             {
                 this.throw_gun_pointer = cc.instantiate(this.Grenade_launcher_for_pick_prefab);
+            } else if(this.gunname == "LaserGun_for_pick"){
+                this.throw_gun_pointer = cc.instantiate(this.LaserGun_for_pick_prefab);
             }
             
             this.gunname = "nogun";

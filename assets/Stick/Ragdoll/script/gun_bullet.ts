@@ -28,6 +28,12 @@ export default class gun_bullet extends cc.Component
             this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(1000, 1500),true);
             else
                 this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(-1000, 1500),true);
+
+        } else if(this.node.name == "lasershoot_red_1"){
+
+            let lasereffect = cc.sequence(cc.scaleBy(0.5, 1, 2), cc.delayTime(1), cc.scaleBy(0.5, 1, 0), cc.callFunc(()=>{this.node.destroy()}));
+            this.node.runAction(lasereffect);
+
         }
         else this.bulletMove();
     }
@@ -47,19 +53,36 @@ export default class gun_bullet extends cc.Component
     {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
+        if(this.node.name = "lasershoot_red_1"){
+             
+            if(node.scaleX > 0)
+            {
+                this.node.position = cc.v2(50, 0);
 
-        if(node.scaleX > 0)
-        {
-            this.node.position = cc.v2(62, 8);
+                this.node.scaleX = 1;
+            }
+            else
+            {
+                this.node.position = cc.v2(-50, 0);
 
-            this.node.scaleX = 1;
+                this.node.scaleX = -1;
+            }
+        } else {
+
+                if(node.scaleX > 0)
+            {
+                this.node.position = cc.v2(62, 8);
+
+                this.node.scaleX = 1;
+            }
+            else
+            {
+                this.node.position = cc.v2(-62, 8);
+
+                this.node.scaleX = -1;
+            }
         }
-        else
-        {
-            this.node.position = cc.v2(-62, 8);
-
-            this.node.scaleX = -1;
-        }
+        
 
         this.node.position = this.node.position.addSelf(node.position);
         cc.log(this.node.group);
@@ -135,6 +158,8 @@ export default class gun_bullet extends cc.Component
             } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");
             }
+        } else if (this.node.name == "lasershoot_red_1"){
+            cc.log("gogogogogogo");
         }
         else 
         {
