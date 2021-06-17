@@ -1,5 +1,5 @@
 const {ccclass, property} = cc._decorator;
-import { Global } from "./Leg_force_2";
+import { Global } from "./Leg_force";
 
 @ccclass
 export default class gun_bullet_2 extends cc.Component 
@@ -112,12 +112,9 @@ export default class gun_bullet_2 extends cc.Component
             },10); 
             
             if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                //cc.log("stick1 been hit");
-                //Global.player1_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");
                 this.schedule(() => {
-                    Global.player2_percent += this.hit_coff;
+                    Global.player1_percent += this.hit_coff;
                 },0.03);
                 //Global.player2_percent += this.hit_coff;
             }
@@ -132,11 +129,6 @@ export default class gun_bullet_2 extends cc.Component
             selfCollider.node.destroy();
             },1);
         
-            /*if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                Global.player2_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
-                cc.log("stick2 been hit");
-            }*/
         }
         else    // desert hawk red beam
         {
@@ -150,11 +142,8 @@ export default class gun_bullet_2 extends cc.Component
             },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
         
             if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                cc.log("stick1 been hit");
-                //Global.player1_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 //cc.log("stick2 been hit");
-                Global.player2_percent += this.hit_coff;
+                Global.player1_percent += this.hit_coff;
             }
         }
     }

@@ -1,6 +1,6 @@
 const {ccclass, property} = cc._decorator;
 import explosion from "./explosion";
-import { Global } from "./Leg_force";
+import { Global } from "./Leg_force_2";
 
 @ccclass
 export default class gun_bullet extends cc.Component 
@@ -143,16 +143,13 @@ export default class gun_bullet extends cc.Component
             selfCollider.node.destroy();
             },10); 
             
-            if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
+            if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick1 been hit");
                 this.schedule(() => {
-                    Global.player1_percent += this.hit_coff;
+                    Global.player2_percent += this.hit_coff;
                 },0.03);
                 //Global.player1_percent += this.hit_coff;
 
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
-                //cc.log("stick2 been hit");
-                //Global.player2_percent += this.hit_coff;
             }
         }
         else if(this.node.name == "grenade_1"||this.node.name == "grenade_2")
@@ -165,12 +162,6 @@ export default class gun_bullet extends cc.Component
             selfCollider.node.destroy();
             },1);
         
-            /*if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                cc.log("stick1 been hit");
-                Global.player1_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
-                cc.log("stick2 been hit");
-            }*/
         } else if (this.node.name == "lasershoot_red_1"){
             //cc.log("gogogogogogo");
         }
@@ -185,12 +176,9 @@ export default class gun_bullet extends cc.Component
             selfCollider.node.destroy();
             },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
         
-            if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
+            if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 //cc.log("stick1 been hit");
-                Global.player1_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
-                cc.log("stick2 been hit");
-                //Global.player2_percent += this.hit_coff;
+                Global.player2_percent += this.hit_coff;
             }
         }
     }
