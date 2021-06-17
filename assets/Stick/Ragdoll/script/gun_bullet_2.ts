@@ -15,6 +15,7 @@ export default class gun_bullet_2 extends cc.Component
 
     public isTriggered = false; // I add this to make the bullet kill one enemy at a time.
 
+    hit_laser = false;
     // when created, the bullet need to be placed at correct position and play animation.
     public init(node: cc.Node) 
     {
@@ -129,6 +130,15 @@ export default class gun_bullet_2 extends cc.Component
             selfCollider.node.destroy();
             },1);
         
+        } else if (this.node.name == "lasershoot_red_2"){
+            //cc.log("gogogogogogo");
+            //Global.player1_percent += this.hit_coff;
+            
+            if (otherCollider.node.group == "stick" && this.node.group == "laser") {
+                this.schedule(() => {
+                    if (this.hit_laser) Global.player1_percent += this.hit_coff;
+                },0.03);
+            }
         }
         else    // desert hawk red beam
         {
@@ -146,5 +156,8 @@ export default class gun_bullet_2 extends cc.Component
                 Global.player1_percent += this.hit_coff;
             }
         }
+    }
+    onEndContact(contact, selfCollider, otherCollider) {
+        if (this.node.name == "lasershoot_red_2") this.hit_laser = false;
     }
 }
