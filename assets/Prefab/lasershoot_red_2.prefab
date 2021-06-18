@@ -42,15 +42,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 237,
-      "g": 152,
-      "b": 253,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 2000,
-      "height": 5
+      "height": 12
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -61,8 +61,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        653,
-        351,
+        -981.023,
+        -214.839,
         0,
         0,
         0,
@@ -175,7 +175,7 @@
     "_texture": {
       "__uuid__": "d0a82d39-bede-46c4-b698-c81ff0dedfff"
     },
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 500,
@@ -185,16 +185,16 @@
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 204,
-      "g": 51,
-      "b": 153,
+      "r": 64,
+      "g": 178,
+      "b": 249,
       "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 25,
-      "g": 0,
-      "b": 127,
+      "r": 0,
+      "g": 83,
+      "b": 9,
       "a": 76
     },
     "_endColor": {
@@ -282,7 +282,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "dc507b7b-841a-41f4-a545-c6ce4c23b94b"
+      "__uuid__": "96fa1eea-c42d-4084-adcf-8ab28507d919"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -340,12 +340,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0.11
+      "y": -0.06
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 2000,
-      "height": 1.44
+      "height": 1.11
     },
     "_id": ""
   },
