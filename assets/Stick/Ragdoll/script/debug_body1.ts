@@ -429,8 +429,9 @@ export default class debug_body1 extends cc.Component
                     this.jDown = true;
                     if(this.laserAimEnable){
                         this.laserAimEnable = false;
-                        if(this.gun_pointer.scaleX)
-                            this.gun_pointer.runAction(cc.sequence(cc.rotateTo(1, 30).easing(cc.easeInOut(2)), cc.rotateTo(1, -30).easing(cc.easeInOut(2))).repeatForever());
+                        cc.log("scalx: " + this.gun_pointer.scaleX);
+                        if(this.gun_pointer.scaleX == -1)this.gun_pointer.runAction(cc.sequence(cc.rotateTo(1, 30).easing(cc.easeInOut(2)), cc.rotateTo(1, -30).easing(cc.easeInOut(2))).repeatForever());
+                        else if(this.gun_pointer.scaleX == 1) this.gun_pointer.runAction(cc.sequence(cc.rotateTo(1, -30).easing(cc.easeInOut(2)), cc.rotateTo(1, 30).easing(cc.easeInOut(2))).repeatForever());
 
                     }
                 }
