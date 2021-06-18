@@ -22,7 +22,11 @@ export default class debug_body1_2 extends cc.Component
 
     @property(cc.Prefab)
     private Grenade_launcher_for_pick_prefab: cc.Prefab = null;
+    @property(cc.Prefab)
+    private LaserGun_prefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    private LaserGun_for_pick_prefab: cc.Prefab = null;
 
     @property(cc.Prefab)
     private excalibur_prefab: cc.Prefab = null;
@@ -77,7 +81,8 @@ export default class debug_body1_2 extends cc.Component
     private hitflag : boolean = false;
 
     hithand: number = 1;//true:right false:left
-
+    private laserAimEnable: boolean = true;
+    private laserAimFinish: boolean = false;
 
     gun_pointer;
     gun_instantiate_finish = false;
@@ -399,6 +404,14 @@ export default class debug_body1_2 extends cc.Component
                     {
                         this.jDown = true;
                     }
+                } else if (this.gunname == "LaserGun_for_pick"){
+                    this.jDown = true;
+                    if(this.laserAimEnable){
+                        this.laserAimEnable = false;
+                        if(this.gun_pointer.scaleX)
+                            this.gun_pointer.runAction(cc.sequence(cc.rotateTo(1, 30).easing(cc.easeInOut(2)), cc.rotateTo(1, -30).easing(cc.easeInOut(2))).repeatForever());
+
+                    }
                 }
                 else this.jDown = true;
             } else if(event.keyCode == cc.macro.KEY.o) {
@@ -467,6 +480,14 @@ export default class debug_body1_2 extends cc.Component
                     }
                     this.jDown = false;
                     this.get_energy = false;
+                } else if (this.gunname == "LaserGun_for_pick"){
+                    if(this.jDown==true){
+                        this.jDown = false;
+                        this.laserAimEnable = true;
+                        //this.gun_pointer.runAction(cc.s)
+                        this.gun_pointer.runAction(cc.sequence(cc.rotateTo(0.1, 0), cc.callFunc(()=>{this.gun_pointer.stopAllActions();})));
+                        this.laserAimFinish = true;
+                    }
                 }
                 else 
                 {
@@ -525,7 +546,7 @@ export default class debug_body1_2 extends cc.Component
         }
         
         
-        if(this.gunname!="excalibur_for_pick")
+        if(this.gunname!="excalibur_for_pick" && this.gunname != "LaserGun_for_pick")
         { 
 
             if(this.jDown&&this.hitflag==false&&Global.player2_getgun==false){
@@ -626,6 +647,21 @@ export default class debug_body1_2 extends cc.Component
                     this.scheduleOnce(()=>{cc.audioEngine.playEffect(this.excalibur_break_sound,false);},4);
                 },0.1);
             }
+        } else if (this.gunname == "LaserGun_for_pick"){
+            if(this.jDown==false && this.laserAimFinish){
+                this.laserAimFinish = false;
+                this.shakeEffect(0.1);
+                this.gun_pointer.getComponent('weapon_instantiate').createBullet();
+                if(this.playerside==true)
+                {
+                    this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000,(Math.floor(Math.random()*1)+-1)*10000), true);
+                }
+                else if(this.playerside==false)
+                {
+                    this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(40000, (Math.floor(Math.random()*1)+-1)*10000), true);
+                }
+            }
+
         }
 
 
@@ -645,6 +681,10 @@ export default class debug_body1_2 extends cc.Component
             else if(this.gunname == "Grenade_launcher_for_pick")
             {
                 this.throw_gun_pointer = cc.instantiate(this.Grenade_launcher_for_pick_prefab);
+            }
+            else if(this.gunname == "LaserGun_for_pick"){
+                cc.find("LaserGunRay_2").active = false;
+                this.throw_gun_pointer = cc.instantiate(this.LaserGun_for_pick_prefab);
             }
             
             this.gunname = "nogun";
@@ -762,7 +802,14 @@ export default class debug_body1_2 extends cc.Component
                 this.gun_pointer = cc.instantiate(this.Grenade_launcher_prefab); 
                 this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
                 cc.log("instantiate!!");
-            }
+            } else if(name == 'LaserGun_for_pick' && this.gun_instantiate_finish == false)
+            {
+                this.gunname = name;
+                this.gun_pointer = cc.instantiate(this.LaserGun_prefab); 
+                this.gun_pointer.getComponent('weapon_instantiate').init(cc.find('small_sticker - 002_yellow/1_R_hand'));
+                cc.log("instantiate!!");
+                cc.find("LaserGunRay_2").active = true;
+            } 
             this.gun_instantiate_finish=true;
         }
     }

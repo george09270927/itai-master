@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lasershoot_red_1",
+    "_name": "LaserGun_prefab_2",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -37,35 +37,38 @@
       },
       {
         "__id__": 9
+      },
+      {
+        "__id__": 10
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 11
     },
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 237,
-      "g": 152,
-      "b": 253,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 2000,
-      "height": 5
+      "width": 100,
+      "height": 33
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 0.65
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        451,
+        408,
         0,
         0,
         0,
@@ -85,13 +88,13 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 14,
-    "groupIndex": 14,
+    "_groupIndex": 9,
+    "groupIndex": 9,
     "_id": ""
   },
   {
     "__type__": "cc.Node",
-    "_name": "fireeffect",
+    "_name": "laserfire",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -128,16 +131,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        1.191,
+        10.484,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
-        1
+        0.214,
+        0.243,
+        0.243
       ]
     },
     "_eulerAngles": {
@@ -170,27 +173,27 @@
     "_dstBlendFactor": 1,
     "_custom": true,
     "_file": {
-      "__uuid__": "5d674333-cff2-4ee4-86f4-444712bed0b6"
+      "__uuid__": "fda198eb-7a8e-406d-a18c-4ded0204b158"
     },
     "_spriteFrame": {
-      "__uuid__": "472df5d3-35e7-4184-9e6c-7f41bee65ee3"
+      "__uuid__": "0f3ac1f8-95eb-491a-a327-8595c71152c1"
     },
     "_texture": {
-      "__uuid__": "d0a82d39-bede-46c4-b698-c81ff0dedfff"
+      "__uuid__": "9bb4f978-b7b9-4251-a433-ba6646195880"
     },
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
-    "totalParticles": 500,
+    "totalParticles": 100,
     "duration": -1,
-    "emissionRate": 200,
-    "life": 1.1,
+    "emissionRate": 50,
+    "life": 1.2,
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
       "r": 204,
       "g": 51,
-      "b": 153,
+      "b": 51,
       "a": 255
     },
     "_startColorVar": {
@@ -215,10 +218,10 @@
       "a": 0
     },
     "angle": 90,
-    "angleVar": 30,
-    "startSize": 20,
-    "startSizeVar": 8,
-    "endSize": 14,
+    "angleVar": 11,
+    "startSize": 2,
+    "startSizeVar": 2,
+    "endSize": 0,
     "endSizeVar": 0,
     "startSpin": 720,
     "startSpinVar": 0,
@@ -231,27 +234,27 @@
     },
     "posVar": {
       "__type__": "cc.Vec2",
-      "x": 1000,
-      "y": 1
+      "x": 50,
+      "y": 5
     },
-    "_positionType": 1,
-    "positionType": 1,
+    "_positionType": 0,
+    "positionType": 0,
     "emitterMode": 0,
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
       "y": 0
     },
-    "speed": 0,
+    "speed": 10,
     "speedVar": 20,
     "tangentialAccel": 0,
-    "tangentialAccelVar": 600,
+    "tangentialAccelVar": 0,
     "radialAccel": 0,
     "radialAccelVar": 0,
-    "rotationIsDir": false,
-    "startRadius": 2000,
+    "rotationIsDir": true,
+    "startRadius": 0,
     "startRadiusVar": 0,
-    "endRadius": 2000,
+    "endRadius": 0,
     "endRadiusVar": 0,
     "rotatePerS": 0,
     "rotatePerSVar": 0,
@@ -264,9 +267,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4e46c159-efcc-4044-920c-5a79b422bad7"
+      "__id__": 0
     },
-    "fileId": "4c6I+3LEJMh4bGocxSJi9q",
+    "fileId": "e06Zb8xzVGgbbMy1HPAmWi",
     "sync": false
   },
   {
@@ -285,9 +288,9 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "dc507b7b-841a-41f4-a545-c6ce4c23b94b"
+      "__uuid__": "edba6b40-5718-44f1-8022-f7cc7575d6f9"
     },
-    "_type": 1,
+    "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
@@ -296,20 +299,9 @@
       "y": 0
     },
     "_fillStart": 0,
-    "_fillRange": 1,
+    "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "eae499ILOFPuZTX6JYxwhA8",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "explosionPrefab": null,
     "_id": ""
   },
   {
@@ -320,10 +312,10 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 1,
-    "_allowSleep": true,
-    "_gravityScale": 1,
-    "_linearDamping": 0,
+    "_type": 2,
+    "_allowSleep": false,
+    "_gravityScale": 1.2,
+    "_linearDamping": 1,
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
@@ -338,6 +330,60 @@
     "_id": ""
   },
   {
+    "__type__": "cc.RevoluteJoint",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "anchor": {
+      "__type__": "cc.Vec2",
+      "x": -15,
+      "y": -5
+    },
+    "connectedAnchor": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "connectedBody": null,
+    "collideConnected": false,
+    "_maxMotorTorque": 0,
+    "_motorSpeed": 0,
+    "_enableLimit": true,
+    "_enableMotor": false,
+    "referenceAngle": 0,
+    "lowerAngle": 0,
+    "upperAngle": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "bd114VDbj9FBqXxLrGsFy56",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "bulletPrefab": {
+      "__uuid__": "f0f61b2c-997f-47f0-944d-b8b387460fa4"
+    },
+    "chargingParticle": null,
+    "level0": null,
+    "level1": null,
+    "level2": null,
+    "level3": null,
+    "level4": null,
+    "level5": null,
+    "level6": null,
+    "level7": null,
+    "level8": null,
+    "level9": null,
+    "level10": null,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PhysicsBoxCollider",
     "_name": "",
     "_objFlags": 0,
@@ -346,32 +392,31 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 1,
-    "_sensor": true,
-    "_friction": 0.2,
+    "_density": 0,
+    "_sensor": false,
+    "_friction": 0,
     "_restitution": 0,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0.11
+      "x": 0.5,
+      "y": -4.4
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 2000,
-      "height": 1.44
+      "width": 100,
+      "height": 33
     },
     "_id": ""
   },
   {
-    "__type__": "eae499ILOFPuZTX6JYxwhA8",
+    "__type__": "aa13ahGHLFHNYMtdvmLIpRb",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "explosionPrefab": null,
     "_id": ""
   },
   {
@@ -380,9 +425,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4e46c159-efcc-4044-920c-5a79b422bad7"
+      "__id__": 0
     },
-    "fileId": "68wU4ZtaRFA78zcoVhJ1Ce",
+    "fileId": "a3QLa2j7NKRo9r/BSorTKm",
     "sync": false
   }
 ]

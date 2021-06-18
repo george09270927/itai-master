@@ -93,7 +93,9 @@ export default class weapon_instantiate extends cc.Component {
                 this.canCreateBullet = true;
             }, this.bulletInterval);
             let bullet = cc.instantiate(this.bulletPrefab);
-            bullet.getComponent('gun_bullet').init(this.node);
+            if(this.node.group=="stick")bullet.getComponent('gun_bullet').init(this.node);
+            else if(this.node.group=="stick2")bullet.getComponent('gun_bullet_2').init(this.node);
+
 
             if(this.node.name  == "excalibur_prefab")
             {

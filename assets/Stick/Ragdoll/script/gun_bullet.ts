@@ -20,9 +20,8 @@ export default class gun_bullet extends cc.Component
     // when created, the bullet need to be placed at correct position and play animation.
     public init(node: cc.Node) 
     {
-
-
         this.setInitPos(node);
+        //cc.log(this.node.parent.name);
         if(this.node.name == "grenade_1"||this.node.name=="grenade_2")
         {
             if(this.node.scaleX > 0)
@@ -31,20 +30,23 @@ export default class gun_bullet extends cc.Component
                 this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(-1000, 1500),true);
 
         } else if(this.node.name == "lasershoot_red_1"){
-            
+            cc.log("11111111111");
             cc.find("LaserGunRay_1").active = false;
             //let lasereffect = cc.sequence(cc.scaleBy(0.1, 1, 6).easing(cc.easeSineIn()),cc.delayTime(0.1),  cc.spawn(cc.fadeOut(0.5),cc.scaleBy(0.5, 0, 0).easing(cc.easeOut(3))), cc.callFunc(()=>{
-            let lasereffect = cc.sequence(cc.scaleBy(0.3, 1, 5).easing(cc.easeOut(10)),  cc.scaleTo(0.4, 1, 1), cc.scaleBy(0.3, 0, 0).easing(cc.easeOut(2)), cc.callFunc(()=>{
+            let lasereffect = cc.sequence(cc.scaleBy(0.3, 1, 5).easing(cc.easeOut(10)),  cc.scaleBy(0.4, 1, 0.20), cc.scaleBy(0.3, 0, 0).easing(cc.easeOut(1.5)), cc.callFunc(()=>{
 
                 this.node.destroy();
-                //cc.log(this.node.parent.name);
+                cc.log(this.node.parent.name);
                 //cc.log(node.parent.name);
-                if(this.node.parent.name == "small_sticker - 002_knee") 
+                if(this.node.parent.name == "small_sticker - 002_knee") {
+                    //cc.log("its omneoneoneoneoe");
                     cc.find("LaserGunRay_1").active = true;
+                }
             }));
             this.node.runAction(lasereffect);
 
         }
+        
         else this.bulletMove();
     }
 
@@ -79,7 +81,9 @@ export default class gun_bullet extends cc.Component
                 this.node.angle = cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle;
                 this.node.scaleX = -1;
             }
-        } else {
+        } 
+        
+        else {
 
                 if(node.scaleX > 0)
             {
@@ -130,7 +134,7 @@ export default class gun_bullet extends cc.Component
     //detect collision with enemies
     onBeginContact(contact, selfCollider, otherCollider)
     {
-        cc.log("bullet hit :" + otherCollider.name );
+        //cc.log("bullet hit :" + otherCollider.name );
         if(this.node.name == "excalibur_beam_1"||this.node.name == "excalibur_beam_2")
         {
             this.scheduleOnce(() => {

@@ -20,7 +20,8 @@ export default class LaserGun extends cc.Component {
     // onLoad () {}
 
     start () {
-        this.laserGunRay = cc.find("LaserGunRay_1");
+        if(this.node.name == "LaserGun_prefab_1")this.laserGunRay = cc.find("LaserGunRay_1");
+        else if(this.node.name == "LaserGun_prefab_2") this.laserGunRay = cc.find("LaserGunRay_2");
         if(this.node.name == "LaserGun_prefab_1") this.detectOnground = cc.find("small_sticker - 002_knee/0_Head").getComponent("debug_body1").onGround;
         else if(this.node.name == "LaserGun_prefab_2") this.detectOnground = cc.find("small_sticker - 002_yellow/1_Head").getComponent("debug_body1_2").onGround;
         

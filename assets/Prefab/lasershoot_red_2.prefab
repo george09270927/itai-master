@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "lasershoot_red_1",
+    "_name": "lasershoot_red_2",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -34,13 +34,10 @@
       },
       {
         "__id__": 8
-      },
-      {
-        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 9
     },
     "_opacity": 255,
     "_color": {
@@ -64,8 +61,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        653,
+        351,
         0,
         0,
         0,
@@ -264,9 +261,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4e46c159-efcc-4044-920c-5a79b422bad7"
+      "__uuid__": "f0f61b2c-997f-47f0-944d-b8b387460fa4"
     },
-    "fileId": "4c6I+3LEJMh4bGocxSJi9q",
+    "fileId": "3fIXAvNaBP9IwWEn6NifVL",
     "sync": false
   },
   {
@@ -299,17 +296,6 @@
     "_fillRange": 1,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "eae499ILOFPuZTX6JYxwhA8",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "explosionPrefab": null,
     "_id": ""
   },
   {
@@ -364,7 +350,7 @@
     "_id": ""
   },
   {
-    "__type__": "eae499ILOFPuZTX6JYxwhA8",
+    "__type__": "3ea48BMutlLuJ/K9yx0fRhg",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -380,9 +366,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "4e46c159-efcc-4044-920c-5a79b422bad7"
+      "__uuid__": "f0f61b2c-997f-47f0-944d-b8b387460fa4"
     },
-    "fileId": "68wU4ZtaRFA78zcoVhJ1Ce",
+    "fileId": "61v0ft2IBKY4eaplFyyjMI",
     "sync": false
   }
 ]

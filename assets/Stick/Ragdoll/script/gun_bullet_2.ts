@@ -28,6 +28,23 @@ export default class gun_bullet_2 extends cc.Component
             this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(1000, 1500),true);
             else
                 this.node.getComponent(cc.RigidBody).applyForceToCenter(cc.v2(-1000, 1500),true);
+        } else if(this.node.name == "lasershoot_red_2"){
+            cc.log("22222222222");
+            cc.find("LaserGunRay_2").active = false;
+            //let lasereffect = cc.sequence(cc.scaleBy(0.1, 1, 6).easing(cc.easeSineIn()),cc.delayTime(0.1),  cc.spawn(cc.fadeOut(0.5),cc.scaleBy(0.5, 0, 0).easing(cc.easeOut(3))), cc.callFunc(()=>{
+            let lasereffect = cc.sequence(cc.scaleBy(0.3, 1, 5).easing(cc.easeOut(10)),  cc.scaleBy(0.4, 1, 0.20), cc.scaleBy(0.3, 0, 0).easing(cc.easeOut(1.5)), cc.callFunc(()=>{
+
+                this.node.destroy();
+                cc.log(this.node.parent.name);
+                //cc.log(node.parent.name);
+                if(this.node.parent.name == "small_sticker - 002_yellow") 
+                {
+                
+                    cc.find("LaserGunRay_2").active = true;
+                }
+            }));
+            this.node.runAction(lasereffect);
+
         }
         else this.bulletMove();
 
@@ -48,18 +65,37 @@ export default class gun_bullet_2 extends cc.Component
     {
         this.node.parent = node.parent; // don't mount under the player, otherwise it will change direction when player move
 
+        if(this.node.name == "lasershoot_red_2"){
+            //cc.log(cc.find("small_sticker - 002_yellow/0_R_hand"));
+            if(node.scaleX > 0)
+            {
 
-        if(node.scaleX > 0)
-        {
-            this.node.position = cc.v2(62, 8);
-
-            this.node.scaleX = 1;
+                this.node.position = cc.v2(1050 * Math.cos(cc.find("small_sticker - 002_yellow/LaserGun_prefab_2").angle *Math.PI /180), 1050 *Math.sin(cc.find("small_sticker - 002_yellow/LaserGun_prefab_2").angle *Math.PI /180));
+                cc.log(cc.find("small_sticker - 002_yellow/LaserGun_prefab_2").angle);
+                this.node.angle = cc.find("small_sticker - 002_yellow/LaserGun_prefab_2").angle;
+                this.node.scaleX = 1;
+            }
+            else
+            {
+                this.node.position = cc.v2(-1050*Math.cos(cc.find("small_sticker - 002_yellow/LaserGun_prefab_2").angle *Math.PI /180), -1050*Math.sin(cc.find("small_sticker - 002_yellow/LaserGun_prefab_2").angle *Math.PI /180));
+                this.node.angle = cc.find("small_sticker - 002_yellow/LaserGun_prefab_2").angle;
+                this.node.scaleX = -1;
+            }
         }
-        else
-        {
-            this.node.position = cc.v2(-62, 8);
 
-            this.node.scaleX = -1;
+        else {
+            if(node.scaleX > 0)
+            {
+                this.node.position = cc.v2(62, 8);
+
+                this.node.scaleX = 1;
+            }
+            else
+            {
+                this.node.position = cc.v2(-62, 8);
+
+                this.node.scaleX = -1;
+            }
         }
 
         this.node.position = this.node.position.addSelf(node.position);
@@ -96,7 +132,7 @@ export default class gun_bullet_2 extends cc.Component
     //detect collision with enemies
     onBeginContact(contact, selfCollider, otherCollider)
     {
-        cc.log("bullet hit :" + otherCollider.name );
+        //cc.log("bullet hit :" + otherCollider.name );
         if(this.node.name == "excalibur_beam_1"||this.node.name == "excalibur_beam_2")
         {
             this.scheduleOnce(() => {
@@ -133,7 +169,7 @@ export default class gun_bullet_2 extends cc.Component
         } else if (this.node.name == "lasershoot_red_2"){
             //cc.log("gogogogogogo");
             //Global.player1_percent += this.hit_coff;
-            
+            this.hit_laser = true;
             if (otherCollider.node.group == "stick" && this.node.group == "laser") {
                 this.schedule(() => {
                     if (this.hit_laser) Global.player1_percent += this.hit_coff;
