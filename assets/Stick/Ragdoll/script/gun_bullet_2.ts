@@ -1,5 +1,5 @@
 const {ccclass, property} = cc._decorator;
-import { Global } from "./Leg_force_2";
+import { Global } from "./Leg_force";
 
 @ccclass
 export default class gun_bullet_2 extends cc.Component 
@@ -15,6 +15,7 @@ export default class gun_bullet_2 extends cc.Component
 
     public isTriggered = false; // I add this to make the bullet kill one enemy at a time.
 
+    hit_laser = false;
     // when created, the bullet need to be placed at correct position and play animation.
     public init(node: cc.Node) 
     {
@@ -112,12 +113,9 @@ export default class gun_bullet_2 extends cc.Component
             },10); 
             
             if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                //cc.log("stick1 been hit");
-                //Global.player1_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 cc.log("stick2 been hit");
                 this.schedule(() => {
-                    Global.player2_percent += this.hit_coff;
+                    Global.player1_percent += this.hit_coff;
                 },0.03);
                 //Global.player2_percent += this.hit_coff;
             }
@@ -132,11 +130,15 @@ export default class gun_bullet_2 extends cc.Component
             selfCollider.node.destroy();
             },1);
         
-            /*if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                Global.player2_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
-                cc.log("stick2 been hit");
-            }*/
+        } else if (this.node.name == "lasershoot_red_2"){
+            //cc.log("gogogogogogo");
+            //Global.player1_percent += this.hit_coff;
+            
+            if (otherCollider.node.group == "stick" && this.node.group == "laser") {
+                this.schedule(() => {
+                    if (this.hit_laser) Global.player1_percent += this.hit_coff;
+                },0.03);
+            }
         }
         else    // desert hawk red beam
         {
@@ -150,12 +152,12 @@ export default class gun_bullet_2 extends cc.Component
             },0.1); // for better animation effect, I delay 0.1s when bullet hits the enemy
         
             if (otherCollider.node.group == "stick" && this.node.group == "bullet2") {
-                cc.log("stick1 been hit");
-                //Global.player1_percent += this.hit_coff;
-            } else if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
                 //cc.log("stick2 been hit");
-                Global.player2_percent += this.hit_coff;
+                Global.player1_percent += this.hit_coff;
             }
         }
+    }
+    onEndContact(contact, selfCollider, otherCollider) {
+        if (this.node.name == "lasershoot_red_2") this.hit_laser = false;
     }
 }

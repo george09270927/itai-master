@@ -1,6 +1,6 @@
 
 const {ccclass, property} = cc._decorator;
-
+import { Global } from "../Stick/Ragdoll/script/Leg_force";
 export enum Map {
         CastleMap,
         IceMap,
@@ -111,6 +111,14 @@ export default class NewClass extends cc.Component {
         else if (messageNumber == 4) message =  "GG george!";
     
         DialogNode.getChildByName("content").getComponent(cc.Label).string = String(message);
+        if (Global.player1_dead) {
+            var color = new cc.Color(218, 179, 51);                 // yellow win
+            DialogNode.getChildByName("content").color = color;
+        } else {
+            var color = new cc.Color(255, 255, 255);                // black win
+            DialogNode.getChildByName("content").color = color;
+        }
+        
 
         // mask淡入`
         //cc.log("mask fade in");
