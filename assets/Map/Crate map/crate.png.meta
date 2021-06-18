@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "4bc47946-e8fa-4aaa-b019-df75658222dc",
+  "uuid": "b3cad4c7-616e-4118-9f09-fdb0f2afef31",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "Texture2D #1219": {
+    "crate": {
       "ver": "1.0.4",
-      "uuid": "05d0bacc-685d-4e71-987b-334174687b75",
-      "rawTextureUuid": "4bc47946-e8fa-4aaa-b019-df75658222dc",
+      "uuid": "af6f3354-39a7-48fb-8c43-64a66ed549ab",
+      "rawTextureUuid": "b3cad4c7-616e-4118-9f09-fdb0f2afef31",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,10 +20,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 640,
-      "height": 360,
-      "rawWidth": 640,
-      "rawHeight": 360,
+      "width": 67,
+      "height": 68,
+      "rawWidth": 67,
+      "rawHeight": 68,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

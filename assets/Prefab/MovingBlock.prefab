@@ -57,8 +57,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        449.152,
-        179.784,
+        132.775,
+        531.955,
         0,
         0,
         0,
@@ -115,16 +115,6 @@
     "_id": ""
   },
   {
-    "__type__": "e1c1fPVN7pBQYc0iyx79lLb",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_id": ""
-  },
-  {
     "__type__": "cc.RigidBody",
     "_name": "",
     "_objFlags": 0,
@@ -176,6 +166,16 @@
     "_id": ""
   },
   {
+    "__type__": "e1c1fPVN7pBQYc0iyx79lLb",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -183,7 +183,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "6b5BuBkflG85uJVDH7XIx/",
+    "fileId": "7bpVGjh1FP0LlsJObwWAwf",
     "sync": false
   }
 ]

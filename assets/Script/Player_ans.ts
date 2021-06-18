@@ -274,6 +274,11 @@ export default class Player extends cc.Component
             if(this.anim.clip == "jump" && this.anim.isPlaying){
                 this.anim.play("idle");
             }
+        } else if(otherCollider.node.group == "platform") {
+            this.onGround = true;
+            if(this.anim.clip == "jump" && this.anim.isPlaying){
+                this.anim.play("idle");
+            }
         }
         
     }
