@@ -49,6 +49,12 @@ export default class debug_body1_2 extends cc.Component
     @property({type:cc.AudioClip})
     private excalibur_break_sound: cc.AudioClip=null;
 
+    @property({type:cc.AudioClip})
+    private desert_hawk_sound: cc.AudioClip=null;
+
+    @property({type:cc.AudioClip})
+    private  LaserGun_sound: cc.AudioClip=null;
+
     @property(cc.Node)
     percent_label: cc.Node = null;
 
@@ -183,7 +189,7 @@ export default class debug_body1_2 extends cc.Component
                 this.scheduleOnce(()=>{
                     this.change_scene_flag = true;
                     cc.find('SceneControl').getComponent("SceneControl").nextScene();
-                },0.5);
+                });
             }
             //cc.find('SceneControl').getComponent("SceneControl").nextScene();
         }
@@ -610,6 +616,7 @@ export default class debug_body1_2 extends cc.Component
                 this.hitflag=true;
                 this.shakeEffect(0.1);
                 this.gun_pointer.getComponent('weapon_instantiate').createBullet();
+                if(this.gunname=="desert_hawk_for_pick") cc.audioEngine.playEffect(this.desert_hawk_sound,false);
                 if(this.playerside==true)
                 {
                     this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000,(Math.floor(Math.random()*1)+-1)*10000), true);
@@ -652,6 +659,7 @@ export default class debug_body1_2 extends cc.Component
                 this.laserAimFinish = false;
                 this.shakeEffect(0.1);
                 this.gun_pointer.getComponent('weapon_instantiate').createBullet();
+                cc.audioEngine.playEffect(this.LaserGun_sound,false);
                 if(this.playerside==true)
                 {
                     this.gun_pointer.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-40000,(Math.floor(Math.random()*1)+-1)*10000), true);

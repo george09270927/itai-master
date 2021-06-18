@@ -31,6 +31,10 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     private Camera: cc.Node = null;
 
+
+    @property({type:cc.AudioClip})
+    private  dead_sound: cc.AudioClip=null;
+
     private dialogMessage = cc.Enum({
         GG: 0,
         Easy: 1,
@@ -86,6 +90,22 @@ export default class NewClass extends cc.Component {
     }
     nextScene() {
         if (this.changeflag) {
+            cc.audioEngine.playEffect(this.dead_sound,false);
+
+            var i = this;
+            let o = 2;
+            cc.director.getPhysicsManager().enabledAccumulator = !1,
+                cc.director.getScheduler().setTimeScale(1), cc.PhysicsManager.FIXED_TIME_STEP = 1 / 60,
+                cc.tween(this.node).call(function () {
+                    cc.director.getPhysicsManager().enabledAccumulator = !0, cc.director.getScheduler().setTimeScale(.1),
+                        cc.PhysicsManager.FIXED_TIME_STEP = 1 / 60 * .1;
+                }).delay(o / 20).call(function () {
+                    cc.director.getPhysicsManager().enabledAccumulator = !1, cc.director.getScheduler().setTimeScale(1),
+                        cc.PhysicsManager.FIXED_TIME_STEP = 1 / 60;
+                }).to(.1, {
+                }).call(function () {
+                }).start();
+
             this.changeflag = false;
             let showDialog_before_changeScene = cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(1), cc.callFunc(()=>{this.changeScene();}))
             this.node.runAction(showDialog_before_changeScene);
@@ -127,6 +147,9 @@ export default class NewClass extends cc.Component {
         let fIn : cc.Action = cc.fadeTo(0.1, 100);
 
         DialogNode.getChildByName("mask").runAction(fIn);
+
+
+        
     }
     showReady(){
         //cc.log("show dialog");

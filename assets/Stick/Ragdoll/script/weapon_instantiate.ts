@@ -97,7 +97,7 @@ export default class weapon_instantiate extends cc.Component {
             else if(this.node.group=="stick2")bullet.getComponent('gun_bullet_2').init(this.node);
 
 
-            if(this.node.name  == "excalibur_prefab")
+            if(this.node.name  == "excalibur_prefab_1"||this.node.name  == "excalibur_prefab_2")
             {
             cc.log("nonowowow");
             this.stopParticle();

@@ -89,6 +89,9 @@
       "__uuid__": "2859bc78-568c-4c52-b0d9-1289d1efc9b2"
     },
     "Camera": null,
+    "dead_sound": {
+      "__uuid__": "d2356430-758a-481d-aae7-9885f105925d"
+    },
     "_id": ""
   },
   {
