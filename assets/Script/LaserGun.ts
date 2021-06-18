@@ -131,7 +131,7 @@ export default class LaserGun extends cc.Component {
             //打印出碰撞点的坐标
             //cc.log('point:', point)
 
-            //p2 = point; // update end of the laser beam when hit platform 
+            p2 = point; // update end of the laser beam when hit platform 
             //this.hit_particleEffect.active = true;
             //this.hit_particleEffect.position = point;
             

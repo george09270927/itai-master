@@ -430,7 +430,7 @@ export default class debug_body1 extends cc.Component
                     if(this.laserAimEnable){
                         this.laserAimEnable = false;
                         if(this.gun_pointer.scaleX)
-                            this.gun_pointer.runAction(cc.sequence(cc.rotateTo(0.5, 30), cc.rotateTo(0.5, -30)).repeatForever());
+                            this.gun_pointer.runAction(cc.sequence(cc.rotateTo(1, 30).easing(cc.easeInOut(2)), cc.rotateTo(1, -30).easing(cc.easeInOut(2))).repeatForever());
 
                     }
                 }

@@ -32,7 +32,9 @@ export default class gun_bullet extends cc.Component
         } else if(this.node.name == "lasershoot_red_1"){
             
             cc.find("LaserGunRay_1").active = false;
-            let lasereffect = cc.sequence(cc.scaleBy(0.5, 1, 10), cc.delayTime(1), cc.scaleBy(0.3, 1, 0), cc.callFunc(()=>{
+            //let lasereffect = cc.sequence(cc.scaleBy(0.1, 1, 6).easing(cc.easeSineIn()),cc.delayTime(0.1),  cc.spawn(cc.fadeOut(0.5),cc.scaleBy(0.5, 0, 0).easing(cc.easeOut(3))), cc.callFunc(()=>{
+            let lasereffect = cc.sequence(cc.scaleBy(0.3, 1, 5).easing(cc.easeOut(10)),  cc.scaleTo(0.4, 1, 1), cc.scaleBy(0.3, 0, 0).easing(cc.easeOut(2)), cc.callFunc(()=>{
+
                 this.node.destroy();
                 //cc.log(this.node.parent.name);
                 //cc.log(node.parent.name);
@@ -65,14 +67,14 @@ export default class gun_bullet extends cc.Component
             if(node.scaleX > 0)
             {
 
-                this.node.position = cc.v2(550 * Math.cos(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180), 550 *Math.sin(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180));
+                this.node.position = cc.v2(1050 * Math.cos(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180), 1050 *Math.sin(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180));
                 cc.log(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle);
                 this.node.angle = cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle;
                 this.node.scaleX = 1;
             }
             else
             {
-                this.node.position = cc.v2(-550*Math.cos(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180), -550*Math.sin(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180));
+                this.node.position = cc.v2(-1050*Math.cos(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180), -1050*Math.sin(cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle *Math.PI /180));
                 this.node.angle = cc.find("small_sticker - 002_knee/LaserGun_prefab_1").angle;
                 this.node.scaleX = -1;
             }
