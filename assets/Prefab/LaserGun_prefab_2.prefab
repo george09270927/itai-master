@@ -67,8 +67,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        451,
-        408,
+        -293,
+        -190,
         0,
         0,
         0,
@@ -191,16 +191,16 @@
     "lifeVar": 0.4,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 204,
-      "g": 51,
-      "b": 51,
+      "r": 51,
+      "g": 204,
+      "b": 202,
       "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 25,
-      "g": 0,
-      "b": 127,
+      "r": 21,
+      "g": 128,
+      "b": 146,
       "a": 76
     },
     "_endColor": {
@@ -267,7 +267,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "2eaa9739-db95-486a-b129-1a5b908c5487"
     },
     "fileId": "e06Zb8xzVGgbbMy1HPAmWi",
     "sync": false
@@ -425,7 +425,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "2eaa9739-db95-486a-b129-1a5b908c5487"
     },
     "fileId": "a3QLa2j7NKRo9r/BSorTKm",
     "sync": false
