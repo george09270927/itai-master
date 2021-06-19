@@ -225,7 +225,7 @@
       "array": [
         0,
         0,
-        351.69687188134895,
+        351.698133134063,
         0,
         0,
         0,
@@ -3828,12 +3828,8 @@
     "LaserGun_sound": {
       "__uuid__": "770b534f-ccab-480a-9df6-0096c77e8868"
     },
-    "punch_sound": {
-      "__uuid__": "9d9954ba-0bfc-4c2e-ad7c-e040de4bba2a"
-    },
-    "jump_sound": {
-      "__uuid__": "a38d8a2f-ce05-4a84-8ffa-3656e2bf679e"
-    },
+    "punch_sound": null,
+    "jump_sound": null,
     "percent_label": {
       "__id__": 110
     },
@@ -4637,7 +4633,7 @@
     "_enabled": true,
     "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 4,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -4663,7 +4659,7 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.1,
+    "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -4697,7 +4693,7 @@
   },
   {
     "__type__": "cc.Graphics",
-    "_name": "",
+    "_name": "platform<Graphics>",
     "_objFlags": 0,
     "node": {
       "__id__": 126
@@ -4736,6 +4732,9 @@
       "__id__": 126
     },
     "_enabled": true,
+    "ice_destruction_sound": {
+      "__uuid__": "87ca98aa-fbdf-4743-93f6-b86bbe3c5c76"
+    },
     "_id": "90COEsewJDmbTt6U7vLJkW"
   },
   {
@@ -4815,7 +4814,7 @@
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "",
+    "_name": "IceWorld_Snow3<Sprite>",
     "_objFlags": 0,
     "node": {
       "__id__": 132
@@ -5017,7 +5016,7 @@
     "_enabled": true,
     "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 4,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -5043,7 +5042,7 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.1,
+    "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -5077,7 +5076,7 @@
   },
   {
     "__type__": "cc.Graphics",
-    "_name": "",
+    "_name": "platform<Graphics>",
     "_objFlags": 0,
     "node": {
       "__id__": 137
@@ -5116,6 +5115,9 @@
       "__id__": 137
     },
     "_enabled": true,
+    "ice_destruction_sound": {
+      "__uuid__": "75bfd0f2-0e37-4972-9383-2688ee55e364"
+    },
     "_id": "a0Z6pdUIpDG5Oqo5eFVj6m"
   },
   {
@@ -5195,7 +5197,7 @@
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "",
+    "_name": "IceWorld_Snow3<Sprite>",
     "_objFlags": 0,
     "node": {
       "__id__": 143
@@ -5397,7 +5399,7 @@
     "_enabled": true,
     "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 4,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -5423,7 +5425,7 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.1,
+    "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -5457,7 +5459,7 @@
   },
   {
     "__type__": "cc.Graphics",
-    "_name": "",
+    "_name": "platform<Graphics>",
     "_objFlags": 0,
     "node": {
       "__id__": 148
@@ -5496,6 +5498,9 @@
       "__id__": 148
     },
     "_enabled": true,
+    "ice_destruction_sound": {
+      "__uuid__": "1af5a88e-e76b-4840-8777-baa733a0d60c"
+    },
     "_id": "92iWnWGx5LrqHmKRf5wdMw"
   },
   {
@@ -5575,7 +5580,7 @@
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "",
+    "_name": "IceWorld_Snow3<Sprite>",
     "_objFlags": 0,
     "node": {
       "__id__": 154
@@ -5777,7 +5782,7 @@
     "_enabled": true,
     "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 4,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -5803,7 +5808,7 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.1,
+    "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -5837,7 +5842,7 @@
   },
   {
     "__type__": "cc.Graphics",
-    "_name": "",
+    "_name": "platform<Graphics>",
     "_objFlags": 0,
     "node": {
       "__id__": 159
@@ -5876,6 +5881,9 @@
       "__id__": 159
     },
     "_enabled": true,
+    "ice_destruction_sound": {
+      "__uuid__": "3c52fab5-ffa4-478b-99a4-205797faa171"
+    },
     "_id": "dfDqgcTWFKUrhi6XXjlUEh"
   },
   {
@@ -5955,7 +5963,7 @@
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "",
+    "_name": "IceWorld_Snow3<Sprite>",
     "_objFlags": 0,
     "node": {
       "__id__": 165
@@ -6157,7 +6165,7 @@
     "_enabled": true,
     "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 4,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -6183,7 +6191,7 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.1,
+    "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -6217,7 +6225,7 @@
   },
   {
     "__type__": "cc.Graphics",
-    "_name": "",
+    "_name": "platform<Graphics>",
     "_objFlags": 0,
     "node": {
       "__id__": 170
@@ -6256,6 +6264,9 @@
       "__id__": 170
     },
     "_enabled": true,
+    "ice_destruction_sound": {
+      "__uuid__": "1acb9c7a-8f66-466c-9541-48617f137d84"
+    },
     "_id": "acflr+7+NOwbrijxpX0uiT"
   },
   {
@@ -6335,7 +6346,7 @@
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "",
+    "_name": "IceWorld_Snow3<Sprite>",
     "_objFlags": 0,
     "node": {
       "__id__": 176
@@ -6390,7 +6401,7 @@
   {
     "__type__": "cc.Node",
     "_name": "smashCube_M",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 5
     },
@@ -6537,7 +6548,7 @@
     "_enabled": true,
     "_type": 0,
     "_allowSleep": false,
-    "_gravityScale": 1,
+    "_gravityScale": 4,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -6563,7 +6574,7 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.1,
+    "_friction": 0.2,
     "_restitution": 0,
     "body": null,
     "_offset": {
@@ -6597,7 +6608,7 @@
   },
   {
     "__type__": "cc.Graphics",
-    "_name": "",
+    "_name": "platform<Graphics>",
     "_objFlags": 0,
     "node": {
       "__id__": 181
@@ -6636,6 +6647,9 @@
       "__id__": 181
     },
     "_enabled": true,
+    "ice_destruction_sound": {
+      "__uuid__": "f69b8d6c-282d-4f6a-8ea8-0a936adc740a"
+    },
     "_id": "46dh1d2m1G4JSoLJdBwKWU"
   },
   {
@@ -6715,7 +6729,7 @@
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "",
+    "_name": "IceWorld_Snow3<Sprite>",
     "_objFlags": 0,
     "node": {
       "__id__": 187
@@ -10575,12 +10589,8 @@
     "LaserGun_sound": {
       "__uuid__": "770b534f-ccab-480a-9df6-0096c77e8868"
     },
-    "punch_sound": {
-      "__uuid__": "9d9954ba-0bfc-4c2e-ad7c-e040de4bba2a"
-    },
-    "jump_sound": {
-      "__uuid__": "a38d8a2f-ce05-4a84-8ffa-3656e2bf679e"
-    },
+    "punch_sound": null,
+    "jump_sound": null,
     "percent_label": {
       "__id__": 192
     },
