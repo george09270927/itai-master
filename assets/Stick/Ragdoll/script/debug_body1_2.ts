@@ -64,6 +64,9 @@ export default class debug_body1_2 extends cc.Component
     @property(cc.Node)
     percent_label: cc.Node = null;
 
+    @property({type:cc.AudioClip})
+    private  walk_sound: cc.AudioClip=null;
+
     @property(cc.Node)
     Jump_force: cc.Node = null;
     playerSpeed: number =0;
@@ -121,6 +124,10 @@ export default class debug_body1_2 extends cc.Component
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
+
+        this.schedule(()=>{
+            if(Math.abs(this.node.getComponent(cc.RigidBody).linearVelocity.x)>=70 && Global.onGround==true&&Global.player2_dead==false) cc.audioEngine.play(this.walk_sound,false,0.2);
+        },0.14)
     }
 
     

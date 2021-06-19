@@ -63,6 +63,9 @@ export default class debug_body1 extends cc.Component
     @property({type:cc.AudioClip})
     private  jump_sound: cc.AudioClip=null;
 
+    @property({type:cc.AudioClip})
+    private  walk_sound: cc.AudioClip=null;
+
     @property(cc.Node)
     percent_label: cc.Node = null;
     
@@ -128,6 +131,10 @@ export default class debug_body1 extends cc.Component
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
+
+        this.schedule(()=>{
+            if(Math.abs(this.node.getComponent(cc.RigidBody).linearVelocity.x)>=70 && Global.onGround==true&&Global.player1_dead==false) cc.audioEngine.play(this.walk_sound,false,0.2);
+        },0.14)
     }
 
     
@@ -253,6 +260,7 @@ export default class debug_body1 extends cc.Component
                 this.percent_label.parent.opacity = 60;
             },0.15);
         }
+
     }
 
 

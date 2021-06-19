@@ -14798,6 +14798,9 @@
     "jump_sound": {
       "__uuid__": "a38d8a2f-ce05-4a84-8ffa-3656e2bf679e"
     },
+    "walk_sound": {
+      "__uuid__": "0b6f9dcb-fdc1-498e-a947-9d4d599d8e83"
+    },
     "percent_label": {
       "__id__": 347
     },
@@ -18200,6 +18203,9 @@
     },
     "percent_label": {
       "__id__": 353
+    },
+    "walk_sound": {
+      "__uuid__": "0b6f9dcb-fdc1-498e-a947-9d4d599d8e83"
     },
     "Jump_force": {
       "__id__": 534

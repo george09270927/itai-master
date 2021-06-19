@@ -7544,7 +7544,7 @@
     "_volume": 0.5,
     "_mute": false,
     "_loop": true,
-    "playOnLoad": true,
+    "playOnLoad": false,
     "preload": false,
     "_id": "c7TbzbzYNLsbEf61ieA6Rm"
   },
@@ -7665,7 +7665,7 @@
       "__id__": 204
     },
     "_enabled": true,
-    "Debug_Draw": true,
+    "Debug_Draw": false,
     "_id": "28pyGhPDhHPLeQtI7OFej9"
   },
   {
@@ -10647,6 +10647,9 @@
     },
     "percent_label": {
       "__id__": 231
+    },
+    "walk_sound": {
+      "__uuid__": "0b6f9dcb-fdc1-498e-a947-9d4d599d8e83"
     },
     "Jump_force": {
       "__id__": 297
@@ -13990,6 +13993,9 @@
     },
     "jump_sound": {
       "__uuid__": "a38d8a2f-ce05-4a84-8ffa-3656e2bf679e"
+    },
+    "walk_sound": {
+      "__uuid__": "0b6f9dcb-fdc1-498e-a947-9d4d599d8e83"
     },
     "percent_label": {
       "__id__": 216
