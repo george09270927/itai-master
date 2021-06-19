@@ -26,6 +26,9 @@ export default class NewClass extends cc.Component {
 
     private pos_scaleX: boolean = null;
 
+    @property({type:cc.AudioClip})
+    private ice_destruction_sound: cc.AudioClip = null;
+
 
     onLoad () {
         
@@ -261,12 +264,7 @@ export default class NewClass extends cc.Component {
                 */
                 if(this.bulletsplitEnable){
                     this.bulletsplitEnable--;
-                    /*
-                    for (let i = 0; i < this.splitTime; i++) {
-                        cc.log('split0' + i);
-                        this.copy(); 
-                    }
-                    */
+                    cc.audioEngine.playEffect(this.ice_destruction_sound, false); 
                    this.copy();
                 } else {
                     this.scheduleOnce(()=>{ this.getComponent(cc.RigidBody).type = 2});

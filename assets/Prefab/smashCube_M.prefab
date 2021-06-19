@@ -258,6 +258,9 @@
       "__id__": 2
     },
     "_enabled": true,
+    "ice_destruction_sound": {
+      "__uuid__": "1acb9c7a-8f66-466c-9541-48617f137d84"
+    },
     "_id": ""
   },
   {
