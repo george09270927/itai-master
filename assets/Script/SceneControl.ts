@@ -131,7 +131,7 @@ export default class NewClass extends cc.Component {
         else if (messageNumber == 4) message =  "GG george!";
     
         
-        let DialogShowingAction = cc.sequence(cc.scaleTo(0.02, 1.5).easing(cc.easeInOut(2)), cc.scaleTo(0.02, 0.9).easing(cc.easeInOut(2)),  cc.scaleTo(0.02, 1).easing(cc.easeInOut(2)), cc.delayTime(0.5), cc.scaleTo(0.5, 1.6).easing(cc.easeOut(5)), cc.scaleTo(1, 0).easing(cc.easeIn(5)));
+        let DialogShowingAction = cc.sequence(cc.scaleTo(0.02, 1.5).easing(cc.easeInOut(2)), cc.scaleTo(0.02, 0.9).easing(cc.easeInOut(2)),  cc.scaleTo(0.02, 1).easing(cc.easeInOut(2)), cc.delayTime(0.5), cc.scaleTo(0.2, 0.95).easing(cc.easeInOut(2)),cc.scaleTo(0.5, 1.6).easing(cc.easeInOut(3)), cc.scaleTo(1, 0).easing(cc.easeIn(5)));
         DialogNode.getChildByName("content").getComponent(cc.Label).string = String(message);
         DialogNode.getChildByName("content").runAction(DialogShowingAction);
 
