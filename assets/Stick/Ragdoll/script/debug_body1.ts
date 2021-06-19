@@ -57,6 +57,12 @@ export default class debug_body1 extends cc.Component
     @property({type:cc.AudioClip})
     private  LaserGun_sound: cc.AudioClip=null;
 
+    @property({type:cc.AudioClip})
+    private  punch_sound: cc.AudioClip=null;
+
+    @property({type:cc.AudioClip})
+    private  jump_sound: cc.AudioClip=null;
+
     @property(cc.Node)
     percent_label: cc.Node = null;
     
@@ -352,6 +358,7 @@ export default class debug_body1 extends cc.Component
  
             } else if(event.keyCode == cc.macro.KEY.w) {
                 if (!this.wDown) {
+                    cc.audioEngine.playMusic(this.jump_sound,false);
                     if (Global.onWall == 1) {
                         Global.onGround = false;
                         Global.onWall = 3;
@@ -366,7 +373,7 @@ export default class debug_body1 extends cc.Component
                         Global.onGround = false;
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 180000), true);
                     }
-                    this.wDown = true;
+                    this.wDown = true;  
                 }
 
                 if(this.gunname == "excalibur_for_pick")
@@ -578,6 +585,7 @@ export default class debug_body1 extends cc.Component
             if(this.jDown&&this.hitflag==false&&Global.player1_getgun==false){
                 this.shakeEffect(0.1);
                 this.hitflag=true;
+                cc.audioEngine.playEffect(this.punch_sound,false);
 
                 if(this.playerside==true)
                 {

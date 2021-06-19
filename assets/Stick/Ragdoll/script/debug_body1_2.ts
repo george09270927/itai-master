@@ -55,6 +55,12 @@ export default class debug_body1_2 extends cc.Component
     @property({type:cc.AudioClip})
     private  LaserGun_sound: cc.AudioClip=null;
 
+    @property({type:cc.AudioClip})
+    private  punch_sound: cc.AudioClip=null;
+
+    @property({type:cc.AudioClip})
+    private  jump_sound: cc.AudioClip=null;
+
     @property(cc.Node)
     percent_label: cc.Node = null;
 
@@ -356,6 +362,7 @@ export default class debug_body1_2 extends cc.Component
             } else if(event.keyCode == cc.macro.KEY.up) {
                 cc.log("w down!!!!!!!!!!!!!");
                 if (!this.wDown) {
+                    cc.audioEngine.playMusic(this.jump_sound,false);
                     if (Global.onWall == 1) {
                         Global.onGround = false;
                         Global.onWall = 3;
@@ -559,6 +566,7 @@ export default class debug_body1_2 extends cc.Component
             if(this.jDown&&this.hitflag==false&&Global.player2_getgun==false){
                 this.shakeEffect(0.1);
                 this.hitflag=true;
+                cc.audioEngine.playEffect(this.punch_sound,false);
                 //cc.log("wow")
 
                 if(this.playerside==true)

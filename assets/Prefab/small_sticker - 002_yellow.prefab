@@ -987,6 +987,12 @@
     "LaserGun_sound": {
       "__uuid__": "770b534f-ccab-480a-9df6-0096c77e8868"
     },
+    "punch_sound": {
+      "__uuid__": "9d9954ba-0bfc-4c2e-ad7c-e040de4bba2a"
+    },
+    "jump_sound": {
+      "__uuid__": "a38d8a2f-ce05-4a84-8ffa-3656e2bf679e"
+    },
     "percent_label": null,
     "Jump_force": {
       "__id__": 28
