@@ -228,7 +228,7 @@
       "array": [
         0,
         0,
-        351.69687188134895,
+        309.84223355317795,
         0,
         0,
         0,
@@ -10654,6 +10654,9 @@
     "Jump_force": {
       "__id__": 297
     },
+    "smoke_yellow": {
+      "__uuid__": "33b77ce4-985a-4db2-8160-b827aeec9738"
+    },
     "_id": "10krglaJ5CE45y5MGuwWCw"
   },
   {
@@ -14002,6 +14005,9 @@
     },
     "Jump_force": {
       "__id__": 397
+    },
+    "smoke_block": {
+      "__uuid__": "4233e4a7-edc8-4d82-968c-21f016fb18bc"
     },
     "_id": "78l9lRC55LjYkPnlyPFnZy"
   },

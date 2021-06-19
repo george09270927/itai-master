@@ -69,6 +69,10 @@ export default class debug_body1_2 extends cc.Component
 
     @property(cc.Node)
     Jump_force: cc.Node = null;
+    
+    @property(cc.Prefab)
+    smoke_yellow: cc.Prefab = null;
+
     playerSpeed: number =0;
 
     aDown: boolean = false; // key for player to go left
@@ -126,7 +130,7 @@ export default class debug_body1_2 extends cc.Component
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
 
         this.schedule(()=>{
-            if(Math.abs(this.node.getComponent(cc.RigidBody).linearVelocity.x)>=70 && Global.onGround==true&&Global.player2_dead==false) cc.audioEngine.play(this.walk_sound,false,0.2);
+            if(Math.abs(this.node.getComponent(cc.RigidBody).linearVelocity.x)>=70 && Global.onGround==true&&Global.player2_dead==false && Global.onWalk_range) cc.audioEngine.play(this.walk_sound,false,0.2);
         },0.14)
     }
 
@@ -205,6 +209,11 @@ export default class debug_body1_2 extends cc.Component
                 });
             }
             //cc.find('SceneControl').getComponent("SceneControl").nextScene();
+            var smoke_yellow_prefab = cc.instantiate(this.smoke_yellow);
+            smoke_yellow_prefab.parent = this.node.parent;
+            smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
+            //smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
+            smoke_yellow_prefab.getComponent("smoke2").die();
         }
     
         if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true)

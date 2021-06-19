@@ -16,6 +16,8 @@ export module Global {
     export let player1_getgun : boolean = false;
     export let player1_dead: boolean = false;
     export let player1_percent: number = 0;
+    export let player1_dead_bound: number = 0;
+    export let onWalk_range: boolean = false;
 }
 
 @ccclass
@@ -123,6 +125,8 @@ export default class Leg_force extends cc.Component {
             this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (temp_min) * 15);
             //this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (60 - temp_min) * 40);
         } //else Global.onGround = false;
+        if (temp_min < 63) Global.onWalk_range = true;
+        else Global.onWalk_range = false;
     }
 
     onLoad () {
