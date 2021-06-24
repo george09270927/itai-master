@@ -891,6 +891,7 @@ export default class debug_body1 extends cc.Component
             this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-10000 + Global.player1_percent * -1000, Global.player1_percent * 1000), true);
             Global.player1_percent += this.hit_coff;
         }
+        // hit by laser
     }
     onEndContact(contact, self, other) {
         if (other.node.name == "platform") {
