@@ -125,6 +125,8 @@ export default class debug_body1_2 extends cc.Component
 
     hit_coff = 5;
 
+    local_dead;
+
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
@@ -152,6 +154,7 @@ export default class debug_body1_2 extends cc.Component
 
 
     update() {
+        this.local_dead = Global.player2_dead;
         //cc.log(this.node.position);///
         if(Global.player2_dead==false)
         {
@@ -167,7 +170,7 @@ export default class debug_body1_2 extends cc.Component
             cc.find('small_sticker - 002_yellow/1_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
             cc.find('small_sticker - 002_yellow/1_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
             cc.find('small_sticker - 002_yellow/1_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
-            this.playerMovement();
+            if(cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_dead==false)this.playerMovement();
         }
         //cc.log(this.node.scaleX);
         //cc.log(Global.player2_getgun);
@@ -216,7 +219,7 @@ export default class debug_body1_2 extends cc.Component
             smoke_yellow_prefab.getComponent("smoke2").die();
         }
     
-        if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true)
+        if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true&&cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_dead==false)
         {
             if(this.excalibur_cooldown==0)
             {
@@ -276,7 +279,7 @@ export default class debug_body1_2 extends cc.Component
 
     onKeyDown(event) {
         //cc.log("Key Down: " + event.keyCode);
-        if(Global.player2_dead==false)
+        if(Global.player2_dead==false&&cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_dead==false)
         {
         
             if(event.keyCode == cc.macro.KEY.left) {
@@ -451,7 +454,7 @@ export default class debug_body1_2 extends cc.Component
     }
 
     onKeyUp(event) {
-        if(Global.player2_dead==false)
+        if(Global.player2_dead==false&&cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_dead==false)
         {
 
         
@@ -878,6 +881,10 @@ export default class debug_body1_2 extends cc.Component
             else if (Global.onWall == 2 && Global.onGround)  Global.onWall = 4;
             //Global.head_contact = false;
         }
+    }
+
+    local_stop(){
+        cc.audioEngine.stopAll();
     }
 }
 
