@@ -56,6 +56,13 @@ export default class NewClass extends cc.Component {
 
     start () {
         //const outRay = new ray(0, -1, 0, 0, 1, 0);
+        this.laserBeam =  this.node.parent.parent.getChildByName("laserBeam");
+        
+        this.laserBeam.setPosition(this.laserBeam.convertToNodeSpaceAR(cc.v2(0, 0)));
+        //this.hit_particleEffect = cc.find("Canvas/LaserPlatform/laserBeam/particle");
+        this.hit_particleEffect = this.node.parent.parent.getChildByName("laserBeam").getChildByName("particle");
+        
+
     }
     //世界座標轉換
     localConvertWorldPointAR(node) {
