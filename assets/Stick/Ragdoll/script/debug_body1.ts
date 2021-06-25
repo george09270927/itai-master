@@ -184,7 +184,7 @@ export default class debug_body1 extends cc.Component
         else if(Global.player1_dead==true&&this.dead_finish==true)
         {
 
-            this.scheduleOnce(()=>{this.playerMovement()});
+            //this.scheduleOnce(()=>{this.playerMovement()});
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
 
             cc.find('small_sticker - 002_knee/0_Head').getComponent(cc.RigidBody).fixedRotation = false;
@@ -790,44 +790,50 @@ export default class debug_body1 extends cc.Component
     }  
 
     shakeEffect(du) {
-        this.camera.runAction(
-            cc.repeatForever(
-                cc.sequence(
-                    cc.moveTo(0.02, cc.v2(5, 7)),
-                    cc.moveTo(0.02, cc.v2(-6, 7)),
-                    cc.moveTo(0.02, cc.v2(-13, 3)),
-                    cc.moveTo(0.02, cc.v2(3, -6)),
-                    cc.moveTo(0.02, cc.v2(-5, 5))
-                    /*,
-                    /*
-                    cc.moveTo(0.02, cc.v2(2, -8)),
-                    cc.moveTo(0.02, cc.v2(-8, -10)),
-                    cc.moveTo(0.02, cc.v2(3, 10)),
-                    cc.moveTo(0.02, cc.v2(0, 0))
-                    */
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
+        {
+            this.camera.runAction(
+                cc.repeatForever(
+                    cc.sequence(
+                        cc.moveTo(0.02, cc.v2(5, 7)),
+                        cc.moveTo(0.02, cc.v2(-6, 7)),
+                        cc.moveTo(0.02, cc.v2(-13, 3)),
+                        cc.moveTo(0.02, cc.v2(3, -6)),
+                        cc.moveTo(0.02, cc.v2(-5, 5))
+                        /*,
+                        /*
+                        cc.moveTo(0.02, cc.v2(2, -8)),
+                        cc.moveTo(0.02, cc.v2(-8, -10)),
+                        cc.moveTo(0.02, cc.v2(3, 10)),
+                        cc.moveTo(0.02, cc.v2(0, 0))
+                        */
+                    )
                 )
-            )
-        );
+            );
 
-        this.scheduleOnce(() => {
-            this.camera.stopAllActions();
-            this.camera.setPosition(0,0);
-        }, du);
+            this.scheduleOnce(() => {
+                this.camera.stopAllActions();
+                this.camera.setPosition(0,0);
+            }, du);
+        }
     }
 
     littleshakeEffect() {
-        this.camera.runAction(
-            cc.repeatForever(
-                cc.sequence(
-                    cc.moveTo(0.02, cc.v2(1.25, 1.75)),
-                    cc.moveTo(0.02, cc.v2(-1.5, 1.75)),
-                    cc.moveTo(0.02, cc.v2(-3.25, 0.75)),
-                    cc.moveTo(0.02, cc.v2(0.75, -1.5)),
-                    cc.moveTo(0.02, cc.v2(-1.25, 1.25))
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
+        {
+            this.camera.runAction(
+                cc.repeatForever(
+                    cc.sequence(
+                        cc.moveTo(0.02, cc.v2(1.25, 1.75)),
+                        cc.moveTo(0.02, cc.v2(-1.5, 1.75)),
+                        cc.moveTo(0.02, cc.v2(-3.25, 0.75)),
+                        cc.moveTo(0.02, cc.v2(0.75, -1.5)),
+                        cc.moveTo(0.02, cc.v2(-1.25, 1.25))
+                    )
                 )
-            )
-        );
-        this.littleshake_flag = true;
+            );
+            this.littleshake_flag = true;
+        }    
     }
 
 
