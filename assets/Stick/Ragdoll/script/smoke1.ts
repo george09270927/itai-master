@@ -76,7 +76,7 @@ export default class smoke1 extends cc.Component {
             this.node.setPosition(parentX - 40, parentY);
         }
         //if (percent > 100) this.node.scaleX *=  percent / 100;
-        this.node.scaleX *= random_val;
+        if (percent > 50) this.node.scaleX *= random_val;
         this.scheduleOnce(function() { this.node.destroy(); }, 0.25);
     }
     appear() {
