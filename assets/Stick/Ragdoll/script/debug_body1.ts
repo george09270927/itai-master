@@ -135,6 +135,10 @@ export default class debug_body1 extends cc.Component
 
     hit_coff = 3;
 
+    local_dead;
+
+    shake_flag = false;
+
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
@@ -161,6 +165,7 @@ export default class debug_body1 extends cc.Component
 
 
     update() {
+        this.local_dead = Global.player1_dead;
         //cc.log(this.node.position);///
         if(Global.player1_dead==false)
         {
@@ -176,7 +181,7 @@ export default class debug_body1 extends cc.Component
             cc.find('small_sticker - 002_knee/0_L_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
             cc.find('small_sticker - 002_knee/0_R_Arm_01').getComponent(cc.RevoluteJoint).enableLimit = true;
             cc.find('small_sticker - 002_knee/0_R_Arm_02').getComponent(cc.RevoluteJoint).enableLimit = true;
-            this.playerMovement();
+            if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)this.playerMovement();
         }
         //cc.log(this.node.scaleX);
         //cc.log(Global.player1_getgun);
@@ -184,7 +189,7 @@ export default class debug_body1 extends cc.Component
         else if(Global.player1_dead==true&&this.dead_finish==true)
         {
 
-            this.scheduleOnce(()=>{this.playerMovement()});
+            //this.scheduleOnce(()=>{this.playerMovement()});
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
 
             cc.find('small_sticker - 002_knee/0_Head').getComponent(cc.RigidBody).fixedRotation = false;
@@ -219,7 +224,7 @@ export default class debug_body1 extends cc.Component
         }
         //this.excalibur_count+=2;
         //cc.log(this.excalibur_count);
-        if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true)
+        if(this.gunname == "excalibur_for_pick"&&this.jDown==true&&this.get_energy==true&&cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
         {
             if(this.excalibur_cooldown==0)
             {
@@ -277,7 +282,7 @@ export default class debug_body1 extends cc.Component
 
 
     onKeyDown(event) {
-        if(Global.player1_dead==false)
+        if(Global.player1_dead==false&&cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
         {
         
             if(event.keyCode == cc.macro.KEY.a) {
@@ -471,7 +476,7 @@ export default class debug_body1 extends cc.Component
     }
 
     onKeyUp(event) {
-        if(Global.player1_dead==false)
+        if(Global.player1_dead==false&&cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
         {
 
         
@@ -790,44 +795,52 @@ export default class debug_body1 extends cc.Component
     }  
 
     shakeEffect(du) {
-        this.camera.runAction(
-            cc.repeatForever(
-                cc.sequence(
-                    cc.moveTo(0.02, cc.v2(5, 7)),
-                    cc.moveTo(0.02, cc.v2(-6, 7)),
-                    cc.moveTo(0.02, cc.v2(-13, 3)),
-                    cc.moveTo(0.02, cc.v2(3, -6)),
-                    cc.moveTo(0.02, cc.v2(-5, 5))
-                    /*,
-                    /*
-                    cc.moveTo(0.02, cc.v2(2, -8)),
-                    cc.moveTo(0.02, cc.v2(-8, -10)),
-                    cc.moveTo(0.02, cc.v2(3, 10)),
-                    cc.moveTo(0.02, cc.v2(0, 0))
-                    */
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false&&this.shake_flag==false)
+        {
+            this.shake_flag=true;
+            this.camera.runAction(
+                cc.repeatForever(
+                    cc.sequence(
+                        cc.moveTo(0.02, cc.v2(5, 7)),
+                        cc.moveTo(0.02, cc.v2(-6, 7)),
+                        cc.moveTo(0.02, cc.v2(-13, 3)),
+                        cc.moveTo(0.02, cc.v2(3, -6)),
+                        cc.moveTo(0.02, cc.v2(-5, 5))
+                        /*,
+                        /*
+                        cc.moveTo(0.02, cc.v2(2, -8)),
+                        cc.moveTo(0.02, cc.v2(-8, -10)),
+                        cc.moveTo(0.02, cc.v2(3, 10)),
+                        cc.moveTo(0.02, cc.v2(0, 0))
+                        */
+                    )
                 )
-            )
-        );
+            );
 
-        this.scheduleOnce(() => {
-            this.camera.stopAllActions();
-            this.camera.setPosition(0,0);
-        }, du);
+            this.scheduleOnce(() => {
+                this.camera.stopAllActions();
+                this.camera.setPosition(0,0);
+                this.shake_flag=false;
+            }, du);
+        }
     }
 
     littleshakeEffect() {
-        this.camera.runAction(
-            cc.repeatForever(
-                cc.sequence(
-                    cc.moveTo(0.02, cc.v2(1.25, 1.75)),
-                    cc.moveTo(0.02, cc.v2(-1.5, 1.75)),
-                    cc.moveTo(0.02, cc.v2(-3.25, 0.75)),
-                    cc.moveTo(0.02, cc.v2(0.75, -1.5)),
-                    cc.moveTo(0.02, cc.v2(-1.25, 1.25))
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
+        {
+            this.camera.runAction(
+                cc.repeatForever(
+                    cc.sequence(
+                        cc.moveTo(0.02, cc.v2(1.25, 1.75)),
+                        cc.moveTo(0.02, cc.v2(-1.5, 1.75)),
+                        cc.moveTo(0.02, cc.v2(-3.25, 0.75)),
+                        cc.moveTo(0.02, cc.v2(0.75, -1.5)),
+                        cc.moveTo(0.02, cc.v2(-1.25, 1.25))
+                    )
                 )
-            )
-        );
-        this.littleshake_flag = true;
+            );
+            this.littleshake_flag = true;
+        }    
     }
 
 
@@ -923,6 +936,10 @@ export default class debug_body1 extends cc.Component
             else if (Global.onWall == 2 && Global.onGround)  Global.onWall = 4;
             //Global.head_contact = false;
         }
+    }
+    
+    local_stop(){
+        cc.audioEngine.stopAll();
     }
 }
 

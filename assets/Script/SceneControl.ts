@@ -90,6 +90,9 @@ export default class NewClass extends cc.Component {
     }
     nextScene() {
         if (this.changeflag) {
+            
+            cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_stop();
+            cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_stop();
             cc.audioEngine.playEffect(this.dead_sound,false);
 
             var i = this;
@@ -218,6 +221,8 @@ export default class NewClass extends cc.Component {
         let action = cc.moveTo(1.3, 1100, 0).easing(cc.easeInOut(3));
         this.Camera.runAction(action);
         this.schedule(()=>{
+            cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_stop();
+            cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_stop();
             if(randomMap == 0){
                 
                 cc.log("change to CastleMap");
