@@ -73,6 +73,9 @@ export default class debug_body1_2 extends cc.Component
     @property(cc.Prefab)
     smoke_yellow: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    hit_smoke_yellow: cc.Prefab = null;
+
     playerSpeed: number =0;
 
     aDown: boolean = false; // key for player to go left
@@ -123,7 +126,7 @@ export default class debug_body1_2 extends cc.Component
     local_percent = 0;
     change_scene_flag = false;
 
-    hit_coff = 5;
+    hit_coff = 3;
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
@@ -847,6 +850,27 @@ export default class debug_body1_2 extends cc.Component
         }
     }
     
+
+    init_hit_smoke() {
+        var hit_smoke_yellow_prefab = cc.instantiate(this.hit_smoke_yellow);
+        hit_smoke_yellow_prefab.parent = this.node.parent;
+        cc.log("here in!!!");
+        /*hit_smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
+        hit_smoke_yellow_prefab.scaleX = 0.5;
+        hit_smoke_yellow_prefab.scaleY = 0.5;
+        if (Global.player2_percent % 12 == 0) {
+            this.node.angle = 3;
+            //this.node.scaleX * percent / 
+        } else if (Global.player2_percent % 12 == 3) {
+            this.node.angle = 1;
+        } else if (Global.player2_percent % 12 == 3) {
+            this.node.angle = -1;
+        } else if (Global.player2_percent % 12 == 3) {
+            this.node.angle = -3;
+        }
+        this.scheduleOnce(function() { this.node.destroy(); }, 0.25);*/
+        hit_smoke_yellow_prefab.getComponent("smoke2").hit(this.node.x, this.node.y, Global.player2_percent, cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").playerside);
+    }
 
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;

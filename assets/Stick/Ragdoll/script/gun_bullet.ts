@@ -187,9 +187,22 @@ export default class gun_bullet extends cc.Component
             }
             //Global.player2_percent += this.hit_coff;
 
-        }
-        else // desert hawk red beam
-        {
+        } else if (this.node.name == "red_beam_1") {
+            if (otherCollider.node.group == "stick2" && this.node.group == "bullet1") {
+                //cc.log("stick1 been hit");
+                Global.player2_percent += this.hit_coff;
+                this.scheduleOnce(() => {
+                    this.node.stopAllActions();
+                    //this.bulletManager.put(this.node);
+    
+                    if (selfCollider.node) {
+                        selfCollider.node.destroy();
+                        cc.log("destroy success!!!!!!!!!!!");
+                    }
+                },0.1);
+                cc.find("small_sticker - 002_yellow/1_Head").getComponent("debug_body1_2").init_hit_smoke();
+            }
+        } else {// desert hawk red beam hit wall?     
             
             this.scheduleOnce(() => {
                 this.node.stopAllActions();

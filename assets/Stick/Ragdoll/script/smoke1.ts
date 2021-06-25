@@ -38,6 +38,47 @@ export default class smoke1 extends cc.Component {
         //this.node.runAction(action);
         this.scheduleOnce(function() { this.node.destroy(); }, 0.25);
     }
+    hit(parentX, parentY, percent, playerSide) {
+        this.node.scaleX = 0.25;
+        this.node.scaleY = 0.25;
+        var random_val = 0.25;
+        if (percent > 50) {
+            random_val = Math.round(Math.random() * (percent / 50 - 1) + 1);
+        }
+        if (playerSide) {
+            if (percent % 12 == 0) {
+                this.node.angle = 15;
+                parentY += 5;
+            } else if (percent % 12 == 3) {
+                this.node.angle = 0;
+            } else if (percent % 12 == 6) {
+                this.node.angle = -15;
+                parentY -= 5
+            } else if (percent % 12 == 9) {
+                this.node.angle = -30;
+                parentY -= 7
+            }
+            this.node.setPosition(parentX + 40, parentY);
+        } else {    // yellow left, black right
+            if (percent % 12 == 0) {
+                this.node.angle = -30;
+                parentY += 5;
+            } else if (percent % 12 == 3) {
+                this.node.angle = -15;
+            } else if (percent % 12 == 6) {
+                this.node.angle = 0;
+                parentY -= 5
+            } else if (percent % 12 == 9) {
+                this.node.angle = 15;
+                parentY -= 7
+            }
+            this.node.scaleX *= -1;
+            this.node.setPosition(parentX - 40, parentY);
+        }
+        //if (percent > 100) this.node.scaleX *=  percent / 100;
+        this.node.scaleX *= random_val;
+        this.scheduleOnce(function() { this.node.destroy(); }, 0.25);
+    }
     appear() {
         let action = cc.sequence(cc.moveBy(0.3, 0, 25), cc.fadeOut(0.8));
         this.node.runAction(action);
