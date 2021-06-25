@@ -20,12 +20,14 @@ export default class enemyManager extends cc.Component
 
             this.enemyPool.put(enemy);
         }
-
-        this.schedule(this.createEnemy, 0.5); //set one enemy to the scene every 0.5s .
+        
+        this.schedule(this.createEnemy1, 1); //set one enemy to the scene every 0.5s .
+        this.schedule(this.createEnemy2, 0.75);
+        this.schedule(this.createEnemy3, 0.5);
     }
 
     //call this function to add new enemy to the scene.
-    private createEnemy()
+    private createEnemy1()
     {
         let enemy = null;
 
@@ -33,7 +35,28 @@ export default class enemyManager extends cc.Component
             enemy = this.enemyPool.get(this.enemyPool);
 
         if(enemy != null)
-            enemy.getComponent('enemy').init(this.node);
+            enemy.getComponent('enemy').init(this.node, 1);
     }
     
+    private createEnemy2()
+    {
+        let enemy = null;
+
+        if(this.enemyPool.size() > 0)
+            enemy = this.enemyPool.get(this.enemyPool);
+
+        if(enemy != null)
+            enemy.getComponent('enemy').init(this.node, 2);
+    }
+
+    private createEnemy3()
+    {
+        let enemy = null;
+
+        if(this.enemyPool.size() > 0)
+            enemy = this.enemyPool.get(this.enemyPool);
+
+        if(enemy != null)
+            enemy.getComponent('enemy').init(this.node, 3);
+    }
 }

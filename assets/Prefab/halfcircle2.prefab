@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "MovingBlock",
+    "_name": "halfcircle2",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -24,16 +24,10 @@
       },
       {
         "__id__": 3
-      },
-      {
-        "__id__": 4
-      },
-      {
-        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 6
+      "__id__": 4
     },
     "_opacity": 255,
     "_color": {
@@ -45,8 +39,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 103,
-      "height": 56
+      "width": 26,
+      "height": 9
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -57,15 +51,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        132.775,
-        531.955,
-        0,
+        78.502,
+        168.002,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        6.123233995736766e-17,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -73,13 +67,13 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": 180
     },
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 3,
-    "groupIndex": 3,
+    "_groupIndex": 0,
+    "groupIndex": 0,
     "_id": ""
   },
   {
@@ -98,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "011159de-68c8-4071-a2f6-6a2fe904e18d"
+      "__uuid__": "e4503627-5f49-4e61-a792-a39de59671da"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -115,58 +109,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.RigidBody",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_type": 0,
-    "_allowSleep": false,
-    "_gravityScale": 0,
-    "_linearDamping": 0,
-    "_angularDamping": 0,
-    "_linearVelocity": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_angularVelocity": 0,
-    "_fixedRotation": true,
-    "enabledContactListener": true,
-    "bullet": false,
-    "awakeOnLoad": true,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.PhysicsBoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "tag": 0,
-    "_density": 2,
-    "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "body": null,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0.3,
-      "y": 0.1
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 103.1,
-      "height": 56.1
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "e1c1fPVN7pBQYc0iyx79lLb",
+    "__type__": "5e4b2h/VkZK1JqhGuGozBkz",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -183,7 +126,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "7bpVGjh1FP0LlsJObwWAwf",
+    "fileId": "fbr4hBZqtFjomaSfyWcHCp",
     "sync": false
   }
 ]

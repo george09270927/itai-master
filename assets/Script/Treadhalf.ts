@@ -2,15 +2,15 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class enemy extends cc.Component 
+export default class Treadhalf extends cc.Component 
 {
-    //private anim = null;
+    private moveSpeed: number = -800;
 
     private collider = null;
 
     private enemyManager = null;
 
-    private enemySpeed = 0;
+    private enemySpeed = -600;
 
     public init(node: cc.Node, num)
     {   
@@ -22,9 +22,7 @@ export default class enemy extends cc.Component
         this.setInitPos(node, num);
 
     }
-    start() {
-        //cc.director.getPhysicsManager().debugDrawFlags = 1;
-    }
+
     // this function is called when the enemy manager calls "get" API.
     reuse(enemyManager)
     {
@@ -34,35 +32,28 @@ export default class enemy extends cc.Component
     //this function sets the enemy's initial position when it is reused.
     private setInitPos(node: cc.Node, num)
     {
-        if(num == 1) {
-            if(Math.random() < 0.5) {
-                this.node.position = cc.v2(600, -70);
-            }
-        }
-        else if(num == 2) {
-            if(Math.random() < 0.375) {
-                this.node.position = cc.v2(600, -5);
-            }
-        }
-        else if(num == 3) {
-            if(Math.random() < 0.25) {
-                this.node.position = cc.v2(600, 60);
-            }
-        }
-
         this.node.parent = node;
         this.node.scaleX = 1;
-        this.enemySpeed = -350;
-        this.collider.enabled = true;
-        this.collider.apply();
+
+        if(num == 1) {   
+            this.node.position = cc.v2(390, -110);
+            this.enemySpeed = -600;
+            this.collider.enabled = true;
+            this.collider.apply();
+        }
+        
+        else if(num == 2) {
+            this.node.position = cc.v2(-400, -145);
+            this.enemySpeed = 600;
+        }
+        
     }
 
     // check if current position is out of view.
     private boundingDetect()
     {
-        if(this.node.x < -650) {
-            this.enemyManager.put(this.node);
-            //console.log("reach boundary");
+        if(this.node.x < -400 || this.node.x > 390) {
+            this.node.destroy();
         }  
     }
 
@@ -77,6 +68,14 @@ export default class enemy extends cc.Component
     {
         if(otherCollider.node.name == "player") {
             console.log("hit the player");
+        }
+    }
+
+    onPostSolve(contact, selfCollider, otherCollider) {
+        //if(otherCollider.node.group == "stick" || otherCollider.node.group == "stick2" || otherCollider.node.group == "leg") {
+        if(otherCollider.node.group == "leg") {
+            let vy = otherCollider.getComponent(cc.RigidBody).linearVelocity.y;
+            otherCollider.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.moveSpeed, vy);
         }
     }
 }
