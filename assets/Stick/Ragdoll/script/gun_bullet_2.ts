@@ -174,13 +174,14 @@ export default class gun_bullet_2 extends cc.Component
                 this.schedule(() => {
                     if (this.hit_laser) Global.player1_percent += 1;
                 },0.08);
+                // the force to the black when been hit by laser
+                if (cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {
+                    cc.find("small_sticker - 002_knee/0_Head").getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(20000, 0), true);
+                } else if (!cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {
+                    cc.find("small_sticker - 002_knee/0_Head").getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-20000, 0), true);
+                }
             }
-            // the force to the black when been hit by laser
-            if (cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {
-                cc.find("small_sticker - 002_knee/0_Head").getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(20000, 0), true);
-            } else if (!cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {
-                cc.find("small_sticker - 002_knee/0_Head").getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-20000, 0), true);
-            }
+            
         }
         else    // desert hawk red beam
         {
