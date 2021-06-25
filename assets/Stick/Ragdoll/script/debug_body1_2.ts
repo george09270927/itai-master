@@ -127,6 +127,8 @@ export default class debug_body1_2 extends cc.Component
 
     local_dead;
 
+    shake_flag = false;
+
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -800);
@@ -772,8 +774,10 @@ export default class debug_body1_2 extends cc.Component
     }  
 
     shakeEffect(du) {
-        if(cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_dead==false)
+        if(cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_dead==false&&this.shake_flag==false)
         {
+            this.shake_flag=true;
+
             this.camera.runAction(
                 cc.repeatForever(
                     cc.sequence(
@@ -796,6 +800,7 @@ export default class debug_body1_2 extends cc.Component
             this.scheduleOnce(() => {
                 this.camera.stopAllActions();
                 this.camera.setPosition(0,0);
+                this.shake_flag=false;
             }, du);
         }
     }
