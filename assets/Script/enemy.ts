@@ -14,7 +14,6 @@ export default class enemy extends cc.Component
 
     public init(node: cc.Node, num)
     {   
-        //this.anim = this.getComponent(cc.Animation);
 
         this.collider = this.getComponent(cc.PhysicsBoxCollider);
 
@@ -22,9 +21,10 @@ export default class enemy extends cc.Component
 
         this.setInitPos(node, num);
 
-        //this.anim.play('enemy');
     }
-
+    start() {
+        //cc.director.getPhysicsManager().debugDrawFlags = 1;
+    }
     // this function is called when the enemy manager calls "get" API.
     reuse(enemyManager)
     {
@@ -54,7 +54,6 @@ export default class enemy extends cc.Component
         this.node.scaleX = 1;
         this.enemySpeed = -350;
         this.collider.enabled = true;
-        this.collider.offset = cc.v2(20, 0);
         this.collider.apply();
     }
 
@@ -63,7 +62,7 @@ export default class enemy extends cc.Component
     {
         if(this.node.x < -650) {
             this.enemyManager.put(this.node);
-            console.log("reach boundary");
+            //console.log("reach boundary");
         }  
     }
 
