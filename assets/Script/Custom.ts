@@ -86,23 +86,27 @@ export default class NewClass extends cc.Component {
             this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
         });
         this.moving_object.parent = cc.find("Canvas");
+        */
         // resume moving
-*/
-        cc.find("Canvas").on('mousedown', function (event) {
-            console.log('Mouse down');
-            this.isMouseDown = true;
-            this.idle = false;
-            this.MouseDownPos = cc.find("Canvas").convertToNodeSpaceAR(event.getLocation());
-            cc.log("MDP: " + this.MouseDownPos);
-        }, this);
+    
+        cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
 
         cc.find("Canvas").on('mouseup', function (event) {
             console.log('Mouse up');
             
             this.isMouseDown = false;
         }, this);
-        
+
         //this.isMouseDown = false;
+    }
+    mousedown_Canvas(event){
+     
+        console.log('Mouse down in platform detect');
+        this.isMouseDown = true;
+        this.idle = false;
+        this.MouseDownPos = cc.find("Canvas").convertToNodeSpaceAR(event.getLocation());
+        cc.log("MDP: " + this.MouseDownPos);
+    
     }
 
     laserplatform(){
@@ -173,6 +177,11 @@ export default class NewClass extends cc.Component {
                 this.moving_object.getComponent(cc.PhysicsPolygonCollider).apply();
 
                 this.state = this.object_type.idle;
+
+                //關閉監聽
+                cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+                cc.log("turn off the listener");
+                this.idle = true;
                 
             } else if(this.isMouseDown && !this.idle){
 
