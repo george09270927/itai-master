@@ -105,6 +105,7 @@ export default class NewClass extends cc.Component {
         this.isMouseDown = true;
         this.idle = false;
         this.MouseDownPos = cc.find("Canvas").convertToNodeSpaceAR(event.getLocation());
+        this.MouseDragPos = cc.find("Canvas").convertToNodeSpaceAR(event.getLocation());
         cc.log("MDP: " + this.MouseDownPos);
     
     }
@@ -123,6 +124,7 @@ export default class NewClass extends cc.Component {
         });
         this.moving_object.parent = cc.find("Canvas");
         // resume moving
+
         this.moving_object.on('mouseup', function (event) {
             console.log('Mouse up');
             this.isMouseDown = false;
@@ -130,18 +132,20 @@ export default class NewClass extends cc.Component {
         this.moving_object.getChildByName("base").getChildByName("platform").on('mousedown', function (event) {
             console.log('Mouse down');
             this.isMouseDown = true;
+            this.idle = false;
           }, this);
 
         this.isMouseDown = null;
     }
-
+    
     update (dt) {
         //this.getMousePosition();
         if(this.state == this.object_type.idle){
 
         }
         else if(this.state == this.object_type.laserplatform){
-            if(!this.isMouseDown){
+            if(!this.isMouseDown && !this.idle){
+                
                 cc.log("fix object////");
                 this.scheduleOnce(()=>{ 
                     this.moving_object.getChildByName("base").getComponent(cc.RigidBody).type = 0;
@@ -149,6 +153,8 @@ export default class NewClass extends cc.Component {
                     this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 6;
                     this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = false;
                 });
+
+                this.idle = true;
                 
             } else if(this.isMouseDown){
 
@@ -177,11 +183,11 @@ export default class NewClass extends cc.Component {
                 this.moving_object.getComponent(cc.PhysicsPolygonCollider).apply();
 
                 this.state = this.object_type.idle;
-
+                this.idle = true;
                 //關閉監聽
                 cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
                 cc.log("turn off the listener");
-                this.idle = true;
+                
                 
             } else if(this.isMouseDown && !this.idle){
 
