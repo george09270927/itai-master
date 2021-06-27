@@ -907,11 +907,17 @@ export default class debug_body1_2 extends cc.Component
         if ((other.node.name == "0_R_Arm_02" || other.node.name == "0_L_Arm_02") && cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").playerside) {
             cc.log("left hit");
             this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(10000 + Global.player2_percent * 1000, Global.player2_percent * 1000), true);
-            Global.player2_percent += this.hit_coff;
+            for (var i = 0; i < Global.player2_percent / 100 + 4; i++) {
+                this.init_hit_smoke();
+                Global.player2_percent += this.hit_coff;
+            }
         } else if ((other.node.name == "0_R_Arm_02" || other.node.name == "0_L_Arm_02") && !cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").playerside) {
             cc.log("right hit");
             this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-10000 + Global.player2_percent * -1000, Global.player2_percent * 1000), true);
-            Global.player2_percent += this.hit_coff;
+            for (var i = 0; i < Global.player2_percent / 100 + 4; i++) {
+                this.init_hit_smoke();
+                Global.player2_percent += this.hit_coff;
+            }
         }
     }
     onEndContact(contact, self, other) {
