@@ -21,6 +21,18 @@ export default class NewClass extends cc.Component {
     private MouseDragPos: cc.Vec2 = null;
 
     @property(cc.Prefab)
+    private player1Prefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private player2Prefab: cc.Prefab = null;
+    @property(cc.Prefab)
+    private blackNumberPrefab: cc.Prefab = null;
+    @property(cc.Prefab)
+    private yellowNumberPrefab: cc.Prefab = null;
+
+    
+
+    @property(cc.Prefab)
     private laserplatformPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
@@ -268,5 +280,30 @@ export default class NewClass extends cc.Component {
             //this.moving_object.y = this.mouse_position.y;
             //this.moving_object.position = this.mouse_position;
         } 
+    }
+
+    startGame(){
+
+        this.state = this.object_type.idle;
+        this.idle = true;
+        cc.log("---start Game---");
+        let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
+        let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
+        let p1Node = cc.instantiate(this.player1Prefab);
+        let p2Node = cc.instantiate(this.player2Prefab);
+        p1Node.parent = cc.director.getScene();
+        p2Node.parent = cc.director.getScene();
+        blackPersentNode.parent = cc.find("Canvas");
+        yellowPersentNode.parent = cc.find("Canvas");
+        blackPersentNode.position = cc.v2(-430, 270);
+        blackPersentNode.width = blackPersentNode.height = 135;
+        blackPersentNode.scale = 0.5;
+
+        yellowPersentNode.position = cc.v2(430, 270);
+        yellowPersentNode.width = yellowPersentNode.height = 135;
+        yellowPersentNode.scale = 0.5;
+        
+        cc.log(p1Node.parent);
+
     }
 }

@@ -29,6 +29,9 @@ export default class NewClass extends cc.Component {
     @property({type:cc.AudioClip})
     private ice_destruction_sound: cc.AudioClip = null;
 
+    @property(cc.Prefab)
+    private cutPrefab: cc.Prefab = null;
+
 
     onLoad () {
         
@@ -85,11 +88,18 @@ export default class NewClass extends cc.Component {
         // 设置第一个碰撞体
         //this.scheduleOnce(()=>{this.getComponent(cc.RigidBody).type = 2});
 
+        //const cloneNode = cc.instantiate(this.node);
         const cloneNode = cc.instantiate(this.node);
+
         cloneNode.getComponent("Cut").splitTime = this.splitTime - 1;
         cloneNode.getComponent("Cut").bulletsplitEnable = false;
         cloneNode.getComponent("Cut").firstblock = false;
-        this.scheduleOnce(()=>{ cloneNode.getComponent(cc.RigidBody).type = 2});
+        
+        this.scheduleOnce(()=>{ 
+            cloneNode.getComponent(cc.RigidBody).type = 2;
+            if(cloneNode.getChildByName("IceWorld_Snow3")!= null)
+                cloneNode.getChildByName("IceWorld_Snow3").destroy();
+        });
         //cloneNode.getComponent(cc.RigidBody).type = 2;
         //cc.log("---setting---");
         //cc.log("now point length: " + this.collider.points.length)
