@@ -19,7 +19,7 @@ export default class smoke2 extends cc.Component {
         this.smokeAni = this.node.getComponent(cc.Animation);
     }
     die() {
-        cc.log("which bound: ",Global.player2_dead_bound);
+        //cc.log("which bound: ",Global.player2_dead_bound);
         if (Global.player2_dead_bound == 1) {           // up bound
             this.node.angle = 90;
         } else if (Global.player2_dead_bound == 3) {    // floor
@@ -32,7 +32,6 @@ export default class smoke2 extends cc.Component {
         this.node.scaleX = 0.5;
         this.node.scaleY = 0.5;
         this.smokeAni = this.node.getComponent(cc.Animation);
-        cc.log("die correctly");
         this.smokeAni.play("smoke_die_2");
         //let action = cc.moveBy(1, -300, 0);
         //this.node.runAction(action);
@@ -84,7 +83,6 @@ export default class smoke2 extends cc.Component {
         var random_x = Math.round(Math.random() * (12 - (-12)) - 12);
         var random_y = Math.round(Math.random() * (10 - (0)) + 0);
         var random_scale = Math.round(Math.random() * (40 - (15)) + 15);
-        cc.log(random_scale);
         //this.node.scaleX = random_scale;
         this.node.scaleY = random_scale / 100;
         this.node.setPosition(parentX + random_x, parentY - 20 + random_y);

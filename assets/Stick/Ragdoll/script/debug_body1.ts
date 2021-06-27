@@ -164,6 +164,7 @@ export default class debug_body1 extends cc.Component
         Global.player1_getgun = false;
         Global.player1_dead = false;
         Global.player1_percent = 0;
+        Global.player1_dead_bound = 0;
 
         // tk custom need
         this.camera = cc.find("Canvas/Main Camera");
@@ -223,11 +224,13 @@ export default class debug_body1 extends cc.Component
             }
             
             //cc.find('SceneControl').getComponent("SceneControl").onKeyDown(cc.macro.KEY.e);
-            var smoke_block_prefab = cc.instantiate(this.smoke_block);
-            smoke_block_prefab.parent = this.node.parent;
-            smoke_block_prefab.setPosition(this.node.x - 200, this.node.y + 200);
-            //smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
-            smoke_block_prefab.getComponent("smoke1").die();
+            if (Global.player1_dead_bound) {
+                var smoke_block_prefab = cc.instantiate(this.smoke_block);
+                smoke_block_prefab.parent = this.node.parent;
+                smoke_block_prefab.setPosition(this.node.x - 200, this.node.y + 200);
+                //smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
+                smoke_block_prefab.getComponent("smoke1").die();
+            }
         }
         //this.excalibur_count+=2;
         //cc.log(this.excalibur_count);
@@ -284,7 +287,7 @@ export default class debug_body1 extends cc.Component
                 this.percent_label.parent.opacity = 60;
             },0.15);
         }
-
+        if (Global.player1_percent > 500) Global.player1_dead = true;
     }
 
 
@@ -925,15 +928,13 @@ export default class debug_body1 extends cc.Component
         }
 
         // hit by stick2's hand
-        if ((other.node.name == "1_R_Arm_02" || other.node.name == "1_L_Arm_02") && cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {
-            cc.log("left hit");
+        if ((other.node.name == "1_R_Arm_02" || other.node.name == "1_L_Arm_02") && cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {            // left hit
             this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(10000 + Global.player1_percent * 1000, Global.player1_percent * 1000), true);
             for (var i = 0; i < Global.player1_percent / 100 + 4; i++) {
                 this.init_hit_smoke();
                 Global.player1_percent += this.hit_coff;
             }
-        } else if ((other.node.name == "1_R_Arm_02" || other.node.name == "1_L_Arm_02") && !cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {
-            cc.log("right hit");
+        } else if ((other.node.name == "1_R_Arm_02" || other.node.name == "1_L_Arm_02") && !cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside) {    // right hit
             this.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-10000 + Global.player1_percent * -1000, Global.player1_percent * 1000), true);
             for (var i = 0; i < Global.player1_percent / 100 + 4; i++) {
                 this.init_hit_smoke();
