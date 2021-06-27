@@ -202,7 +202,7 @@
       "array": [
         0,
         0,
-        269.1217039753645,
+        275.37846640788314,
         0,
         0,
         0,
@@ -2513,6 +2513,9 @@
     },
     "hit_smoke_black": {
       "__uuid__": "3f4c40de-9f1c-4c4c-a39b-923cf5a5a4e4"
+    },
+    "jump_smoke": {
+      "__uuid__": "5b0fc153-8e13-4acc-bb78-8819806d3a41"
     },
     "_id": "1cTl/Dn49LzrO2HRzEUAwk"
   },
@@ -5922,6 +5925,9 @@
     },
     "hit_smoke_yellow": {
       "__uuid__": "c7a55148-c93e-47a7-a895-bc4883e8fb1f"
+    },
+    "jump_smoke": {
+      "__uuid__": "5b0fc153-8e13-4acc-bb78-8819806d3a41"
     },
     "_id": "48nhlqFMZBGKerWnMDai9A"
   },

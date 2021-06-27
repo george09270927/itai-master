@@ -77,6 +77,9 @@ export default class debug_body1 extends cc.Component
 
     @property(cc.Prefab)
     hit_smoke_black: cc.Prefab = null;
+    
+    @property(cc.Prefab)
+    jump_smoke: cc.Prefab = null;
 
     playerSpeed: number =0;
 
@@ -387,18 +390,24 @@ export default class debug_body1 extends cc.Component
  
             } else if(event.keyCode == cc.macro.KEY.w) {
                 if (!this.wDown) {
-                    cc.audioEngine.playMusic(this.jump_sound,false);
+                    //cc.audioEngine.playMusic(this.jump_sound,false);
                     if (Global.onWall == 1) {
+                        this.init_jump_smoke();
+                        cc.audioEngine.playMusic(this.jump_sound,false);
                         Global.onGround = false;
                         Global.onWall = 3;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(30000, 180000), true);
                     } else if (Global.onWall == 2) {
+                        this.init_jump_smoke();
+                        cc.audioEngine.playMusic(this.jump_sound,false);
                         Global.onGround = false;
                         Global.onWall = 4;
                         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, 0);
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(-30000, 180000), true);
                     } else if (Global.onGround) {
+                        this.init_jump_smoke();
+                        cc.audioEngine.playMusic(this.jump_sound,false);
                         Global.onGround = false;
                         this.Jump_force.getComponent(cc.RigidBody).applyForceToCenter(new cc.Vec2(0, 180000), true);
                     }
@@ -891,24 +900,17 @@ export default class debug_body1 extends cc.Component
     init_hit_smoke() {
         var hit_smoke_yellow_prefab = cc.instantiate(this.hit_smoke_black);
         hit_smoke_yellow_prefab.parent = this.node.parent;
-        cc.log("here in!!!");
-        /*hit_smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
-        hit_smoke_yellow_prefab.scaleX = 0.5;
-        hit_smoke_yellow_prefab.scaleY = 0.5;
-        if (Global.player2_percent % 12 == 0) {
-            this.node.angle = 3;
-            //this.node.scaleX * percent / 
-        } else if (Global.player2_percent % 12 == 3) {
-            this.node.angle = 1;
-        } else if (Global.player2_percent % 12 == 3) {
-            this.node.angle = -1;
-        } else if (Global.player2_percent % 12 == 3) {
-            this.node.angle = -3;
-        }
-        this.scheduleOnce(function() { this.node.destroy(); }, 0.25);*/
         hit_smoke_yellow_prefab.getComponent("smoke1").hit(this.node.x, this.node.y, Global.player1_percent, cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").playerside);
     }
-
+    init_jump_smoke() {
+        var x = this.node.x;
+        var y = this.node.y;
+        for (var i = 0; i < 3; i++) {
+            var jump_smok_prefab = cc.instantiate(this.jump_smoke);
+            jump_smok_prefab.parent = this.node.parent;
+            jump_smok_prefab.getComponent("smoke1").jump(x, y);
+        }
+    }
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
         //cc.log("YYYYYYYYY: "+direction.y);
