@@ -219,8 +219,8 @@
     },
     "collideConnected": true,
     "_target": 1,
-    "_frequency": 2,
-    "_dampingRatio": 0.7,
+    "_frequency": 10000000000000,
+    "_dampingRatio": 0,
     "_maxForce": 0,
     "mouseRegion": {
       "__id__": 9

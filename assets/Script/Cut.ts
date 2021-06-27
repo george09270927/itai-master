@@ -140,8 +140,8 @@ export default class NewClass extends cc.Component {
             this.collider.points[1] = cc.v2(x1,y1);
             this.collider.points[2] = cc.v2(x2,y2);
             //cc.log("change0: " + this.collider.points[1] + ", " + this.collider.points[2]);
-            if(this.node.parent.getChildByName("IceWorld_Snow3") != null && this.firstblock)
-                this.node.parent.getChildByName("IceWorld_Snow3").getComponent(cc.Sprite).fillRange = ratio2;
+            if(this.node.getChildByName("IceWorld_Snow3") != null && this.firstblock)
+                this.node.getChildByName("IceWorld_Snow3").getComponent(cc.Sprite).fillRange = ratio2;
             //var cutcube
         } else if (random_edge_1 == 1 || random_edge_1 == 3){
             
@@ -155,10 +155,10 @@ export default class NewClass extends cc.Component {
             this.collider.points[3] = cc.v2(x3,y3);
 
             if(this.firstblock){
-                this.node.parent.getChildByName("IceWorld_Snow3").destroy();
-            let snowfade = cc.sequence(cc.fadeOut(0.6), cc.callFunc(()=>{this.node.parent.getChildByName("IceWorld_Snow3").destroy()}));
+                this.node.getChildByName("IceWorld_Snow3").destroy();
+            let snowfade = cc.sequence(cc.fadeOut(0.6), cc.callFunc(()=>{this.node.getChildByName("IceWorld_Snow3").destroy()}));
 
-            this.node.parent.getChildByName("IceWorld_Snow3").runAction(snowfade);
+            this.node.getChildByName("IceWorld_Snow3").runAction(snowfade);
             }
             
         } 
@@ -229,7 +229,7 @@ export default class NewClass extends cc.Component {
                     if(normal.x < 0){
                         //cc.log("change  scale");
                         this.node.scaleX = -1; 
-                        this.node.parent.getChildByName("IceWorld_Snow3").scaleX = -1;
+                        this.node.getChildByName("IceWorld_Snow3").scaleX = -1;
                         this.pos_scaleX = false;
                     } else if(normal.x > 0){
                         this.pos_scaleX = true;

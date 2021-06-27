@@ -139,16 +139,16 @@ export default class NewClass extends cc.Component {
             this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 2;
             this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
             //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
-            //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
+            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
         });
         this.moving_object.parent = cc.find("Canvas");
         // resume moving
 
-        this.moving_object.on('mouseup', function (event) {
+        this.moving_object.getChildByName("platform").on('mouseup', function (event) {
             console.log('Mouse up');
             this.isMouseDown = false;
         }, this);
-        this.moving_object.getChildByName("base").getChildByName("platform").on('mousedown', function (event) {
+        this.moving_object.getChildByName("platform").on('mousedown', function (event) {
             console.log('Mouse down');
             this.isMouseDown = true;
             this.idle = false;
@@ -238,6 +238,35 @@ export default class NewClass extends cc.Component {
                 */
                 
             }
-        }
+        } else if(this.state == this.object_type.ice){
+            if(!this.isMouseDown && !this.idle){
+                
+                cc.log("fix object////");
+                this.scheduleOnce(()=>{ 
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 0;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 4;
+                    //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 4;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = false;
+                });
+
+                this.idle = true;
+                this.state = this.object_type.idle;
+                
+            } else if(this.isMouseDown && !this.idle){
+                cc.log("hi ice");
+                this.scheduleOnce(()=>{ 
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 2;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+                    //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
+                });
+            }
+            //cc.log("moving object: " + this.moving_object.position);
+            //cc.log(this.mouse_position);
+            //cc.log(this.moving_object);
+            //this.moving_object.setPosition(30, 50)
+            //this.moving_object.y = this.mouse_position.y;
+            //this.moving_object.position = this.mouse_position;
+        } 
     }
 }
