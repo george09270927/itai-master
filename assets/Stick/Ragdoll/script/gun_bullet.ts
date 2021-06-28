@@ -202,6 +202,10 @@ export default class gun_bullet extends cc.Component
                 },0.1);
                 cc.find("small_sticker - 002_yellow/1_Head").getComponent("debug_body1_2").init_hit_smoke();
             }
+            else if(otherCollider.node.group=="platform"&&this.node.group=="bullet1")
+            {
+                contact.disabled = true;
+            }
         } else {// desert hawk red beam hit wall?     
             
             this.scheduleOnce(() => {

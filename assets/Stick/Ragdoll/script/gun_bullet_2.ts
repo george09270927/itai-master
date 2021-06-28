@@ -196,6 +196,10 @@ export default class gun_bullet_2 extends cc.Component
                 },0.1);
                 cc.find("small_sticker - 002_knee/0_Head").getComponent("debug_body1").init_hit_smoke();
             }
+            else if(otherCollider.node.group=="platform"&&this.node.group=="bullet2")
+            {
+                contact.disabled = true;
+            }
         } else {   // desert hawk red beam
             this.scheduleOnce(() => {
                 this.node.stopAllActions();
