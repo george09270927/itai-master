@@ -9,7 +9,7 @@ export default class ButtonController extends cc.Component
     private ButtonCover = null;
     private isShow: boolean = false;
 
-    onLoad() {         
+    onLoad() {
     }
 
     start() {
@@ -39,6 +39,7 @@ export default class ButtonController extends cc.Component
                 this.Buttons.getChildByName("QuitGame").getComponent(cc.Button).interactable = false;
                 
                 let move = cc.moveTo(0.2, 0, -280);
+                if(cc.director.getScene().name == "Menu") move = cc.moveTo(0.2, 0, -416);
                 let finished = cc.callFunc(()=> {
                     cc.director.pause();
                     cc.audioEngine.pauseAll();
@@ -58,6 +59,7 @@ export default class ButtonController extends cc.Component
         cc.audioEngine.resumeAll();
         console.log("resume");
         let move = cc.moveTo(0.2, 0, 0)      // move to (0, 0) in 0.2 sec
+        if(cc.director.getScene().name == "Menu") move = cc.moveTo(0.2, 0, -46);
         let finished = cc.callFunc(()=> {
             this.isShow = false;
             this.Buttons.active = false;
@@ -65,6 +67,11 @@ export default class ButtonController extends cc.Component
             this.ButtonCover.active = false;
         });
         this.ButtonCover.runAction(cc.sequence(move, finished));
+    }
+
+    public Editor() {
+        cc.director.resume();
+        cc.director.loadScene("CustomMap");
     }
 
     public MainMenu() {
@@ -75,5 +82,5 @@ export default class ButtonController extends cc.Component
     public QuitGame() {
         cc.game.end();
     }
-     
+    
 }
