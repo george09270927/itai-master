@@ -225,12 +225,17 @@ export default class debug_body1_2 extends cc.Component
                 });
             }
             //cc.find('SceneControl').getComponent("SceneControl").nextScene();
-            if (Global.player2_dead_bound) {
+            if (Global.player2_dead_bound > 0 && Global.player2_dead_bound < 5) {
                 var smoke_yellow_prefab = cc.instantiate(this.smoke_yellow);
                 smoke_yellow_prefab.parent = this.node.parent;
                 smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
                 //smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
                 smoke_yellow_prefab.getComponent("smoke2").die();
+            } else if (Global.player2_dead_bound == 5) {    // castle map's spike
+                for (var i = 0; i < 4; i++) {
+                    this.init_hit_smoke();
+                    Global.player2_percent += this.hit_coff;
+                }
             }
         }
     

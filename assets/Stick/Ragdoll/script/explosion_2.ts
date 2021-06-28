@@ -46,6 +46,7 @@ export default class explosion_2 extends cc.Component
             } else if (otherCollider.node.group == "stick2") {
                 //cc.log("stick2 been hit");
                 Global.player2_percent += this.hit_coff;
+                cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").init_hit_smoke();
                 Global.player2_dead=true;
             }
         }
