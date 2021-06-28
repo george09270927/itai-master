@@ -14,7 +14,6 @@ export default class NewClass extends cc.Component {
     private number_of_Map: number = 5;
 
     private current_Map: number  = null;
-
     
     private ready_enabled: boolean = true;
     
@@ -234,7 +233,7 @@ export default class NewClass extends cc.Component {
             } else if (randomMap == 1){
                 cc.log("change to Icemap");
                 cc.director.loadScene("IceMap");
-            } else if (randomMap == 2){
+            } else if (randomMap == 2){  
                 cc.log("change to LaserMap");
                 cc.director.loadScene("LaserMap");
             } else if (randomMap == 3){
@@ -251,4 +250,5 @@ export default class NewClass extends cc.Component {
     }
 
     // update (dt) {}
+    0
 }
