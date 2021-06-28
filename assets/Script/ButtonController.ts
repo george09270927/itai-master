@@ -39,7 +39,10 @@ export default class ButtonController extends cc.Component
                 this.Buttons.getChildByName("QuitGame").getComponent(cc.Button).interactable = false;
                 
                 let move = cc.moveTo(0.2, 0, -280);
-                if(cc.director.getScene().name == "Menu") move = cc.moveTo(0.2, 0, -416);
+                if(cc.director.getScene().name == "Menu") {
+                    move = cc.moveTo(0.2, 0, -416);
+                    this.Buttons.getChildByName("Editor").getComponent(cc.Button).interactable = false;
+                }
                 let finished = cc.callFunc(()=> {
                     cc.director.pause();
                     cc.audioEngine.pauseAll();
@@ -49,7 +52,10 @@ export default class ButtonController extends cc.Component
                 
                 this.Buttons.getChildByName("Resume").getComponent(cc.Button).interactable = true;
                 this.Buttons.getChildByName("MainMenu").getComponent(cc.Button).interactable = true;
-                this.Buttons.getChildByName("QuitGame").getComponent(cc.Button).interactable = true;             
+                this.Buttons.getChildByName("QuitGame").getComponent(cc.Button).interactable = true;
+                if(cc.director.getScene().name == "Menu") {
+                    this.Buttons.getChildByName("Editor").getComponent(cc.Button).interactable = true;
+                }           
             }
         }
     }
