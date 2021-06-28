@@ -306,6 +306,7 @@ export default class NewClass extends cc.Component {
             yellowPersentNode.width = yellowPersentNode.height = 135;
             yellowPersentNode.scale = 0.5;
             
+        
             cc.log(p1Node.parent);
         }));
         leftPage.runAction(action);
