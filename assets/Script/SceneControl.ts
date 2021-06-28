@@ -65,6 +65,8 @@ export default class NewClass extends cc.Component {
             this.current_Map = 3;
         } else if (MapName == "XmasMap"){
             this.current_Map = 4;
+        } else if (MapName == "CustomMap"){
+            this.current_Map = 10;
         } 
         if(!this.ready_enabled)
             this.showReady();
@@ -206,8 +208,10 @@ export default class NewClass extends cc.Component {
     changeScene(){
         
         if(this.noRandomMode){
-
-            var randomMap = (this.current_Map + 1) % this.number_of_Map;
+            if(this.current_Map == 10){ // if current map is "CustomMap"
+                var randomMap = 10;
+            } else var randomMap = (this.current_Map + 1) % this.number_of_Map;
+    
         }else{
             var randomMap = Math.floor(Math.random()*this.number_of_Map);
             while(randomMap == this.current_Map){
@@ -239,6 +243,9 @@ export default class NewClass extends cc.Component {
             } else if (randomMap == 4){
                 cc.log("change to XmasMap");
                 cc.director.loadScene("XmasMap");
+            } else if (randomMap = 10){
+                cc.log("change to CustomMap");
+                cc.director.loadScene("CustomMap");
             }
         },1.3); 
     }

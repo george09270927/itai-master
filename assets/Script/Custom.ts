@@ -284,26 +284,34 @@ export default class NewClass extends cc.Component {
 
     startGame(){
 
+        cc.log("---start Game---");
         this.state = this.object_type.idle;
         this.idle = true;
-        cc.log("---start Game---");
-        let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
-        let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
-        let p1Node = cc.instantiate(this.player1Prefab);
-        let p2Node = cc.instantiate(this.player2Prefab);
-        p1Node.parent = cc.director.getScene();
-        p2Node.parent = cc.director.getScene();
-        blackPersentNode.parent = cc.find("Canvas");
-        yellowPersentNode.parent = cc.find("Canvas");
-        blackPersentNode.position = cc.v2(-430, 270);
-        blackPersentNode.width = blackPersentNode.height = 135;
-        blackPersentNode.scale = 0.5;
 
-        yellowPersentNode.position = cc.v2(430, 270);
-        yellowPersentNode.width = yellowPersentNode.height = 135;
-        yellowPersentNode.scale = 0.5;
+        var leftPage = cc.find("Canvas/Left Page");
+        var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -800, 0).easing(cc.easeInOut(3)), cc.callFunc(()=>{
+            let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
+            let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
+            let p1Node = cc.instantiate(this.player1Prefab);
+            let p2Node = cc.instantiate(this.player2Prefab);
+            p1Node.parent = cc.director.getScene();
+            p2Node.parent = cc.director.getScene();
+            blackPersentNode.parent = cc.find("Canvas");
+            yellowPersentNode.parent = cc.find("Canvas");
+            blackPersentNode.position = cc.v2(-430, 270);
+            blackPersentNode.width = blackPersentNode.height = 135;
+            blackPersentNode.scale = 0.5;
+
+            yellowPersentNode.position = cc.v2(430, 270);
+            yellowPersentNode.width = yellowPersentNode.height = 135;
+            yellowPersentNode.scale = 0.5;
+            
+            cc.log(p1Node.parent);
+        }));
+        leftPage.runAction(action);
+
+    
         
-        cc.log(p1Node.parent);
 
     }
 }
