@@ -7,7 +7,7 @@ export default class explosion_2 extends cc.Component
     private anim = null;
 
     //private bulletManager = null;
-    private hit_coff = 3;
+    private hit_coff = 12;
 
     public isTriggered = false; // I add this to make the bullet kill one enemy at a time.
 

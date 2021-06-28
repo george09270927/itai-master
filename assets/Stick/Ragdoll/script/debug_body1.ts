@@ -811,7 +811,7 @@ export default class debug_body1 extends cc.Component
     }  
 
     shakeEffect(du) {
-        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false&&this.shake_flag==false)
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false&&this.shake_flag==false&&Global.player1_dead==false)
         {
             this.shake_flag=true;
             this.camera.runAction(
@@ -842,7 +842,7 @@ export default class debug_body1 extends cc.Component
     }
 
     littleshakeEffect() {
-        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false&&Global.player1_dead==false)
         {
             this.camera.runAction(
                 cc.repeatForever(

@@ -23,7 +23,7 @@ export default class barrel extends cc.Component
                     cc.instantiate(this.explosionPrefab).getComponent("explosion").init(this.node);
                     cc.find("small_sticker - 002_knee/0_Head").getComponent("debug_body1").shakeEffect(1);
                     selfCollider.node.destroy();
-                    },3);
+                    },1 + 2*Math.random());
                 }
             }
         } 
