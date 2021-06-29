@@ -11,7 +11,7 @@ export default class NewClass extends cc.Component {
     
     private changeflag: boolean = true;
 
-    private number_of_Map: number = 5;
+    private number_of_Map: number = 6;
 
     private current_Map: number  = null;
     
@@ -64,6 +64,8 @@ export default class NewClass extends cc.Component {
             this.current_Map = 3;
         } else if (MapName == "XmasMap"){
             this.current_Map = 4;
+        } else if (MapName == "CrateMap"){
+            this.current_Map = 5;
         } else if (MapName == "CustomMap"){
             this.current_Map = 10;
         } 
@@ -242,6 +244,9 @@ export default class NewClass extends cc.Component {
             } else if (randomMap == 4){
                 cc.log("change to XmasMap");
                 cc.director.loadScene("XmasMap");
+            }  else if (randomMap == 5){
+                cc.log("change to crateMap");
+                cc.director.loadScene("CrateMap");
             } else if (randomMap = 10){
                 cc.log("change to CustomMap");
                 cc.director.loadScene("CustomMap");
