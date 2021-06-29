@@ -919,6 +919,13 @@ export default class debug_body1 extends cc.Component
             jump_smok_prefab.getComponent("smoke1").jump(x, y);
         }
     }
+    dead_from_laser() {
+        Global.player1_dead = true;
+        //for (var i = 0; i < 4; i++) {
+            this.init_hit_smoke();
+            Global.player1_percent += 3;
+        //}
+    }
     onBeginContact(contact, self, other) {
         var direction = contact.getWorldManifold().normal;
         //cc.log("YYYYYYYYY: "+direction.y);

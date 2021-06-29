@@ -86,14 +86,15 @@ export default class NewClass extends cc.Component {
     onKeyDown(event){
         if(event.keyCode == cc.macro.KEY.e){
             cc.log("--change scene--");
-            if(this.changeflag){
+            if(this.changeflag && this.current_Map != 10){
                 this.nextScene();
             }
         }
     }
+
     nextScene() {
         if (this.changeflag) {
-            
+            //console.log("call nextScene");
             cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_stop();
             cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_stop();
             cc.audioEngine.playEffect(this.dead_sound,false);
@@ -113,12 +114,11 @@ export default class NewClass extends cc.Component {
                 }).start();
 
             this.changeflag = false;
+            if(this.current_Map == 10) this.changeflag = true;
             let showDialog_before_changeScene = cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(1), cc.callFunc(()=>{this.changeScene();}))
             this.node.runAction(showDialog_before_changeScene);
         }
     }
-
-    
 
     showDialog(){
         //cc.log("show dialog");
@@ -157,11 +157,10 @@ export default class NewClass extends cc.Component {
 
         let fIn : cc.Action = cc.fadeTo(0.1, 100);
 
-        DialogNode.getChildByName("mask").runAction(fIn);
-
-
-        
+        if(this.current_Map != 10)
+            DialogNode.getChildByName("mask").runAction(fIn);
     }
+    
     showReady(){
         //cc.log("show dialog");
 
@@ -200,10 +199,12 @@ export default class NewClass extends cc.Component {
 
     loadSceneAnimation(){
         //cc.log("---loadsceneAnimation---");
-        this.Camera.x = -1100;
-        let action = cc.moveTo(1.3, 0, 0).easing(cc.easeInOut(3));
-        this.Camera.runAction(action);
-        //cc.log("finish action: " + this.Camera.position);
+        if(cc.director.getScene().name != "CustomMap") {
+            this.Camera.x = -1100;
+            let action = cc.moveTo(1.3, 0, 0).easing(cc.easeInOut(3));
+            this.Camera.runAction(action);
+            //cc.log("finish action: " + this.Camera.position);
+        }
     }
 
     changeScene(){
@@ -223,37 +224,54 @@ export default class NewClass extends cc.Component {
         }
         
         cc.log("new random map = " + randomMap);
-        let action = cc.moveTo(1.3, 1100, 0).easing(cc.easeInOut(3));
-        this.Camera.runAction(action);
-        this.schedule(()=>{
-            cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_stop();
-            cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_stop();
-            if(randomMap == 0){
-                
-                cc.log("change to CastleMap");
-                cc.director.loadScene("CastleMap");
-            } else if (randomMap == 1){
-                cc.log("change to Icemap");
-                cc.director.loadScene("IceMap");
-            } else if (randomMap == 2){  
-                cc.log("change to LaserMap");
-                cc.director.loadScene("LaserMap");
-            } else if (randomMap == 3){
-                cc.log("change to MovingMap");
-                cc.director.loadScene("MovingMap");
-            } else if (randomMap == 4){
-                cc.log("change to XmasMap");
-                cc.director.loadScene("XmasMap");
-            }  else if (randomMap == 5){
-                cc.log("change to crateMap");
-                cc.director.loadScene("CrateMap");
-            } else if (randomMap = 10){
-                cc.log("change to CustomMap");
-                cc.director.loadScene("CustomMap");
-            }
-        },1.3); 
+        
+        if(randomMap == 10) {
+            var leftPage = cc.find("Left Page");
+
+            var blackPersentNode = cc.find("Canvas/percent_black");          
+            var yellowPersentNode = cc.find("Canvas/percent_yellow");
+            var p1Node = cc.find("small_sticker - 002_knee");
+            var p2Node = cc.find("small_sticker - 002_yellow"); 
+
+            blackPersentNode.destroy();
+            yellowPersentNode.destroy();
+            p1Node.destroy();
+            p2Node.destroy();
+
+            var action = cc.moveTo(0.5, 90, 320).easing(cc.easeInOut(3));
+            leftPage.runAction(action);   
+        }     
+        else {
+            let action = cc.moveTo(1.3, 1100, 0).easing(cc.easeInOut(3));
+            this.Camera.runAction(action);
+            this.schedule(()=>{
+                cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").local_stop();
+                cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_stop();
+                if(randomMap == 0){
+                    
+                    cc.log("change to CastleMap");
+                    cc.director.loadScene("CastleMap");
+                } else if (randomMap == 1){
+                    cc.log("change to Icemap");
+                    cc.director.loadScene("IceMap");
+                } else if (randomMap == 2){  
+                    cc.log("change to LaserMap");
+                    cc.director.loadScene("LaserMap");
+                } else if (randomMap == 3){
+                    cc.log("change to MovingMap");
+                    cc.director.loadScene("MovingMap");
+                } else if (randomMap == 4){
+                    cc.log("change to XmasMap");
+                    cc.director.loadScene("XmasMap");
+                }  else if (randomMap == 5){
+                    cc.log("change to crateMap");
+                    cc.director.loadScene("CrateMap");
+                }
+            },1.3); 
+        }
+            
     }
 
     // update (dt) {}
-    0
+    
 }
