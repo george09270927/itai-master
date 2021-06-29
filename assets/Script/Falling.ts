@@ -13,7 +13,7 @@ export default class NewClass extends cc.Component {
 
     // update (dt) {}
     // for CustomMap init position
-    init(pos){
+    initPos(pos){
         this.node.parent.position = pos;
     }
 

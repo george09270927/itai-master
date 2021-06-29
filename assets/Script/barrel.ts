@@ -8,6 +8,9 @@ export default class barrel extends cc.Component
 
     barrel_flag = false;
 
+    initPos(pos){
+        this.node.position = pos;
+    }
     //detect collision with enemies
     onBeginContact(contact, selfCollider, otherCollider)
     {
