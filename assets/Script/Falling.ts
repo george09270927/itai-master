@@ -8,10 +8,14 @@ export default class NewClass extends cc.Component {
     // onLoad () {}
     private isTouched: boolean = false;
     start () {
-
+        
     }
 
     // update (dt) {}
+    // for CustomMap init position
+    initPos(pos){
+        this.node.parent.position = pos;
+    }
 
     fall(){
         //cc.log("in fall");
@@ -28,7 +32,8 @@ export default class NewClass extends cc.Component {
 
     onBeginContact(contact, self, other)
     {
-        if((other.node.group == "leg" || other.node.name == "player" ) && !this.isTouched)
+        //if((other.node.group == "leg" || other.node.name == "player" ) && !this.isTouched)
+        if((other.node.name == "0_L_Leg_02" || other.node.name == "0_R_Leg_02" || other.node.name == "1_L_Leg_02" || other.node.name == "1_R_Leg_02") && !this.isTouched)
         {
             this.isTouched = true;
             cc.log("fall.");

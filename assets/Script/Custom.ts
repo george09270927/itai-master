@@ -45,6 +45,12 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     private smashcubePrefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    private fallingplatformPrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private barrelPrefab: cc.Prefab = null;
+
     private state: number = null;
 
     private idle: boolean =true;
@@ -53,7 +59,9 @@ export default class NewClass extends cc.Component {
         idle: 0,
         laserplatform: 1,
         platform: 2,
-        ice: 3
+        ice: 3,
+        mush: 4,
+        barrel: 5
         
     });
 
@@ -105,6 +113,7 @@ export default class NewClass extends cc.Component {
     }
     mousedown_Canvas(event){
      
+        
         console.log('Mouse down in platform detect');
         this.isMouseDown = true;
         this.idle = false;
@@ -116,7 +125,7 @@ export default class NewClass extends cc.Component {
 
     laserplatform(){
         cc.log("instantiate!");
-        
+        this.initState();
         this.state = this.object_type.laserplatform;
         this.moving_object = cc.instantiate(this.laserplatformPrefab);
         this.laserBeam_object = cc.instantiate(this.laserbeamPrefab);
@@ -144,7 +153,7 @@ export default class NewClass extends cc.Component {
 
     ice(){
         cc.log("ice state!");
-        
+        this.initState();
         this.state = this.object_type.ice;
         this.moving_object = cc.instantiate(this.smashcubePrefab);
         
@@ -169,11 +178,39 @@ export default class NewClass extends cc.Component {
 
         this.isMouseDown = null;
     }
-    
+
+    mush(){
+        this.initState();
+        cc.log("mush state...");
+        this.state = this.object_type.idle; // initial
+        this.state = this.object_type.mush;
+        cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+        cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
+        // resume moving
+        this.isMouseDown = null;
+    }
+
+    barrel(){
+        this.initState();
+        cc.log("barrel state...");
+        this.state = this.object_type.idle; // initial
+        this.state = this.object_type.barrel;
+        cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+        cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
+        
+        this.isMouseDown = null;
+    }
+    initState(){
+        cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+        cc.systemEvent.removeAll(cc.find("Canvas"));
+        cc.systemEvent.removeAll(this.moving_object);
+        cc.log("remove///");
+    }
     update (dt) {
         //this.getMousePosition();
         if(this.state == this.object_type.idle){
-
+            //cc.log("int idle");
+            //cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
         }
         else if(this.state == this.object_type.laserplatform){
             if(!this.isMouseDown && !this.idle){
@@ -282,7 +319,33 @@ export default class NewClass extends cc.Component {
             //this.moving_object.setPosition(30, 50)
             //this.moving_object.y = this.mouse_position.y;
             //this.moving_object.position = this.mouse_position;
-        } 
+        } else if (this.state == this.object_type.mush) {
+            if(this.isMouseDown){
+                this.isMouseDown = false;
+                this.idle = false;
+                this.moving_object = cc.instantiate(this.fallingplatformPrefab);
+                this.moving_object.getChildByName("platform").getComponent("Falling").initPos(this.MouseDownPos);
+                this.moving_object.parent = cc.find("Canvas");
+                
+                //this.scheduleOnce(()=>{this.moving_object.position = this.MouseDownPos;});
+                //cc.log(this.moving_object.position);
+            } else {
+                this.idle = true;
+            }
+            
+        } else if (this.state == this.object_type.barrel){
+            if(this.isMouseDown && !this.idle){
+                this.isMouseDown = false;
+                this.idle = false;
+                this.moving_object = cc.instantiate(this.barrelPrefab);
+                this.moving_object.getComponent("barrel").initPos(this.MouseDownPos);
+                this.moving_object.parent = cc.find("Canvas");
+                
+            } else {
+                this.idle = true;
+            }
+            
+        }
     }
 
     startGame(){
@@ -291,7 +354,7 @@ export default class NewClass extends cc.Component {
         this.state = this.object_type.idle;
         this.idle = true;
 
-        var leftPage = cc.find("Canvas/Left Page");
+        var leftPage = cc.find("Left Page");
         var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -1600, 0).easing(cc.easeInOut(3)), cc.callFunc(()=>{
             let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
             let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
