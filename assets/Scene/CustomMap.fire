@@ -1264,6 +1264,9 @@
     "smashcubePrefab": {
       "__uuid__": "7686cb54-9e55-421d-99ae-46cde03c77fb"
     },
+    "iceplatformPrefab": {
+      "__uuid__": "cda01243-c798-4236-9465-19474ecc8fb9"
+    },
     "_id": "98sgtEpZpLTZGZGGd6rgWT"
   },
   {
@@ -2040,7 +2043,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "IcePlatform Button",
+    "_name": "Mush Button",
     "_objFlags": 0,
     "_parent": {
       "__id__": 18
@@ -2421,7 +2424,7 @@
     },
     "component": "",
     "_componentId": "51516jfgklG4JsAcd/QsUW2",
-    "handler": "ice",
+    "handler": "mush",
     "customEventData": ""
   },
   {

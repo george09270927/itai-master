@@ -44,6 +44,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     private smashcubePrefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    private iceplatformPrefab: cc.Prefab = null;
+
     private state: number = null;
 
     private idle: boolean =true;
@@ -52,7 +55,8 @@ export default class NewClass extends cc.Component {
         idle: 0,
         laserplatform: 1,
         platform: 2,
-        ice: 3
+        ice: 3,
+        mush: 4
         
     });
 
@@ -168,6 +172,35 @@ export default class NewClass extends cc.Component {
 
         this.isMouseDown = null;
     }
+
+    mush(){
+        cc.log("mush state...");
+        this.state = this.object_type.mush;
+        
+        /*
+        this.scheduleOnce(()=>{ 
+            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 2;
+            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+            //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
+        });
+        */
+        this.moving_object.parent = cc.find("Canvas");
+        // resume moving
+
+        this.moving_object.getChildByName("platform").on('mouseup', function (event) {
+            console.log('Mouse up');
+            this.isMouseDown = false;
+        }, this);
+        this.moving_object.getChildByName("platform").on('mousedown', function (event) {
+            console.log('Mouse down');
+            this.isMouseDown = true;
+            this.idle = false;
+          }, this);
+
+        this.isMouseDown = null;
+
+    }
     
     update (dt) {
         //this.getMousePosition();
@@ -279,7 +312,10 @@ export default class NewClass extends cc.Component {
             //this.moving_object.setPosition(30, 50)
             //this.moving_object.y = this.mouse_position.y;
             //this.moving_object.position = this.mouse_position;
-        } 
+        } else if (this.state == this.object_type.mush) {
+            this.moving_object = cc.instantiate(this.iceplatformPrefab);
+            this.moving_object.position = this.MouseDownPos;
+        }
     }
 
     startGame(){
