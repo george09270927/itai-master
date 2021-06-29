@@ -78,5 +78,6 @@ export default class bound_detect extends cc.Component {
         else if (Global.player1_dead && this.node.name == "right bound") Global.player1_dead_bound = 2;
         else if (Global.player1_dead && this.node.name == "floor") Global.player1_dead_bound = 3;
         else if (Global.player1_dead && this.node.name == "left bound") Global.player1_dead_bound = 4;
+        else if (Global.player1_dead && this.node.name == "Spike") Global.player1_dead_bound = 5;       // castle map's spike
     }
 }

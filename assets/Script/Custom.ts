@@ -325,7 +325,7 @@ export default class NewClass extends cc.Component {
         this.idle = true;
 
         var leftPage = cc.find("Canvas/Left Page");
-        var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -800, 0).easing(cc.easeInOut(3)), cc.callFunc(()=>{
+        var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -1600, 0).easing(cc.easeInOut(3)), cc.callFunc(()=>{
             let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
             let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
             let p1Node = cc.instantiate(this.player1Prefab);
@@ -346,9 +346,9 @@ export default class NewClass extends cc.Component {
             cc.log(p1Node.parent);
         }));
         leftPage.runAction(action);
+    }
 
-    
-        
-
+    public Leave() {
+        cc.director.loadScene("Menu");
     }
 }

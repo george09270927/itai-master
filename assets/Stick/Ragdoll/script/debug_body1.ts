@@ -224,12 +224,17 @@ export default class debug_body1 extends cc.Component
             }
             
             //cc.find('SceneControl').getComponent("SceneControl").onKeyDown(cc.macro.KEY.e);
-            if (Global.player1_dead_bound) {
+            if (Global.player1_dead_bound > 0 && Global.player1_dead_bound < 5) {
                 var smoke_block_prefab = cc.instantiate(this.smoke_block);
                 smoke_block_prefab.parent = this.node.parent;
                 smoke_block_prefab.setPosition(this.node.x - 200, this.node.y + 200);
                 //smoke_yellow_prefab.setPosition(this.node.x - 200, this.node.y + 200);
                 smoke_block_prefab.getComponent("smoke1").die();
+            } else if (Global.player1_dead_bound == 5) {    // castle map's spike
+                for (var i = 0; i < 4; i++) {
+                    this.init_hit_smoke();
+                    Global.player1_percent += this.hit_coff;
+                }
             }
         }
         //this.excalibur_count+=2;
@@ -811,7 +816,7 @@ export default class debug_body1 extends cc.Component
     }  
 
     shakeEffect(du) {
-        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false&&this.shake_flag==false)
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false&&this.shake_flag==false&&Global.player1_dead==false)
         {
             this.shake_flag=true;
             this.camera.runAction(
@@ -842,7 +847,7 @@ export default class debug_body1 extends cc.Component
     }
 
     littleshakeEffect() {
-        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false)
+        if(cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").local_dead==false&&Global.player1_dead==false)
         {
             this.camera.runAction(
                 cc.repeatForever(

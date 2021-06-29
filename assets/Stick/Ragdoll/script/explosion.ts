@@ -8,7 +8,7 @@ export default class explosion extends cc.Component
     private anim = null;
 
     //private bulletManager = null;
-    private hit_coff = 3;
+    private hit_coff = 12;
 
     public isTriggered = false; // I add this to make the bullet kill one enemy at a time.
 
@@ -23,6 +23,7 @@ export default class explosion extends cc.Component
     {
         this.node.parent = node.parent; 
         this.node.position = cc.v2(0,0);
+        this.node.angle += Math.round(Math.random() * 60 - 30);
 
         this.node.position = this.node.position.addSelf(node.position);
     }
@@ -44,6 +45,7 @@ export default class explosion extends cc.Component
             if (otherCollider.node.group == "stick") {
                 cc.log("stick1 been hit");
                 Global.player1_percent += this.hit_coff;
+                cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").init_hit_smoke();
                 Global.player1_dead=true;
             } else if (otherCollider.node.group == "stick2") {
                 cc.log("stick2 been hit");
