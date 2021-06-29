@@ -1,5 +1,6 @@
 
 const {ccclass, property} = cc._decorator;
+import { Global } from "../Stick/Ragdoll/script/Leg_force";
 
 @ccclass
 export default class NewClass extends cc.Component {
@@ -223,14 +224,16 @@ export default class NewClass extends cc.Component {
             } else if(this.isMouseDown && !this.idle){
 
                 //cc.log(this.MouseDragPos);
-                this.moving_object.x = this.MouseDownPos.x;
-                this.moving_object.y = this.MouseDownPos.y;
+                
                 //let mousedragPosAR = cc.find("Canvas").convertToWorldSpaceAR(this.MouseDragPos);
 
                 // draw
-                this.moving_object.width = Math.abs(this.MouseDownPos.x - this.MouseDragPos.x) * 2;
-                this.moving_object.height = Math.abs(this.MouseDownPos.y - this.MouseDragPos.y)* 2;
+                this.moving_object.width = Math.abs(this.MouseDownPos.x - this.MouseDragPos.x);
+                this.moving_object.height = Math.abs(this.MouseDownPos.y - this.MouseDragPos.y);
                 
+                this.moving_object.x = (this.MouseDownPos.x + this.MouseDragPos.x) / 2;
+                this.moving_object.y = (this.MouseDownPos.y + this.MouseDragPos.y) / 2;
+
                 /*
                 const ctx = this.moving_object.getComponent(cc.Graphics);
                 cc.log("down: " + this.MouseDownPos);
@@ -306,8 +309,12 @@ export default class NewClass extends cc.Component {
             yellowPersentNode.width = yellowPersentNode.height = 135;
             yellowPersentNode.scale = 0.5;
             
-        
-            cc.log(p1Node.parent);
+            //cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").custom_start();
+            //cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").custom_start();
+            cc.log("dead: ", Global.player1_dead);
+            //cc.log("knee dead: ",cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").start());
+            //cc.log("yellow dead: ",cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body2").start());
+            //cc.log(p1Node.parent);
         }));
         leftPage.runAction(action);
     }
