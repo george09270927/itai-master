@@ -755,7 +755,7 @@
       "array": [
         0,
         0,
-        359.18403621959595,
+        351.69983699762105,
         0,
         0,
         0,
@@ -3355,8 +3355,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "barrel",
-    "_N$string": "barrel",
+    "_string": "laser gun",
+    "_N$string": "laser gun",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": false,
@@ -3527,8 +3527,8 @@
     },
     "component": "",
     "_componentId": "51516jfgklG4JsAcd/QsUW2",
-    "handler": "barrel",
-    "customEventData": ""
+    "handler": "generateWeapon",
+    "customEventData": "laserGun"
   },
   {
     "__type__": "cc.Node",

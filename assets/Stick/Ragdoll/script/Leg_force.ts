@@ -114,7 +114,8 @@ export default class Leg_force extends cc.Component {
             var collider = result.collider;
             //cc.log(collider);
             
-            if(collider.node.name == "platform") {
+            //if(collider.node.name == "platform") {
+            if(collider.node.group == "platform" || collider.node.name == "platform") {
                 var diff = p1.y - result.point.y;
                 if (diff < temp_min) temp_min = diff;
             } 
