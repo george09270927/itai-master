@@ -234,12 +234,6 @@ export default class NewClass extends cc.Component {
                     this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
                 });
             }
-            //cc.log("moving object: " + this.moving_object.position);
-            //cc.log(this.mouse_position);
-            //cc.log(this.moving_object);
-            //this.moving_object.setPosition(30, 50)
-            //this.moving_object.y = this.mouse_position.y;
-            //this.moving_object.position = this.mouse_position;
         } else if (this.state == this.object_type.platform) {
 
             if(!this.isMouseDown && !this.idle){
@@ -260,40 +254,17 @@ export default class NewClass extends cc.Component {
                 
             } else if(this.isMouseDown && !this.idle){
 
-                //cc.log(this.MouseDragPos);
-                
-                //let mousedragPosAR = cc.find("Canvas").convertToWorldSpaceAR(this.MouseDragPos);
-
                 // draw
                 this.moving_object.width = Math.abs(this.MouseDownPos.x - this.MouseDragPos.x);
                 this.moving_object.height = Math.abs(this.MouseDownPos.y - this.MouseDragPos.y);
                 
                 this.moving_object.x = (this.MouseDownPos.x + this.MouseDragPos.x) / 2;
                 this.moving_object.y = (this.MouseDownPos.y + this.MouseDragPos.y) / 2;
-
-                /*
-                const ctx = this.moving_object.getComponent(cc.Graphics);
-                cc.log("down: " + this.MouseDownPos);
-                cc.log("drag: " + this.MouseDragPos);
-                ctx.clear();
-                
-               
-                ctx.moveTo(this.MouseDownPos.x, this.MouseDownPos.y);
-                
-                ctx.lineTo(this.MouseDownPos.x, this.MouseDragPos.y);
-                ctx.lineTo(this.MouseDragPos.x, this.MouseDragPos.y);
-                ctx.lineTo(this.MouseDragPos.x, this.MouseDownPos.y);
-                ctx.lineTo(this.MouseDownPos.x, this.MouseDownPos.y);
-                ctx.close();
-                ctx.stroke();
-                ctx.fill();
-                */
-                
+    
             }
         } else if(this.state == this.object_type.ice){
             if(!this.isMouseDown && !this.idle){
                 
-                cc.log("fix object////");
                 this.scheduleOnce(()=>{ 
                     this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 0;
                     this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 4;
@@ -313,12 +284,6 @@ export default class NewClass extends cc.Component {
                     this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
                 });
             }
-            //cc.log("moving object: " + this.moving_object.position);
-            //cc.log(this.mouse_position);
-            //cc.log(this.moving_object);
-            //this.moving_object.setPosition(30, 50)
-            //this.moving_object.y = this.mouse_position.y;
-            //this.moving_object.position = this.mouse_position;
         } else if (this.state == this.object_type.mush) {
             if(this.isMouseDown){
                 this.isMouseDown = false;
@@ -327,8 +292,6 @@ export default class NewClass extends cc.Component {
                 this.moving_object.getChildByName("platform").getComponent("Falling").initPos(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
                 
-                //this.scheduleOnce(()=>{this.moving_object.position = this.MouseDownPos;});
-                //cc.log(this.moving_object.position);
             } else {
                 this.idle = true;
             }
@@ -355,7 +318,7 @@ export default class NewClass extends cc.Component {
         this.idle = true;
 
         var leftPage = cc.find("Left Page");
-        var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -1600, 0).easing(cc.easeInOut(3)), cc.callFunc(()=>{
+        var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -1200, 320).easing(cc.easeInOut(3)), cc.callFunc(()=>{
             let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
             let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
             let p1Node = cc.instantiate(this.player1Prefab);
@@ -371,13 +334,6 @@ export default class NewClass extends cc.Component {
             yellowPersentNode.position = cc.v2(430, 270);
             yellowPersentNode.width = yellowPersentNode.height = 135;
             yellowPersentNode.scale = 0.5;
-            
-            //cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").custom_start();
-            //cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").custom_start();
-            cc.log("dead: ", Global.player1_dead);
-            //cc.log("knee dead: ",cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").start());
-            //cc.log("yellow dead: ",cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body2").start());
-            //cc.log(p1Node.parent);
         }));
         leftPage.runAction(action);
     }

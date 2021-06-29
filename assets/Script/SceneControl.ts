@@ -159,10 +159,8 @@ export default class NewClass extends cc.Component {
 
         if(this.current_Map != 10)
             DialogNode.getChildByName("mask").runAction(fIn);
-
-
-        
     }
+    
     showReady(){
         //cc.log("show dialog");
 
@@ -228,7 +226,7 @@ export default class NewClass extends cc.Component {
         cc.log("new random map = " + randomMap);
         
         if(randomMap == 10) {
-            var leftPage = cc.find("Canvas/Left Page");
+            var leftPage = cc.find("Left Page");
 
             var blackPersentNode = cc.find("Canvas/percent_black");          
             var yellowPersentNode = cc.find("Canvas/percent_yellow");
@@ -240,7 +238,7 @@ export default class NewClass extends cc.Component {
             p1Node.destroy();
             p2Node.destroy();
 
-            var action = cc.moveTo(0.5, -390, 0).easing(cc.easeInOut(3))
+            var action = cc.moveTo(0.5, 90, 320).easing(cc.easeInOut(3));
             leftPage.runAction(action);   
         }     
         else {
