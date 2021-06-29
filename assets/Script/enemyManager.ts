@@ -21,9 +21,9 @@ export default class enemyManager extends cc.Component
             this.enemyPool.put(enemy);
         }
         
-        /*this.schedule(this.createEnemy1, 1); //set one enemy to the scene every 0.5s .
+        this.schedule(this.createEnemy1, 1); //set one enemy to the scene every 0.5s .
         this.schedule(this.createEnemy2, 0.75);
-        this.schedule(this.createEnemy3, 0.5);*/
+        this.schedule(this.createEnemy3, 0.5);
     }
 
     //call this function to add new enemy to the scene.
