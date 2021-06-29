@@ -26,6 +26,10 @@ export default class LaserGun extends cc.Component {
         else if(this.node.name == "LaserGun_prefab_2") this.detectOnground = cc.find("small_sticker - 002_yellow/1_Head").getComponent("debug_body1_2").onGround;
         
     }
+
+    initPos(pos){
+        this.node.position = pos;
+    }
     //世界座標轉換
     localConvertWorldPointAR(node) {
         if (node) {

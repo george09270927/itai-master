@@ -50,6 +50,9 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     private barrelPrefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    private laserGunPrefab: cc.Prefab = null;
+
     private state: number = null;
 
     private idle: boolean =true;
@@ -60,7 +63,8 @@ export default class NewClass extends cc.Component {
         platform: 2,
         ice: 3,
         mush: 4,
-        barrel: 5
+        barrel: 5,
+        laserGun: 6
         
     });
 
@@ -341,6 +345,38 @@ export default class NewClass extends cc.Component {
             } else {
                 this.idle = true;
             }
+            
+        } else if (this.state == this.object_type.laserGun){
+            if(this.isMouseDown && !this.idle){
+                this.isMouseDown = false;
+                this.idle = false;
+                this.moving_object = cc.instantiate(this.laserGunPrefab);
+                this.moving_object.setPosition(this.MouseDownPos);
+                this.moving_object.parent = cc.find("Canvas");
+                
+            } else {
+                this.idle = true;
+            }
+        }
+    }
+
+    generateWeapon(event,weaponType){
+        
+        cc.log("here");
+        cc.log(weaponType);
+        if(weaponType == "laserGun"){
+            this.initState();
+            this.state = this.object_type.idle; // initial
+            this.state = this.object_type.laserGun;
+            
+            cc.log("put laserGun state");
+        
+            cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+            cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
+            // resume moving
+            this.isMouseDown = null;
+            
+        } else if (weaponType == "gun"){
             
         }
     }
