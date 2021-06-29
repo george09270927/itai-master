@@ -107,9 +107,14 @@ export default class NewClass extends cc.Component {
                 //cc.log("hit platform");
             } else if(collider.node.name == "floor"){
                 //cc.log("hit floor");
-            } else if(collider.node.name == "player"){
-                //cc.log("hit plaeyr");
-                collider.node.getComponent("Player_ans").isDead = true;
+            } else if(collider.node.group == "stick"){
+                cc.log("hit stick1");
+                //collider.node.getComponent("Player_ans").isDead = true;
+                cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").dead_from_laser();
+            } else if (collider.node.group == "stick2") {
+                cc.log("hit stick2");
+                cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").dead_from_laser();
+
             }
             //射线穿过的碰撞体的世界坐标
             var point = result.point;
