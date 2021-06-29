@@ -8,10 +8,14 @@ export default class NewClass extends cc.Component {
     // onLoad () {}
     private isTouched: boolean = false;
     start () {
-
+        
     }
 
     // update (dt) {}
+    // for CustomMap init position
+    init(pos){
+        this.node.parent.position = pos;
+    }
 
     fall(){
         //cc.log("in fall");

@@ -45,7 +45,7 @@ export default class NewClass extends cc.Component {
     private smashcubePrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
-    private iceplatformPrefab: cc.Prefab = null;
+    private fallingplatformPrefab: cc.Prefab = null;
 
     private state: number = null;
 
@@ -177,27 +177,8 @@ export default class NewClass extends cc.Component {
         cc.log("mush state...");
         this.state = this.object_type.mush;
         
-        /*
-        this.scheduleOnce(()=>{ 
-            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 2;
-            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
-            //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
-            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
-        });
-        */
-        this.moving_object.parent = cc.find("Canvas");
+        cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
         // resume moving
-
-        this.moving_object.getChildByName("platform").on('mouseup', function (event) {
-            console.log('Mouse up');
-            this.isMouseDown = false;
-        }, this);
-        this.moving_object.getChildByName("platform").on('mousedown', function (event) {
-            console.log('Mouse down');
-            this.isMouseDown = true;
-            this.idle = false;
-          }, this);
-
         this.isMouseDown = null;
 
     }
@@ -313,8 +294,16 @@ export default class NewClass extends cc.Component {
             //this.moving_object.y = this.mouse_position.y;
             //this.moving_object.position = this.mouse_position;
         } else if (this.state == this.object_type.mush) {
-            this.moving_object = cc.instantiate(this.iceplatformPrefab);
-            this.moving_object.position = this.MouseDownPos;
+            if(this.isMouseDown){
+                this.isMouseDown = false;
+                this.moving_object = cc.instantiate(this.fallingplatformPrefab);
+                this.moving_object.getChildByName("platform").getComponent("Falling").init(this.MouseDownPos);
+                this.moving_object.parent = cc.find("Canvas");
+                
+                //this.scheduleOnce(()=>{this.moving_object.position = this.MouseDownPos;});
+                cc.log(this.moving_object.position);
+            }
+            
         }
     }
 
@@ -324,7 +313,7 @@ export default class NewClass extends cc.Component {
         this.state = this.object_type.idle;
         this.idle = true;
 
-        var leftPage = cc.find("Canvas/Left Page");
+        var leftPage = cc.find("Left Page");
         var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -1600, 0).easing(cc.easeInOut(3)), cc.callFunc(()=>{
             let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
             let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
