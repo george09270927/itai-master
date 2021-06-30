@@ -448,27 +448,27 @@ export default class NewClass extends cc.Component {
         var action = cc.sequence(cc.moveBy(0.5, 50, 0).easing(cc.easeInOut(3)), cc.moveTo(0.5, -1200, 320).easing(cc.easeInOut(3)), cc.callFunc(()=>{
             let blackPersentNode = cc.instantiate(this.blackNumberPrefab);
             let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
-            let p1Node = cc.instantiate(this.player1Prefab);
-            let p2Node = cc.instantiate(this.player2Prefab);
+            
+            
             let laserRay_1 = cc.find("LaserGunRay_1");
             let laserRay_2 = cc.find("LaserGunRay_2");
             
-
-            p1Node.parent = cc.director.getScene();
-            p2Node.parent = cc.director.getScene();
             blackPersentNode.parent = cc.find("Canvas");
             yellowPersentNode.parent = cc.find("Canvas");
             blackPersentNode.position = cc.v2(-430, 270);
             blackPersentNode.width = blackPersentNode.height = 135;
             blackPersentNode.scale = 0.5;
-
-            cc.log(p1Node);
-            cc.log(p2Node);
-         
-
             yellowPersentNode.position = cc.v2(430, 270);
             yellowPersentNode.width = yellowPersentNode.height = 135;
             yellowPersentNode.scale = 0.5;
+
+            let p1Node = cc.instantiate(this.player1Prefab);
+            let p2Node = cc.instantiate(this.player2Prefab);
+            p1Node.parent = cc.director.getScene();
+            p2Node.parent = cc.director.getScene();
+            cc.log(p1Node);
+            cc.log(p2Node);
+            
         }));
         leftPage.runAction(action);
     }

@@ -794,7 +794,7 @@ export default class debug_body1_2 extends cc.Component
             cc.find('small_sticker - 002_yellow/1_Body_02').angle--;
         }
 
-        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, 0);
+        this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, this.getComponent(cc.RigidBody).linearVelocity.y);
        
     }  
 

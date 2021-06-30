@@ -758,7 +758,7 @@
       "array": [
         0,
         0,
-        351.44531766138607,
+        359.5195021040289,
         0,
         0,
         0,
@@ -935,7 +935,7 @@
       "__id__": 23
     },
     "_enabled": true,
-    "Debug_Draw": true,
+    "Debug_Draw": false,
     "_id": "61Y6jic79KMq16reo3D4tC"
   },
   {
