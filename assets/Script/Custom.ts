@@ -26,12 +26,12 @@ export default class NewClass extends cc.Component {
 
     @property(cc.Prefab)
     private player2Prefab: cc.Prefab = null;
+
     @property(cc.Prefab)
     private blackNumberPrefab: cc.Prefab = null;
-    @property(cc.Prefab)
-    private yellowNumberPrefab: cc.Prefab = null;
 
-    
+    @property(cc.Prefab)
+    private yellowNumberPrefab: cc.Prefab = null;   
 
     @property(cc.Prefab)
     private laserplatformPrefab: cc.Prefab = null;
@@ -54,6 +54,21 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     private laserGunPrefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    private grenadePrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private desertHawkPrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private excaliburPrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private laserRay_1_Prefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    private laserRay_2_Prefab: cc.Prefab = null;
+
     private state: number = null;
 
     private idle: boolean =true;
@@ -65,15 +80,20 @@ export default class NewClass extends cc.Component {
         ice: 3,
         mush: 4,
         barrel: 5,
-        laserGun: 6
+        laserGun: 6,
+        grenade: 7,
+        desertHawk: 8,
+        excalibur: 9
         
     });
 
     onLoad () {
 
         this.MouseDragPos = new cc.Vec2(0, 0);
-        
         this.MouseDownPos = new cc.Vec2(0, 0);
+        this.isMouseDown = false;
+        this.idle = true;
+        this.state = this.object_type.idle;
         cc.find("Canvas").on('touchmove', function (event) {
             //console.log('touchmove');
             this.MouseDragPos = cc.find("Canvas").convertToNodeSpaceAR(event.getLocation());
@@ -204,12 +224,14 @@ export default class NewClass extends cc.Component {
         
         this.isMouseDown = null;
     }
+
     initState(){
         cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
         cc.systemEvent.removeAll(cc.find("Canvas"));
         cc.systemEvent.removeAll(this.moving_object);
         cc.log("remove///");
     }
+
     update (dt) {
         //this.getMousePosition();
         if(this.state == this.object_type.idle){
@@ -322,8 +344,41 @@ export default class NewClass extends cc.Component {
                 
             } else {
                 this.idle = true;
+            } 
+        } else if (this.state == this.object_type.grenade){
+            if(this.isMouseDown && !this.idle){
+                this.isMouseDown = false;
+                this.idle = false;
+                this.moving_object = cc.instantiate(this.grenadePrefab);
+                this.moving_object.setPosition(this.MouseDownPos);
+                this.moving_object.parent = cc.find("Canvas");
+                
+            } else {
+                this.idle = true;
             }
-        }
+        } else if (this.state == this.object_type.desertHawk){
+            if(this.isMouseDown && !this.idle){
+                this.isMouseDown = false;
+                this.idle = false;
+                this.moving_object = cc.instantiate(this.desertHawkPrefab);
+                this.moving_object.setPosition(this.MouseDownPos);
+                this.moving_object.parent = cc.find("Canvas");
+                
+            } else {
+                this.idle = true;
+            }
+        } else if (this.state == this.object_type.excalibur){
+            if(this.isMouseDown && !this.idle){
+                this.isMouseDown = false;
+                this.idle = false;
+                this.moving_object = cc.instantiate(this.excaliburPrefab);
+                this.moving_object.setPosition(this.MouseDownPos);
+                this.moving_object.parent = cc.find("Canvas");
+                
+            } else {
+                this.idle = true;
+            }
+        } 
     }
 
     generateWeapon(event,weaponType){
@@ -342,9 +397,37 @@ export default class NewClass extends cc.Component {
             // resume moving
             this.isMouseDown = null;
             
-        } else if (weaponType == "gun"){
+        } else if (weaponType == "grenade"){
+            this.initState();
+            this.state = this.object_type.idle; // initial
+            this.state = this.object_type.grenade;
+            cc.log("put grenade state");
+            cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+            cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
+            // resume moving
+            this.isMouseDown = null;
             
-        }
+        } else if (weaponType == "desert hawk"){
+            this.initState();
+            this.state = this.object_type.idle; // initial
+            this.state = this.object_type.desertHawk;
+            cc.log("put desert hawk state");
+            cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+            cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
+            // resume moving
+            this.isMouseDown = null;
+            
+        } else if (weaponType == "excalibur"){
+            this.initState();
+            this.state = this.object_type.idle; // initial
+            this.state = this.object_type.excalibur;
+            cc.log("put excalibur state");
+            cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
+            cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
+            // resume moving
+            this.isMouseDown = null;
+            
+        } 
     }
 
     startGame(){
@@ -359,6 +442,10 @@ export default class NewClass extends cc.Component {
             let yellowPersentNode = cc.instantiate(this.yellowNumberPrefab);
             let p1Node = cc.instantiate(this.player1Prefab);
             let p2Node = cc.instantiate(this.player2Prefab);
+            let laserRay_1 = cc.find("LaserGunRay_1");
+            let laserRay_2 = cc.find("LaserGunRay_2");
+            
+
             p1Node.parent = cc.director.getScene();
             p2Node.parent = cc.director.getScene();
             blackPersentNode.parent = cc.find("Canvas");
@@ -366,6 +453,7 @@ export default class NewClass extends cc.Component {
             blackPersentNode.position = cc.v2(-430, 270);
             blackPersentNode.width = blackPersentNode.height = 135;
             blackPersentNode.scale = 0.5;
+         
 
             yellowPersentNode.position = cc.v2(430, 270);
             yellowPersentNode.width = yellowPersentNode.height = 135;

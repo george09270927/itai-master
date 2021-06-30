@@ -233,10 +233,15 @@ export default class NewClass extends cc.Component {
             var p1Node = cc.find("small_sticker - 002_knee");
             var p2Node = cc.find("small_sticker - 002_yellow"); 
 
+            var laserRay_1 = cc.find("LaserGunRay_1");
+            var laserRay_2 = cc.find("LaserGunRay_2");
+
             blackPersentNode.destroy();
             yellowPersentNode.destroy();
             p1Node.destroy();
             p2Node.destroy();
+            laserRay_1.active = false;
+            laserRay_2.active = false;
 
             var action = cc.moveTo(0.5, 90, 320).easing(cc.easeInOut(3));
             leftPage.runAction(action);   
