@@ -114,14 +114,21 @@ export default class Leg_force_2 extends cc.Component {
             var collider = result.collider;
             //cc.log(collider);
             
-            if(collider.node.name == "platform") {
+            //if(collider.node.name == "platform") {
+            if(collider.node.group == "platform" || collider.node.name == "platform") {
                 var diff = p1.y - result.point.y;
                 if (diff < temp_min) temp_min = diff;
             } 
         }
         if (temp_min < 60) {
-            //cc.log("modify", (temp_min));
-            this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, (temp_min) * 15);
+            //cc.log("modify: ", (temp_min));
+            if (Global.player2_getgun) {
+                //cc.log("have gun!!!!!!!!!!!!!!!!!!!!!");
+                //temp_min *= 10000000000;
+                cc.log(temp_min);
+            }
+            //cc.log(this.node);
+            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, temp_min*15);
         }
         if (temp_min < 63) Global.onWalk_range = true;
         else Global.onWalk_range = false;
