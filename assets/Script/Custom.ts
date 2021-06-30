@@ -21,6 +21,8 @@ export default class NewClass extends cc.Component {
 
     private MouseDragPos: cc.Vec2 = null;
 
+    private firstClick: boolean = false;
+
     @property(cc.Prefab)
     private player1Prefab: cc.Prefab = null;
 
@@ -139,11 +141,16 @@ export default class NewClass extends cc.Component {
      
         
         console.log('Mouse down in platform detect');
-        this.isMouseDown = true;
-        this.idle = false;
         this.MouseDownPos = cc.find("Canvas").convertToNodeSpaceAR(event.getLocation());
         this.MouseDragPos = cc.find("Canvas").convertToNodeSpaceAR(event.getLocation());
-        cc.log("MDP: " + this.MouseDownPos);
+        if(!(this.MouseDownPos.x < -340 && this.MouseDownPos.y > 0) && !(this.MouseDownPos.x > 340 && this.MouseDownPos.y > 0) && !(this.MouseDownPos.y < -250)){
+            this.isMouseDown = true;
+            this.idle = false;
+            cc.log("MDP: " + this.MouseDownPos);
+        }
+        
+        
+        
     
     }
 
@@ -349,6 +356,7 @@ export default class NewClass extends cc.Component {
             if(this.isMouseDown && !this.idle){
                 this.isMouseDown = false;
                 this.idle = false;
+                
                 this.moving_object = cc.instantiate(this.grenadePrefab);
                 this.moving_object.setPosition(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
@@ -453,6 +461,9 @@ export default class NewClass extends cc.Component {
             blackPersentNode.position = cc.v2(-430, 270);
             blackPersentNode.width = blackPersentNode.height = 135;
             blackPersentNode.scale = 0.5;
+
+            cc.log(p1Node);
+            cc.log(p2Node);
          
 
             yellowPersentNode.position = cc.v2(430, 270);
