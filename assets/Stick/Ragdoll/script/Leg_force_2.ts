@@ -124,7 +124,7 @@ export default class Leg_force_2 extends cc.Component {
             //cc.log("modify: ", (temp_min));
             if (Global.player2_getgun) {
                 //cc.log("have gun!!!!!!!!!!!!!!!!!!!!!");
-                temp_min *= 10000000000;
+                //temp_min *= 10000000000;
                 cc.log(temp_min);
             }
             //cc.log(this.node);
