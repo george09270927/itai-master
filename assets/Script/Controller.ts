@@ -30,7 +30,7 @@ export default class Controller extends cc.Component
         if(this.pole.angle <= -40) {  
             cc.find("Canvas/menu bg/bg_text").active = false;         
             this.time.active = true;
-            if(this.state <= 1) {
+            if(this.state <= 0) {
                 cc.director.loadScene("CastleMap");
             } 
         }
