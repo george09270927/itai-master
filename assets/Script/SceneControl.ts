@@ -15,7 +15,7 @@ export default class NewClass extends cc.Component {
 
     private current_Map: number  = null;
     
-    private ready_enabled: boolean = true;
+    private ready_enabled: boolean = false;
     
 
     @property()
@@ -69,7 +69,7 @@ export default class NewClass extends cc.Component {
         } else if (MapName == "CustomMap"){
             this.current_Map = 10;
         } 
-        if(!this.ready_enabled)
+        if(!this.ready_enabled && cc.director.getScene().name != "Menu"&&cc.director.getScene().name != "CustomMap")
             this.showReady();
 
     }
