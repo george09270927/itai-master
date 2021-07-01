@@ -114,8 +114,10 @@ export default class NewClass extends cc.Component {
                 }).start();
 
             this.changeflag = false;
+            let showDialog_before_changeScene;
             if(this.current_Map == 10) this.changeflag = true;
-            let showDialog_before_changeScene = cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(1), cc.callFunc(()=>{this.changeScene();}))
+            if(cc.find('small_sticker - 002_knee/0_Head').getComponent("debug_body1").shake_flag ==false &&cc.find('small_sticker - 002_yellow/1_Head').getComponent("debug_body1_2").shake_flag==false)  showDialog_before_changeScene= cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(1), cc.callFunc(()=>{this.changeScene();}));
+            else showDialog_before_changeScene= cc.sequence(cc.callFunc(()=>{this.showDialog()}),cc.delayTime(5), cc.callFunc(()=>{this.changeScene();}));
             this.node.runAction(showDialog_before_changeScene);
         }
     }
@@ -240,7 +242,7 @@ export default class NewClass extends cc.Component {
         
         cc.log("new random map = " + randomMap);
         
-        if(randomMap == 10) {
+        if(randomMap == 10) { //custommap
             var leftPage = cc.find("Left Page");
 
             var blackPersentNode = cc.find("Canvas/percent_black");          

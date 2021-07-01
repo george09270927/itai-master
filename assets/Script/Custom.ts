@@ -75,6 +75,9 @@ export default class NewClass extends cc.Component {
 
     private idle: boolean =true;
 
+    p1Node;
+    p2Node;
+
     private object_type = cc.Enum({
         idle: 0,
         laserplatform: 1,
@@ -462,12 +465,12 @@ export default class NewClass extends cc.Component {
             yellowPersentNode.width = yellowPersentNode.height = 135;
             yellowPersentNode.scale = 0.5;
 
-            let p1Node = cc.instantiate(this.player1Prefab);
-            let p2Node = cc.instantiate(this.player2Prefab);
-            p1Node.parent = cc.director.getScene();
-            p2Node.parent = cc.director.getScene();
-            cc.log(p1Node);
-            cc.log(p2Node);
+             this.p1Node = cc.instantiate(this.player1Prefab);
+             this.p2Node = cc.instantiate(this.player2Prefab);
+            this.p1Node.parent = cc.director.getScene();
+            this.p2Node.parent = cc.director.getScene();
+            cc.log(this.p1Node);
+            cc.log(this.p2Node);
             
         }));
         leftPage.runAction(action);
