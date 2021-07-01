@@ -23,6 +23,8 @@ export default class NewClass extends cc.Component {
 
     private firstClick: boolean = false;
 
+    private now_background: number = 0; // default
+
     @property(cc.Prefab)
     private player1Prefab: cc.Prefab = null;
 
@@ -78,6 +80,28 @@ export default class NewClass extends cc.Component {
     private state: number = null;
 
     private idle: boolean =true;
+
+    @property(cc.SpriteFrame)
+    private BG0: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    private BG1: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    private BG2: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    private BG3: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    private BG4: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    private BG5: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    private BG6: cc.SpriteFrame = null;
+    @property(cc.SpriteFrame)
+    private BG7: cc.SpriteFrame = null;
+    
+
+
+    p1Node;
+    p2Node;
 
     private object_type = cc.Enum({
         idle: 0,
@@ -528,17 +552,84 @@ export default class NewClass extends cc.Component {
             yellowPersentNode.width = yellowPersentNode.height = 135;
             yellowPersentNode.scale = 0.5;
 
-            let p1Node = cc.instantiate(this.player1Prefab);
-            let p2Node = cc.instantiate(this.player2Prefab);
-            p1Node.parent = cc.director.getScene();
-            p2Node.parent = cc.director.getScene();
-            cc.log(p1Node);
-            cc.log(p2Node);
-
-            
+             this.p1Node = cc.instantiate(this.player1Prefab);
+             this.p2Node = cc.instantiate(this.player2Prefab);
+            this.p1Node.parent = cc.director.getScene();
+            this.p2Node.parent = cc.director.getScene();
+            cc.log(this.p1Node);
+            cc.log(this.p2Node);
             
         }));
         leftPage.runAction(action);
+    }
+
+    changeBackground(event, instruction){
+        //var BGpool = 0 // default: black
+        
+        if(instruction == "next"){
+            this.now_background = (this.now_background + 1) % 8;
+        } else if (instruction == "previous"){
+            this.now_background = (this.now_background + 7) % 8;
+        }
+
+        if(this.now_background == 0){
+
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG0;
+            cc.find("Canvas/black_background/black").color = new cc.Color(0, 0, 0);
+            //cc.log(cc.find("Left Page/BG"));
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "Default";
+
+        } else if (this.now_background == 1){
+
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG1;
+            //cc.find("Canvas/black_background/mask").active = false;
+            cc.find("Canvas/black_background/black").width = 960;
+            cc.find("Canvas/black_background/black").height = 640;
+            cc.find("Canvas/black_background/black").color = new cc.Color(255, 255, 255);
+            //cc.log(cc.director.getScene());
+            //cc.log(cc.find("Left Page"));
+            //cc.log(cc.find("Left Page/BG"));
+            //cc.log("here");
+            
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "Castle";
+
+        } else if (this.now_background == 2){
+
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG2;
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "Egypt";
+            
+        } else if (this.now_background == 3){
+
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG3;
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "Factory";
+            
+        } else if (this.now_background == 4){
+            
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG4;
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "Holloween";
+            
+        } else if (this.now_background == 5){
+            
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG5;
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "LavaWorld";
+            
+        } else if (this.now_background == 6){
+            
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG6;
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "SnowWorld";
+            
+        } else if (this.now_background == 7){
+            
+            cc.find("Canvas/black_background/black").getComponent(cc.Sprite).spriteFrame = this.BG7;
+            cc.find("Canvas/black_background/black").width = 960;
+            cc.find("Canvas/black_background/black").height = 640;
+            cc.find("Canvas/black_background/black").color = new cc.Color(255, 255, 255);
+            cc.find("Left Page/BG").getComponent(cc.Label).string = "Western";
+            
+        } 
+
+        let action = cc.spawn(cc.sequence(cc.scaleTo(0.1, 1.1), cc.scaleTo(0.1, 1)),cc.sequence(cc.tintTo(0.2, 255, 255, 255), cc.tintTo(0.2, 0, 0, 0)));
+        cc.find("Left Page/BG").runAction(action);
     }
 
     public Leave() {

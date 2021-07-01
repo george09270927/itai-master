@@ -812,7 +812,7 @@ export default class debug_body1 extends cc.Component
         }
 
         this.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.playerSpeed, this.getComponent(cc.RigidBody).linearVelocity.y);
-        this.node.parent.getChildByName("0_R_hand").getComponent(cc.RigidBody).linearVelocity.y = this.getComponent(cc.RigidBody).linearVelocity.y;
+        //this.node.parent.getChildByName("0_R_hand").getComponent(cc.RigidBody).linearVelocity.y = this.getComponent(cc.RigidBody).linearVelocity.y;
         if(Global.player1_getgun){
             //cc.log(this.gun_pointer);
             //cc.log("gun up");
