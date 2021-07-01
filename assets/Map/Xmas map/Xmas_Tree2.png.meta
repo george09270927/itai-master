@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "72269827-4c85-45f5-8a00-88e2214ab5c0",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Xmas_Tree2": {
+      "ver": "1.0.4",
+      "uuid": "c1208fe9-e040-4a0b-a00a-9ee8aa42f9c4",
+      "rawTextureUuid": "72269827-4c85-45f5-8a00-88e2214ab5c0",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 2,
+      "trimY": 4,
+      "width": 192,
+      "height": 334,
+      "rawWidth": 196,
+      "rawHeight": 342,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
