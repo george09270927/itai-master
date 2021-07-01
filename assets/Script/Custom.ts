@@ -559,6 +559,7 @@ export default class NewClass extends cc.Component {
             cc.log(this.p1Node);
             cc.log(this.p2Node);
             
+            
         }));
         leftPage.runAction(action);
     }
