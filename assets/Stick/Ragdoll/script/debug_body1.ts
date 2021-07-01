@@ -247,7 +247,7 @@ export default class debug_body1 extends cc.Component
                 if(this.excalibur_count== 360) cc.audioEngine.playEffect(this.excalibur_ex_sound,false);
                 if(this.excalibur_count== 30) cc.audioEngine.playEffect(this.excalibur_ready_sound,true);
                 if(this.excalibur_count==30) this.littleshakeEffect();
-                this.excalibur_count+=0.5;
+                this.excalibur_count+=1;
                 if(this.excalibur_count==330&&this.playerside==true) this.gun_pointer.runAction(cc.rotateBy(1,-60));
                 else if(this.excalibur_count==330&&this.playerside==false) this.gun_pointer.runAction(cc.rotateBy(1,60));
                 if(this.excalibur_count>= 300) this.gun_pointer.getComponent('weapon_instantiate').slowdownParticle();
