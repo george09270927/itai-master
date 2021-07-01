@@ -128,7 +128,10 @@ export default class NewClass extends cc.Component {
         //this.node.active = true;
 
         let DialogNode = cc.instantiate(this.dialogPrefab);
+        
         DialogNode.parent = this.Camera;
+        cc.log(this.Camera.zIndex);
+        cc.log(DialogNode.zIndex);
         //cc.log(DialogNode);
         let messageNumber = Math.floor(Math.random()*this.dialog_number);
         var message = "default";
