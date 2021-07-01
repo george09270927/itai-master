@@ -66,6 +66,10 @@ export default class NewClass extends cc.Component {
     private excaliburPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
+    private treadmillPrefab: cc.Prefab = null;
+
+
+    @property(cc.Prefab)
     private laserRay_1_Prefab: cc.Prefab = null;
 
     @property(cc.Prefab)
@@ -85,7 +89,8 @@ export default class NewClass extends cc.Component {
         laserGun: 6,
         grenade: 7,
         desertHawk: 8,
-        excalibur: 9
+        excalibur: 9,
+        treadmill: 10
         
     });
 
@@ -232,6 +237,35 @@ export default class NewClass extends cc.Component {
         cc.find("Canvas").off('mousedown', this.mousedown_Canvas, this);
         cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
         
+        this.isMouseDown = null;
+    }
+
+    treadmill(){
+        cc.log("treadmill state!");
+        this.initState();
+        this.state = this.object_type.treadmill;
+        this.moving_object = cc.instantiate(this.treadmillPrefab);
+        this.moving_object.zIndex = 1;
+        this.scheduleOnce(()=>{ 
+            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 2;
+            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+            //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+            this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
+            this.moving_object.getChildByName("TreadHalfmgr").active = false;
+        });
+        this.moving_object.parent = cc.find("Canvas");
+        // resume moving
+
+        this.moving_object.getChildByName("platform").on('mouseup', function (event) {
+            console.log('Mouse up');
+            this.isMouseDown = false;
+        }, this);
+        this.moving_object.getChildByName("platform").on('mousedown', function (event) {
+            console.log('Mouse down');
+            this.isMouseDown = true;
+            this.idle = false;
+          }, this);
+
         this.isMouseDown = null;
     }
 
@@ -395,7 +429,30 @@ export default class NewClass extends cc.Component {
             } else {
                 this.idle = true;
             }
-        } 
+        } else if(this.state == this.object_type.treadmill){
+            if(!this.isMouseDown && !this.idle){
+                
+                this.scheduleOnce(()=>{ 
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 0;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 1;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = false;
+                    this.moving_object.getChildByName("TreadHalfmgr").active = true;
+                
+                });
+
+                this.idle = true;
+                this.state = this.object_type.idle;
+                
+            } else if(this.isMouseDown && !this.idle){
+                cc.log("hi tread");
+                this.scheduleOnce(()=>{ 
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 2;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+                    //this.moving_object.getChildByName("base").getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
+                    this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).fixedRotation = true;
+                });
+            }
+        }
     }
 
     generateWeapon(event,weaponType){
@@ -477,6 +534,8 @@ export default class NewClass extends cc.Component {
             p2Node.parent = cc.director.getScene();
             cc.log(p1Node);
             cc.log(p2Node);
+
+            
             
         }));
         leftPage.runAction(action);

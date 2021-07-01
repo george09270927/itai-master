@@ -69,8 +69,7 @@ export default class NewClass extends cc.Component {
         } else if (MapName == "CustomMap"){
             this.current_Map = 10;
         } 
-        if(!this.ready_enabled && cc.director.getScene().name != "Menu"&&cc.director.getScene().name != "CustomMap")
-            this.showReady();
+          
 
     }
 
@@ -80,6 +79,11 @@ export default class NewClass extends cc.Component {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         
+        if(!this.ready_enabled && cc.director.getScene().name != "Menu" && cc.director.getScene().name != "CustomMap" && this.current_Map != 10){
+            //cc.log("?");
+            this.showReady();
+        }
+          
         this.loadSceneAnimation();
     }
 
