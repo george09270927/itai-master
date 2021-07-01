@@ -126,6 +126,7 @@ export default class NewClass extends cc.Component {
 
         this.moving_object = cc.instantiate(this.platformPrefab);
         this.moving_object.parent = cc.find("Canvas");
+        this.moving_object.zIndex = 1;
     
         cc.find("Canvas").on('mousedown', this.mousedown_Canvas, this);
 
@@ -159,7 +160,9 @@ export default class NewClass extends cc.Component {
         this.initState();
         this.state = this.object_type.laserplatform;
         this.moving_object = cc.instantiate(this.laserplatformPrefab);
+        this.moving_object.zIndex = 1;
         this.laserBeam_object = cc.instantiate(this.laserbeamPrefab);
+        
         this.scheduleOnce(()=>{ 
             this.moving_object.getChildByName("base").getComponent(cc.RigidBody).type = 2;
             this.moving_object.getChildByName("base").getComponent(cc.RigidBody).gravityScale = 0;
@@ -187,7 +190,7 @@ export default class NewClass extends cc.Component {
         this.initState();
         this.state = this.object_type.ice;
         this.moving_object = cc.instantiate(this.smashcubePrefab);
-        
+        this.moving_object.zIndex = 1;
         this.scheduleOnce(()=>{ 
             this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).type = 2;
             this.moving_object.getChildByName("platform").getComponent(cc.RigidBody).gravityScale = 0;
@@ -322,6 +325,7 @@ export default class NewClass extends cc.Component {
                 this.isMouseDown = false;
                 this.idle = false;
                 this.moving_object = cc.instantiate(this.fallingplatformPrefab);
+                this.moving_object.zIndex = 1;
                 this.moving_object.getChildByName("platform").getComponent("Falling").initPos(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
                 
@@ -334,6 +338,7 @@ export default class NewClass extends cc.Component {
                 this.isMouseDown = false;
                 this.idle = false;
                 this.moving_object = cc.instantiate(this.barrelPrefab);
+                this.moving_object.zIndex = 1;
                 this.moving_object.getComponent("barrel").initPos(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
                 
@@ -346,6 +351,7 @@ export default class NewClass extends cc.Component {
                 this.isMouseDown = false;
                 this.idle = false;
                 this.moving_object = cc.instantiate(this.laserGunPrefab);
+                this.moving_object.zIndex = 1;
                 this.moving_object.setPosition(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
                 
@@ -358,6 +364,7 @@ export default class NewClass extends cc.Component {
                 this.idle = false;
                 
                 this.moving_object = cc.instantiate(this.grenadePrefab);
+                this.moving_object.zIndex = 1;
                 this.moving_object.setPosition(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
                 
@@ -369,6 +376,7 @@ export default class NewClass extends cc.Component {
                 this.isMouseDown = false;
                 this.idle = false;
                 this.moving_object = cc.instantiate(this.desertHawkPrefab);
+                this.moving_object.zIndex = 1;
                 this.moving_object.setPosition(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
                 
@@ -380,6 +388,7 @@ export default class NewClass extends cc.Component {
                 this.isMouseDown = false;
                 this.idle = false;
                 this.moving_object = cc.instantiate(this.excaliburPrefab);
+                this.moving_object.zIndex = 1;
                 this.moving_object.setPosition(this.MouseDownPos);
                 this.moving_object.parent = cc.find("Canvas");
                 
