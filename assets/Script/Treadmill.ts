@@ -3,7 +3,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class Treadmill extends cc.Component {
   
-    private moveSpeed: number = -800;
+    private moveSpeed: number = -600;
     //private moveSpeed: number = -8000;
 
     start() {

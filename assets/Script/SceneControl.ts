@@ -42,7 +42,7 @@ export default class NewClass extends cc.Component {
         Dogge: 4,
     });
 
-    private dialog_number: number = 5;
+    private dialog_number: number = 20;
 
     onLoad () {
         //cc.game.removePersistRootNode(cc.find("small_sticker - 002_knee"));
@@ -135,6 +135,21 @@ export default class NewClass extends cc.Component {
         else if (messageNumber == 2) message =  "LOL!";
         else if (messageNumber == 3) message =  "TK ♥ WeiN";
         else if (messageNumber == 4) message =  "GG george!";
+        else if (messageNumber == 5) message =  "Taiwan No.1!";
+        else if (messageNumber == 6) message =  "XD";
+        else if (messageNumber == 7) message =  "OMG";
+        else if (messageNumber == 8) message =  "Unbelievable";
+        else if (messageNumber == 9) message =  "WOW";
+        else if (messageNumber == 10) message =  "Lengend";
+        else if (messageNumber == 11) message =  "Surprise!";
+        else if (messageNumber == 12) message =  "Fight!";
+        else if (messageNumber == 13) message =  "Fun!";
+        else if (messageNumber == 14) message =  "See You!";
+        else if (messageNumber == 15) message =  "No Challenge!";
+        else if (messageNumber == 16) message =  "Cool!";
+        else if (messageNumber == 17) message =  "Nooooooo!";
+        else if (messageNumber == 18) message =  "Wait a second!";
+        else if (messageNumber == 19) message =  "F**k COVID-19!";
     
         
         let DialogShowingAction = cc.sequence(cc.scaleTo(0.02, 1.5).easing(cc.easeInOut(2)), cc.scaleTo(0.02, 0.9).easing(cc.easeInOut(2)),  cc.scaleTo(0.02, 1).easing(cc.easeInOut(2)), cc.delayTime(0.5), cc.scaleTo(0.2, 0.95).easing(cc.easeInOut(2)),cc.scaleTo(0.5, 1.6).easing(cc.easeInOut(3)), cc.scaleTo(1, 0).easing(cc.easeIn(5)));

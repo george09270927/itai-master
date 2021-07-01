@@ -125,7 +125,7 @@ export default class Leg_force_2 extends cc.Component {
             if (Global.player2_getgun) {
                 //cc.log("have gun!!!!!!!!!!!!!!!!!!!!!");
                 //temp_min *= 10000000000;
-                cc.log(temp_min);
+                //cc.log(temp_min);
             }
             //cc.log(this.node);
             this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.getComponent(cc.RigidBody).linearVelocity.x, temp_min*15);
@@ -156,18 +156,24 @@ export default class Leg_force_2 extends cc.Component {
             if (Global.onWall == 0) {
                 this.R_leg1.getComponent(cc.RigidBody).fixedRotation = false;
                 this.L_leg1.getComponent(cc.RigidBody).fixedRotation = false;
+                this.R_leg2.getComponent(cc.RigidBody).fixedRotation = false;
+                this.L_leg2.getComponent(cc.RigidBody).fixedRotation = false;
             } else if (Global.onWall == 1) {
                 this.R_leg1.angle = 60;
+                this.R_leg2.angle = 60;  // new add not sure, want to deal with the gap between legs
                 this.L_leg1.angle = 0;
 
                 this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+                this.R_leg2.getComponent(cc.RigidBody).fixedRotation = true;
                 this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
             } else if (Global.onWall == 2) {
                 this.R_leg1.angle = 0;
                 this.L_leg1.angle = -60;
+                this.L_leg2.angle = -60;  // new add not sure, want to deal with the gap between legs
 
                 this.R_leg1.getComponent(cc.RigidBody).fixedRotation = true;
                 this.L_leg1.getComponent(cc.RigidBody).fixedRotation = true;
+                this.L_leg2.getComponent(cc.RigidBody).fixedRotation = true;
             }
         }
     }
